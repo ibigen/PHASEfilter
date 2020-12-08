@@ -1,0 +1,42 @@
+##gff-version 3
+##sequence-region chrI 1 244581
+##sequence-region chrII 1 812643
+##sequence-region chrIII 1 334069
+##sequence-region chrIV 1 1578269
+##sequence-region chrV 1 581877
+##sequence-region chrVI 1 270930
+##sequence-region chrVII 1 1092313
+##sequence-region chrVIII 1 521020
+##sequence-region chrIX 1 440050
+##sequence-region chrX 1 745471
+##sequence-region chrXI 1 668526
+##sequence-region chrXII 1 1102505
+##sequence-region chrXIII 1 929888
+##sequence-region chrXIV 1 783959
+##sequence-region chrXV 1 1090447
+##sequence-region chrXVI 1 958737
+##sequence-region chrMT.1 1 8398
+##sequence-region chrMT.2 1 77206
+##sequence-region contig_10 1 20633
+##sequence-region contig_14 1 23593
+##sequence-region contig_16 1 44100
+##sequence-region contig_18 1 25301
+##sequence-region contig_20 1 25259
+##sequence-region contig_23 1 43231
+##sequence-region contig_27 1 7550
+##sequence-region contig_31 1 45107
+##sequence-region contig_32 1 29530
+##sequence-region contig_38 1 44764
+##sequence-region contig_48 1 9848
+##sequence-region contig_50 1 2905
+##sequence-region contig_54 1 68187
+##sequence-region contig_56 1 30971
+##sequence-region contig_57 1 28833
+chrI	S01	TY1/TY2_soloLTR	36933	37200	.	+	.	ID=TY1/TY2_soloLTR:chrI:36933-37200:+;Name=TY1/TY2_soloLTR:chrI:36933-37200:+
+chrI	S01	TY1/TY2_soloLTR	153342	153473	.	-	.	ID=TY1/TY2_soloLTR:chrI:153342-153473:-;Name=TY1/TY2_soloLTR:chrI:153342-153473:-
+chrI	S01	TY1/TY2_soloLTR	174668	174799	.	-	.	ID=TY1/TY2_soloLTR:chrI:174668-174799:-;Name=TY1/TY2_soloLTR:chrI:174668-174799:-
+chrI	S01	TY1	174808	180730	.	-	.	ID=TY1:chrI:174808-180730:-;Name=TY1:chrI:174808-180730:-
+chrI	S01	TY3_soloLTR	197150	197489	.	+	.	ID=TY3_soloLTR:chrI:197150-197489:+;Name=TY3_soloLTR:chrI:197150-197489:+
+chrI	S01	TY1/TY2_soloLTR	197670	198001	.	+	.	ID=TY1/TY2_soloLTR:chrI:197670-198001:+;Name=TY1/TY2_soloLTR:chrI:197670-198001:+
+chrI	S01	TY1/TY2_soloLTR	203945	204279	.	+	.	ID=TY1/TY2_soloLTR:chrI:203945-204279:+;Name=TY1/TY2_soloLTR:chrI:203945-204279:+
+chrI	S01	TY1/TY2_soloLTR	223950	224260	.	-	.	ID=TY1/TY2_soloLTR:chrI:223950-224260:-;Name=TY1/TY2_soloLTR:chrI:223950-224260:-
