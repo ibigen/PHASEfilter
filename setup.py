@@ -5,9 +5,10 @@ import setuptools
 from PHASEfilter.lib.constants import version
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
+## 
 ## python3 setup.py sdist bdist_wheel
 ## python3 -m twine upload dist/*
-## to test in virtual env
+### to test in virtual env
 ## python3 -m pip install dist/PHASEfilter-0.1-py3-none-any.whl --install-option test
 
 
@@ -58,7 +59,6 @@ setuptools.setup(
 #		"Operating System :: MacOS :: MacOS X",
 		"Intended Audience :: Science/Research",
 		"Topic :: Scientific/Engineering :: Bio-Informatics",
-		"Topic :: Communications :: Email'",
 	],
 	install_requires=[
 		"pyvcf==0.6.8",
