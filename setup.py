@@ -23,7 +23,6 @@ class bdist_wheel(_bdist_wheel):
 setuptools.setup(
 	name='PHASEfilter',
 	version=version.VERSION_package,
-	packages=["."],
 	scripts=['PHASEfilter/bin/phasefilter.py', 
 			'PHASEfilter/bin/best_alignment.py',
 			'PHASEfilter/bin/reference_statistics.py',
@@ -35,7 +34,7 @@ setuptools.setup(
 	url="https://github.com/ibigen/PHASEfilter",
 	packages=setuptools.find_packages(),
 	license='MIT',
-	python_requires='>=3',
+	python_requires='>=3.5',
 	include_package_data=True, # include other files
 	platforms='linux',
 	classifiers=[
@@ -48,8 +47,11 @@ setuptools.setup(
 		#	Development Status :: 6 - Mature
 		#	Development Status :: 7 - Inactive
 		'Development Status :: 3 - Alpha',
-		
-		"Programming Language :: Python :: 3",
+		"Programming Language :: Python :: 3.5",
+		"Programming Language :: Python :: 3.6",
+		"Programming Language :: Python :: 3.7",
+		"Programming Language :: Python :: 3.8",
+		"Programming Language :: Python :: 3.9",
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX :: Linux",
 #		'Operating System :: POSIX',
@@ -67,10 +69,10 @@ setuptools.setup(
 	],
 	entry_points={
 		'console_scripts': [
-			'best_alignment = best_alignment.__main__:main',
-			'reference_statistics = reference_statistics.__main__:main',
-			'phasefilter = phasefilter.__main__:main',
-			'synchronize_genomes = synchronize_genomes.__main__:main',
+			'best_alignment = PHASEfilter.bin.best_alignment:main',
+			'reference_statistics = PHASEfilter.bin.reference_statistics:main',
+			'phasefilter = PHASEfilter.bin.phasefilter:main',
+			'synchronize_genomes = PHASEfilter.bin.synchronize_genomes:main',
 		],
 	},
 	tests_require=['tox'],

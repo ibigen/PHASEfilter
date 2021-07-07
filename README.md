@@ -9,17 +9,20 @@ PHASEfilter is a software package that is possible to filter variants, SNPs and 
 
 This installation is oriented for Linux distributions.
 
-<!--
 ### Install directly
--->
 
 ```
 $ pip install PHASEfilter
 ```
 
-<!--
 ### Install with virtualenv
--->
+
+```
+$ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter version) "
+$ . PHASEfilter/bin/activate
+$ pip install PHASEfilter
+```
+
 
 The follow software must be available in your computer:
 * [python3](https://www.python.org/downloads/)

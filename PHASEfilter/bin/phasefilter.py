@@ -73,8 +73,8 @@ def main(argv=None):
 		parser.add_option("--vcf1", dest="vcf_1", help="[REQUIRED] vcf of genome 1", metavar="FILE")
 		parser.add_option("--vcf2", dest="vcf_2", help="[REQUIRED] vcf of genome 2", metavar="FILE")
 		parser.add_option("--out_vcf", dest="outfile_vcf", help="[REQUIRED] file with vcf result file", metavar="FILE")
-		parser.add_option("--threshold_heterozygous_AD", dest="threshold_heterozygous_ad", help="Cutoff ratio of Allelic depths for the ref and alt alleles " +\
-						" in the order listed. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
+#		parser.add_option("--threshold_heterozygous_AD", dest="threshold_heterozygous_ad", help="Cutoff ratio of Allelic depths for the ref and alt alleles " +\
+#						" in the order listed. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
