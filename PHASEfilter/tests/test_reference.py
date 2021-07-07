@@ -90,7 +90,8 @@ class Test(unittest.TestCase):
 		try:
 			self.assertEqual("chrII", reference.get_chr_in_genome("chrmt"))
 		except Exception as e:
-			self.assertEqual(str(e), "Error: there are more than one candidate for this chr name 'chrmt' -> ['chrMT.1', 'chrMT.2']")
+			self.assertEqual(str(e), "Error: there are more than one candidate for this chr 'chrmt' -> ['chrMT.1', 'chrMT.2']" +\
+							"\nYou can not process this chr 'chrmt' passing the follow paramateres in CLI '--pass_ref chrmt'")
 		
 		try:
 			self.assertEqual("", reference.get_chr_in_genome("chr"))

@@ -19,17 +19,13 @@ class Test(unittest.TestCase):
 		cigar = Cigar([cigar_string])
 		self.assertEqual((-1, -1), cigar.get_position_from_2_to(-1))
 		self.assertEqual((-1, -1), cigar.get_position_from_2_to(0))
-		self.assertEqual((-1, -1), cigar.get_position_from_2_to(1))
-		self.assertEqual((-1, -1), cigar.get_position_from_2_to(53))
-		self.assertEqual((1, -1), cigar.get_position_from_2_to(54))
-		self.assertEqual((2, -1), cigar.get_position_from_2_to(55))
-		self.assertEqual((434, -1), cigar.get_position_from_2_to(487))
-		self.assertEqual((487, -1), cigar.get_position_from_2_to(540))
-
-		self.assertEqual((548, -1), cigar.get_position_from_2_to(541))
-		self.assertEqual((605, -1), cigar.get_position_from_2_to(599))
-		self.assertEqual((606, -1), cigar.get_position_from_2_to(600))
-		self.assertEqual((607, -1), cigar.get_position_from_2_to(601))
+		self.assertEqual((54, -1), cigar.get_position_from_2_to(1))
+		self.assertEqual((106, -1), cigar.get_position_from_2_to(53))
+		self.assertEqual((107, -1), cigar.get_position_from_2_to(54))
+		self.assertEqual((540, -1), cigar.get_position_from_2_to(487))
+		self.assertEqual((714, -1), cigar.get_position_from_2_to(599))
+		self.assertEqual((715, -1), cigar.get_position_from_2_to(600))
+		self.assertEqual((716, -1), cigar.get_position_from_2_to(601))
 		self.assertEqual((-1, -1), cigar.get_position_from_2_to(11601))
 
 		self.assertEqual("length query\tlength subject\tmissmatch", str(cigar.count_length.get_header()))
@@ -73,7 +69,7 @@ class Test(unittest.TestCase):
 
 		cigar = Cigar([cigar_string])
 		self.assertEqual((759739, -1), cigar.get_position_from_2_to(759690))
-		self.assertEqual((-1, 759776), cigar.get_position_from_2_to(759777))
+		self.assertEqual((-1, 759825), cigar.get_position_from_2_to(759777))
 
 	def test_gicar_strings_3(self):
 
@@ -84,8 +80,8 @@ class Test(unittest.TestCase):
 		self.assertEqual(2, len(vect_result))
 		
 		cigar = Cigar(vect_result)
-		self.assertEqual((-1, 534033), cigar.get_position_from_2_to(1559505))
-#		self.assertEqual((759739, -1), cigar.get_position_from_2_to(557668))
+		self.assertEqual((-1, -1), cigar.get_position_from_2_to(1559505))
+		self.assertEqual((-1, -1), cigar.get_position_from_2_to(557668))
 
 
 	def test_list_over_simple(self):
@@ -100,8 +96,8 @@ class Test(unittest.TestCase):
 		
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
-		impose_minimap2_only = True
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		impose_minimap2_only = False
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only)
 		
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("A", seq_name_a)
@@ -109,12 +105,66 @@ class Test(unittest.TestCase):
 		self.assertEqual("A", seq_name_b)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		
+		## S -> soft clipping (clipped sequences present in SEQ)
+		## H -> hard clipping (clipped sequences NOT present in SEQ)
+		## minimap2
 		self.assertEqual(["53S487M60I26M1D69M3I90M1D130M3I318M"], lift_over_ligth.get_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
-		self.assertEqual((434, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487))
+		self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1))
+		self.assertEqual((60, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 7))
+		self.assertEqual((540, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487))
+		self.assertEqual((480, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 427))
+		self.assertEqual((779, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 664))
 		self.assertEqual("1122\t1186\t53", str(lift_over_ligth.get_count_cigar_length(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b)))
+		self.assertEqual("94.55", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b)))
+		
+		## lastz
+		self.assertEqual(["487M60I26M1D70M3I89M1D130M3I318M"], lift_over_ligth.get_cigar_string(\
+			Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b))
+		self.assertEqual("1122\t1186\t0", str(lift_over_ligth.get_count_cigar_length(\
+			Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
+		self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1, Software.SOFTWARE_lastz_name))
+		self.assertEqual((60, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 7, Software.SOFTWARE_lastz_name))
+		self.assertEqual((540, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487, Software.SOFTWARE_lastz_name))
+		self.assertEqual((480, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 427, Software.SOFTWARE_lastz_name))
+		self.assertEqual((779, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 664, Software.SOFTWARE_lastz_name))
+		self.assertEqual("94.55", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
+		
+		## blast
+		self.assertEqual(['488M', '42M1D59M3I100M1D137M2I1M1I300M'], lift_over_ligth.get_cigar_string(\
+			Software.SOFTWARE_blast_name, seq_name_a, seq_name_b))
+		self.assertEqual("1122\t1133\t0", str(lift_over_ligth.get_count_cigar_length(\
+			Software.SOFTWARE_blast_name, seq_name_a, seq_name_b)))
+		self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1, Software.SOFTWARE_blast_name))
+		self.assertEqual((60, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 7, Software.SOFTWARE_blast_name))
+		self.assertEqual((540, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487, Software.SOFTWARE_blast_name))
+		self.assertEqual((480, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 427, Software.SOFTWARE_blast_name))
+		self.assertEqual((779, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 664, Software.SOFTWARE_blast_name))
+		self.assertEqual("92.38", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_blast_name, seq_name_a, seq_name_b)))
+		
+		
+		#### save alignment file
+		temp_out_file = utils.get_temp_file_with_path(temp_work_dir, "align", ".aln")
+		method = Software.SOFTWARE_minimap2_name
+		temp_out_file = lift_over_ligth.create_alignment_file(temp_out_file, method, seq_name_a, seq_name_b)
+		self.assertFalse(temp_out_file is None)
+		self.assertTrue(os.path.exists(temp_out_file))
+		
+		### comp files
+		out_result_expected = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/ref/expect_file_align_clustalx.fasta")
+		self.assertTrue(os.path.exists(out_result_expected))
+		temp_diff = utils.get_temp_file_with_path(temp_work_dir, "diff_file", ".txt")
+		print(temp_out_file)
+		print(out_result_expected)
+		cmd = "diff {} {} > {}".format(temp_out_file, out_result_expected, temp_diff)
+		os.system(cmd)
+		vect_result = utils.read_text_file(temp_diff)
+		print("{}".join("\n".join(vect_result)))
+		self.assertEqual(0, len(vect_result))
+		
 		utils.remove_dir(temp_work_dir)
+		utils.remove_dir(temp_diff)
 
 
 	def test_list_over_simple_2(self):
@@ -134,18 +184,17 @@ class Test(unittest.TestCase):
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("A", seq_name_a)
 		seq_name_b = reference_b.get_chr_in_genome(seq_name_a)
-		self.assertEqual("A", seq_name_b)
+		self.assertEqual("B", seq_name_b)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		
-		self.assertEqual(['96S92M', "48M4I44M92H"], lift_over_ligth.get_cigar_string(\
+		self.assertEqual(['96S92M'], lift_over_ligth.get_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
-#		self.assertEqual(["48M4I44M92H"], lift_over_ligth.get_cigar_string(seq_name_a, seq_name_b))
-		self.assertEqual((48, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 48))
-		self.assertEqual((53, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
+		self.assertEqual((144, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 48))
+		self.assertEqual((145, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
 		self.assertEqual((-1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 490))
-		self.assertEqual("92\t96\t92", str(lift_over_ligth.get_count_cigar_length(\
+		self.assertEqual("92\t92\t96", str(lift_over_ligth.get_count_cigar_length(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b)))
-		self.assertEqual(2, lift_over_ligth.get_number_cigar_string(\
+		self.assertEqual(1, lift_over_ligth.get_number_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
 		utils.remove_dir(temp_work_dir)
 		
@@ -164,62 +213,62 @@ class Test(unittest.TestCase):
 		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
 		
 		seq_name_a = reference_a.get_first_seq()
-		self.assertEqual("A", seq_name_a)
+		self.assertEqual("B", seq_name_a)
 		seq_name_b = reference_b.get_chr_in_genome(seq_name_a)
 		self.assertEqual("A", seq_name_b)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		
-#		self.assertEqual(["48M4D44M"], lift_over_ligth.get_cigar_string(seq_name_a, seq_name_b))
-		self.assertEqual(["92M", "48M4D44M"], lift_over_ligth.get_cigar_string(\
+		self.assertEqual(["92M"], lift_over_ligth.get_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
 		self.assertEqual((48, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 48))
-		self.assertEqual((49, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 53))
-		self.assertEqual((50, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 54))
-		self.assertEqual((-1, 48), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
-		self.assertEqual((-1, 48), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 52))
+		self.assertEqual((53, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 53))
+		self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 54))
+		self.assertEqual((49, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
+		self.assertEqual((52, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 52))
+		self.assertEqual((-1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 100))
 		self.assertEqual((-1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 490))
 		utils.remove_dir(temp_work_dir)
 
 
-	def test_list_over_saccharo_chr_xi(self):
-		utils = Utils("synchronize")
-		temp_work_dir = utils.get_temp_dir()
-		
-		seq_file_name_a = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/chrX.fasta")
-		seq_file_name_b = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/S01.chrX.fasta")
-		self.assertTrue(os.path.exists(seq_file_name_a))
-		self.assertTrue(os.path.exists(seq_file_name_b))
-		
-		reference_a = Reference(seq_file_name_a)
-		reference_b = Reference(seq_file_name_b)
-		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
-		lift_over_ligth.synchronize_sequences("chrX", "chrX")
-
-		self.assertEqual((-1, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
-		self.assertEqual((29, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 168))
-		self.assertEqual((177, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 300))
-		utils.remove_dir(temp_work_dir)
-	
-	def test_list_over_saccharo_chr_xi_small(self):
-		utils = Utils("synchronize")
-		temp_work_dir = utils.get_temp_dir()
-		
-		seq_file_name_a = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/chrX_small.fasta")
-		seq_file_name_b = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/S01_chrX_small.fasta")
-		self.assertTrue(os.path.exists(seq_file_name_a))
-		self.assertTrue(os.path.exists(seq_file_name_b))
-		
-		reference_a = Reference(seq_file_name_a)
-		reference_b = Reference(seq_file_name_b)
-		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
-		lift_over_ligth.synchronize_sequences("chrX", "chrX")
-
-		self.assertEqual((246, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
-		self.assertEqual((438, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 200))
-		self.assertEqual((-1, 217), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 20))
-		utils.remove_dir(temp_work_dir)
+# 	def test_list_over_saccharo_chr_xi(self):
+# 		utils = Utils("synchronize")
+# 		temp_work_dir = utils.get_temp_dir()
+# 		
+# 		seq_file_name_a = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/chrX.fasta")
+# 		seq_file_name_b = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/S01.chrX.fasta")
+# 		self.assertTrue(os.path.exists(seq_file_name_a))
+# 		self.assertTrue(os.path.exists(seq_file_name_b))
+# 		
+# 		reference_a = Reference(seq_file_name_a)
+# 		reference_b = Reference(seq_file_name_b)
+# 		impose_minimap2_only = False
+# 		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+# 		lift_over_ligth.synchronize_sequences("chrX", "chrX")
+# 
+# 		self.assertEqual((-1, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
+# 		self.assertEqual((29, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 168))
+# 		self.assertEqual((177, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 300))
+# 		utils.remove_dir(temp_work_dir)
+# 	
+# 	def test_list_over_saccharo_chr_xi_small(self):
+# 		utils = Utils("synchronize")
+# 		temp_work_dir = utils.get_temp_dir()
+# 		
+# 		seq_file_name_a = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/chrX_small.fasta")
+# 		seq_file_name_b = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/S01_chrX_small.fasta")
+# 		self.assertTrue(os.path.exists(seq_file_name_a))
+# 		self.assertTrue(os.path.exists(seq_file_name_b))
+# 		
+# 		reference_a = Reference(seq_file_name_a)
+# 		reference_b = Reference(seq_file_name_b)
+# 		impose_minimap2_only = False
+# 		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+# 		lift_over_ligth.synchronize_sequences("chrX", "chrX")
+# 
+# 		self.assertEqual((246, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
+# 		self.assertEqual((438, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 200))
+# 		self.assertEqual((-1, 217), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 20))
+# 		utils.remove_dir(temp_work_dir)
 
 
 if __name__ == "__main__":

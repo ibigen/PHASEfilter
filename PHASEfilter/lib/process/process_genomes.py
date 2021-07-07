@@ -49,7 +49,7 @@ class ProcessTwoGenomes(object):
 		save one VCF with Heterozygous SNPs remove, from 1 to 2 
 		"""
 		print("\nStart processing....")
-		print_results = True
+		print_results = False
 				
 		### variables to temp output vcf file
 		extension_out = ".vcf"
@@ -70,12 +70,14 @@ class ProcessTwoGenomes(object):
 			
 			vcf_out_temp = self.utils.get_temp_file_with_path(temp_work_dir, prefix, extension_out)
 			vcf_out_removed_temp = self.utils.get_temp_file_with_path(temp_work_dir_vcf_removed, prefix, extension_out)
+			vcf_out_LOH_temp = self.utils.get_temp_file_with_path(temp_work_dir_vcf_removed, prefix, extension_out)
 			report_out_temp = self.utils.get_temp_file_with_path(temp_work_dir, "report_out", ".txt")
 			
 			### processing chromosomes
 			vect_temp_report_file.append([chr_name_A, chr_name_B, report_out_temp])
-			(has_vcf_results, has_vcf_removed_results) = self.process_chromosome(chr_name_A, chr_name_B, vcf_out_temp,\
-															vcf_out_removed_temp, report_out_temp, print_results)
+			(has_vcf_results, has_vcf_removed_results) = self.process_chromosome(chr_name_A, chr_name_B, vcf_out_temp,
+															vcf_out_removed_temp, vcf_out_LOH_temp, report_out_temp,
+															print_results)
 
 			### test if has results
 			if (has_vcf_results):			
@@ -127,7 +129,8 @@ class ProcessTwoGenomes(object):
 		print("Report result: {}".format(self.get_report_file()))
 	
 	
-	def process_chromosome(self, chr_name_A, chr_name_B, vcf_out_temp, vcf_out_removed_temp, report_out_temp, print_results = True):
+	def process_chromosome(self, chr_name_A, chr_name_B, vcf_out_temp, vcf_out_removed_temp, vcf_out_LOH_temp,
+						report_out_temp, print_results = True):
 		"""
 		process by chromosome
 		:out has vcf result file
@@ -149,7 +152,8 @@ class ProcessTwoGenomes(object):
 		if (not vcf_1_only_chr is None and not vcf_2_only_chr is None):
 			### start processing VCF
 			vcf_process = VcfProcess(vcf_1_only_chr, self.threshold_heterozygous_ad, print_results)
-			vcf_process.match_vcf_to(chr_name_A, lift_over_ligth, vcf_2_only_chr, chr_name_B, vcf_out_temp, vcf_out_removed_temp)
+			vcf_process.match_vcf_to(chr_name_A, lift_over_ligth, vcf_2_only_chr, chr_name_B,
+						vcf_out_temp, vcf_out_removed_temp, vcf_out_LOH_temp)
 			
 			count_alleles = vcf_process.count_alleles
 			if (count_alleles.has_saved_variants()): has_result_file = True

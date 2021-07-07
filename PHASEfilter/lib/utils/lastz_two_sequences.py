@@ -105,7 +105,7 @@ class LastzTwoSequences(object):
 		
 		temp_file_out = self.utils.get_temp_file("blast_result", ".txt")
 		
-		### blastn -query Ca22chr2B_C_albicans_SC5314.fasta -subject ../genomeA/Ca22chr2A_C_albicans_SC5314.fasta -dust no -evalue 1e-5 > result.blastn
+		### /home/software/lastz/src/lastz /tmp/mmp/synchronize/chr_file_chrIII_16424400.fasta /tmp/mmp/synchronize/chr_file_chrIII_36592820.fasta --format=general:name1,start1,end1,name2,start2,end2,strand2,cigar --strand=plus --output=/tmp/mmp/generic/blast_result_61739140.txt --ambiguous=iupac
 		### /home/software/lastz/src/lastz ../genomeA/Ca22chr1A_C_albicans_SC5314.fasta Ca22chr1B_C_albicans_SC5314.fasta --format=general:name1,start1,end1,name2,start2,end2,strand2,cigar --strand=plus --output=temp1.txt --ambiguous=iupac
 		cmd = "{} {} {} --format=general:name1,start1,end1,name2,start2,end2,strand2,cigar --strand=plus --output={} --ambiguous=iupac".format(\
 			self.software.get_lastz(), self.file_a, self.file_b, temp_file_out)
@@ -127,18 +127,19 @@ class LastzTwoSequences(object):
 		temp_file_out = self._process_files()
 		
 		### parse file
+		## <name1> <start1> <end1> <name2> <start2> <end2> <strand2> [<score>] [#<comment>]
+		## where <name1>, etc. correspond to the target sequence and <name2>, etc. correspond to the query. Fields are delimited by whitespace. 
 		with open(temp_file_out) as handle:
 			for line in handle:
 				sz_temp = line.strip()
 				if (len(sz_temp) == 0 or sz_temp.startswith('#')): continue
-				
 				### add new alignments
 				lastz_alignments.add_new_alignment(sz_temp)
 		
 		### sort alignments
 #		lastz_alignments.print_all_alignments()
 		lastz_alignments.remove_overlap_alignments()
-#		lastz_alignments.print_all_alignments()
+		lastz_alignments.print_all_alignments()
 
 		### remove tmp file 
 		self.utils.remove_file(temp_file_out)

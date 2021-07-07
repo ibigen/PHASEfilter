@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 '''
-match_ -- shortdesc
+phasefilter.py_ -- shortdesc
 
-match_ is a description
+phasefilter.py is a description
 
 
 @author:	 mmp
@@ -19,7 +19,7 @@ from PHASEfilter.lib.utils.util import Utils
 from PHASEfilter.lib.process.process_genomes import ProcessTwoGenomes
 from PHASEfilter.lib.utils.vcf_process import VcfProcess
 from PHASEfilter.lib.utils.software import Software
-from PHASEfilter.bin import version
+from PHASEfilter.lib.constants import version
 import os, re, sys
 
 # python3 phasefilter.py 
@@ -28,9 +28,11 @@ import os, re, sys
 #	--vcf1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz
 #	--vcf2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz
 #	--out out_dir
-# python3 phasefilter.py --ref_1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta --ref_2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta --vcf_1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz --vcf_2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz --out out_dir
+# python3 phasefilter.py --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta --ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta --vcf1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf out_dir.vcf.gz
 # python3 -m unittest -v tests.test_vcf
 
+# https://mbio.asm.org/content/9/5/e01205-18#sec-12
+# https://www.nature.com/articles/s41467-018-04787-4.pdf?origin=ppub
 from optparse import OptionParser
 
 __all__ = []
@@ -70,9 +72,9 @@ def main(argv=None):
 		parser.add_option("--ref2", dest="reference_2", help="[REQUIRED] reference for genome 2", metavar="FILE")
 		parser.add_option("--vcf1", dest="vcf_1", help="[REQUIRED] vcf of genome 1", metavar="FILE")
 		parser.add_option("--vcf2", dest="vcf_2", help="[REQUIRED] vcf of genome 2", metavar="FILE")
-		parser.add_option("--out_dir", dest="out_directory", help="[REQUIRED] directory of out vcf files")
+		parser.add_option("--out_vcf", dest="outfile_vcf", help="[REQUIRED] file with vcf result file", metavar="FILE")
 		parser.add_option("--threshold_heterozygous_AD", dest="threshold_heterozygous_ad", help="Cutoff ratio of Allelic depths for the ref and alt alleles " +\
-						" in the order listed. If -1 it is not going to take in account", metavar="RATIO", type="float", default=-1.0)
+						" in the order listed. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
@@ -92,8 +94,9 @@ def main(argv=None):
 		if opts.vcf_1: print("vcf 1 = %s" % opts.vcf_1)
 		if opts.vcf_2: print("vcf 2 = %s" % opts.vcf_2)
 		if opts.outfile_vcf: print("outfile vcf = %s" % opts.outfile_vcf)
-		if (opts.opts.threshold_heterozygous_ad and opts.threshold_heterozygous_ad != -1):
-			if opts.opts.threshold_heterozygous_ad: print("threshold heterozygous = %.2f" % opts.threshold_heterozygous_ad)
+# 		if (opts.threshold_heterozygous_ad and opts.threshold_heterozygous_ad != -1):
+# 			if opts.threshold_heterozygous_ad: print("threshold heterozygous = %.2f" % opts.threshold_heterozygous_ad)
+		opts.threshold_heterozygous_ad = -1
 
 		if (opts.reference_1 == opts.reference_2): sys.exit("Error: you have the same reference file")
 
@@ -102,15 +105,6 @@ def main(argv=None):
 		utils.test_file_exists(opts.reference_2)
 		utils.test_file_exists(opts.vcf_1)
 		utils.test_file_exists(opts.vcf_2)
-
-		### test if output directory exists
-		if (os.path.exists(opts.out_directory)):
-			while 1:
-				answer = input("Warning: exists a directory with this name '{}'. Do you want to proceed [y/n] [y]?".\
-					format(opts.out_directory))
-				if (len(answer) > 0 and answer.lower() == 'n'): sys.exit(0)
-				if len(answer) == 0 or answer.lower() == 'y': break
-				print("Please, press 'y' or 'n' has an answer...")
 
 		#### Test reference
 		b_print_results = False
@@ -134,7 +128,7 @@ def main(argv=None):
 				print("Warning: Format tag 'AD' is not present in file '{}'. 'threshold_heterozygous_ad' will be disable...".format(opts.vcf_1)) 
 				opts.threshold_heterozygous_ad = -1.0
 			
-			if (opts.threshold_heterozygous_ad != 1.0):
+			if (opts.threshold_heterozygous_ad != -1.0):
 				vcf_process = VcfProcess(opts.vcf_2, threshold_ad, b_print_results)
 				if (not vcf_process.has_format('AD')):
 					print("Warning: Format tag 'AD' is not present in file '{}'. 'threshold_heterozygous_ad' will be disable...".format(opts.vcf_2))  

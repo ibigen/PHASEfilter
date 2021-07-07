@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 '''
-best_alignment -- shortdesc
+reference_statistics.py -- shortdesc
+
+With this application it is possible to obtain the number of nucleotides by chromosome.
 
 @author:	 mmp
 
@@ -15,12 +17,13 @@ best_alignment -- shortdesc
 '''
 from PHASEfilter.lib.utils.util import Utils
 from PHASEfilter.lib.utils.reference import Reference
-from PHASEfilter.bin import version
+from PHASEfilter.lib.constants import version
 import os, re, sys
 
+# export PYTHONPATH='/home/mmp/git/PHASEfilter'
 # python3 reference_statistics.py 
 #   --ref /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta 
-#	--out retport.txt
+#	--out report.txt
 
 from optparse import OptionParser
 
@@ -71,7 +74,7 @@ def main(argv=None):
 
 		### test output file
 		if (os.path.exists(opts.outfile)):
-			read_input = input("Output file '{}' already exist, do you want to replace it? [y|Y]".format(opts.outfile))
+			read_input = input("Output file '{}' already exist, do you want to replace it? [y|Y] ".format(opts.outfile))
 			if (len(read_input.strip()) > 0 and read_input.upper() != 'Y'): sys.exit("Exit by the user.")
 
 		reference = Reference(opts.reference)

@@ -160,7 +160,9 @@ class Reference(object):
 				
 		if (len(dt_candidate[diff_min]) == 1): return dt_candidate[diff_min][0]
 		if (len(dt_candidate) == 0): raise Exception("Error: there isn't chr names in this reference")
-		raise Exception("Error: there are more than one candidate for this chr name '{}' -> ['{}']".format(chr_name_test, "', '".join(dt_candidate[diff_min])))
+		message_error = "Error: there are more than one candidate for this chr '{}' -> ['{}']\n".format(chr_name_test, "', '".join(dt_candidate[diff_min]))
+		message_error += "You can not process this chr '{}' passing the follow paramateres in CLI '--pass_ref {}'".format(chr_name_test, chr_name_test)
+		raise Exception(message_error)
 
 
 	def test_index_fasta_file(self):
@@ -201,14 +203,23 @@ class Reference(object):
 			bases = Bases()
 			bases.count_bases(str(self.reference_dict[chr_name].seq))
 			self.reference_count_bases[chr_name] = bases
+		print("Number of chromosomes processed: {}".format(len(self.vect_reference)))
 
 	def save_count_bases_in_file(self, file_name):
 		""" Save base statistics in a file """
 		with open(file_name, 'w') as handle_write:
 			bases = Bases()
-			handle_write.write("Cromosome\t{}\n".format(bases.get_header()))
+			total_length = 0
+			handle_write.write("Has the total number of bases per chromosome\nCromosome\tLength\t{}\n".format(bases.get_header()))
 			for chr_name in self.vect_reference:
-				handle_write.write("{}\t{}\n".format(chr_name, str(self.reference_count_bases[chr_name]) ))
+				handle_write.write("{}\t{}\t{}\n".format(chr_name, self.reference_length[chr_name], str(self.reference_count_bases[chr_name]) ))
+				total_length += int(self.reference_length[chr_name])
 				bases += self.reference_count_bases[chr_name]
-			handle_write.write("Total\t{}\n".format(str(bases) ))
+			handle_write.write("Total\t{}\t{}\n".format(total_length, str(bases) ))
+			
+			### save bases:
+			handle_write.write("\nBase description\n")
+			bases = Bases()
+			for base in bases.VECT_ORDER_BASES:
+				handle_write.write("{}\t{}\n".format(base, "\t".join(bases.DT_BASES[base].split(','))))
 

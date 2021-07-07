@@ -3,6 +3,8 @@
 '''
 best_alignment -- shortdesc
 
+Create a list with the best algorithm to make the alignment between chromosomes.
+
 @author:	 mmp
 
 @copyright:  2019 iBiMED. All rights reserved.
@@ -13,17 +15,30 @@ best_alignment -- shortdesc
 
 @deffield	updated: Updated
 '''
-from PHASEfilter.lib.constants.constants import Constants
 from PHASEfilter.lib.utils.util import Utils
 from PHASEfilter.lib.process.process_references import ProcessTwoReferences
 from PHASEfilter.lib.utils.software import Software
-from PHASEfilter.bin import version
+from PHASEfilter.lib.constants import version
 import os, re, sys
 
+# export PYTHONPATH='/home/mmp/git/PHASEfilter'
 # python3 best_alignment.py 
 #   --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta 
 #	--ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta
-#	--out retport.txt
+#	--out report.txt
+
+# python3 best_alignment.py 
+#   --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/C_albicans_SC5314_chrA_A22_chromosomes.fasta
+#	--ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/C_albicans_SC5314_chrB_A22_chromosomes.fasta
+#	--out_alignment /home/projects/ua/candida/compare_A_vs_B/ref/syncronization
+#	--out report.txt
+
+# python3 best_alignment.py
+# 	--ref1 /usr/local/databases/references/yeast/S288C/S288C_reference_chr_names_cleaned.fna
+# 	--ref2 /home/projects/ua/rita_guimaraes/syncronizationSacharo/S01.assembly.final.fa
+# 	--pass_chr chrmt
+# 	--out report.txt
+# 	--out_alignment /home/projects/ua/rita_guimaraes/syncronizationSacharo
 
 from optparse import OptionParser
 
@@ -63,31 +78,37 @@ def main(argv=None):
 		parser.add_option("--ref1", dest="reference_1", help="[REQUIRED] reference for genome 1", metavar="FILE")
 		parser.add_option("--ref2", dest="reference_2", help="[REQUIRED] reference for genome 2", metavar="FILE")
 		parser.add_option("--out", dest="outfile", help="[REQUIRED] report in tab separated value (tsv)", metavar="FILE")
-		parser.add_option("--pass_ref", dest="pass_ref", help="[Optional] name of chromosomes to not processed. More than one chr split by comma, example 'chrI,chrII'")
+		parser.add_option("--pass_chr", dest="pass_chr", help="[Optional] name of chromosomes to not processed. More than one chr split by comma, example 'chrI,chrII'")
+		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each chromosome synchronization.'")
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
 		checkRequiredArguments(opts, parser)
 			
-		if opts.reference_1: print("reference 1         = %s" % opts.reference_1)
-		if opts.reference_2: print("reference 2         = %s" % opts.reference_2)
-		if opts.outfile:     print("outfile             = %s" % opts.outfile)
-		if opts.pass_ref:    print("not processed chr.  = %s" % opts.pass_ref)
+		if opts.reference_1:      print("reference 1         = %s" % opts.reference_1)
+		if opts.reference_2:      print("reference 2         = %s" % opts.reference_2)
+		if opts.outfile:          print("outfile             = %s" % opts.outfile)
+		if opts.pass_chr:         print("not processed chr.  = %s" % opts.pass_chr)
+		if opts.out_alignment:    print("out path aligments  = %s" % opts.out_alignment)
 
 		if (opts.reference_1 == opts.reference_2): sys.exit("Error: you have the same reference file")
 		
 		utils.test_file_exists(opts.reference_1)
 		utils.test_file_exists(opts.reference_2)
 
-		process_two_references = ProcessTwoReferences(opts.reference_1, opts.reference_2, opts.outfile)
+		### create path for out alignments
+		if (opts.out_alignment and not os.path.exists(opts.out_alignment)):
+			os.makedirs(opts.out_alignment, exist_ok=True)
+			
+		process_two_references = ProcessTwoReferences(opts.reference_1, opts.reference_2, opts.outfile, opts.out_alignment)
 		
 		### test all software needed to run this script
 		software = Software()
 		software.test_softwares()
 		
 		### parse pass ref
-		if (opts.pass_ref): vect_pass_ref = [_.lower() for _ in opts.pass_ref.split(',')]
-		else: vect_pass_ref = []
+		if (opts.pass_chr): vect_pass_chr = [_.lower() for _ in opts.pass_chr.split(',')]
+		else: vect_pass_chr = []
 		
 		### test output file
 		if (os.path.exists(opts.outfile)):
@@ -96,7 +117,7 @@ def main(argv=None):
 			
 		## make dir if does not exist
 		utils.make_path(os.path.dirname(opts.outfile))
-		process_two_references.process(vect_pass_ref)
+		process_two_references.process(vect_pass_chr)
 
 if __name__ == "__main__":
 

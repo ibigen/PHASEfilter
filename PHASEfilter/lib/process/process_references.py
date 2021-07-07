@@ -10,14 +10,16 @@ from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
 from PHASEfilter.lib.utils.read_gff import ReadGFF
 from PHASEfilter.lib.utils.software import Software
 from PHASEfilter.lib.utils.vcf_process import VcfProcess
+from PHASEfilter.lib.utils.testing_software import SoftwareTest
 from operator import itemgetter
+import os
 
 class ProcessTwoReferences(object):
 	
 	utils = Utils("synchronize")
 	run_extra_software = RunExtraSoftware()
 	
-	def __init__(self, reference_1, reference_2, outfile):
+	def __init__(self, reference_1, reference_2, outfile, out_path_alignments = None):
 		"""
 		set the data
 		"""
@@ -25,6 +27,7 @@ class ProcessTwoReferences(object):
 		self.reference_1 = Reference(reference_1)
 		self.reference_2 = Reference(reference_2)
 		self.outfile = outfile
+		self.out_path_alignments = out_path_alignments
 
 	def process(self, vect_pass_ref = []):
 		"""
@@ -42,7 +45,7 @@ class ProcessTwoReferences(object):
 			handle_write.write("Source genome\t{}\nHit genome\t{}\n\nSource genome\tHit genome\nChromosomes\tChromosomes\t".format(\
 					self.reference_1.get_reference_name(),\
 					self.reference_2.get_reference_name())\
-					+ "Software\tSplit Alignments\tLength Match Source\tLength Source\tLength Match Hit\tLength Hit\tAlignment %\tBest\n")
+					+ "Software\tGragment split\tLength Match Source\tLength Source\tLength Match Hit\tLength Hit\tAlignment %\tBest\n")
 			
 			for chr_name_A in self.reference_1.vect_reference:
 				if (chr_name_A.lower() in vect_pass_ref):
@@ -55,7 +58,7 @@ class ProcessTwoReferences(object):
 					vect_not_process_A.append(chr_name_A)
 					continue
 				vect_process_B.append(chr_name_B)
-				
+
 				### processing chromosomes
 				self._process_chromosome(chr_name_A, chr_name_B, handle_write)
 				
@@ -102,8 +105,19 @@ class ProcessTwoReferences(object):
 						self.reference_2.get_chr_length(chr_name_B)) ),
 					float(count_elements.get_percentage_coverage(self.reference_1.get_chr_length(chr_name_A),\
 						self.reference_2.get_chr_length(chr_name_B))) ])
-			b_first = False
-
+				
+				### save the alignment in file
+				if (not self.out_path_alignments is None):
+					print("########   ", software)
+					## lastz does not have CIGAR strings
+					if (software == 'lastz'): continue
+					if (software == 'blastn'): continue
+					
+					path_out = os.path.join(self.out_path_alignments, software)
+					if not os.path.exists(path_out): os.makedirs(path_out)
+					file_out = os.path.join(path_out, "{}_{}.aln".format(chr_name_A, chr_name_B))
+					lift_over_ligth.create_alignment_file(file_out, software, chr_name_A, chr_name_B)
+				
 		### sort
 		vect_out = sorted(vect_out, key=itemgetter(1), reverse=True)
 		
@@ -145,7 +159,7 @@ class ProcessTwoReferences(object):
 		(lines_parsed, lines_failed_parse, vect_fail_synch) = read_gff.parse_gff(self.outfile, vect_type_to_process, vect_pass_ref, lift_over_ligth)
 		
 		print("Lines parsed: {}   Lines Failed to parse: {}".format(lines_parsed, lines_failed_parse))
-		print("Chromosomes that Failed to synch.: {}".format(",".join(vect_fail_synch)))
+		if (len(vect_fail_synch) > 0): print("Chromosomes that Failed to synch.: {}".format(",".join(vect_fail_synch)))
 		self.utils.remove_dir(temp_work_dir)
 
 	def parse_vcf(self, vcf_file_to_parse, vect_pass_ref):
@@ -166,5 +180,8 @@ class ProcessTwoReferences(object):
 		(lines_parsed, lines_failed_parse, vect_fail_synch) = read_vcf.parse_vcf(self.outfile, vect_pass_ref, lift_over_ligth)
 		
 		print("Lines parsed: {}   Lines Failed to parse: {}".format(lines_parsed, lines_failed_parse))
-		print("Chromosomes that Failed to synch.: {}".format(",".join(vect_fail_synch)))
+		if (len(vect_fail_synch) > 0): print("Chromosomes that Failed to synch.: {}".format(",".join(vect_fail_synch)))
 		self.utils.remove_dir(temp_work_dir)
+
+
+

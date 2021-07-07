@@ -105,6 +105,7 @@ class VcfProcess(object):
 		:param file name of vcf file
 		'''
 		self.file_name = file_name
+		self.is_zipped = True if self.file_name.endswith(".gz") else False 
 		self.threshold_heterozygous_ad = threshold_heterozygous_ad
 		self.b_print_results = b_print_results
 		self.count_alleles = CountAlleles()
@@ -120,12 +121,16 @@ class VcfProcess(object):
 		"""
 		:param meta tag name; name to test if exists in VCF header
 		"""
-		with open(self.file_name, 'r') as handle_in:
-			vcf_reader = vcf.Reader(handle_in, compressed=False)
-			
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
 			tag_to_test = "##" + meta_data_tag.lower() + "="
 			for header_file in vcf_reader._header_lines:
 				if header_file.lower().startswith(tag_to_test): return True
+			handle_in.close()
+		except Exception as e:
+			handle_in.close()
 		return False
 
 	def exist_reference_name(self, reference_file_name):
@@ -135,13 +140,17 @@ class VcfProcess(object):
 		## from VCF file example
 		### ##reference=file:///usr/share/databases/references/candida/albicans_SC5314/v_22/C_albicans_SC5314_A22_chromosomes.fasta
 		"""
-		with open(self.file_name, 'r') as handle_in:
-			vcf_reader = vcf.Reader(handle_in, compressed=False)
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
 			
 			for header_file in vcf_reader._header_lines:
 				if header_file.lower().startswith('##reference'):
 					file_name = header_file.split('/')[-1]
 					return file_name.split('/')[-1].lower() == reference_file_name.split('/')[-1].lower()
+		except Exception as e:
+			handle_in.close()
 		return False
 			
 	def get_ratio(self, vect_data, count_base):
@@ -166,8 +175,10 @@ class VcfProcess(object):
 		TEST_COUNT_AD = 5
 		count_AD = 0
 		lines = 0
-		with open(self.file_name, 'r') as handle_in:
-			vcf_reader = vcf.Reader(handle_in, compressed=False)
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
 			
 			for record in vcf_reader:
 				if (record.is_snp or record.is_indel):
@@ -178,6 +189,8 @@ class VcfProcess(object):
 
 					lines += 1
 					if lines > 10: break
+		except Exception as e:
+			handle_in.close()
 		return count_AD == TEST_COUNT_AD or lines == count_AD
 
 
@@ -351,56 +364,63 @@ class VcfProcess(object):
 		### if at least one equal allele keep this record
 		return equal_alts == 0
 		
-	def match_vcf_to(self, seq_name_a, lift_over_ligth, vcf_hit, seq_name_b, vcf_out, vcf_out_removed_temp):
+	def match_vcf_to(self, seq_name_a, lift_over_ligth, vcf_hit, seq_name_b, vcf_out,
+					vcf_out_removed_temp, vcf_out_LOH_temp):
 		"""
 		:out nothing
 		"""
-		with open(self.file_name, 'rb') as handle_in, open(vcf_out, 'w') as handle_vcf_out, open(vcf_out_removed_temp, 'w') as handle_vcf_remove_out,\
-					open(vcf_hit, 'rb') as handle_hit:
-			vcf_reader = vcf.Reader(handle_in, compressed=True)
-			vcf_reader_hit = vcf.Reader(handle_hit, compressed=True)
-			vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
-			vcf_write_removed = vcf.VCFWriter(handle_vcf_remove_out, vcf_reader)
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
 			
-			for record in vcf_reader:
-				if (record.is_snp or record.is_indel):
-					# print(record.heterozygosity, record)
-					(position, position_most_left) = lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, record.POS)
-					if (position != -1):
-						
-						### start read from last position
-						count_record = 0
-						for record_hit in vcf_reader_hit.fetch(seq_name_b, position -1, position):
-							count_record += 1
-							if not self.remove_this_record(record, record_hit, position, lift_over_ligth):
+			with open(vcf_out, 'w') as handle_vcf_out, open(vcf_out_removed_temp, 'w') as handle_vcf_remove_out,\
+					open(vcf_out_LOH_temp, 'w') as handle_vcf_LOH_out, open(vcf_hit, 'rb') as handle_hit:
+				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
+				vcf_reader_hit = vcf.Reader(handle_hit, compressed=True)
+				vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
+				vcf_write_removed = vcf.VCFWriter(handle_vcf_remove_out, vcf_reader)
+				vcf_write_LOH = vcf.VCFWriter(handle_vcf_LOH_out, vcf_reader)
+				
+				for record in vcf_reader:
+					if (record.is_snp or record.is_indel):
+						# print(record.heterozygosity, record)
+						(position, position_most_left) = lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, record.POS)
+						if (position != -1):
+							
+							### start read from last position
+							count_record = 0
+							for record_hit in vcf_reader_hit.fetch(seq_name_b, position -1, position):
+								count_record += 1
+								if not self.remove_this_record(record, record_hit, position, lift_over_ligth):
+									vcf_write.write_record(record)
+									self.count_alleles.add_diff()
+								else:
+									self.count_alleles.add_equal()
+									vcf_write_removed.write_record(record)
+							if (count_record == 0):
+								self.count_alleles.add_could_not_fetch_vcf_record()
+								if (self.b_print_results): print("ErrorFetchRecord: ", record.heterozygosity, record)
 								vcf_write.write_record(record)
-								self.count_alleles.add_diff()
-							else:
-								self.count_alleles.add_equal()
-								vcf_write_removed.write_record(record)
-						if (count_record == 0):
-							self.count_alleles.add_could_not_fetch_vcf_record()
-							if (self.b_print_results): print("ErrorFetchRecord: ", record.heterozygosity, record)
+						else:
+							### save in an output
+							if (self.b_print_results):
+								print("ErrorPos: ", record.heterozygosity, record)
+								print("Position hit: {}    Position most left: {}".format(position, position_most_left))
 							vcf_write.write_record(record)
+							self.count_alleles.add_dont_have_hit_postion()
 					else:
-						### save in an output
-						if (self.b_print_results):
-							print("ErrorPos: ", record.heterozygosity, record)
-							print("Position hit: {}    Position most left: {}".format(position, position_most_left))
+						self.count_alleles.add_pass_variation()
 						vcf_write.write_record(record)
-						self.count_alleles.add_dont_have_hit_postion()
-				else:
-					self.count_alleles.add_pass_variation()
-					vcf_write.write_record(record)
-				
-				### add one allele
-				self.count_alleles.add_allele(1)
-				
-			#### save statistics results
-			if (self.b_print_results):
-				print(self.count_alleles.get_header()) 
-				print(self.count_alleles)
-
+					
+					### add one allele
+					self.count_alleles.add_allele(1)
+					
+				#### save statistics results
+				if (self.b_print_results):
+					print(self.count_alleles.get_header()) 
+					print(self.count_alleles)
+		except Exception as e:
+			handle_in.close()
 
 	def match_vcf_to_refence(self, chromosome, reference, vcf_out):
 		"""
@@ -408,36 +428,41 @@ class VcfProcess(object):
 		"""
 		temp_file = self.utils.get_temp_file("read_fasta", ".txt")
 		
-		with open(self.file_name, 'rb') as handle_in, open(vcf_out, 'w') as handle_vcf_out:
-			vcf_reader = vcf.Reader(handle_in, compressed = (True if self.file_name.endswith('.gz') else False) )
-			vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
-			
-			for record in vcf_reader:
-				if (record.is_snp):
-					# print(record.heterozygosity, record)
-					reference_base = reference.get_base_in_position(chromosome, record.POS, record.POS, temp_file)
-					if (len(reference_base) == 1):
-						
-						### start read from last position
-						if not self.remove_this_record_in_reference(record, reference_base):
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			with open(vcf_out, 'w') as handle_vcf_out:
+				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
+				vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
+				
+				for record in vcf_reader:
+					if (record.is_snp):
+						# print(record.heterozygosity, record)
+						reference_base = reference.get_base_in_position(chromosome, record.POS, record.POS, temp_file)
+						if (len(reference_base) == 1):
+							
+							### start read from last position
+							if not self.remove_this_record_in_reference(record, reference_base):
+								vcf_write.write_record(record)
+						else:
+							### save in an output
+							if (self.b_print_results):
+								print("ErrorBase: ", record.heterozygosity, record)
+								print("Position hit: {}    Bases return: {}".format(record.POS, reference_base))
 							vcf_write.write_record(record)
+							self.count_alleles.add_dont_have_hit_postion()
+	# 				elif (record.is_snp):
+	# 					pass
 					else:
-						### save in an output
-						if (self.b_print_results):
-							print("ErrorBase: ", record.heterozygosity, record)
-							print("Position hit: {}    Bases return: {}".format(record.POS, reference_base))
-						vcf_write.write_record(record)
-						self.count_alleles.add_dont_have_hit_postion()
-# 				elif (record.is_snp):
-# 					pass
-				else:
-					self.count_alleles.add_pass_variation()
-
-			#### save statistics results
-			if (self.b_print_results):
-				print(self.count_alleles.get_header()) 
-				print(self.count_alleles)
-
+						self.count_alleles.add_pass_variation()
+	
+				#### save statistics results
+				if (self.b_print_results):
+					print(self.count_alleles.get_header()) 
+					print(self.count_alleles)
+		except Exception as e:
+			handle_in.close()
+			
 		### remove temp file
 		self.utils.remove_file(temp_file)
 
@@ -456,7 +481,7 @@ class VcfProcess(object):
 		(lines_parsed, lines_failed_parse) = (0, 0)
 		vect_fail_synch = []
 		with open(self.file_name) as handle_read, open(tem_file, 'w') as handle_vcf_out:
-			vcf_reader = vcf.Reader(handle_read, compressed= (True if self.file_name.endswith('.gz') else False) )
+			vcf_reader = vcf.Reader(handle_read, compressed=self.is_zipped)
 			vcf_reader.infos[TAG_TO_ADD] = _Info(id=TAG_TO_ADD, num=1, type='Integer', 
 				source=None, version=None, desc=\
 				'Has the synchronize position for the reference {}'.format(\

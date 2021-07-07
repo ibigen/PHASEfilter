@@ -307,18 +307,27 @@ class VectAlignments(object):
 	def __init__(self):
 		self.vect_alignments = []
 	
-	def print_all_alignments(self):
+	def print_all_alignments(self, b_print_cigar = False):
 		"""
 		Show all alignments
 		"""
 		print("\n" + "*" * 50)
 		for _ in range(len(self.vect_alignments)):
-			print("Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})    Cigar:{}".format(self.vect_alignments[_].start_query,\
-				self.vect_alignments[_].end_query, \
-				self.vect_alignments[_].end_query - self.vect_alignments[_].start_query,\
-				self.vect_alignments[_].start_subject, self.vect_alignments[_].end_subject,\
-				self.vect_alignments[_].end_subject - self.vect_alignments[_].start_subject,\
-				",".join(self.vect_alignments[_].get_vect_cigar()) ))
+			if (b_print_cigar):
+				print("Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})    Cigar:{}".format(
+					self.vect_alignments[_].start_query,\
+					self.vect_alignments[_].end_query, \
+					self.vect_alignments[_].end_query - self.vect_alignments[_].start_query,\
+					self.vect_alignments[_].start_subject, self.vect_alignments[_].end_subject,\
+					self.vect_alignments[_].end_subject - self.vect_alignments[_].start_subject,\
+					",".join(self.vect_alignments[_].get_vect_cigar()) ))
+			else:
+				print("Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})".format(
+					self.vect_alignments[_].start_query,\
+					self.vect_alignments[_].end_query, \
+					self.vect_alignments[_].end_query - self.vect_alignments[_].start_query,\
+					self.vect_alignments[_].start_subject, self.vect_alignments[_].end_subject,\
+					self.vect_alignments[_].end_subject - self.vect_alignments[_].start_subject))
 		print("Total: " + str(len(self.vect_alignments)))
 
 
@@ -406,6 +415,7 @@ class VectAlignments(object):
 			-1 to no position
 		"""
 		for _ in range(len(self.vect_alignments)):
+			#print("position_query: {}  start:{}   end:{}".format(position_query, self.vect_alignments[_].start_query, self.vect_alignments[_].end_query))
 			if (position_query >= self.vect_alignments[_].start_query and \
 				position_query <= self.vect_alignments[_].end_query):
 				return self.vect_alignments[_].get_position_from_2_to(position_query)
@@ -575,7 +585,8 @@ class BlastTwoSequences(object):
 		
 		### sort alignments
 		blast_alignments.remove_overlap_alignments()
-		
+		blast_alignments.print_all_alignments()
+
 		### remove tmp file 
 		self.utils.remove_file(temp_file_out)
 		return blast_alignments

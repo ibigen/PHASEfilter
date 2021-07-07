@@ -75,7 +75,6 @@ class ReadGFF(object):
 						lines_failed_parse += 1
 				else:
 					handle_out.write(line_gff["line_raw"])
-					lines_failed_parse += 1
 		
 		return (lines_parsed, lines_failed_parse, vect_fail_synch)
 

@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+# encoding: utf-8
+
 import setuptools
-from constants.constants import Constants
+from PHASEfilter.lib.constants import version
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
-## python setup.py sdist bdist_wheel
+## python3 setup.py sdist bdist_wheel
 ## python3 -m twine upload dist/*
 ## to test in virtual env
 ## python3 -m pip install dist/PHASEfilter-0.1-py3-none-any.whl --install-option test
@@ -19,8 +22,12 @@ class bdist_wheel(_bdist_wheel):
 		
 setuptools.setup(
 	name='PHASEfilter',
-	version=Constants.VERSION_package,
-	scripts=['phasefilter.py', 'best_alignment.py', 'reference_statistics.py', 'synchronize_genomes.py'],
+	version=version.VERSION_package,
+	packages=["."],
+	scripts=['PHASEfilter/bin/phasefilter.py', 
+			'PHASEfilter/bin/best_alignment.py',
+			'PHASEfilter/bin/reference_statistics.py',
+			'PHASEfilter/bin/synchronize_genomes.py'],
 	author="Miguel Pinheiro",
 	author_email="monsanto@ua.pt",
 	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form, in phased genomes.",
@@ -28,20 +35,28 @@ setuptools.setup(
 	url="https://github.com/ibigen/PHASEfilter",
 	packages=setuptools.find_packages(),
 	license='MIT',
+	python_requires='>=3',
 	include_package_data=True, # include other files
+	platforms='linux',
 	classifiers=[
 		# How mature is this project? Common values are
-		#   3 - Alpha
-		#   4 - Beta
-		#   5 - Production/Stable
+		#   Development Status :: 1 - Planning
+		#	Development Status :: 2 - Pre-Alpha
+		#	Development Status :: 3 - Alpha
+		#	Development Status :: 4 - Beta
+		#	Development Status :: 5 - Production/Stable
+		#	Development Status :: 6 - Mature
+		#	Development Status :: 7 - Inactive
 		'Development Status :: 3 - Alpha',
 		
 		"Programming Language :: Python :: 3",
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX :: Linux",
-		"Operating System :: MacOS :: MacOS X",
+#		'Operating System :: POSIX',
+#		"Operating System :: MacOS :: MacOS X",
 		"Intended Audience :: Science/Research",
 		"Topic :: Scientific/Engineering :: Bio-Informatics",
+		"Topic :: Communications :: Email'",
 	],
 	install_requires=[
 		"pyvcf==0.6.8",

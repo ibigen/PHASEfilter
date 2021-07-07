@@ -12,7 +12,7 @@ class Utils(object):
 	classdocs
 	'''
 	
-	TEMP_DIR = "/tmp"
+	TEMP_DIR = os.getenv("TMP", "/tmp")
 
 	def __init__(self, project_name = None, temp_dir = None):
 		'''
@@ -493,54 +493,59 @@ class Cigar(object):
 		"""
 		return self.vect_cigar_string
 
+	def get_best_vect_cigar_elements(self):
+		"""
+		"""
+		### only do the last
+		if (self.index_best_alignment != -1): return self.vect_positions[self.index_best_alignment]
+		else: return self.vect_positions[-1]
+		
 	def get_position_from_2_to(self, position):
 		"""
-		positions are one base
-		:out (position in to ref, if does not have position return left most position)
+		:param position, position "from" at one base in first sequence (source A)
+		:returns (position in second sequence (hit B), if does not have position return left most position)
 			-1 to no position
 		"""
 		
 		if (position < 1): return (-1, -1)
 		##for vect_positions in self.vect_positions:
 		
-		### only do the last
-		if (self.index_best_alignment != -1): 
-			vect_positions = self.vect_positions[self.index_best_alignment]
-		else: vect_positions = self.vect_positions[-1]
+		### only do the best
+		vect_positions = self.get_best_vect_cigar_elements()
 		
 		b_insert_position = False
-		real_position_from = 0
-		real_position_to = -1
+		real_position_to = 0			### sequence a
+		real_position_from = -1			### sequence b
 		left_most_position = -1
 		
 		(position_on_hit, left_position_on_hit) = (-1, -1)		### default return
 		for cigar_element in vect_positions:
 #			print(cigar_element)
 			if cigar_element.is_M():
-				if (real_position_to == -1): real_position_to = 0 
+				if (real_position_from == -1): real_position_from = 0 
+				real_position_to += cigar_element.length
 				real_position_from += cigar_element.length
-				real_position_to += cigar_element.length
-				b_insert_position = False
-			elif cigar_element.is_I():
-				#real_position_from += cigar_element.length
-				real_position_to += cigar_element.length
 				b_insert_position = False
 			elif cigar_element.is_D():
-				if (real_position_from > 0): left_most_position = real_position_from
-				if (real_position_to == -1): real_position_to = 0
-				real_position_from += cigar_element.length
+				if (real_position_to > 0): left_most_position = real_position_to
+				if (real_position_from == -1): real_position_from = 0
 				#real_position_to += cigar_element.length
+				real_position_from += cigar_element.length
 				b_insert_position = True
+			elif cigar_element.is_I():
+				real_position_to += cigar_element.length
+				#real_position_from += cigar_element.length
+				b_insert_position = False
 			else:		### S or ### H
-				if (real_position_from > 0): left_most_position = real_position_from
-				real_position_from += cigar_element.length
-				#real_position_to += cigar_element.length
+				if (real_position_to > 0): left_most_position = real_position_to
+				real_position_to += cigar_element.length
+				#real_position_from += cigar_element.length
 				b_insert_position = True
 
 			if (position <= real_position_from):
 				if (b_insert_position): (position_on_hit, left_position_on_hit) = (-1, left_most_position)
-#				print("position:{}  real_position_from:{}  real_position_to:{}".format(position, real_position_from, real_position_to))
-				elif (real_position_to > 0): (position_on_hit, left_position_on_hit) =  (position - (real_position_from - real_position_to), -1)
+#				print("position:{}  real_position_to:{}  real_position_from:{}".format(position, real_position_to, real_position_from))
+				elif (real_position_from > 0): (position_on_hit, left_position_on_hit) =  (position + (real_position_to - real_position_from), -1)
 				else: (position_on_hit, left_position_on_hit) = (-1, -1)
 				break
 		

@@ -240,7 +240,7 @@ class ResultSynchronize(object):
 		split_index = half_index
 		while True:
 			split_index >>= 1
-			print("{} <= {}  ---- {} >= {}".format(self.vect_start_cut[half_index], pos_from, self.vect_start_cut[half_index + 1], pos_from))
+			#print("{} <= {}  ---- {} >= {}".format(self.vect_start_cut[half_index], pos_from, self.vect_start_cut[half_index + 1], pos_from))
 			if (self.vect_start_cut[half_index] <= pos_from and self.vect_start_cut[half_index + 1] >= pos_from): return half_index
 			elif (self.vect_start_cut[half_index] > pos_from):
 				if (split_index == 0): half_index -= 1
@@ -365,27 +365,24 @@ class LiftOverLight(object):
 		if key_chain_name in self.dt_chain_best_method: return self.dt_chain_best_method[key_chain_name]
 		return None
 
-	def get_pos_in_target(self, seq_name_from: str, seq_name_to: str, pos_from: int) -> Union[int, None]:
+	def get_pos_in_target(self, seq_name_from: str, seq_name_to: str, pos_from: int, software_name: str=Software.SOFTWARE_minimap2_name) -> Union[int, None]:
 		"""
-		:param pos_from -> position from seq to convert in target
-		:out (position in to ref, if does not have position return left most position)
-			-1 to no position  
+		:param pos_from, position "from" at one base in first sequence (source A)
+		:returns (position in second sequence (hit B), if does not have position return left most position)
+			-1 to no position
+			
 		IMPORTANT - don't give the best
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
-		if (Software.SOFTWARE_minimap2_name in self.dt_chain and key_chain_name in self.dt_chain[Software.SOFTWARE_minimap2_name]):
-			return self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name].get_position_from_2_to(pos_from)
-		if (Software.SOFTWARE_blast_name in self.dt_chain and key_chain_name in self.dt_chain[Software.SOFTWARE_blast_name]):
-			return self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name].get_position_from_2_to(pos_from)
-		if (Software.SOFTWARE_lastz_name in self.dt_chain and key_chain_name in self.dt_chain[Software.SOFTWARE_lastz_name]):
-			return self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name].get_position_from_2_to(pos_from)
+		if (software_name in self.dt_chain and key_chain_name in self.dt_chain[software_name]):
+			return self.dt_chain[software_name][key_chain_name].get_position_from_2_to(pos_from)
 		return (-1, -1)
 
 	def get_best_pos_in_target(self, seq_name_from: str, seq_name_to: str, pos_from: int) -> Union[int, None]:
 		"""
-		:param pos_from -> position from seq to convert in target
-		:out (position in to ref, if does not have position return left most position)
-			-1 to no position 
+		:param pos_from, position "from" at one base in first sequence (source A)
+		:returns (position in second sequence (hit B), if does not have position return left most position)
+			-1 to no position
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
 		
@@ -404,9 +401,14 @@ class LiftOverLight(object):
 		temp_file_out_2 = self.utils.get_temp_file("minimap_o_file_2", ".sam")
 
 		### minimap2 -L ca22_1A.fasta ca22_1B.fasta -a -o temp.sam
-		cmd = "{} -L {} {} -a -o {}; awk '{{ print $6 }}' {} > {}".format(\
+		## sort by MappingScore and choose the best alignment
+		## dont print 256 - "not primary alignment" and 2048 - "supplementary alignment" 
+		cmd = "{} -L {} {} -a -o {}; tail -n +3 {} | ".format(
 			self.software.get_minimap2(), \
-			file_from, file_to, temp_file_out_2, temp_file_out_2, temp_file_out)
+			file_from, file_to, temp_file_out_2, temp_file_out_2)
+		cmd += "awk '{ if ( $2 != 2048 && $2 != 256 ) { print $0 } }' | sort -r -nk5 | head -n 1 | awk '{ print $6 }'"
+		cmd += " > {}".format(temp_file_out)
+
 		exist_status = os.system(cmd)
 		if (exist_status != 0):
 			os.unlink(temp_file_out)
@@ -554,8 +556,8 @@ class LiftOverLight(object):
 			self.dt_chain[Software.SOFTWARE_minimap2_name] = dt_chain_temp
 		
 		### do the others, if needed
-		if (not self.impose_minimap2_only and not self.is_100_percent(\
-					Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)):
+		if (self.b_test_mode or (not self.impose_minimap2_only and not self.is_100_percent(\
+					Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to))):
 
 			### lastz
 			lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
@@ -598,7 +600,7 @@ class LiftOverLight(object):
 		self.utils.remove_file(temp_file_to)
 		self.utils.remove_file(result_file_name)
 					
-		print("Synchronize chromosome {} -> {} done".format(seq_name_from, seq_name_to))
+		print("Synchronize chromosome {} -> {};   Best method:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
 		return True
 
 	def synchronize_sequences_all_methods(self, seq_name_from, seq_name_to):
@@ -655,6 +657,112 @@ class LiftOverLight(object):
 		self.utils.remove_file(temp_file_from)
 		self.utils.remove_file(temp_file_to)
 		self.utils.remove_file(result_file_name)
-					
-		print("Synchronize chromosome {} -> {} done".format(seq_name_from, seq_name_to))
+
+		### get best alignment
+		vect_percentage_alignment = []
+		vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
+			self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)])
+		vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
+			self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)])
+		vect_percentage_alignment.append([Software.SOFTWARE_blast_name,\
+			self.get_percent_alignment(Software.SOFTWARE_blast_name, seq_name_from, seq_name_to)])
+		vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : x[1], reverse=True)
+		self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
+				
+		print("Synchronize chromosome {} -> {};   Best method:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
 		return True
+
+
+	def create_alignment_file(self, out_file, method, seq_name_from, seq_name_to):
+		"""
+		Create a file with the alignment, format clustal
+		:param method Name of the software that was used for alignment
+		:out None is something goes wrong
+		"""
+
+		### get key chan name		
+		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
+		seq_from = ""
+		seq_to = ""
+		if key_chain_name in self.dt_chain: return None				## key name not found
+		
+		# Positions in the sequences 
+		cur_pos_from = 0
+		cur_pos_to = 0
+		
+		for element in self.dt_chain[method][key_chain_name].get_best_vect_cigar_elements():
+			if (element.is_H() or element.is_D()):
+				seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+				cur_pos_from += element.length
+				seq_to += "-" * element.length
+			elif (element.is_S() or element.is_I()):
+				seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+				cur_pos_to += element.length
+				seq_from += "-" * element.length
+			elif (element.is_M()):
+				seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+				cur_pos_to += element.length
+
+				seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+				cur_pos_from += element.length
+
+		### save data
+		temp_file = self.utils.get_temp_file("set_numbers_align", ".aln")
+		if (seq_name_from == seq_name_to): seq_name_from = seq_name_from + "_from"
+		with open(temp_file, 'w') as handle_out:
+			if (len(seq_from) > len(seq_to)): seq_to += "-" * (len(seq_from) - len(seq_to))
+			elif (len(seq_from) < len(seq_to)): seq_from += "-" * (len(seq_to) - len(seq_from))
+			vect_data = [SeqRecord(Seq(seq_from), id = seq_name_from, description=""),
+							SeqRecord(Seq(seq_to), id = seq_name_to, description="")
+						]
+			
+			SeqIO.write(vect_data, handle_out, "clustal")
+		
+		### set numbers
+		with open(temp_file) as handle_in, open(out_file, 'w') as handle_out:
+			b_first = True
+			(count_first, count_second) = (0, 0)
+			space_before_seq = ""
+			for line in handle_in:
+				sz_temp = line.strip()
+				if (line.startswith("CLUSTAL X") or len(sz_temp) == 0):
+					handle_out.write(line)
+					continue
+
+				if (b_first):
+					lst_data = sz_temp.split()
+					if len(lst_data) == 2:
+						last_line = lst_data[1]
+						dash_count = last_line.count('-')
+						count_first += len(last_line) - dash_count
+						if (count_first == 0): handle_out.write(line)
+						else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_first))
+						
+						### calculate space before sequences
+						if (len(space_before_seq) == 0):
+							space_before_seq = " " * line.index(lst_data[1])
+					else:
+						handle_out.write(line)
+					b_first = False
+				else:
+					lst_data = sz_temp.split()
+					if len(lst_data) == 2:
+						dash_count = lst_data[1].count('-')
+						count_second += len(lst_data[1]) - dash_count
+						if (count_second == 0): handle_out.write(line)
+						else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_second))
+					else:
+						handle_out.write(line)
+					
+					### 
+					if (len(last_line) == len(lst_data[1])):
+						sz_match_line = ""
+						for _ in range(len(last_line)):
+							if last_line[_] == lst_data[1][_]: sz_match_line += "*"
+							else: sz_match_line += " "
+						handle_out.write(space_before_seq + sz_match_line + "\n")
+					b_first = True
+			
+		self.utils.remove_file(temp_file)
+		return out_file
+

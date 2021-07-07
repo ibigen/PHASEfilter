@@ -58,7 +58,7 @@ class Test(unittest.TestCase):
 		self.assertEqual((21, -1), bast_line.get_position_from_2_to(20))
 		self.assertEqual((22, -1), bast_line.get_position_from_2_to(21))
 		self.assertEqual((23, -1), bast_line.get_position_from_2_to(22))
-		self.assertEqual((-1, 22), bast_line.get_position_from_2_to(23))
+		self.assertEqual((-1, 23), bast_line.get_position_from_2_to(23))
 		self.assertEqual((24, -1), bast_line.get_position_from_2_to(24))
 		self.assertEqual((-1, -1), bast_line.get_position_from_2_to(25))
 		
@@ -143,6 +143,14 @@ class Test(unittest.TestCase):
 		self.assertTrue(SyncHoles(10, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[1])
 		self.assertTrue(SyncHoles(11, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[2])
 		self.assertEqual(cigar, bast_line.get_cigar().get_vect_cigar_string())
+		self.assertEqual((19, -1), bast_line.get_position_from_2_to(19))
+		self.assertEqual((21, -1), bast_line.get_position_from_2_to(20))
+		self.assertEqual((22, -1), bast_line.get_position_from_2_to(21))
+		self.assertEqual((-1, 22), bast_line.get_position_from_2_to(22))
+		self.assertEqual((-1, 22), bast_line.get_position_from_2_to(23))
+		self.assertEqual((23, -1), bast_line.get_position_from_2_to(24))
+		self.assertEqual((-1, -1), bast_line.get_position_from_2_to(25))
+		
 		
 		#### new test
 		seq_a = "AAAAAAC---ATACAAAAT"
