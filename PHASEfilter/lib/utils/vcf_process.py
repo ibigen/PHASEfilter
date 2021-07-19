@@ -19,6 +19,7 @@ class CountAlleles(object):
 	def __init__(self):
 		self.equal_allele = 0					## Heterozygous (Removed)
 		self.diff_allele = 0					## Keep alleles
+		self.loh_allele = 0						## LOH alleles
 		self.pass_variation = 0					## Other than SNP
 		self.dont_have_hit_postion = 0			## Don't have hit position
 		self.total_alleles = 0					
@@ -29,6 +30,9 @@ class CountAlleles(object):
 	
 	def add_diff(self):
 		self.diff_allele += 1
+		
+	def add_LOH(self):
+		self.loh_allele += 1
 
 	def add_pass_variation(self):
 		self.pass_variation += 1
@@ -59,12 +63,13 @@ class CountAlleles(object):
 		"""
 		:out header
 		"""
-		return "Heterozygous (Removed)\tKeep alleles\tOther than SNP\tDon't have hit position\t" +\
+		return "Heterozygous (Removed)\tKeep alleles\tLOH alleles\tOther than SNP\tDon't have hit position\t" +\
 			"Could Not Fetch VCF Record on Hit\tTotal alleles\tTotal Alleles new Source VCF"
 	
 	def __add__(self, other):
 		self.equal_allele += other.equal_allele
 		self.diff_allele += other.diff_allele
+		self.loh_allele += other.loh_allele
 		self.pass_variation += other.pass_variation
 		self.dont_have_hit_postion += other.dont_have_hit_postion
 		self.total_alleles += other.total_alleles
@@ -76,18 +81,20 @@ class CountAlleles(object):
 		if (len(lst_data) == 9):
 			self.equal_allele += int(lst_data[0])
 			self.diff_allele += int(lst_data[1])
-			self.pass_variation += int(lst_data[2])
-			self.dont_have_hit_postion += int(lst_data[3])
-			self.could_not_fetch_vcf_record += int(lst_data[4])
-			self.total_alleles += int(lst_data[5])
+			self.loh_allele += int(lst_data[2])
+			self.pass_variation += int(lst_data[3])
+			self.dont_have_hit_postion += int(lst_data[4])
+			self.could_not_fetch_vcf_record += int(lst_data[5])
+			self.total_alleles += int(lst_data[6])
 
 	def __str__(self):
 		"""
 		:out statistics results
 		"""
-		return "{}\t{}\t{}\t{}\t{}\t{}\t{}".format(self.equal_allele, self.diff_allele,\
-			self.pass_variation, self.dont_have_hit_postion, self.could_not_fetch_vcf_record,\
-			self.total_alleles, self.could_not_fetch_vcf_record + self.diff_allele +\
+		return "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(self.equal_allele, self.diff_allele, 
+			self.loh_allele, self.pass_variation, self.dont_have_hit_postion,
+			self.could_not_fetch_vcf_record, self.total_alleles,
+			self.could_not_fetch_vcf_record + self.diff_allele +\
 			self.dont_have_hit_postion + self.pass_variation)
 
 
@@ -105,7 +112,7 @@ class VcfProcess(object):
 		:param file name of vcf file
 		'''
 		self.file_name = file_name
-		self.is_zipped = True if self.file_name.endswith(".gz") else False 
+		self.is_zipped = True if not self.file_name is None and self.file_name.endswith(".gz") else False 
 		self.threshold_heterozygous_ad = threshold_heterozygous_ad
 		self.b_print_results = b_print_results
 		self.count_alleles = CountAlleles()
@@ -196,6 +203,59 @@ class VcfProcess(object):
 
 	def remove_this_record(self, record, record_hit, position_hit, lift_over_ligth):
 		"""
+		:param record  vcf line from vcf source
+		:param record_hit  vcf line from vcf hit
+		:param position_hit hit position in hit chromosome
+		:param lift_over_ligth object to get sequence from the references
+		:out True if this record is heterozygous
+		"""
+		RATIO_AD_DEFAULT = -1.0
+		equal_alts = 0
+		count_base = 0
+		for alt_base_in_hit in record_hit.ALT:
+			alt_base_in_hit_str = str(alt_base_in_hit)
+
+			### test heterozygous
+			if (len(record.samples) > 0):
+				sample = record.samples[0]
+
+				### calculate ratio if necessary
+				ratio_ad = RATIO_AD_DEFAULT		##	Default ratio
+				if (self.threshold_heterozygous_ad != -1.0 and 'AD' in sample.data._fields):
+					index = sample.data._fields.index('AD')
+					vect_data = sample.data[index]
+					ratio_ad = self.get_ratio(vect_data, count_base + 1)	### ratio to define Hetero and Homo
+					if (self.b_print_results): print("Ratio: ", record, "->",  record_hit, ratio_ad)
+
+			if (alt_base_in_hit_str == '*'):
+				count_base += 1
+				continue	### skip wild card
+			if (record_hit.POS == position_hit and record.REF == alt_base_in_hit_str and record_hit.REF in record.ALT):
+				# record(CHROM=Ca22chr1A_C_albicans_SC5314, POS=42343, REF=T, ALT=[C])
+				# record_hit(CHROM=Ca22chr1B_C_albicans_SC5314, POS=42344, REF=C, ALT=[T])
+				
+				### now is necessary to calculate the gap between alignments
+				if (record.is_indel):
+					if (self.test_indel_equal(record, record_hit.REF, record_hit, alt_base_in_hit_str, lift_over_ligth)):
+						if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+					else:
+						if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+						equal_alts += 1
+				else:
+					if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+			else:
+				### save in an output
+				if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+				equal_alts += 1
+
+			count_base += 1
+		### if at least one equal allele keep this record
+		return equal_alts == 0
+
+
+	def is_loh(self, record, record_hit, position_hit, lift_over_ligth):
+		"""
+		Test if a variant is LOH
 		:param record  vcf line from vcf source
 		:param record_hit  vcf line from vcf hit
 		:param position_hit hit position in hit chromosome
@@ -385,7 +445,7 @@ class VcfProcess(object):
 					if (record.is_snp or record.is_indel):
 						# print(record.heterozygosity, record)
 						(position, position_most_left) = lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, record.POS)
-						if (position != -1):
+						if (position != -1):		### has position in opposite chromosome
 							
 							### start read from last position
 							count_record = 0
@@ -394,6 +454,11 @@ class VcfProcess(object):
 								if not self.remove_this_record(record, record_hit, position, lift_over_ligth):
 									vcf_write.write_record(record)
 									self.count_alleles.add_diff()
+									
+									### test LOH
+									if self.is_loh(record, record_hit, position, lift_over_ligth):
+										vcf_write.write_record(record)
+										self.count_alleles.add_LOH()
 								else:
 									self.count_alleles.add_equal()
 									vcf_write_removed.write_record(record)

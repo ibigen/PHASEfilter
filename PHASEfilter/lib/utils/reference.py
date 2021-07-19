@@ -161,7 +161,7 @@ class Reference(object):
 		if (len(dt_candidate[diff_min]) == 1): return dt_candidate[diff_min][0]
 		if (len(dt_candidate) == 0): raise Exception("Error: there isn't chr names in this reference")
 		message_error = "Error: there are more than one candidate for this chr '{}' -> ['{}']\n".format(chr_name_test, "', '".join(dt_candidate[diff_min]))
-		message_error += "You can not process this chr '{}' passing the follow paramateres in CLI '--pass_ref {}'".format(chr_name_test, chr_name_test)
+		message_error += "You can not process this chr '{}' passing the follow paramateres in CLI '--pass_chr {}'".format(chr_name_test, chr_name_test)
 		raise Exception(message_error)
 
 

@@ -330,6 +330,9 @@ class CigarElement(object):
 	### add all tags that can be parsed
 	DICT_CIGAR_TAGS = { CIGAR_TAG_M : 1, CIGAR_TAG_S : 1, CIGAR_TAG_I : 1, CIGAR_TAG_D : 1,\
 				CIGAR_TAG_H : 1 }
+	
+	## soft and hard clip
+	DICT_CIGAR_TAGS_CLIP = { CIGAR_TAG_S : 1, CIGAR_TAG_H : 1 }
 
 	def __init__(self, length, tag):
 		self.length = length
@@ -349,14 +352,19 @@ class CountLength(object):
 	def __init__(self):
 		self.length_query = 0
 		self.length_subject = 0
-		self.miss_match = 0
-
+		self.miss_match = 0			## S or H
+		self.length_match = 0		## count number of Match
+		self.length_del = 0			## count number of Del
+		self.length_ins = 0			## count number of Ins
 	
 	def __add__(self, other):
 		""" add values """
 		self.length_query += other.length_query
 		self.length_subject += other.length_subject
 		self.miss_match += other.miss_match
+		self.length_match += other.length_match
+		self.length_del += other.length_del
+		self.length_ins += other.length_ins
 		return self
 
 
@@ -368,9 +376,7 @@ class CountLength(object):
 		"""
 		add 
 		"""
-		self.length_query += other.length_query
-		self.length_subject += other.length_subject
-		self.miss_match += other.miss_match
+		self.__add__(other)
 		if (not possible_previous_overlap is None):
 			possible_remove_query = possible_previous_overlap.end_query - possible_overlap.start_query + 1
 			possible_remove_subject = possible_previous_overlap.end_subject - possible_overlap.start_subject + 1
@@ -378,7 +384,8 @@ class CountLength(object):
 			if (possible_remove_subject > 0): self.length_subject -= possible_remove_subject
 
 	def __str__(self):
-		return "{}\t{}\t{}".format(self.length_query, self.length_subject, self.miss_match)
+		return "{}\t{}\t{}\t{}\t{}\t{}\t{:.1f}".format(self.length_query, self.length_subject, self.miss_match,
+				self.length_match, self.length_del, self.length_ins, self.get_percentage_match_vs_del_and_ins())
 
 	def get_lenth_query(self):
 		return self.length_query
@@ -386,15 +393,22 @@ class CountLength(object):
 	def get_lenth_subject(self):
 		return self.length_subject
 
+	def get_cigar_match(self): return self.length_match
+	def get_cigar_del(self): return self.length_del
+	def get_cigar_ins(self): return self.length_ins
+	
 	def get_header(self):
 		""" return header for __str__ return """
-		return "length query\tlength subject\tmissmatch"
+		return "length query\tlength subject\tmissmatch\tlength Match\tlength Del\tlength Ins\t% Match VS Del+Ins"
 			
 	def clean_count(self):
 		""" clean all counts """
 		self.length_query = 0
 		self.length_subject = 0
 		self.miss_match = 0
+		self.length_match = 0
+		self.length_del = 0
+		self.length_ins = 0
 		
 	def count_cigar(self, vect_cigar_element):
 		"""
@@ -405,10 +419,13 @@ class CountLength(object):
 				if cigar_element.is_M():
 					self.length_query += cigar_element.length
 					self.length_subject += cigar_element.length
+					self.length_match += cigar_element.length
 				elif cigar_element.is_I():
 					self.length_subject += cigar_element.length
+					self.length_ins += cigar_element.length
 				elif cigar_element.is_D():
 					self.length_query += cigar_element.length
+					self.length_del += cigar_element.length
 				else:		### S or ### H
 					self.miss_match += cigar_element.length
 
@@ -425,7 +442,13 @@ class CountLength(object):
 		"""
 		return int(self.get_percentage_coverage(length_chr1, length_chr2)) == 100
 		
-		
+	def get_percentage_match_vs_del_and_ins(self):
+		"""
+		:out percentage of match VS number of Insertion and Deletion
+		"""
+		return (self.length_match / float(self.length_del + self.length_ins + self.length_match)) * 100.0
+
+
 class Cigar(object):
 
 	#### utils
@@ -433,6 +456,7 @@ class Cigar(object):
 	
 	def __init__(self, vect_cigar_string, keep_best = False):
 		"""
+		:param vect_cigar_string [cigar string, ...]
 		:param only keep the best alignment
 		"""
 		self.vect_cigar_string = vect_cigar_string
@@ -489,7 +513,7 @@ class Cigar(object):
 
 	def get_vect_cigar_string(self):
 		"""
-		:out all cigar strings
+		:out all cigar strings [cigar string, ...]
 		"""
 		return self.vect_cigar_string
 
@@ -500,8 +524,9 @@ class Cigar(object):
 		if (self.index_best_alignment != -1): return self.vect_positions[self.index_best_alignment]
 		else: return self.vect_positions[-1]
 		
-	def get_position_from_2_to(self, position):
+	def get_position_from_2_to(self, position, start_pos = 0):
 		"""
+		:param start_pos, minimap can start in 
 		:param position, position "from" at one base in first sequence (source A)
 		:returns (position in second sequence (hit B), if does not have position return left most position)
 			-1 to no position
@@ -514,9 +539,12 @@ class Cigar(object):
 		vect_positions = self.get_best_vect_cigar_elements()
 		
 		b_insert_position = False
-		real_position_to = 0			### sequence a
-		real_position_from = -1			### sequence b
+		real_position_to = 0			### sequence b
+		real_position_from = start_pos	### sequence a
 		left_most_position = -1
+		
+		### the alignment don't starts at position 0 
+		if (position <= real_position_from): return (-1, -1)
 		
 		(position_on_hit, left_position_on_hit) = (-1, -1)		### default return
 		for cigar_element in vect_positions:

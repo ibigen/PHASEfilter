@@ -1,0 +1,8 @@
+Source genome	chrX
+Hit genome	S01.chrX
+
+Source genome	Hit genome
+Chromosomes	Chromosomes	Software	Split Alignments	Length Match Source	Length Source	Length Match Hit	Length Hit	Cigar Match	Cigar Deletion	Cigar Insertion	Match VS Ins+Del %	Alignment %	Best
+chrX	chrX_S01	minimap2	1	745749	745751	745176	745471	744825	924	351	99.8	99.98	*
+		blastn	2	745760	745751	745160	745471	745302	978	279	99.8	99.98
+		lastz	3	745750	745751	745164	745471	746545	1241	442	99.8	99.98

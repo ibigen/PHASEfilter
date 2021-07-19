@@ -64,16 +64,16 @@ class Test(unittest.TestCase):
 		
 		vcf_out = utils.get_temp_file_with_path(temp_work_dir, "vcf_result", ".vcf")
 		vcf_out_removed = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_removed", ".vcf")
+		vcf_out_LOH = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_LOH", ".vcf")
 		b_print_results = False
 		threshold_ad = 0.5
 		vcf_process = VcfProcess(temp_out_vcf_a, threshold_ad, b_print_results)
-		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed)
+		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed, vcf_out_LOH)
 		self.assertTrue(vcf_process.count_alleles.has_removed_variants())
 		self.assertTrue(vcf_process.count_alleles.has_saved_variants())
 		
-		self.assertEqual("Heterozygous (Removed)	Keep alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
-		self.assertEqual("8	115	0	2078	8	2209	2201", str(vcf_process.count_alleles))
-##		self.assertEqual("5	118	0	2078	8	2209	2204", str(vcf_process.count_alleles)) old line
+		self.assertEqual("Heterozygous (Removed)	Keep alleles	LOH alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
+		self.assertEqual("8	115	0	0	2078	8	2209	2201", str(vcf_process.count_alleles))
 		### test VCF
 #####
 # 0.5 Record(CHROM=Ca22chr1A_C_albicans_SC5314, POS=42297, REF=A, ALT=[T]) Record(CHROM=Ca22chr1B_C_albicans_SC5314, POS=42298, REF=T, ALT=[A])
@@ -122,6 +122,7 @@ class Test(unittest.TestCase):
 		
 		self.assertEqual(["35769M1I9181M1I1214M1I23763M"], lift_over_ligth.get_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
+		self.assertEqual((1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1))
 		self.assertEqual((487, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487))
 		
 		#### read vcf
@@ -137,15 +138,16 @@ class Test(unittest.TestCase):
 		
 		vcf_out = utils.get_temp_file_with_path(temp_work_dir, "vcf_result", ".vcf")
 		vcf_out_removed = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_removed", ".vcf")
+		vcf_out_LOH = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_LOH", ".vcf")
 		b_print_results = False
 		threshold_ad = 0.01
 		vcf_process = VcfProcess(temp_out_vcf_a, threshold_ad, b_print_results)
-		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed)
+		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed, vcf_out_LOH)
 		self.assertTrue(vcf_process.count_alleles.has_removed_variants())
 		self.assertTrue(vcf_process.count_alleles.has_saved_variants())
 		
-		self.assertEqual("Heterozygous (Removed)	Keep alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
-		self.assertEqual("8	115	0	2078	8	2209	2201", str(vcf_process.count_alleles))
+		self.assertEqual("Heterozygous (Removed)	Keep alleles	LOH alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
+		self.assertEqual("8	115	0	0	2078	8	2209	2201", str(vcf_process.count_alleles))
 		### test VCF
 #####
 # 0.5 Record(CHROM=Ca22chr1A_C_albicans_SC5314, POS=42297, REF=A, ALT=[T]) Record(CHROM=Ca22chr1B_C_albicans_SC5314, POS=42298, REF=T, ALT=[A])
@@ -208,15 +210,16 @@ class Test(unittest.TestCase):
 		
 		vcf_out = utils.get_temp_file_with_path(temp_work_dir, "vcf_result", ".vcf")
 		vcf_out_removed = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_removed", ".vcf")
+		vcf_out_LOH = utils.get_temp_file_with_path(temp_work_dir, "vcf_result_LOH", ".vcf")
 		b_print_results = False
 		threshold_ad = 0.5
 		vcf_process = VcfProcess(temp_out_vcf_a, threshold_ad, b_print_results)
-		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed)
+		vcf_process.match_vcf_to(seq_name_a, lift_over_ligth, temp_out_vcf_b, seq_name_b, vcf_out, vcf_out_removed, vcf_out_LOH)
 		self.assertTrue(vcf_process.count_alleles.has_removed_variants())
 		self.assertTrue(vcf_process.count_alleles.has_saved_variants())
 		
-		self.assertEqual("Heterozygous (Removed)	Keep alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
-		self.assertEqual("1	18	0	935	0	954	953", str(vcf_process.count_alleles))
+		self.assertEqual("Heterozygous (Removed)	Keep alleles	LOH alleles	Other than SNP	Don't have hit position	Could Not Fetch VCF Record on Hit	Total alleles	Total Alleles new Source VCF", vcf_process.count_alleles.get_header())
+		self.assertEqual("1	18	0	0	935	0	954	953", str(vcf_process.count_alleles))
 		
 		### remove everything
 		utils.remove_dir(temp_work_dir)

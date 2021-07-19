@@ -26,7 +26,7 @@ class Software(SoftwareTest):
 					SoftwareTest.KEY_software_name : SOFTWARE_minimap2_name, 
 					SoftwareTest.KEY_software_run : 'minimap2', 
 					SoftwareTest.KEY_software_run_get_version : 'minimap2 --version', 
-					SoftwareTest.KEY_version : '2.0',
+					SoftwareTest.KEY_version : '2.21',
 					SoftwareTest.KEY_version_major_number : SoftwareTest.KEY_version_pass_equal,
 					SoftwareTest.KEY_version_minor_number : SoftwareTest.KEY_version_pass_equal_or_bigger,
 				}

@@ -4,7 +4,7 @@ Created on 16/12/2019
 @author: mmp
 '''
 import sys, os
-from PHASEfilter.lib.utils.util import Utils, Cigar
+from PHASEfilter.lib.utils.util import Utils, Cigar, CigarElement
 from PHASEfilter.lib.utils.blast_two_sequences import BlastTwoSequences
 from PHASEfilter.lib.utils.lastz_two_sequences import LastzTwoSequences
 from Bio import SeqIO
@@ -267,6 +267,43 @@ class ResultSynchronize(object):
 			return self.dt_position_chain[self.vect_start_cut[index + 1]].get_pos_in_target(pos_from)
 		return None
 
+class Minimap2Alignment(object):
+	
+	def __init__(self, start_pos, cigar):
+		"""
+		Result of minimap2 alignment
+		"""
+		self.start_pos = start_pos
+		self.cigar = cigar
+
+
+	def get_cigar_count_elements(self):
+		return self.cigar.get_count_element()
+
+	def get_number_alignments(self):
+		"""
+		:out number of the alignments
+		"""
+		return 1
+	
+	def get_best_vect_cigar_elements(self):
+		"""
+		"""
+		return self.cigar.get_best_vect_cigar_elements()
+	
+	def get_vect_cigar_string(self):
+		"""
+		"""
+		return self.cigar.get_vect_cigar_string()
+
+	def get_start_pos(self):
+		return self.start_pos - 1
+
+	def get_position_from_2_to(self, position):
+		"""
+		"""
+		return self.cigar.get_position_from_2_to(position, self.start_pos - 1)
+	
 class LiftOverLight(object):
 	'''
 	This is one base, starts on ONE position
@@ -393,7 +430,8 @@ class LiftOverLight(object):
 
 	def _run_minimap2(self, file_from, file_to):
 		"""
-		Create a SAM file to get the compare
+		Create a file parsed from SAM from the minimap2
+		Out 
 		"""
 
 		### out file
@@ -403,10 +441,10 @@ class LiftOverLight(object):
 		### minimap2 -L ca22_1A.fasta ca22_1B.fasta -a -o temp.sam
 		## sort by MappingScore and choose the best alignment
 		## dont print 256 - "not primary alignment" and 2048 - "supplementary alignment" 
-		cmd = "{} -L {} {} -a -o {}; tail -n +3 {} | ".format(
+		cmd = "{} --secondary=no -L {} {} -a -o {}; tail -n +3 {} | ".format(
 			self.software.get_minimap2(), \
 			file_from, file_to, temp_file_out_2, temp_file_out_2)
-		cmd += "awk '{ if ( $2 != 2048 && $2 != 256 ) { print $0 } }' | sort -r -nk5 | head -n 1 | awk '{ print $6 }'"
+		cmd += "awk '{ " +  'print($4, " ", $6)' + " } '"		### to reduce the output size 
 		cmd += " > {}".format(temp_file_out)
 
 		exist_status = os.system(cmd)
@@ -419,7 +457,8 @@ class LiftOverLight(object):
 
 	def get_cigar_sequence(self, sam_file_from_minimap):
 		"""
-		:out return last line of the output file from minimap2 
+		:in sam_file_from_minimap file name in format <start position> <cigar string>
+		:out return last line of the output file from minimap2  [[<start position>, cigar string], ...]
 		"""
 		### open the output file and
 		vect_cigar_string = []
@@ -427,9 +466,11 @@ class LiftOverLight(object):
 			for line in handle_in:
 				temp_line = line.strip()
 				if len(temp_line) == 0 or temp_line.startswith("-L"): continue
-				vect_cigar_string.append(temp_line)
+				
+				lst_data = line.split()
+				if (len(lst_data) == 2):
+					vect_cigar_string.append([int(lst_data[0]), lst_data[1]])
 		return vect_cigar_string
-
 
 	def _get_path_chain(self, key_chain_name):
 		"""
@@ -446,7 +487,7 @@ class LiftOverLight(object):
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
 		if (method == Software.SOFTWARE_minimap2_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
-			return self.dt_chain[method][key_chain_name].vect_cigar_string
+			return self.dt_chain[method][key_chain_name].cigar.vect_cigar_string
 		if (method == Software.SOFTWARE_blast_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
 			return self.dt_chain[method][key_chain_name].get_cigar_strings()
 		if (method == Software.SOFTWARE_lastz_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
@@ -463,7 +504,7 @@ class LiftOverLight(object):
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
 		if (method == Software.SOFTWARE_minimap2_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
-			return self.dt_chain[method][key_chain_name].get_count_element()
+			return self.dt_chain[method][key_chain_name].get_cigar_count_elements()
 		if (method == Software.SOFTWARE_blast_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
 			return self.dt_chain[method][key_chain_name].get_cigar_count_elements()
 		if (method == Software.SOFTWARE_lastz_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
@@ -480,7 +521,7 @@ class LiftOverLight(object):
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
 		if (method == Software.SOFTWARE_minimap2_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
-			return self.dt_chain[method][key_chain_name].get_number_cigar_string()
+			return self.dt_chain[method][key_chain_name].get_number_alignments()
 		if (method == Software.SOFTWARE_blast_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
 			return self.dt_chain[method][key_chain_name].get_number_alignments()
 		if (method == Software.SOFTWARE_lastz_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
@@ -547,12 +588,12 @@ class LiftOverLight(object):
 		result_file_name = self._run_minimap2(temp_file_from, temp_file_to)
 		vect_cigar_string = self.get_cigar_sequence(result_file_name)
 		
-		### process cigar string
+		### process cigar string for minimap2, only have one alignment
 		keep_best = True
 		if (Software.SOFTWARE_minimap2_name in self.dt_chain):
-			self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Cigar(vect_cigar_string, keep_best)
+			self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best))
 		else:
-			dt_chain_temp = { key_chain_name : Cigar(vect_cigar_string, keep_best) }
+			dt_chain_temp = { key_chain_name : Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best)) }
 			self.dt_chain[Software.SOFTWARE_minimap2_name] = dt_chain_temp
 		
 		### do the others, if needed
@@ -629,9 +670,9 @@ class LiftOverLight(object):
 			keep_best = True
 			### process cigar string
 			if (Software.SOFTWARE_minimap2_name in self.dt_chain):
-				self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Cigar(vect_cigar_string, keep_best)
+				self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best))
 			else:
-				dt_chain_temp = { key_chain_name : Cigar(vect_cigar_string, keep_best) }
+				dt_chain_temp = { key_chain_name : Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best)) }
 				self.dt_chain[Software.SOFTWARE_minimap2_name] = dt_chain_temp
 		
 		### lastz
@@ -690,6 +731,10 @@ class LiftOverLight(object):
 		cur_pos_from = 0
 		cur_pos_to = 0
 		
+		### set different start position
+		if method == Software.SOFTWARE_minimap2_name:
+			cur_pos_from = self.dt_chain[method][key_chain_name].get_start_pos()
+		
 		for element in self.dt_chain[method][key_chain_name].get_best_vect_cigar_elements():
 			if (element.is_H() or element.is_D()):
 				seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
@@ -722,6 +767,9 @@ class LiftOverLight(object):
 		with open(temp_file) as handle_in, open(out_file, 'w') as handle_out:
 			b_first = True
 			(count_first, count_second) = (0, 0)
+			if method == Software.SOFTWARE_minimap2_name:
+				count_first = self.dt_chain[method][key_chain_name].get_start_pos()
+
 			space_before_seq = ""
 			for line in handle_in:
 				sz_temp = line.strip()
@@ -765,4 +813,26 @@ class LiftOverLight(object):
 			
 		self.utils.remove_file(temp_file)
 		return out_file
+
+
+	def create_cigar_file(self, out_file, method, seq_name_from, seq_name_to):
+		"""
+		Create a file with the alignment, format clustal
+		:param method Name of the software that was used for alignment
+		:out None is something goes wrong
+		"""
+
+		### get key chain name		
+		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
+		if key_chain_name in self.dt_chain: return None				## key name not found
+
+		with open(out_file, 'w') as handle_out:
+			for cigar_string in self.dt_chain[method][key_chain_name].get_vect_cigar_string():
+				handle_out.write(cigar_string)
+
+		return out_file
+
+
+
+
 

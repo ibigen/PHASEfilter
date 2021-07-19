@@ -359,7 +359,7 @@ class VectAlignments(object):
 					vect_to_remove.append(i_2)
 		vect_to_remove = sorted(vect_to_remove, reverse=True)
 		for _ in vect_to_remove: del self.vect_alignments[_]
-
+		
 		### order by query
 		self.sort_all_alignments()
 

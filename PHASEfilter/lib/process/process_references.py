@@ -45,7 +45,8 @@ class ProcessTwoReferences(object):
 			handle_write.write("Source genome\t{}\nHit genome\t{}\n\nSource genome\tHit genome\nChromosomes\tChromosomes\t".format(\
 					self.reference_1.get_reference_name(),\
 					self.reference_2.get_reference_name())\
-					+ "Software\tGragment split\tLength Match Source\tLength Source\tLength Match Hit\tLength Hit\tAlignment %\tBest\n")
+					+ "Software\tSplit Alignments\tLength Match Source\tLength Source\tLength Match Hit\tLength Hit\t"\
+					+ "Cigar Match\tCigar Deletion\tCigar Insertion\tMatch VS Ins+Del %\tAlignment %\tBest\n")
 			
 			for chr_name_A in self.reference_1.vect_reference:
 				if (chr_name_A.lower() in vect_pass_ref):
@@ -81,7 +82,7 @@ class ProcessTwoReferences(object):
 		"""
 		process by chromosome
 		"""
-		print("Start processing {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
+		print("*" * 50 + "\n" + "*" * 50 + "\nStart processing {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		handle_write.write("{}\t{}\t".format(chr_name_A, chr_name_B))
 		
@@ -97,10 +98,12 @@ class ProcessTwoReferences(object):
 			if (count_elements == None):
 				vect_out.append([software, 0.0])
 			else:
-				vect_out.append(["{}\t{}\t{}\t{}\t{}\t{}\t{:.2f}".format(software, \
+				vect_out.append(["{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{:.1f}\t{:.2f}".format(software, \
 					lift_over_ligth.get_number_cigar_string(software, chr_name_A, chr_name_B),\
 					count_elements.get_lenth_query(), self.reference_1.get_chr_length(chr_name_A),\
 					count_elements.get_lenth_subject(), self.reference_2.get_chr_length(chr_name_B),\
+					count_elements.get_cigar_match(), count_elements.get_cigar_del(),\
+					count_elements.get_cigar_ins(), count_elements.get_percentage_match_vs_del_and_ins(),\
 					count_elements.get_percentage_coverage(self.reference_1.get_chr_length(chr_name_A),\
 						self.reference_2.get_chr_length(chr_name_B)) ),
 					float(count_elements.get_percentage_coverage(self.reference_1.get_chr_length(chr_name_A),\
@@ -108,7 +111,7 @@ class ProcessTwoReferences(object):
 				
 				### save the alignment in file
 				if (not self.out_path_alignments is None):
-					print("########   ", software)
+					print("########   Save alignment: ", software)
 					## lastz does not have CIGAR strings
 					if (software == 'lastz'): continue
 					if (software == 'blastn'): continue
@@ -117,6 +120,10 @@ class ProcessTwoReferences(object):
 					if not os.path.exists(path_out): os.makedirs(path_out)
 					file_out = os.path.join(path_out, "{}_{}.aln".format(chr_name_A, chr_name_B))
 					lift_over_ligth.create_alignment_file(file_out, software, chr_name_A, chr_name_B)
+					
+					### save cigar elements
+					file_out = os.path.join(path_out, "{}_{}_cigar.txt".format(chr_name_A, chr_name_B))
+					lift_over_ligth.create_cigar_file(file_out, software, chr_name_A, chr_name_B)
 				
 		### sort
 		vect_out = sorted(vect_out, key=itemgetter(1), reverse=True)

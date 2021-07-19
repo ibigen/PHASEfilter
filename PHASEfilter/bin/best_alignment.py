@@ -79,7 +79,7 @@ def main(argv=None):
 		parser.add_option("--ref2", dest="reference_2", help="[REQUIRED] reference for genome 2", metavar="FILE")
 		parser.add_option("--out", dest="outfile", help="[REQUIRED] report in tab separated value (tsv)", metavar="FILE")
 		parser.add_option("--pass_chr", dest="pass_chr", help="[Optional] name of chromosomes to not processed. More than one chr split by comma, example 'chrI,chrII'")
-		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each chromosome synchronization.'")
+		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each chromosome synchronization.'", metavar="PATH")
 
 		# process options
 		(opts, args) = parser.parse_args(argv)

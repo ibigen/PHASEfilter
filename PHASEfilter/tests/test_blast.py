@@ -27,7 +27,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(["132M"], blast_alignments.get_cigar(-2).get_vect_cigar_string())
 		self.assertEqual(["1171M1I1215M1I23762M"], blast_alignments.get_cigar(-1).get_vect_cigar_string())
 		self.assertEqual(3, blast_alignments.get_number_alignments())
-		self.assertEqual("69789\t69792\t0", str(blast_alignments.get_cigar_count_elements()))
+		self.assertEqual("69789\t69792\t0\t69789\t0\t3\t100.0", str(blast_alignments.get_cigar_count_elements()))
 		
 	def test_make_cigar(self):
 		
@@ -295,7 +295,7 @@ class Test(unittest.TestCase):
 		ref_1 = Reference(seq_file_name_a)
 		ref_2 = Reference(seq_file_name_b)
 		count_elements = blast_alignments.get_cigar_count_elements()
-		self.assertEqual("1033112\t1033032\t0", str(count_elements))
+		self.assertEqual("1033112\t1033032\t0\t1032588\t524\t444\t99.9", str(count_elements))
 		self.assertEqual("99.98", "{:.2f}".format(count_elements.get_percentage_coverage(\
 							ref_1.get_chr_length('Ca22chr6A_C_albicans_SC5314'),\
 							ref_2.get_chr_length('Ca22chr6B_C_albicans_SC5314'))) )
@@ -328,7 +328,7 @@ class Test(unittest.TestCase):
 		ref_1 = Reference(seq_file_name_a)
 		ref_2 = Reference(seq_file_name_b)
 		count_elements = blast_alignments.get_cigar_count_elements()
-		self.assertEqual("2229805\t2229721\t0", str(count_elements))
+		self.assertEqual("2229805\t2229721\t0\t2229103\t850\t896\t99.9", str(count_elements))
 		self.assertEqual("99.91", "{:.2f}".format(count_elements.get_percentage_coverage(\
 							ref_1.get_chr_length('Ca22chr2A_C_albicans_SC5314'),\
 							ref_2.get_chr_length('Ca22chr2B_C_albicans_SC5314'))) )

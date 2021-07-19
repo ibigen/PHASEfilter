@@ -25,6 +25,7 @@ class Test(unittest.TestCase):
 		
 		outfile_vcf = self.utils.get_temp_file("dont_care_", ".vcf")
 		outfile_vcf_removed = self.utils.get_temp_file("dont_care_2", ".vcf")
+		outfile_vcf_LOH_removed = self.utils.get_temp_file("dont_care_3", ".vcf")
 		report_out_temp = self.utils.get_temp_file("report_temp_", ".txt")
 		threshold_ad = 0.01
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad, outfile_vcf)
@@ -32,17 +33,19 @@ class Test(unittest.TestCase):
 		chr_name_A = "Ca22chr1A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr1B_C_albicans_SC5314"
 		print_results = False
-		self.assertEqual((True, True), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf, outfile_vcf_removed, report_out_temp, print_results))
+		self.assertEqual((True, True), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf,
+									outfile_vcf_removed, outfile_vcf_LOH_removed, report_out_temp, print_results))
 
 		vect_data = self.utils.read_text_file(report_out_temp)
 		self.assertEqual(1, len(vect_data))
-		self.assertEqual("8	115	0	2078	8	2209	2201	minimap2	100.00", vect_data[0])
+		self.assertEqual("8	115	0	0	2078	8	2209	2201	minimap2	100.00", vect_data[0])
 		self.assertTrue(os.path.getsize(outfile_vcf) > 200)
 		
 		## remove files
 		self.utils.remove_file(report_out_temp)
 		self.utils.remove_file(outfile_vcf)
 		self.utils.remove_file(outfile_vcf_removed)
+		self.utils.remove_file(outfile_vcf_LOH_removed)
 
 	def test_process_chromosome_1(self):
 		"""
@@ -58,6 +61,7 @@ class Test(unittest.TestCase):
 		
 		outfile_vcf = self.utils.get_temp_file("dont_care_", ".vcf")
 		outfile_vcf_removed = self.utils.get_temp_file("dont_care_2", ".vcf")
+		outfile_vcf_LOH_removed = self.utils.get_temp_file("dont_care_3", ".vcf")
 		report_out_temp = self.utils.get_temp_file("report_temp_", ".txt")
 		threshold_ad = 0.01
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad, outfile_vcf)
@@ -65,17 +69,19 @@ class Test(unittest.TestCase):
 		chr_name_A = "Ca22chr1A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr2B_C_albicans_SC5314"
 		print_results = False
-		self.assertEqual((True, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf, outfile_vcf_removed, report_out_temp, print_results))
+		self.assertEqual((True, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf,
+									outfile_vcf_removed, outfile_vcf_LOH_removed, report_out_temp, print_results))
 
 		vect_data = self.utils.read_text_file(report_out_temp)
 		self.assertEqual(1, len(vect_data))
-		self.assertEqual("0	2209	0	0	0	0	2209	minimap2	60.28", vect_data[0])
+		self.assertEqual("0	2209	0	0	0	0	0	2209	minimap2	60.28", vect_data[0])
 		self.assertTrue(os.path.getsize(outfile_vcf) > 200)
 		
 		## remove files
 		self.utils.remove_file(report_out_temp)
 		self.utils.remove_file(outfile_vcf)
 		self.utils.remove_file(outfile_vcf_removed)
+		self.utils.remove_file(outfile_vcf_LOH_removed)
 		
 	def test_process_chromosome_2(self):
 		"""
@@ -91,6 +97,7 @@ class Test(unittest.TestCase):
 		
 		outfile_vcf = self.utils.get_temp_file("dont_care_", ".vcf")
 		outfile_vcf_removed = self.utils.get_temp_file("dont_care_2", ".vcf")
+		outfile_vcf_LOH_removed = self.utils.get_temp_file("dont_care_3", ".vcf")
 		report_out_temp = self.utils.get_temp_file("report_temp_", ".txt")
 		threshold_ad = 0.01
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad, outfile_vcf)
@@ -98,17 +105,19 @@ class Test(unittest.TestCase):
 		chr_name_A = "Ca22chr2A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr1B_C_albicans_SC5314"
 		print_results = False
-		self.assertEqual((False, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf, outfile_vcf_removed, report_out_temp, print_results))
+		self.assertEqual((False, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf,
+							outfile_vcf_removed, outfile_vcf_LOH_removed, report_out_temp, print_results))
 
 		vect_data = self.utils.read_text_file(report_out_temp)
 		self.assertEqual(1, len(vect_data))
-		self.assertEqual("0	0	0	0	0	0	0	minimap2	55.01", vect_data[0])
+		self.assertEqual("0	0	0	0	0	0	0	0	minimap2	55.01", vect_data[0])
 		self.assertEqual(0, os.path.getsize(outfile_vcf))
 		
 		## remove files
 		self.utils.remove_file(report_out_temp)
 		self.utils.remove_file(outfile_vcf)
 		self.utils.remove_file(outfile_vcf_removed)
+		self.utils.remove_file(outfile_vcf_LOH_removed)
 		
 	def test_process_chromosome_3(self):
 		"""
@@ -124,6 +133,7 @@ class Test(unittest.TestCase):
 		
 		outfile_vcf = self.utils.get_temp_file("dont_care_", ".vcf")
 		outfile_vcf_removed = self.utils.get_temp_file("dont_care_2", ".vcf")
+		outfile_vcf_LOH_removed = self.utils.get_temp_file("dont_care_3", ".vcf")
 		report_out_temp = self.utils.get_temp_file("report_temp_", ".txt")
 		threshold_ad = 0.01
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad, outfile_vcf)
@@ -131,17 +141,19 @@ class Test(unittest.TestCase):
 		chr_name_A = "Ca22chr2A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr2B_C_albicans_SC5314"
 		print_results = False
-		self.assertEqual((False, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf, outfile_vcf_removed, report_out_temp, print_results))
+		self.assertEqual((False, False), process_two_genomes.process_chromosome(chr_name_A, chr_name_B, outfile_vcf,
+							outfile_vcf_removed, outfile_vcf_LOH_removed, report_out_temp, print_results))
 
 		vect_data = self.utils.read_text_file(report_out_temp)
 		self.assertEqual(1, len(vect_data))
-		self.assertEqual("0	0	0	0	0	0	0	minimap2	93.58", vect_data[0])
+		self.assertEqual("0	0	0	0	0	0	0	0	minimap2	93.58", vect_data[0])
 		self.assertEqual(0, os.path.getsize(outfile_vcf))
 		
 		## remove files
 		self.utils.remove_file(report_out_temp)
 		self.utils.remove_file(outfile_vcf)
 		self.utils.remove_file(outfile_vcf_removed)
+		self.utils.remove_file(outfile_vcf_LOH_removed)
 
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.test_process_chromosome']

@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
 		lastz_alignments = lastz_two_sequences.align_data()
 		self.assertEqual(["35769M1I9181M1I1214M1I23763M"], lastz_alignments.get_cigar(0).get_vect_cigar_string())
 		self.assertEqual(1, lastz_alignments.get_number_alignments())
-		self.assertEqual("69927\t69930\t0", str(lastz_alignments.get_cigar_count_elements()))
+		self.assertEqual("69927\t69930\t0\t69927\t0\t3\t100.0", str(lastz_alignments.get_cigar_count_elements()))
 
 
 	def test_lastz_overlap(self):
@@ -105,7 +105,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(860441, lastz_alignments.vect_alignments[-1].start_query)
 		self.assertEqual(1033292, lastz_alignments.vect_alignments[-1].end_query)
 
-		self.assertEqual("1033292\t1033212\t0", str(lastz_alignments.get_cigar_count_elements()))
+		self.assertEqual("1033292\t1033212\t0\t1033426\t625\t524\t99.9", str(lastz_alignments.get_cigar_count_elements()))
 		
 		
 if __name__ == "__main__":
