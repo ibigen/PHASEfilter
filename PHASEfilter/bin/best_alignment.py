@@ -22,18 +22,18 @@ from PHASEfilter.lib.constants import version
 import os, re, sys
 
 # export PYTHONPATH='/home/mmp/git/PHASEfilter'
-# python3 best_alignment.py 
+# python3 /home/mmp/git/PHASEfilter/PHASEfilter/bin/best_alignment.py 
 #   --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta 
 #	--ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta
 #	--out report.txt
 
-# python3 best_alignment.py 
+# python3 /home/mmp/git/PHASEfilter/PHASEfilter/bin/best_alignment.py 
 #   --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/C_albicans_SC5314_chrA_A22_chromosomes.fasta
 #	--ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/C_albicans_SC5314_chrB_A22_chromosomes.fasta
 #	--out_alignment /home/projects/ua/candida/compare_A_vs_B/ref/syncronization
 #	--out report.txt
 
-# python3 best_alignment.py
+# python3 /home/mmp/git/PHASEfilter/PHASEfilter/bin/best_alignment.py
 # 	--ref1 /usr/local/databases/references/yeast/S288C/S288C_reference_chr_names_cleaned.fna
 # 	--ref2 /home/projects/ua/rita_guimaraes/syncronizationSacharo/S01.assembly.final.fa
 # 	--pass_chr chrmt

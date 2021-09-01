@@ -22,13 +22,14 @@ from PHASEfilter.lib.utils.software import Software
 from PHASEfilter.lib.constants import version
 import os, re, sys
 
+# export PYTHONPATH='/home/mmp/git/PHASEfilter'
 # python3 phasefilter.py 
 #   --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta 
 #	--ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta
 #	--vcf1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz
 #	--vcf2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz
 #	--out out_dir
-# python3 phasefilter.py --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta --ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta --vcf1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf out_dir.vcf.gz
+# python3 phasefilter.py --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/Ca22chr1A_C_albicans_SC5314.fasta --ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/Ca22chr1B_C_albicans_SC5314.fasta --vcf1 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrB_filtered_snps.vcf.gz --out out_dir
 # python3 -m unittest -v tests.test_vcf
 
 # https://mbio.asm.org/content/9/5/e01205-18#sec-12
@@ -73,8 +74,11 @@ def main(argv=None):
 		parser.add_option("--vcf1", dest="vcf_1", help="[REQUIRED] vcf of genome 1", metavar="FILE")
 		parser.add_option("--vcf2", dest="vcf_2", help="[REQUIRED] vcf of genome 2", metavar="FILE")
 		parser.add_option("--out_vcf", dest="outfile_vcf", help="[REQUIRED] file with vcf result file", metavar="FILE")
-#		parser.add_option("--threshold_heterozygous_AD", dest="threshold_heterozygous_ad", help="Cutoff ratio of Allelic depths for the ref and alt alleles " +\
-#						" in the order listed. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
+		## The reason to use AD is because GATK defines predefine values for AF = 0.5/1 and AC = 1|2. Doesn't reflect the real values of AD  
+		parser.add_option("--threshold_heterozygous_AD", dest="threshold_heterozygous_ad", help="Cutoff ratio of Allelic depths for the alt alleles " +\
+						" in the order listed. If bigger than this level is considered homozygous. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
+		parser.add_option("--remove_variants_by_AD_ratio", dest="remove_variants_by_AD_ratio", help="Cutoff ratio of Allelic depths to remove variants. " +\
+						"It will be applied to 'vcf1'. If = to -1 it is not going to take it into account", metavar="RATIO", type="float", default=-1.0)
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
@@ -88,15 +92,15 @@ def main(argv=None):
 
 		### output directoru		
 		## valid_[A|B]_to_[B|A].vcf”, “removed_[A|B]_to_[B|A].vcf” and “loss_of_heterozygous_[A|B]_to_[B|A].vcf
-		
 		if opts.reference_1: print("reference 1 = %s" % opts.reference_1)
 		if opts.reference_2: print("reference 2 = %s" % opts.reference_2)
 		if opts.vcf_1: print("vcf 1 = %s" % opts.vcf_1)
 		if opts.vcf_2: print("vcf 2 = %s" % opts.vcf_2)
 		if opts.outfile_vcf: print("outfile vcf = %s" % opts.outfile_vcf)
-# 		if (opts.threshold_heterozygous_ad and opts.threshold_heterozygous_ad != -1):
-# 			if opts.threshold_heterozygous_ad: print("threshold heterozygous = %.2f" % opts.threshold_heterozygous_ad)
-		opts.threshold_heterozygous_ad = -1
+		if (opts.threshold_heterozygous_ad and opts.threshold_heterozygous_ad != -1):
+			print("threshold heterozygous = {:.2f}".format(opts.threshold_heterozygous_ad))
+		if (opts.remove_variants_by_AD_ratio and opts.remove_variants_by_AD_ratio != -1):
+			print("remove variant by AD ratio = {:.2f}".format(opts.remove_variants_by_AD_ratio))
 
 		if (opts.reference_1 == opts.reference_2): sys.exit("Error: you have the same reference file")
 
@@ -109,33 +113,39 @@ def main(argv=None):
 		#### Test reference
 		b_print_results = False
 		threshold_ad = 0.05
-		vcf_process = VcfProcess(opts.vcf_1, threshold_ad, b_print_results)
-		if (vcf_process.exist_meta_data_tag('reference')):
-			if (not vcf_process.exist_reference_name(opts.reference_1)):
+		threshold_remove_variant_ad = 0.05
+		vcf_process_1 = VcfProcess(opts.vcf_1, threshold_ad, threshold_remove_variant_ad, b_print_results)
+		if (vcf_process_1.exist_meta_data_tag('reference')):
+			if (not vcf_process_1.exist_reference_name(opts.reference_1)):
 				print("Warning: 'VCF_1' has a different reference name from 'reference_1': {}".
 					format(opts.reference_1.split('/')[-1]))
 				
-		vcf_process = VcfProcess(opts.vcf_2, threshold_ad, b_print_results)
-		if (vcf_process.exist_meta_data_tag('reference')):
-			if (not vcf_process.exist_reference_name(opts.reference_2)):
+		vcf_process_2 = VcfProcess(opts.vcf_2, threshold_ad, threshold_remove_variant_ad, b_print_results)
+		if (vcf_process_2.exist_meta_data_tag('reference')):
+			if (not vcf_process_2.exist_reference_name(opts.reference_2)):
 				print("Warning: 'VCF_2' has a different reference name from 'reference_2': {}".
 					format(opts.reference_2.split('/')[-1]))
 
+		### test if the VCF file has the AF info tag
+		if not vcf_process_1.has_info('AC') and opts.threshold_heterozygous_ad == -1.0:
+			print("Error: your file '{}' does not have AC info tag.".format(opts.vcf_1))
+			if (not vcf_process_1.has_format('AC')): print("Please, provide a file with this field.".format(opts.vcf_1))
+			else: print("Please, define a threshold in the parameter 'threshold_heterozygous_ad'.")
+			exit(1)
+			
 		#### Test if AD is present in 1 and 2
 		if (opts.threshold_heterozygous_ad != -1.0):	### test AD
-			vcf_process = VcfProcess(opts.vcf_1, threshold_ad, b_print_results)
-			if (not vcf_process.has_format('AD')):
+			if (not vcf_process_1.has_format('AD')):
 				print("Warning: Format tag 'AD' is not present in file '{}'. 'threshold_heterozygous_ad' will be disable...".format(opts.vcf_1)) 
 				opts.threshold_heterozygous_ad = -1.0
 			
 			if (opts.threshold_heterozygous_ad != -1.0):
-				vcf_process = VcfProcess(opts.vcf_2, threshold_ad, b_print_results)
-				if (not vcf_process.has_format('AD')):
+				if (not vcf_process_2.has_format('AD')):
 					print("Warning: Format tag 'AD' is not present in file '{}'. 'threshold_heterozygous_ad' will be disable...".format(opts.vcf_2))  
 					opts.threshold_heterozygous_ad = -1.0
 
 		process_two_genomes = ProcessTwoGenomes(opts.reference_1, opts.reference_2, opts.vcf_1, opts.vcf_2,
-			opts.threshold_heterozygous_ad, opts.outfile_vcf)
+			opts.threshold_heterozygous_ad, opts.remove_variants_by_AD_ratio, opts.outfile_vcf)
 		print("outfile report file = %s" % process_two_genomes.get_report_file())
 		print("outfile removed variants = %s" % process_two_genomes.get_vcf_removed_file())
 		

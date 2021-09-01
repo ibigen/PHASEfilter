@@ -183,7 +183,7 @@ class ProcessTwoReferences(object):
 		impose_minimap2_only = False
 		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, impose_minimap2_only, False)
 		
-		read_vcf = VcfProcess(vcf_file_to_parse, -1)
+		read_vcf = VcfProcess(vcf_file_to_parse, -1.0, -1.0)
 		(lines_parsed, lines_failed_parse, vect_fail_synch) = read_vcf.parse_vcf(self.outfile, vect_pass_ref, lift_over_ligth)
 		
 		print("Lines parsed: {}   Lines Failed to parse: {}".format(lines_parsed, lines_failed_parse))

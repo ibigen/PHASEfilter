@@ -15,7 +15,8 @@ class ProcessTwoGenomes(object):
 	utils = Utils("synchronize")
 	run_extra_software = RunExtraSoftware()
 	
-	def __init__(self, reference_1, reference_2, vcf_1, vcf_2, threshold_heterozygous_ad, outfile_vcf):
+	def __init__(self, reference_1, reference_2, vcf_1, vcf_2, threshold_heterozygous_ad,
+				threshold_remove_variant_ad, outfile_vcf):
 		"""
 		set the data
 		"""
@@ -26,6 +27,7 @@ class ProcessTwoGenomes(object):
 		self.vcf_2 = vcf_2
 		self.outfile_vcf = outfile_vcf
 		self.threshold_heterozygous_ad = threshold_heterozygous_ad
+		self.threshold_remove_variant_ad = threshold_remove_variant_ad
 	
 	def get_report_file(self):
 		"""
@@ -151,7 +153,8 @@ class ProcessTwoGenomes(object):
 		has_vcf_removed_results = False
 		if (not vcf_1_only_chr is None and not vcf_2_only_chr is None):
 			### start processing VCF
-			vcf_process = VcfProcess(vcf_1_only_chr, self.threshold_heterozygous_ad, print_results)
+			vcf_process = VcfProcess(vcf_1_only_chr, self.threshold_heterozygous_ad,
+							self.threshold_remove_variant_ad, print_results)
 			vcf_process.match_vcf_to(chr_name_A, lift_over_ligth, vcf_2_only_chr, chr_name_B,
 						vcf_out_temp, vcf_out_removed_temp, vcf_out_LOH_temp)
 			
@@ -185,30 +188,3 @@ class ProcessTwoGenomes(object):
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		return (has_result_file, has_vcf_removed_results)
 		
-		
-	def _process_unique_chromosome(self, chr_name_A, vcf_out_temp, report_out_temp, print_results = True):
-		"""
-		testing only the bases in the main reference
-		"""
-		print("Start processing {} chr: {}".format(self.reference_1.get_reference_name(),\
-					chr_name_A))
-		temp_work_dir = self.utils.get_temp_dir()
-		
-		### get only vcf sequences from chr_name_A
-		(vcf_1_only_chr, number_of_records) = self.run_extra_software.get_vcf_with_only_chr(self.vcf_1, chr_name_A, temp_work_dir)
-		
-		### start processing VCF
-		vcf_process = VcfProcess(vcf_1_only_chr, self.threshold_ad, print_results)
-		vcf_process.match_vcf_to_refence(chr_name_A, self.reference_1, vcf_out_temp)
-		
-		### write the report
-		with open(report_out_temp, 'w') as handle_write:
-			handle_write.write(str(vcf_process.count_alleles) + "\n")
-			
-		self.utils.remove_dir(temp_work_dir)
-		self.utils.remove_file(vcf_1_only_chr)
-		self.utils.remove_file(vcf_1_only_chr + ".tbi")
-		print("Processed {} chr: {}".format(self.reference_1.get_reference_name(), chr_name_A))
-
-
-

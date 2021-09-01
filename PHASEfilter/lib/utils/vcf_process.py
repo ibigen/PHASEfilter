@@ -16,7 +16,7 @@ _Info = collections.namedtuple('Info', ['id', 'num', 'type', 'desc', 'source', '
 
 class CountAlleles(object):
 	
-	def __init__(self):
+	def __init__(self, threshold_remove_variant_ad = -1.0):
 		self.equal_allele = 0					## Heterozygous (Removed)
 		self.diff_allele = 0					## Keep alleles
 		self.loh_allele = 0						## LOH alleles
@@ -24,6 +24,8 @@ class CountAlleles(object):
 		self.dont_have_hit_postion = 0			## Don't have hit position
 		self.total_alleles = 0					
 		self.could_not_fetch_vcf_record = 0		## Could Not Fetch VCF Record on Hit
+		self.filter_threshold_ratio_AD = 0		## remove a variant if not reach this AD ratio
+		self.threshold_remove_variant_ad = threshold_remove_variant_ad ## threshold to filter
 		
 	def add_equal(self):
 		self.equal_allele += 1
@@ -46,12 +48,16 @@ class CountAlleles(object):
 	def add_allele(self, value_to_add = 1):
 		self.total_alleles += value_to_add
 		
+	def add_filter_threshold_ratio_AD(self, value_to_add = 1):
+		self.filter_threshold_ratio_AD += value_to_add
+		
 	def has_saved_variants(self):
 		"""
 		:out True if there is any variants that are saved in out file 
 		"""
 		return (self.could_not_fetch_vcf_record + self.diff_allele +\
-			self.dont_have_hit_postion + self.pass_variation) > 0
+			self.dont_have_hit_postion + self.pass_variation +\
+			self.filter_threshold_ratio_AD) > 0
 			
 	def has_removed_variants(self):
 		"""
@@ -63,8 +69,11 @@ class CountAlleles(object):
 		"""
 		:out header
 		"""
-		return "Heterozygous (Removed)\tKeep alleles\tLOH alleles\tOther than SNP\tDon't have hit position\t" +\
-			"Could Not Fetch VCF Record on Hit\tTotal alleles\tTotal Alleles new Source VCF"
+		return "Heterozygous (Removed)\tKeep alleles\tLOH alleles\tOther than SNP\tDon't have hit position" +\
+			"\tCould Not Fetch VCF Record on Hit" +\
+			("\tVariants removed by AD threshold {:.2f}".format(self.threshold_remove_variant_ad) if \
+			self.threshold_remove_variant_ad != -1.0 else "") +\
+			"\tTotal alleles\tTotal Alleles new Source VCF"
 	
 	def __add__(self, other):
 		self.equal_allele += other.equal_allele
@@ -74,29 +83,43 @@ class CountAlleles(object):
 		self.dont_have_hit_postion += other.dont_have_hit_postion
 		self.total_alleles += other.total_alleles
 		self.could_not_fetch_vcf_record += other.could_not_fetch_vcf_record
+		self.filter_threshold_ratio_AD += other.filter_threshold_ratio_AD
 		return self
 
 	def add_line(self, line):
 		lst_data = line.split()
-		if (len(lst_data) == 9):
+		if (len(lst_data) == 9 or len(lst_data) == 10):
 			self.equal_allele += int(lst_data[0])
 			self.diff_allele += int(lst_data[1])
 			self.loh_allele += int(lst_data[2])
 			self.pass_variation += int(lst_data[3])
 			self.dont_have_hit_postion += int(lst_data[4])
 			self.could_not_fetch_vcf_record += int(lst_data[5])
+		## without AD filter
+		if len(lst_data) == 9:
 			self.total_alleles += int(lst_data[6])
-
+		## with AD filter 
+		if len(lst_data) == 10:
+			self.filter_threshold_ratio_AD += int(lst_data[6])
+			self.total_alleles += int(lst_data[7])
+			
 	def __str__(self):
 		"""
 		:out statistics results
 		"""
-		return "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(self.equal_allele, self.diff_allele, 
-			self.loh_allele, self.pass_variation, self.dont_have_hit_postion,
-			self.could_not_fetch_vcf_record, self.total_alleles,
-			self.could_not_fetch_vcf_record + self.diff_allele +\
-			self.dont_have_hit_postion + self.pass_variation)
-
+		if (self.threshold_remove_variant_ad != -1.0):
+			return "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(self.equal_allele, self.diff_allele, 
+				self.loh_allele, self.pass_variation, self.dont_have_hit_postion,
+				self.could_not_fetch_vcf_record, self.filter_threshold_ratio_AD, 
+				self.total_alleles,
+				self.could_not_fetch_vcf_record + self.diff_allele +\
+				self.dont_have_hit_postion + self.pass_variation)
+		else:
+			return "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(self.equal_allele, self.diff_allele, 
+				self.loh_allele, self.pass_variation, self.dont_have_hit_postion,
+				self.could_not_fetch_vcf_record, self.total_alleles,
+				self.could_not_fetch_vcf_record + self.diff_allele +\
+				self.dont_have_hit_postion + self.pass_variation)
 
 class VcfProcess(object):
 	'''
@@ -107,15 +130,16 @@ class VcfProcess(object):
 	nucleotide_codes = NucleotideCodes()
 	utils = Utils()
 	
-	def __init__(self, file_name, threshold_heterozygous_ad, b_print_results = True):
+	def __init__(self, file_name, threshold_heterozygous_ad, threshold_remove_variant_ad, b_print_results = True):
 		'''
 		:param file name of vcf file
 		'''
 		self.file_name = file_name
 		self.is_zipped = True if not self.file_name is None and self.file_name.endswith(".gz") else False 
 		self.threshold_heterozygous_ad = threshold_heterozygous_ad
+		self.threshold_remove_variant_ad = threshold_remove_variant_ad
 		self.b_print_results = b_print_results
-		self.count_alleles = CountAlleles()
+		self.count_alleles = CountAlleles(threshold_remove_variant_ad)
 		self.temp_file_reference = self.utils.get_temp_file("refererence_get_bases_", ".txt")
 
 	def __del__(self):
@@ -135,8 +159,9 @@ class VcfProcess(object):
 			tag_to_test = "##" + meta_data_tag.lower() + "="
 			for header_file in vcf_reader._header_lines:
 				if header_file.lower().startswith(tag_to_test): return True
-			handle_in.close()
 		except Exception as e:
+			pass
+		finally:
 			handle_in.close()
 		return False
 
@@ -157,19 +182,23 @@ class VcfProcess(object):
 					file_name = header_file.split('/')[-1]
 					return file_name.split('/')[-1].lower() == reference_file_name.split('/')[-1].lower()
 		except Exception as e:
+			pass
+		finally:
 			handle_in.close()
 		return False
 			
 	def get_ratio(self, vect_data, count_base):
 		"""
+		:param vect_data [#REF, #ALT1, #ALT2, ...] 
 		return ratio of AD
 		"""
+		if (len(vect_data) == 0): return 1.0
 		n_ref = vect_data[0]
 		if (count_base < len(vect_data)):
 			n_alt = vect_data[count_base]
+			if (n_alt == 0): return 0.0
 			try:
-				if (n_alt > n_ref): return n_ref / float(n_alt)
-				else: return n_alt / float(n_ref)
+				return float("{:.2f}".format(n_alt / (sum(vect_data[1:]) + n_ref))) 
 			except ZeroDivisionError:
 				return 1.0
 		return 0.5
@@ -197,8 +226,35 @@ class VcfProcess(object):
 					lines += 1
 					if lines > 10: break
 		except Exception as e:
+			pass
+		finally:
 			handle_in.close()
 		return count_AD == TEST_COUNT_AD or lines == count_AD
+	
+	def has_info(self, format_tag_to_test):
+		"""
+		:param test if a format tag exist, can be 'AD', GT, 'DP', ...
+		"""
+		TEST_COUNT_AC = 5
+		count_AC = 0
+		lines = 0
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
+			
+			for record in vcf_reader:
+				if (record.is_snp or record.is_indel and format_tag_to_test in record.INFO):
+					count_AC += 1
+					if (count_AC == TEST_COUNT_AC): break
+
+					lines += 1
+					if lines > 10: break
+		except Exception as e:
+			pass
+		finally:
+			handle_in.close()
+		return count_AC == TEST_COUNT_AC or lines == count_AC
 
 
 	def remove_this_record(self, record, record_hit, position_hit, lift_over_ligth):
@@ -209,7 +265,7 @@ class VcfProcess(object):
 		:param lift_over_ligth object to get sequence from the references
 		:out True if this record is heterozygous
 		"""
-		RATIO_AD_DEFAULT = -1.0
+		is_allele_heterozygous = False	## default
 		equal_alts = 0
 		count_base = 0
 		for alt_base_in_hit in record_hit.ALT:
@@ -220,32 +276,44 @@ class VcfProcess(object):
 				sample = record.samples[0]
 
 				### calculate ratio if necessary
-				ratio_ad = RATIO_AD_DEFAULT		##	Default ratio
 				if (self.threshold_heterozygous_ad != -1.0 and 'AD' in sample.data._fields):
 					index = sample.data._fields.index('AD')
-					vect_data = sample.data[index]
-					ratio_ad = self.get_ratio(vect_data, count_base + 1)	### ratio to define Hetero and Homo
+					ratio_ad = self.get_ratio(sample.data[index], count_base + 1)	### ratio to define Hetero and Homo
 					if (self.b_print_results): print("Ratio: ", record, "->",  record_hit, ratio_ad)
+					
+					### define heterozygous or homozygous
+					if (self.threshold_heterozygous_ad >= ratio_ad):
+						is_allele_heterozygous = True
+				else:
+					if ('AC' in record.INFO and record.INFO['AC'][count_base] == 1):
+						is_allele_heterozygous = True
 
+			### test wildcard in alt base
 			if (alt_base_in_hit_str == '*'):
 				count_base += 1
-				continue	### skip wild card
-			if (record_hit.POS == position_hit and record.REF == alt_base_in_hit_str and record_hit.REF in record.ALT):
+				continue	### skip wildcard
+			
+			if (record_hit.POS == position_hit and record.REF == alt_base_in_hit_str and \
+				record_hit.REF in record.ALT and is_allele_heterozygous):
 				# record(CHROM=Ca22chr1A_C_albicans_SC5314, POS=42343, REF=T, ALT=[C])
 				# record_hit(CHROM=Ca22chr1B_C_albicans_SC5314, POS=42344, REF=C, ALT=[T])
 				
 				### now is necessary to calculate the gap between alignments
 				if (record.is_indel):
 					if (self.test_indel_equal(record, record_hit.REF, record_hit, alt_base_in_hit_str, lift_over_ligth)):
-						if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+						if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->", record_hit.heterozygosity,
+							record_hit, ": is_allele_heterozygous ", str(is_allele_heterozygous))
 					else:
-						if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+						if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->", record_hit.heterozygosity,
+							record_hit, ": is_allele_heterozygous ", str(is_allele_heterozygous))
 						equal_alts += 1
 				else:
-					if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+					if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->", record_hit.heterozygosity,
+						record_hit, ": is_allele_heterozygous ", str(is_allele_heterozygous))
 			else:
 				### save in an output
-				if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
+				if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->", record_hit.heterozygosity,
+						record_hit, ": is_allele_heterozygous ", str(is_allele_heterozygous))
 				equal_alts += 1
 
 			count_base += 1
@@ -262,7 +330,7 @@ class VcfProcess(object):
 		:param lift_over_ligth object to get sequence from the references
 		:out True if this record is heterozygous
 		"""
-		RATIO_AD_DEFAULT = -1.0
+		is_allele_heterozygous = False	## default
 		equal_alts = 0
 		count_base = 0
 		for alt_base_in_hit in record_hit.ALT:
@@ -270,31 +338,40 @@ class VcfProcess(object):
 
 			### test heterozygous
 			if (len(record.samples) > 0):
-				sample = record.samples[0]
+				sample = record.samples[0]	### always first sample
 
 				### calculate ratio if necessary
-				ratio_ad = RATIO_AD_DEFAULT		##	Default ratio
 				if (self.threshold_heterozygous_ad != -1.0 and 'AD' in sample.data._fields):
 					index = sample.data._fields.index('AD')
-					vect_data = sample.data[index]
-					ratio_ad = self.get_ratio(vect_data, count_base + 1)	### ratio to define Hetero and Homo
+					ratio_ad = self.get_ratio(sample.data[index], count_base + 1)	### ratio to define Hetero and Homo
 					if (self.b_print_results): print("Ratio: ", record, "->",  record_hit, ratio_ad)
+					
+					### define heterozygous or homozygous
+					if (self.threshold_heterozygous_ad >= ratio_ad):
+						is_allele_heterozygous = True
+				else:
+					if ('AC' in record.INFO and record.INFO['AC'][count_base] == 1):
+						is_allele_heterozygous = True
 
+			### test wildcard in alt base
 			if (alt_base_in_hit_str == '*'):
 				count_base += 1
 				continue	### skip wild card
-			if (record_hit.POS == position_hit and record.REF == alt_base_in_hit_str and record_hit.REF in record.ALT):
+
+			## only change not before is_allele_heterozygous
+			if (record_hit.POS == position_hit and record.REF == alt_base_in_hit_str and \
+				record_hit.REF in record.ALT and not is_allele_heterozygous):
 				# record(CHROM=Ca22chr1A_C_albicans_SC5314, POS=42343, REF=T, ALT=[C])
 				# record_hit(CHROM=Ca22chr1B_C_albicans_SC5314, POS=42344, REF=C, ALT=[T])
-				
-				### now is necessary to calculate the gap between alignments
+
+				### test for INDEL
 				if (record.is_indel):
 					if (self.test_indel_equal(record, record_hit.REF, record_hit, alt_base_in_hit_str, lift_over_ligth)):
 						if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
 					else:
 						if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
 						equal_alts += 1
-				else:
+				else:	## test for SNP
 					if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "->",  record_hit.heterozygosity, record_hit)
 			else:
 				### save in an output
@@ -402,28 +479,6 @@ class VcfProcess(object):
 		return -1
 
 		
-	def remove_this_record_in_reference(self, record, reference_base):
-		"""
-		"""
-		equal_alts = 0
-		for alt_base in record.ALT:
-			if (alt_base == '*'): continue	### skip wild card
-			
-			### test if the base reference between VCF and Reference file is equal
-			if (str(record.REF) != reference_base):
-				raise Exception("Error: VCF REF base '{}'  Reference REF base '{}'\nRecord: {}".format(
-					record.REF, reference_base, record))
-				
-			if (self.nucleotide_codes.has_this_base(reference_base, str(alt_base))):
-				if (self.b_print_results): print("EQUAL: ", record.heterozygosity, record, "-> REF base: ", reference_base, "ALT base: ", alt_base)
-			else:
-				### save in an output
-				if (self.b_print_results): print("DIFF: ", record.heterozygosity, record, "-> REF base: ", reference_base, "ALT base: ", alt_base)
-				equal_alts += 1
-		
-		### if at least one equal allele keep this record
-		return equal_alts == 0
-		
 	def match_vcf_to(self, seq_name_a, lift_over_ligth, vcf_hit, seq_name_b, vcf_out,
 					vcf_out_removed_temp, vcf_out_LOH_temp):
 		"""
@@ -444,6 +499,17 @@ class VcfProcess(object):
 				for record in vcf_reader:
 					if (record.is_snp or record.is_indel):
 						# print(record.heterozygosity, record)
+						
+						## remove variant if is low AD and user define it
+						sample = record.samples[0]
+						if self.threshold_remove_variant_ad != -1.0 and 'AD' in sample.data._fields:
+							index = sample.data._fields.index('AD')
+							ratio_ad = self.get_ratio(sample.data[index], 1)
+							if (self.threshold_remove_variant_ad > ratio_ad):
+								self.count_alleles.add_filter_threshold_ratio_AD()
+								continue
+						
+						### get the position
 						(position, position_most_left) = lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, record.POS)
 						if (position != -1):		### has position in opposite chromosome
 							
@@ -457,7 +523,7 @@ class VcfProcess(object):
 									
 									### test LOH
 									if self.is_loh(record, record_hit, position, lift_over_ligth):
-										vcf_write.write_record(record)
+										vcf_write_LOH.write_record(record)
 										self.count_alleles.add_LOH()
 								else:
 									self.count_alleles.add_equal()
@@ -478,58 +544,17 @@ class VcfProcess(object):
 						vcf_write.write_record(record)
 					
 					### add one allele
-					self.count_alleles.add_allele(1)
+					self.count_alleles.add_allele()
 					
 				#### save statistics results
 				if (self.b_print_results):
 					print(self.count_alleles.get_header()) 
 					print(self.count_alleles)
 		except Exception as e:
+			pass
+		finally:
 			handle_in.close()
 
-	def match_vcf_to_refence(self, chromosome, reference, vcf_out):
-		"""
-		match vcf to a reference  
-		"""
-		temp_file = self.utils.get_temp_file("read_fasta", ".txt")
-		
-		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
-		else: handle_in = open(self.file_name, 'r')
-		try:
-			with open(vcf_out, 'w') as handle_vcf_out:
-				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
-				vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
-				
-				for record in vcf_reader:
-					if (record.is_snp):
-						# print(record.heterozygosity, record)
-						reference_base = reference.get_base_in_position(chromosome, record.POS, record.POS, temp_file)
-						if (len(reference_base) == 1):
-							
-							### start read from last position
-							if not self.remove_this_record_in_reference(record, reference_base):
-								vcf_write.write_record(record)
-						else:
-							### save in an output
-							if (self.b_print_results):
-								print("ErrorBase: ", record.heterozygosity, record)
-								print("Position hit: {}    Bases return: {}".format(record.POS, reference_base))
-							vcf_write.write_record(record)
-							self.count_alleles.add_dont_have_hit_postion()
-	# 				elif (record.is_snp):
-	# 					pass
-					else:
-						self.count_alleles.add_pass_variation()
-	
-				#### save statistics results
-				if (self.b_print_results):
-					print(self.count_alleles.get_header()) 
-					print(self.count_alleles)
-		except Exception as e:
-			handle_in.close()
-			
-		### remove temp file
-		self.utils.remove_file(temp_file)
 
 	def parse_vcf(self, file_result, vect_pass_ref, lift_over_ligth):
 		"""
