@@ -289,8 +289,9 @@ class Minimap2Alignments(object):
 		for alignment in self.vect_alignments:
 			miss_matchs += alignment.cigar.get_count_element().miss_match
 			count_positions += alignment.cigar.get_count_element()
-		if (miss_matchs > count_positions.get_lenth_query()): count_positions.miss_match = miss_matchs - count_positions.get_lenth_query()
-		else: count_positions.miss_match = count_positions.get_lenth_query() - miss_matchs 
+		if len(self.vect_alignments) > 1:
+			if (miss_matchs > count_positions.get_lenth_query()): count_positions.miss_match = miss_matchs - count_positions.get_lenth_query()
+			else: count_positions.miss_match = count_positions.get_lenth_query() - miss_matchs 
 		return count_positions
 	
 	def get_number_alignments(self):
@@ -585,7 +586,7 @@ class LiftOverLight(object):
 			return self.dt_chain[method][key_chain_name].get_cigar_count_elements()
 		return None
 
-	def get_number_cigar_string(self, method, seq_name_from, seq_name_to):
+	def get_number_alignments(self, method, seq_name_from, seq_name_to):
 		"""
 		:param software used
 		:param seq_name_from
@@ -681,30 +682,18 @@ class LiftOverLight(object):
 			else:
 				self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() }
 			
-			if not self.is_100_percent(Software.SOFTWARE_lastz_name,\
-					seq_name_from, seq_name_to):
-				### blastn
-				print("*" * 50 + "\nMaking blast on {}->{}".format(seq_name_from, seq_name_to))
-				use_multithreading = False
-				blast_two_sequences = BlastTwoSequences(temp_file_from, temp_file_to, use_multithreading)
-				if (Software.SOFTWARE_blast_name in self.dt_chain):
-					self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name] = blast_two_sequences.align_data()
-				else:
-					dt_chain_temp = { key_chain_name : blast_two_sequences.align_data() } 
-					self.dt_chain[Software.SOFTWARE_blast_name] = dt_chain_temp
-					
-				### get best algignment
-				vect_percentage_alignment = []
-				vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
-					self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)])
-				vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
-					self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)])
-				vect_percentage_alignment.append([Software.SOFTWARE_blast_name,\
-					self.get_percent_alignment(Software.SOFTWARE_blast_name, seq_name_from, seq_name_to)])
-				vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : x[1], reverse=True)
-				self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
-			else:
-				self.dt_chain_best_method[key_chain_name] = Software.SOFTWARE_lastz_name
+			### get best algignment
+			vect_percentage_alignment = []
+			vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
+				self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to),\
+				self.get_number_alignments(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)
+				])
+			vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
+				self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to),\
+				self.get_number_alignments(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)
+				])
+			vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : (x[1], -x[2]), reverse=True)
+			self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
 		else:		### set best alignment method
 			self.dt_chain_best_method[key_chain_name] = Software.SOFTWARE_minimap2_name
 
@@ -802,11 +791,9 @@ class LiftOverLight(object):
 		
 		for first_count, alignment in enumerate(self.dt_chain[method][key_chain_name].get_vect_alignments()):
 			
-			print(alignment)
 			### need to synchronize with the previous one
 			if (first_count > 0):
 				### it is thread like a match
-				print(alignment.get_start_pos(), cur_pos_from)
 				if alignment.get_start_pos() >= cur_pos_from:	## is after that
 					difference_pos = alignment.get_start_pos() - cur_pos_from 
 					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + difference_pos]

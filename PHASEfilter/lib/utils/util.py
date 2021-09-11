@@ -434,7 +434,7 @@ class CountLength(object):
 		"""
 		:out percetnage coverage
 		"""
-		return ((self.length_query + self.length_subject) / float(length_chr1 + length_chr2)) * 100.0
+		return float("{:.2f}".format( ((self.length_query + self.length_subject) / float(length_chr1 + length_chr2)) * 100.0))
 
 	def is_100_percent(self, length_chr1, length_chr2):
 		"""
@@ -446,6 +446,7 @@ class CountLength(object):
 		"""
 		:out percentage of match VS number of Insertion and Deletion
 		"""
+		if (self.length_del + self.length_ins + self.length_match == 0): return 0
 		return (self.length_match / float(self.length_del + self.length_ins + self.length_match)) * 100.0
 
 
@@ -489,6 +490,12 @@ class Cigar(object):
 			self.vect_positions.append(vect_positions)
 		
 		### count match positions in query and subject
+		self.count_matchs()
+	
+	def count_matchs(self):
+		"""
+		### count match positions in query and subject
+		"""
 		self.count_length.clean_count()
 		if (self.keep_best):
 			self.index_best_alignment = -1

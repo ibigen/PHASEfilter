@@ -32,7 +32,7 @@ class Test(unittest.TestCase):
 		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		
-		self.assertEqual(Software.SOFTWARE_blast_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
+		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
 		
 		### test positions
 		temp_file = utils.get_temp_file("base_name", ".fasta")

@@ -99,7 +99,7 @@ class ProcessTwoReferences(object):
 				vect_out.append([software, 0.0])
 			else:
 				vect_out.append(["{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{:.1f}\t{:.2f}".format(software, \
-					lift_over_ligth.get_number_cigar_string(software, chr_name_A, chr_name_B),\
+					lift_over_ligth.get_number_alignments(software, chr_name_A, chr_name_B),\
 					count_elements.get_lenth_query(), self.reference_1.get_chr_length(chr_name_A),\
 					count_elements.get_lenth_subject(), self.reference_2.get_chr_length(chr_name_B),\
 					count_elements.get_cigar_match(), count_elements.get_cigar_del(),\

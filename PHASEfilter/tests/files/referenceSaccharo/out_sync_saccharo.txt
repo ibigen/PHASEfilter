@@ -3,6 +3,5 @@ Hit genome	S228C.chrXVI
 
 Source genome	Hit genome
 Chromosomes	Chromosomes	Software	Split Alignments	Length Match Source	Length Source	Length Match Hit	Length Hit	Cigar Match	Cigar Deletion	Cigar Insertion	Match VS Ins+Del %	Alignment %	Best
-chrXVI	chrXVI	blastn	3	950718	958737	948066	948066	950498	397	1148	99.8	99.58	*
-		minimap2	1	947155	958737	948066	948066	946757	398	1309	99.8	99.39
-		lastz	4	947154	958737	948065	948066	946786	395	1303	99.8	99.39
+chrXVI	chrXVI	minimap2	1	947155	958737	948066	948066	946757	398	1309	99.8	99.39	*
+		lastz	4	947153	958737	948064	948066	946761	392	1303	99.8	99.39	*

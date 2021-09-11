@@ -51,7 +51,7 @@ class LastzAlignment(object):
 		"""
 		return self.cigar.get_cigar_string()
 	
-	def get_vect_cigar_string(self):
+	def get_vect_cigar(self):
 		"""
 		"""
 		return self.cigar.get_vect_cigar_string()
@@ -146,7 +146,7 @@ class LastzTwoSequences(object):
 		### hold all blast alignments
 		lastz_alignments = LastzAlignments(self.debug, self.use_multithreading)
 		
-		### get blast result
+		### get lastz result
 		temp_file_out = self._process_files()
 		
 		### parse file

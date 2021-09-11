@@ -115,7 +115,7 @@ class Test(unittest.TestCase):
 
 		count_element = CountLength()
 		self.assertEqual("Query length	Subject length	missmatch	Match length	Del length	Ins length	% Match VS Del+Ins", str(count_element.get_header()))
-		self.assertEqual("1034051\t1033950\t0\t1033426\t625\t524\t99.9", str(lastz_alignments.get_cigar_count_elements()))
+		self.assertEqual("1033290\t1033210\t0\t1032770\t520\t440\t99.9", str(lastz_alignments.get_cigar_count_elements()))
 		
 	def test_lastz_remove_overlap_2(self):
 	
