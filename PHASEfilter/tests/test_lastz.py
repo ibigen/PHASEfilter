@@ -5,9 +5,9 @@ Created on 20/05/2020
 '''
 import unittest, os
 from PHASEfilter.lib.utils.lastz_two_sequences import LastzTwoSequences, LastzAlignments
+from PHASEfilter.lib.utils.util import CountLength
 
 class Test(unittest.TestCase):
-
 
 	def test_parse_lastz(self):
 		
@@ -23,7 +23,6 @@ class Test(unittest.TestCase):
 		self.assertEqual(["35769M1I9181M1I1214M1I23763M"], lastz_alignments.get_cigar(0).get_vect_cigar_string())
 		self.assertEqual(1, lastz_alignments.get_number_alignments())
 		self.assertEqual("69927\t69930\t0\t69927\t0\t3\t100.0", str(lastz_alignments.get_cigar_count_elements()))
-
 
 	def test_lastz_overlap(self):
 		
@@ -99,14 +98,51 @@ class Test(unittest.TestCase):
 #		lastz_alignments.print_all_alignments()
 		
 		###		remove overlap alignments
+#		lastz_alignments.print_all_alignments()
 		lastz_alignments.remove_overlap_alignments()
 #		lastz_alignments.print_all_alignments()
 		
-		self.assertEqual(860441, lastz_alignments.vect_alignments[-1].start_query)
-		self.assertEqual(1033292, lastz_alignments.vect_alignments[-1].end_query)
+		self.assertEqual("Make cigar, Query: 1-233013  len(233012)    Subject: 1-232981  len(232980)", str(lastz_alignments.vect_alignments[0]))
+		self.assertEqual("50M1D546M3D1843M3D773M1D2451M1I1710M1I2857M1D2164M", lastz_alignments.vect_alignments[0].get_cigar_string()[len(lastz_alignments.vect_alignments[0].get_cigar_string()) - 50:])
+		self.assertEqual("M -> 7052", str(lastz_alignments.vect_alignments[0].cigar.vect_positions[0][0]))
+		self.assertEqual("I -> 1", str(lastz_alignments.vect_alignments[0].cigar.vect_positions[0][1]))
+		self.assertEqual("Make cigar, Query: 233015-414131  len(181116)    Subject: 232983-414091  len(181108)", str(lastz_alignments.vect_alignments[1]))
+		self.assertEqual("16850M3D591M1D16144M2I546M1D1155M3I1647M3D317M2I93", lastz_alignments.vect_alignments[1].get_cigar_string()[:50])
+		self.assertEqual("M -> 16850", str(lastz_alignments.vect_alignments[1].cigar.vect_positions[0][0]))
+		self.assertEqual("D -> 3", str(lastz_alignments.vect_alignments[1].cigar.vect_positions[0][1]))
+		self.assertEqual("Make cigar, Query: 414132-860563  len(446431)    Subject: 414092-860521  len(446429)", str(lastz_alignments.vect_alignments[2]))
+		self.assertEqual("Make cigar, Query: 860565-1033292  len(172727)    Subject: 860523-1033212  len(172689)", str(lastz_alignments.vect_alignments[3]))
 
-		self.assertEqual("1033292\t1033212\t0\t1033426\t625\t524\t99.9", str(lastz_alignments.get_cigar_count_elements()))
+		count_element = CountLength()
+		self.assertEqual("Query length	Subject length	missmatch	Match length	Del length	Ins length	% Match VS Del+Ins", str(count_element.get_header()))
+		self.assertEqual("1034051\t1033950\t0\t1033426\t625\t524\t99.9", str(lastz_alignments.get_cigar_count_elements()))
 		
+	def test_lastz_remove_overlap_2(self):
+	
+		use_multithreading = False
+		debug = True
+		lastz_alignments = LastzAlignments(debug, use_multithreading)
+	
+		aln_file_name = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/lastz/lastz_result.aln")
+		self.assertTrue(os.path.exists(aln_file_name))
+	
+		### parse file
+		## <name1> <start1> <end1> <name2> <start2> <end2> <strand2> [<score>] [#<comment>]
+		## where <name1>, etc. correspond to the target sequence and <name2>, etc. correspond to the query. Fields are delimited by whitespace. 
+		with open(aln_file_name) as handle:
+			for line in handle:
+				sz_temp = line.strip()
+				if (len(sz_temp) == 0 or sz_temp.startswith('#')): continue
+				### add new alignments
+				lastz_alignments.add_new_alignment(sz_temp)
+	
+		### sort alignments
+#		lastz_alignments.print_all_alignments()
+		lastz_alignments.remove_overlap_alignments()
+#		lastz_alignments.print_all_alignments()
+
+		self.assertEqual("Make cigar, Query: 1286540-1733200  len(446660)    Subject: 1286558-1733218  len(446660)", str(lastz_alignments.vect_alignments[5]))
+		self.assertEqual("Make cigar, Query: 1733204-2007383  len(274179)    Subject: 1733222-2007299  len(274077)", str(lastz_alignments.vect_alignments[6]))
 		
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.test_parse_blast']

@@ -45,6 +45,13 @@ class ProcessTwoGenomes(object):
 			"{}_{}".format(self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', ''),\
 			"removed.vcf.gz"))
 
+	def get_vcf_loh_file(self):
+		"""
+		:out get file name where report will be saved
+		"""
+		return os.path.join(os.path.dirname(self.outfile_vcf),\
+			"{}_{}".format(self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', ''),\
+			"LOH.vcf.gz"))
 	
 	def process(self):
 		"""
@@ -63,6 +70,8 @@ class ProcessTwoGenomes(object):
 		vect_temp_report_file = []		### at the end merge all of them
 		temp_work_dir = self.utils.get_temp_dir()
 		temp_work_dir_vcf_removed = self.utils.get_temp_dir()
+		temp_work_dir_vcf_loh = self.utils.get_temp_dir()
+		(has_vcf_results_global, has_vcf_removed_results_global, has_vcf_loh_results_global) = (False, False, False)
 		for chr_name_A in self.reference_1.vect_reference:
 			chr_name_B = self.reference_2.get_chr_in_genome(chr_name_A)
 			if chr_name_B is None: 
@@ -72,28 +81,36 @@ class ProcessTwoGenomes(object):
 			
 			vcf_out_temp = self.utils.get_temp_file_with_path(temp_work_dir, prefix, extension_out)
 			vcf_out_removed_temp = self.utils.get_temp_file_with_path(temp_work_dir_vcf_removed, prefix, extension_out)
-			vcf_out_LOH_temp = self.utils.get_temp_file_with_path(temp_work_dir_vcf_removed, prefix, extension_out)
+			vcf_out_LOH_temp = self.utils.get_temp_file_with_path(temp_work_dir_vcf_loh, prefix, extension_out)
 			report_out_temp = self.utils.get_temp_file_with_path(temp_work_dir, "report_out", ".txt")
 			
 			### processing chromosomes
 			vect_temp_report_file.append([chr_name_A, chr_name_B, report_out_temp])
-			(has_vcf_results, has_vcf_removed_results) = self.process_chromosome(chr_name_A, chr_name_B, vcf_out_temp,
-															vcf_out_removed_temp, vcf_out_LOH_temp, report_out_temp,
-															print_results)
+			(has_vcf_results, has_vcf_removed_results, has_vcf_loh_results) = \
+							self.process_chromosome(chr_name_A, chr_name_B, vcf_out_temp,
+							vcf_out_removed_temp, vcf_out_LOH_temp, report_out_temp,
+							print_results)
 
 			### test if has results
-			if (has_vcf_results):			
-				### make gzip file
+			if (has_vcf_results):			### make gzip file
 				self.run_extra_software.make_bgz(vcf_out_temp, vcf_out_temp + ".gz")
+				has_vcf_results_global = True
 			else:
 				self.utils.remove_file(vcf_out_temp)
 				
 			### test if has removed results
-			if (has_vcf_removed_results):			
-				### make gzip file
+			if (has_vcf_removed_results):	### make gzip file
 				self.run_extra_software.make_bgz(vcf_out_removed_temp, vcf_out_removed_temp + ".gz")
+				has_vcf_removed_results_global = True
 			else:
-				self.utils.remove_file(vcf_out_removed_temp)			
+				self.utils.remove_file(vcf_out_removed_temp)
+				
+			### test if has loh results
+			if (has_vcf_loh_results):		### make gzip file
+				self.run_extra_software.make_bgz(vcf_out_LOH_temp, vcf_out_LOH_temp + ".gz")
+				has_vcf_loh_results_global = True
+			else:
+				self.utils.remove_file(vcf_out_LOH_temp)	
 		
 		### join report files
 		with open(self.get_report_file(), 'w') as handle_write:
@@ -110,8 +127,9 @@ class ProcessTwoGenomes(object):
 			handle_write.write("Total\t\t{}\n".format(str(count_alleles)))
 			
 		### join vcf output files
-		self.run_extra_software.concat_vcf(temp_work_dir, prefix, extension_out + ".gz", self.outfile_vcf)
-		self.run_extra_software.concat_vcf(temp_work_dir_vcf_removed, prefix, extension_out + ".gz", self.get_vcf_removed_file())
+		if has_vcf_results_global: self.run_extra_software.concat_vcf(temp_work_dir, prefix, extension_out + ".gz", self.outfile_vcf)
+		if has_vcf_removed_results_global: self.run_extra_software.concat_vcf(temp_work_dir_vcf_removed, prefix, extension_out + ".gz", self.get_vcf_removed_file())
+		if has_vcf_loh_results_global: self.run_extra_software.concat_vcf(temp_work_dir_vcf_loh, prefix, extension_out + ".gz", self.get_vcf_loh_file())
 		
 		### print chr not process
 		vect_not_processed_B = self.reference_2.chr_not_included(vect_process_B)
@@ -122,12 +140,17 @@ class ProcessTwoGenomes(object):
 		else: print("Warning: chromosomes not processed for {}: ['{}']".format(self.reference_2.get_reference_name(), "', '".join(vect_not_processed_B)))
 	
 		### remove temp files
-#		self.utils.remove_dir(temp_work_dir)
-#		self.utils.remove_dir(temp_work_dir_vcf_removed)
+		self.utils.remove_dir(temp_work_dir)
+		self.utils.remove_dir(temp_work_dir_vcf_removed)
+		self.utils.remove_dir(temp_work_dir_vcf_loh)
 			
 		### print info
-		print("VCF result: {}".format(self.outfile_vcf))
-		print("VCF removed variants result: {}".format(self.get_vcf_removed_file()))
+		if has_vcf_results_global: print("VCF result: {}".format(self.outfile_vcf))
+		else: print("There's no variants for the file '{}'.".format(self.outfile_vcf))
+		if has_vcf_removed_results_global: print("VCF removed variants result: {}".format(self.get_vcf_removed_file()))
+		else: print("There's no variants for the file '{}'.".format(self.get_vcf_removed_file()))
+		if has_vcf_loh_results_global: print("VCF LOH variants result: {}".format(self.get_vcf_loh_file()))
+		else: print("There's no variants for the file '{}'.".format(self.get_vcf_loh_file()))
 		print("Report result: {}".format(self.get_report_file()))
 	
 	
@@ -151,6 +174,7 @@ class ProcessTwoGenomes(object):
 		## all VCF files has variants
 		has_result_file = False
 		has_vcf_removed_results = False
+		has_vcf_loh_results = False
 		if (not vcf_1_only_chr is None and not vcf_2_only_chr is None):
 			### start processing VCF
 			vcf_process = VcfProcess(vcf_1_only_chr, self.threshold_heterozygous_ad,
@@ -161,6 +185,7 @@ class ProcessTwoGenomes(object):
 			count_alleles = vcf_process.count_alleles
 			if (count_alleles.has_saved_variants()): has_result_file = True
 			if (count_alleles.has_removed_variants()): has_vcf_removed_results = True
+			if (count_alleles.has_loh_allele()): has_vcf_loh_results = True
 		elif (vcf_1_only_chr is None):
 			count_alleles = CountAlleles()
 		elif (not vcf_1_only_chr is None and vcf_2_only_chr is None):
@@ -186,5 +211,5 @@ class ProcessTwoGenomes(object):
 		if (not vcf_2_only_chr is None): self.utils.remove_file(vcf_2_only_chr + ".tbi")
 		print("Processed {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
-		return (has_result_file, has_vcf_removed_results)
+		return (has_result_file, has_vcf_removed_results, has_vcf_loh_results)
 		

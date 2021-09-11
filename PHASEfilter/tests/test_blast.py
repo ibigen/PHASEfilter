@@ -22,10 +22,10 @@ class Test(unittest.TestCase):
 		debug = True
 		blast_two_sequences = BlastTwoSequences(seq_file_name_a, seq_file_name_b, debug, use_multithreading)
 		blast_alignments = blast_two_sequences.align_data()
-		blast_alignments.print_all_alignments()
-		self.assertEqual(["35780M1I7729M"], blast_alignments.get_cigar(0).get_vect_cigar_string())
+#		blast_alignments.print_all_alignments()
+		self.assertEqual(["35769M1I7740M"], blast_alignments.get_cigar(0).get_vect_cigar_string())
 		self.assertEqual(["132M"], blast_alignments.get_cigar(-2).get_vect_cigar_string())
-		self.assertEqual(["1171M1I1215M1I23762M"], blast_alignments.get_cigar(-1).get_vect_cigar_string())
+		self.assertEqual(["1171M1I1214M1I23763M"], blast_alignments.get_cigar(-1).get_vect_cigar_string())
 		self.assertEqual(3, blast_alignments.get_number_alignments())
 		self.assertEqual("69789\t69792\t0\t69789\t0\t3\t100.0", str(blast_alignments.get_cigar_count_elements()))
 		
@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
 		#### new test
 		seq_a = "AAAAAAC-TAAAT"
 		seq_b = "AAAAAACAT-AAT"
-		cigar = ["7M1I3M1D1M"]
+		cigar = ["7M1I1M1D3M"]
 		
 		use_multithreading = False
 		debug = True
@@ -45,10 +45,10 @@ class Test(unittest.TestCase):
 		
 		bast_line.make_cigar_string()
 		self.assertEqual("AAAAAAC-TAAAT", bast_line.get_query_sequence())
-		self.assertEqual("AAAAAACATAA-T", bast_line.get_subject_sequence())
+		self.assertEqual("AAAAAACAT-AAT", bast_line.get_subject_sequence())
 		self.assertEqual(2, len(bast_line.synchronize.vect_data))
 		self.assertTrue(SyncHoles(7, SyncHoles.QUERY) == bast_line.synchronize.vect_data[0])
-		self.assertTrue(SyncHoles(11, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[-1])
+		self.assertTrue(SyncHoles(9, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[-1])
 		self.assertEqual(cigar, bast_line.get_cigar().get_vect_cigar_string())
 		self.assertEqual((-1, -1), bast_line.get_position_from_2_to(3))
 		self.assertEqual((-1, -1), bast_line.get_position_from_2_to(12))
@@ -56,16 +56,16 @@ class Test(unittest.TestCase):
 		self.assertEqual((14, -1), bast_line.get_position_from_2_to(14))
 		self.assertEqual((19, -1), bast_line.get_position_from_2_to(19))
 		self.assertEqual((21, -1), bast_line.get_position_from_2_to(20))
-		self.assertEqual((22, -1), bast_line.get_position_from_2_to(21))
-		self.assertEqual((23, -1), bast_line.get_position_from_2_to(22))
-		self.assertEqual((-1, 23), bast_line.get_position_from_2_to(23))
+		self.assertEqual((-1, 21), bast_line.get_position_from_2_to(21))
+		self.assertEqual((22, -1), bast_line.get_position_from_2_to(22))
+		self.assertEqual((23, -1), bast_line.get_position_from_2_to(23))
 		self.assertEqual((24, -1), bast_line.get_position_from_2_to(24))
 		self.assertEqual((-1, -1), bast_line.get_position_from_2_to(25))
 		
 		#### new test
 		seq_a = "AAAAAAC-TAAAT"
 		seq_b = "AAAAAACAT-CAT"
-		cigar = ["7M1I3M1D1M"]
+		cigar = ["7M1I1M1D3M"]
 		
 		use_multithreading = False
 		debug = True
@@ -77,10 +77,10 @@ class Test(unittest.TestCase):
 		bast_line.make_cigar_string()
 		
 		self.assertEqual("AAAAAAC-TAAAT", bast_line.get_query_sequence())
-		self.assertEqual("AAAAAACATCA-T", bast_line.get_subject_sequence())
+		self.assertEqual("AAAAAACAT-CAT", bast_line.get_subject_sequence())
 		self.assertEqual(2, len(bast_line.synchronize.vect_data))
 		self.assertTrue(SyncHoles(7, SyncHoles.QUERY) == bast_line.synchronize.vect_data[0])
-		self.assertTrue(SyncHoles(11, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[-1])
+		self.assertTrue(SyncHoles(9, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[-1])
 		self.assertEqual(cigar, bast_line.get_cigar().get_vect_cigar_string())
 		
 		#### new test
@@ -97,7 +97,7 @@ class Test(unittest.TestCase):
 		
 		bast_line.make_cigar_string()
 		self.assertEqual("AAAAAACATAAAT", bast_line.get_query_sequence())
-		self.assertEqual("AAAAAACAGA--T", bast_line.get_subject_sequence())
+		self.assertEqual("AAAAAACAG--AT", bast_line.get_subject_sequence())
 		self.assertEqual(2, len(bast_line.synchronize.vect_data))
 		self.assertTrue(SyncHoles(10, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[0])
 		self.assertTrue(SyncHoles(11, SyncHoles.SUBJECT) == bast_line.synchronize.vect_data[1])
@@ -328,8 +328,8 @@ class Test(unittest.TestCase):
 		ref_1 = Reference(seq_file_name_a)
 		ref_2 = Reference(seq_file_name_b)
 		count_elements = blast_alignments.get_cigar_count_elements()
-		self.assertEqual("2229805\t2229721\t0\t2229103\t850\t896\t99.9", str(count_elements))
-		self.assertEqual("99.91", "{:.2f}".format(count_elements.get_percentage_coverage(\
+		self.assertEqual("2229953\t2229894\t0\t2229103\t850\t896\t99.9", str(count_elements))
+		self.assertEqual("99.92", "{:.2f}".format(count_elements.get_percentage_coverage(\
 							ref_1.get_chr_length('Ca22chr2A_C_albicans_SC5314'),\
 							ref_2.get_chr_length('Ca22chr2B_C_albicans_SC5314'))) )
 		utils.remove_file(temp_1)

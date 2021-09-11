@@ -4,7 +4,7 @@ Created on 16/12/2019
 @author: mmp
 '''
 import sys, os
-from PHASEfilter.lib.utils.util import Utils, Cigar, CigarElement
+from PHASEfilter.lib.utils.util import Utils, Cigar, CountLength
 from PHASEfilter.lib.utils.blast_two_sequences import BlastTwoSequences
 from PHASEfilter.lib.utils.lastz_two_sequences import LastzTwoSequences
 from Bio import SeqIO
@@ -267,13 +267,73 @@ class ResultSynchronize(object):
 			return self.dt_position_chain[self.vect_start_cut[index + 1]].get_pos_in_target(pos_from)
 		return None
 
+class Minimap2Alignments(object):
+	"""
+	can have one or more Minimap2Alignments
+	"""
+	
+	def __init__(self, vect_alignments):
+		"""
+		vect_alignments = [[], [], ...
+		"""
+		self.vect_alignments = []
+		for vect_temp in vect_alignments:
+			self.vect_alignments.append(Minimap2Alignment(vect_temp[0], Cigar([vect_temp[1]])))
+
+		### order by start position
+		self.vect_alignments = sorted(self.vect_alignments, key=lambda item: item.get_start_pos()) 
+		
+	def get_cigar_count_elements(self):
+		count_positions = CountLength()
+		miss_matchs = 0
+		for alignment in self.vect_alignments:
+			miss_matchs += alignment.cigar.get_count_element().miss_match
+			count_positions += alignment.cigar.get_count_element()
+		if (miss_matchs > count_positions.get_lenth_query()): count_positions.miss_match = miss_matchs - count_positions.get_lenth_query()
+		else: count_positions.miss_match = count_positions.get_lenth_query() - miss_matchs 
+		return count_positions
+	
+	def get_number_alignments(self):
+		"""
+		:out number of the alignments
+		"""
+		return len(self.vect_alignments) 
+	
+	def get_vect_alignments(self):
+		"""
+		"""
+		return self.vect_alignments
+
+	def get_start_pos(self):
+		if (len(self.vect_alignments) == 0): return 0
+		return self.vect_alignments[0].get_start_pos()
+
+	def get_position_from_2_to(self, position):
+		"""
+		"""
+		position_on_hit, left_position_on_hit = -1, -1
+		for alignment in self.vect_alignments:
+			(position_on_hit, left_position_on_hit) = alignment.cigar.get_position_from_2_to(position, alignment.start_query - 1)
+			if (position_on_hit != -1): return (position_on_hit, left_position_on_hit) 
+		return (position_on_hit, left_position_on_hit)
+
+	def get_cigar_strings(self):
+		"""
+		:out return all cigar strings
+		"""
+		vect_return = []
+		for cigar_element in self.vect_alignments:
+			vect_return.extend(cigar_element.get_vect_cigar())
+		return vect_return
+
 class Minimap2Alignment(object):
 	
-	def __init__(self, start_pos, cigar):
+	def __init__(self, start_query, cigar):
 		"""
 		Result of minimap2 alignment
 		"""
-		self.start_pos = start_pos
+		self.start_query = start_query
+		self.start_subject = 1
 		self.cigar = cigar
 
 
@@ -297,13 +357,27 @@ class Minimap2Alignment(object):
 		return self.cigar.get_vect_cigar_string()
 
 	def get_start_pos(self):
-		return self.start_pos - 1
+		return self.start_query - 1
 
+	def get_start_pos_hit(self):
+		return self.start_subject - 1
+	
 	def get_position_from_2_to(self, position):
 		"""
 		"""
 		return self.cigar.get_position_from_2_to(position, self.start_pos - 1)
 	
+	def get_vect_cigar(self):
+		"""
+		return vector with cigar
+		"""
+		return self.cigar.get_vect_cigar_string()
+
+	def get_cigar_string(self):
+		"""
+		"""
+		return self.cigar.get_cigar_string()
+
 class LiftOverLight(object):
 	'''
 	This is one base, starts on ONE position
@@ -487,7 +561,7 @@ class LiftOverLight(object):
 		"""
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
 		if (method == Software.SOFTWARE_minimap2_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
-			return self.dt_chain[method][key_chain_name].cigar.vect_cigar_string
+			return self.dt_chain[method][key_chain_name].get_cigar_strings()
 		if (method == Software.SOFTWARE_blast_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
 			return self.dt_chain[method][key_chain_name].get_cigar_strings()
 		if (method == Software.SOFTWARE_lastz_name and method in self.dt_chain and key_chain_name in self.dt_chain[method]):
@@ -589,12 +663,10 @@ class LiftOverLight(object):
 		vect_cigar_string = self.get_cigar_sequence(result_file_name)
 		
 		### process cigar string for minimap2, only have one alignment
-		keep_best = True
 		if (Software.SOFTWARE_minimap2_name in self.dt_chain):
-			self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best))
+			self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignments(vect_cigar_string)
 		else:
-			dt_chain_temp = { key_chain_name : Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best)) }
-			self.dt_chain[Software.SOFTWARE_minimap2_name] = dt_chain_temp
+			self.dt_chain[Software.SOFTWARE_minimap2_name] = { key_chain_name : Minimap2Alignments(vect_cigar_string) }
 		
 		### do the others, if needed
 		if (self.b_test_mode or (not self.impose_minimap2_only and not self.is_100_percent(\
@@ -607,8 +679,7 @@ class LiftOverLight(object):
 			if (Software.SOFTWARE_lastz_name in self.dt_chain):
 				self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
 			else:
-				dt_chain_temp = { key_chain_name : lastz_two_sequences.align_data() } 
-				self.dt_chain[Software.SOFTWARE_lastz_name] = dt_chain_temp
+				self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() }
 			
 			if not self.is_100_percent(Software.SOFTWARE_lastz_name,\
 					seq_name_from, seq_name_to):
@@ -659,22 +730,21 @@ class LiftOverLight(object):
 		### get match positions to cut
 		temp_file_from = self._get_chr_file(self.reference_from, seq_name_from)
 		temp_file_to = self._get_chr_file(self.reference_to, seq_name_to)
-		
+
 		result_file_name = self._run_minimap2(temp_file_from, temp_file_to)
 		vect_cigar_string = self.get_cigar_sequence(result_file_name)
-		
+
 		### minimap2		
 		if (not vect_cigar_string is None and len(vect_cigar_string) > 0):
 			print("Passed: minimap2 alignment on {}->{}".format(seq_name_from, seq_name_to))
 
 			keep_best = True
-			### process cigar string
+			### add cigar string and start
 			if (Software.SOFTWARE_minimap2_name in self.dt_chain):
-				self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best))
+				self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignments(vect_cigar_string)
 			else:
-				dt_chain_temp = { key_chain_name : Minimap2Alignment(vect_cigar_string[0][0], Cigar([vect_cigar_string[0][1]], keep_best)) }
-				self.dt_chain[Software.SOFTWARE_minimap2_name] = dt_chain_temp
-		
+				self.dt_chain[Software.SOFTWARE_minimap2_name] = { key_chain_name : Minimap2Alignments(vect_cigar_string) }
+
 		### lastz
 		lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
 		print("Making lastz on {}->{}".format(seq_name_from, seq_name_to))
@@ -682,18 +752,17 @@ class LiftOverLight(object):
 		if (Software.SOFTWARE_lastz_name in self.dt_chain):
 			self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
 		else:
-			dt_chain_temp = { key_chain_name : lastz_two_sequences.align_data() } 
-			self.dt_chain[Software.SOFTWARE_lastz_name] = dt_chain_temp
+			self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() } 
 			
 		### blastn
-		blast_two_sequences = BlastTwoSequences(temp_file_from, temp_file_to)
-		print("Making blast on {}->{}".format(seq_name_from, seq_name_to))
-		### process cigar string
-		if (Software.SOFTWARE_blast_name in self.dt_chain):
-			self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name] = blast_two_sequences.align_data()
-		else:
-			dt_chain_temp = { key_chain_name : blast_two_sequences.align_data() } 
-			self.dt_chain[Software.SOFTWARE_blast_name] = dt_chain_temp
+# don't run
+# blast_two_sequences = BlastTwoSequences(temp_file_from, temp_file_to)
+# print("Making blast on {}->{}".format(seq_name_from, seq_name_to))
+# ### process cigar string
+# if (Software.SOFTWARE_blast_name in self.dt_chain):
+# 	self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name] = blast_two_sequences.align_data()
+# else:
+# 	self.dt_chain[Software.SOFTWARE_blast_name] = { key_chain_name : blast_two_sequences.align_data() }
 			
 		self.utils.remove_file(temp_file_from)
 		self.utils.remove_file(temp_file_to)
@@ -728,28 +797,58 @@ class LiftOverLight(object):
 		if key_chain_name in self.dt_chain: return None				## key name not found
 		
 		# Positions in the sequences 
-		cur_pos_from = 0
+		cur_pos_from = self.dt_chain[method][key_chain_name].get_start_pos()
 		cur_pos_to = 0
 		
-		### set different start position
-		if method == Software.SOFTWARE_minimap2_name:
-			cur_pos_from = self.dt_chain[method][key_chain_name].get_start_pos()
-		
-		for element in self.dt_chain[method][key_chain_name].get_best_vect_cigar_elements():
-			if (element.is_H() or element.is_D()):
-				seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
-				cur_pos_from += element.length
-				seq_to += "-" * element.length
-			elif (element.is_S() or element.is_I()):
-				seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
-				cur_pos_to += element.length
-				seq_from += "-" * element.length
-			elif (element.is_M()):
-				seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
-				cur_pos_to += element.length
-
-				seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
-				cur_pos_from += element.length
+		for first_count, alignment in enumerate(self.dt_chain[method][key_chain_name].get_vect_alignments()):
+			
+			print(alignment)
+			### need to synchronize with the previous one
+			if (first_count > 0):
+				### it is thread like a match
+				print(alignment.get_start_pos(), cur_pos_from)
+				if alignment.get_start_pos() >= cur_pos_from:	## is after that
+					difference_pos = alignment.get_start_pos() - cur_pos_from 
+					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + difference_pos]
+					cur_pos_from = alignment.get_start_pos()
+					
+					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + difference_pos]
+					cur_pos_to += difference_pos
+				else:	##  need to cut both sequences
+					difference_pos = cur_pos_from - alignment.get_start_pos()
+					print(difference_pos, alignment.get_start_pos(), seq_from[len(seq_from)-(difference_pos+50):]) 
+					#seq_from = seq_from[:-difference_pos]
+					cur_pos_from = alignment.get_start_pos()
+					
+					difference_pos = cur_pos_to - alignment.get_start_pos_hit()
+					print(difference_pos, alignment.get_start_pos_hit(), seq_to[len(seq_to)-(difference_pos+50):])
+					#seq_to = seq_to[:-difference_pos]
+					cur_pos_to = alignment.get_start_pos_hit()
+					
+			for second_count, element in enumerate(alignment.cigar.get_best_vect_cigar_elements()):
+				
+				### need to pass
+				if ((first_count > 0 and second_count == 0 and element.is_S()) or \
+					((first_count + 1) < \
+					len(self.dt_chain[method][key_chain_name].get_vect_alignments()) and \
+					element.is_H()) ): 
+					continue
+				
+				if (element.is_H() or element.is_D()):
+					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+					cur_pos_from += element.length
+					seq_to += "-" * element.length
+				elif (element.is_S() or element.is_I()):
+					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+					cur_pos_to += element.length
+					seq_from += "-" * element.length
+				elif (element.is_M()):
+					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+					cur_pos_to += element.length
+	
+					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+					cur_pos_from += element.length
+			
 
 		### save data
 		temp_file = self.utils.get_temp_file("set_numbers_align", ".aln")
@@ -827,9 +926,10 @@ class LiftOverLight(object):
 		if key_chain_name in self.dt_chain: return None				## key name not found
 
 		with open(out_file, 'w') as handle_out:
-			for cigar_string in self.dt_chain[method][key_chain_name].get_vect_cigar_string():
-				handle_out.write(cigar_string)
-
+			handle_out.write("Query start\tCigar\n")
+			for alignment in self.dt_chain[method][key_chain_name].get_vect_alignments():
+				handle_out.write("{}\t{}\n".format(alignment.start_query,
+						"\t".join(alignment.get_vect_cigar_string())))
 		return out_file
 
 

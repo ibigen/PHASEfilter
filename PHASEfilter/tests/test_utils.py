@@ -4,9 +4,13 @@ Created on 13/05/2020
 @author: mmp
 '''
 import unittest, os
-from PHASEfilter.lib.utils.util import Utils, NucleotideCodes
+from PHASEfilter.lib.utils.util import Utils, NucleotideCodes, CountLength, Cigar
 from PHASEfilter.lib.utils.reference import Reference
 from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
+
+### run command line
+# export PYTHONPATH='/home/mmp/git/PHASEfilter'
+# python3 -m unittest -v tests.test_utils
 
 class Test(unittest.TestCase):
 
@@ -112,7 +116,46 @@ class Test(unittest.TestCase):
 		self.assertTrue(nucleotide_codes.has_this_base('Y', 'c'))
 		self.assertTrue(nucleotide_codes.has_this_base('Y', 't'))
 		self.assertFalse(nucleotide_codes.has_this_base('Y', 'a'))
+	
+	def test_count_elements(self):
 		
+		cigar = Cigar(['4M3D2I10M17S'])
+		self.assertEqual("17\t16\t17\t14\t3\t2\t73.7", str(cigar.count_length))
+		
+		cigar_2 = Cigar(['27H14M3D2I10M'])
+		self.assertEqual("27\t26\t27\t24\t3\t2\t82.8", str(cigar_2.count_length))
+		
+		count_length2 = CountLength()
+		count_length2 += cigar.count_length
+		count_length2 += cigar_2.count_length
+		self.assertEqual("Query length\tSubject length\tmissmatch\tMatch length\tDel length\tIns length\t% Match VS Del+Ins", str(count_length2.get_header()))
+		self.assertEqual("44\t42\t44\t38\t6\t4\t79.2", str(count_length2))
+
+	def test_remove_itens_cigar(self):
+		
+		cigar = Cigar(['4M3D2I10M17S'])
+		self.assertEqual(['4M3D2I10M17S'], cigar.get_vect_cigar_string())
+		cigar.remove_itens_string(2, False)
+		self.assertEqual(['2I10M17S'], cigar.get_vect_cigar_string())
+		cigar.remove_itens_string(0, False)
+		self.assertEqual(['2I10M17S'], cigar.get_vect_cigar_string())
+		cigar.remove_itens_string(1, False)
+		self.assertEqual(['10M17S'], cigar.get_vect_cigar_string())
+		cigar.remove_itens_string(50, False)
+		self.assertEqual([''], cigar.get_vect_cigar_string())
+		
+		cigar_2 = Cigar(['27H14M3D2I10M'])
+		self.assertEqual(['27H14M3D2I10M'], cigar_2.get_vect_cigar_string())
+		cigar_2.remove_itens_string(0, True)
+		self.assertEqual(['27H14M3D2I10M'], cigar_2.get_vect_cigar_string())
+		cigar_2.remove_itens_string(1, True)
+		self.assertEqual(['27H14M3D2I'], cigar_2.get_vect_cigar_string())
+		cigar_2.remove_itens_string(2, True)
+		self.assertEqual(['27H14M'], cigar_2.get_vect_cigar_string())
+		cigar_2.remove_itens_string(50, True)
+		self.assertEqual([''], cigar_2.get_vect_cigar_string())
+
+
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.test_refernce_names']
 	unittest.main()

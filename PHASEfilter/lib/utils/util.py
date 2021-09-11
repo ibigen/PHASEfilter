@@ -399,7 +399,7 @@ class CountLength(object):
 	
 	def get_header(self):
 		""" return header for __str__ return """
-		return "length query\tlength subject\tmissmatch\tlength Match\tlength Del\tlength Ins\t% Match VS Del+Ins"
+		return "Query length\tSubject length\tmissmatch\tMatch length\tDel length\tIns length\t% Match VS Del+Ins"
 			
 	def clean_count(self):
 		""" clean all counts """
@@ -516,6 +516,12 @@ class Cigar(object):
 		:out all cigar strings [cigar string, ...]
 		"""
 		return self.vect_cigar_string
+	
+	def get_cigar_string(self):
+		"""
+		:out all cigar strings [cigar string, ...]
+		"""
+		return "\n".join(self.vect_cigar_string)
 
 	def get_best_vect_cigar_elements(self):
 		"""
@@ -523,7 +529,40 @@ class Cigar(object):
 		### only do the last
 		if (self.index_best_alignment != -1): return self.vect_positions[self.index_best_alignment]
 		else: return self.vect_positions[-1]
-		
+
+	def remove_itens_string(self, itens_to_remove, b_from_last):
+		"""
+		remove first or last itens in string
+		only do it for the first one
+		"""
+		if (itens_to_remove < 1): return
+
+		utils = Utils()
+		count_letters = -1
+		if (b_from_last):
+			for _ in range(len(self.vect_cigar_string[0]) -1, 0, -1):
+				if not utils.is_integer(self.vect_cigar_string[0][_]):
+					count_letters += 1
+					
+					if (count_letters == itens_to_remove):
+						self.vect_cigar_string[0] = self.vect_cigar_string[0][:_ + 1]
+						return
+		else:
+			last_letter = 0
+			for _ in range(len(self.vect_cigar_string[0])):
+				if not utils.is_integer(self.vect_cigar_string[0][_]):
+					count_letters += 1
+					
+					if (count_letters == itens_to_remove):
+						self.vect_cigar_string[0] = self.vect_cigar_string[0][last_letter + 1:]
+						return
+					last_letter = _
+
+		### bigger than exist
+		if count_letters < itens_to_remove:
+			self.vect_cigar_string[0] = ""
+
+
 	def get_position_from_2_to(self, position, start_pos = 0):
 		"""
 		:param start_pos, minimap can start in 

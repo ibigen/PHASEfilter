@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PHASEfilter'
-copyright = '2020, Miguel Pinheiro'
+copyright = '2021, Miguel Pinheiro'
 author = 'Miguel Pinheiro'
 
 # The version info for the project you're documenting, acts as replacement for

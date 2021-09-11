@@ -112,9 +112,6 @@ class ProcessTwoReferences(object):
 				### save the alignment in file
 				if (not self.out_path_alignments is None):
 					print("########   Save alignment: ", software)
-					## lastz does not have CIGAR strings
-					if (software == 'lastz'): continue
-					if (software == 'blastn'): continue
 					
 					path_out = os.path.join(self.out_path_alignments, software)
 					if not os.path.exists(path_out): os.makedirs(path_out)

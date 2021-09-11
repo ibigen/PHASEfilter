@@ -119,7 +119,17 @@ class BlastAlignment(object):
 		self.cigar = None
 		self.debug = debug
 
-
+	def __str__(self):
+		"""
+		information
+		"""
+		return "Make cigar, Query: {}-{}  len({})	Subject: {}-{}  len({})".format(
+					self.start_query,\
+					self.end_query, \
+					self.end_query - self.start_query,\
+					self.start_subject, self.end_subject,\
+					self.end_subject - self.start_subject)
+	
 	def add_query(self, pos_from, sequence, pos_to):
 		if (self.start_query == -1): self.start_query = pos_from
 		self.end_query = pos_to
@@ -143,11 +153,16 @@ class BlastAlignment(object):
 		"""
 		return self.cigar
 
-	def get_vect_cigar(self):
+	def get_cigar_string(self):
 		"""
-		:out 
+		get strings
 		"""
-		return self.cigar.vect_cigar_string
+		return self.cigar.get_cigar_string()
+	
+	def get_vect_cigar_string(self):
+		"""
+		"""
+		return self.cigar.get_vect_cigar_string()
 	
 	def _get_fixed_base(self, index_synchronize):
 		if (self.synchronize.vect_data[index_synchronize].is_query()):
@@ -233,7 +248,6 @@ class BlastAlignment(object):
 		last_postion = 0
 		
 		for _ in range(len(self.synchronize.vect_data)):
-			shift_bases = self._shift_left_base(_)	## to shift left
 			if (self.synchronize.vect_data[_].is_query()):
 				if (deletion > 0): cigar += "{}D".format(deletion)
 				if (insertion > 0 and self.synchronize.vect_data[_].position > last_postion):
@@ -282,6 +296,10 @@ class BlastAlignment(object):
 		return (position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if position_on_hit != -1 else -1,\
 			left_position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if left_position_on_hit != -1 else -1)
 
+	def get_start_pos(self):
+		return self.start_query - 1
+	
+	
 class Reversor:
 	def __init__(self, obj):
 		self.obj = obj
@@ -314,7 +332,7 @@ class VectAlignments(object):
 		print("\n" + "*" * 50)
 		for _ in range(len(self.vect_alignments)):
 			if (b_print_cigar):
-				print("Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})    Cigar:{}".format(
+				print("Make cigar, Query: {}-{}  len({})	Subject: {}-{}  len({})	Cigar:{}".format(
 					self.vect_alignments[_].start_query,\
 					self.vect_alignments[_].end_query, \
 					self.vect_alignments[_].end_query - self.vect_alignments[_].start_query,\
@@ -322,7 +340,7 @@ class VectAlignments(object):
 					self.vect_alignments[_].end_subject - self.vect_alignments[_].start_subject,\
 					",".join(self.vect_alignments[_].get_vect_cigar()) ))
 			else:
-				print("Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})".format(
+				print("Make cigar, Query: {}-{}  len({})	Subject: {}-{}  len({})".format(
 					self.vect_alignments[_].start_query,\
 					self.vect_alignments[_].end_query, \
 					self.vect_alignments[_].end_query - self.vect_alignments[_].start_query,\
@@ -335,6 +353,7 @@ class VectAlignments(object):
 		"""
 		remove overlap alignments
 		"""
+		print("Removing overlaps...")
 		
 		### remove by query
 		self.sort_all_alignments()
@@ -362,6 +381,83 @@ class VectAlignments(object):
 		
 		### order by query
 		self.sort_all_alignments()
+		
+		### fix the ones with end greather than next start,
+		### Example
+		## Make cigar, Query: 1286540-1733200  len(446660)	Subject: 1286558-1733218  len(446660)
+		## Make cigar, Query: 1732782-2007383  len(274601)	Subject: 1732821-2007299  len(274478)
+		## with cigar 38M9D16M2D11M6D10M4I30M1D21M1I13M7I10M3D19M7D8M....
+		# self.print_all_alignments(False)
+		
+		print("Fixing cigar strings between alignments...")
+		for _, alignment in enumerate(self.vect_alignments):
+			if _ == 0: continue
+			if self.vect_alignments[_ - 1].end_query > alignment.start_query:
+				### test remove previous or actual
+				b_remove_previous = False	## if remove the previous one
+				# print(alignment.cigar.get_best_vect_cigar_elements()[0].is_M(), self.vect_alignments[_ - 1].cigar.get_best_vect_cigar_elements()[-1].is_M())
+				# print(alignment.cigar.get_best_vect_cigar_elements()[0].length, self.vect_alignments[_ - 1].cigar.get_best_vect_cigar_elements()[-1].length)
+				if alignment.cigar.get_best_vect_cigar_elements()[0].is_M() and self.vect_alignments[_ - 1].cigar.get_best_vect_cigar_elements()[-1].is_M() and \
+					alignment.cigar.get_best_vect_cigar_elements()[0].length > self.vect_alignments[_ - 1].cigar.get_best_vect_cigar_elements()[-1].length:
+					b_remove_previous = True
+					
+				self._remove_itens_in_cigar(self.vect_alignments[_ - 1], alignment, b_remove_previous)
+				
+	
+	def _remove_itens_in_cigar(self, alignment_previous, alignment_after, b_remove_previous):
+		"""
+		remove itens in cigar
+		"""
+		vect_to_remove_cigar_index = []
+		if (b_remove_previous):
+			end_query = alignment_previous.end_query
+			end_subject = alignment_previous.end_subject
+			for _ in range(len(alignment_previous.cigar.get_best_vect_cigar_elements()) - 1, 0, -1):
+				vect_to_remove_cigar_index.append(_)
+				element = alignment_previous.cigar.get_best_vect_cigar_elements()[_]
+				if (element.is_H() or element.is_D()):
+					end_query -= element.length
+				elif (element.is_S() or element.is_I()):
+					end_subject -= element.length
+				elif (element.is_M()):
+					end_query -= element.length
+					end_subject -= element.length
+
+#				print(alignment_previous.end_query, start_query)
+#				print(len(alignment_after.cigar.get_best_vect_cigar_elements()), (second_count + 1), alignment_after.cigar.get_best_vect_cigar_elements()[second_count + 1].is_M())
+				if (end_query < alignment_after.start_query and \
+					_ > 0 and alignment_previous.cigar.get_best_vect_cigar_elements()[_ - 1].is_M()):
+					alignment_previous.end_query = end_query
+					alignment_previous.end_subject = end_subject
+					break
+		else:		
+			start_query = alignment_after.start_query
+			start_subject = alignment_after.start_subject
+			for second_count, element in enumerate(alignment_after.cigar.get_best_vect_cigar_elements()):
+				vect_to_remove_cigar_index.append(second_count)
+				if (element.is_H() or element.is_D()):
+					start_query += element.length
+				elif (element.is_S() or element.is_I()):
+					start_subject += element.length
+				elif (element.is_M()):
+					start_query += element.length
+					start_subject += element.length
+				
+				if (alignment_previous.end_query < start_query and \
+					(len(alignment_after.cigar.get_best_vect_cigar_elements()) > (second_count + 1) and alignment_after.cigar.get_best_vect_cigar_elements()[second_count + 1].is_M())):
+					alignment_after.start_query = start_query
+					alignment_after.start_subject = start_subject
+					break
+		
+		### remove index
+		if len(vect_to_remove_cigar_index) > 0:
+			if (not b_remove_previous): vect_to_remove_cigar_index = sorted(vect_to_remove_cigar_index, reverse=True)
+			for _ in vect_to_remove_cigar_index:
+				if (b_remove_previous): alignment_previous.cigar.get_best_vect_cigar_elements().pop(_)
+				else: alignment_after.cigar.get_best_vect_cigar_elements().pop(_)
+				
+			if (b_remove_previous): alignment_previous.cigar.remove_itens_string(len(vect_to_remove_cigar_index), b_remove_previous)
+			else: alignment_after.cigar.remove_itens_string(len(vect_to_remove_cigar_index), b_remove_previous)
 
 	def sort_all_alignments(self):
 		"""
@@ -426,6 +522,13 @@ class VectAlignments(object):
 		:out number of the alignments
 		"""
 		return len(self.vect_alignments)
+
+	def get_vect_alignments(self):
+		return self.vect_alignments
+
+	def get_start_pos(self):
+		if (len(self.vect_alignments) == 0): return 0
+		return self.vect_alignments[0].start_query - 1
 
 
 class BlastAlignments(VectAlignments):
@@ -503,13 +606,13 @@ class BlastAlignments(VectAlignments):
 
 		### get start and end position
 		if self.debug:
-			print("Make cigar, Query: {}-{} len({})     Subject: {}-{}".format(self.vect_alignments[-1].start_query,\
+			print("Make cigar, Query: {}-{} len({})	 Subject: {}-{}".format(self.vect_alignments[-1].start_query,\
 				self.vect_alignments[-1].end_query,\
 				self.vect_alignments[-1].end_query - self.vect_alignments[-1].start_query,\
 				self.vect_alignments[-1].start_subject, self.vect_alignments[-1].end_subject))
 		self.vect_alignments[-1].make_cigar_string()
 
-		
+
 class BlastTwoSequences(object):
 	'''
 	Blast two sequences and create a cigar string from the result
@@ -590,6 +693,5 @@ class BlastTwoSequences(object):
 		### remove tmp file 
 		self.utils.remove_file(temp_file_out)
 		return blast_alignments
-
 
 

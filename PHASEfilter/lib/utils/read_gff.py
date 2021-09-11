@@ -27,6 +27,7 @@ class ReadGFF(object):
 		:out line processed
 		"""
 		chr_name = ""	### nothing processed yet
+		chr_name_B = ""
 		vect_fail_synch = []
 		(lines_parsed, lines_failed_parse) = (0, 0)
 		with open(self.file_name) as handle_read, open(file_result, 'w') as handle_out:
@@ -49,7 +50,15 @@ class ReadGFF(object):
 					if (chr_name != line_gff["seqid"]):
 						chr_name = line_gff["seqid"]
 						if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
-						if (not lift_over_ligth.synchronize_sequences(chr_name, chr_name)):
+
+						#### get chromosome name in other reference						
+						chr_name_B = lift_over_ligth.reference_to.get_chr_in_genome(chr_name)
+						if chr_name_B is None:
+							vect_fail_synch.append(chr_name)
+							continue
+						
+						#### make lift over
+						if (not lift_over_ligth.synchronize_sequences(chr_name, chr_name_B)):
 							handle_out.write(line_gff["line_raw"])
 							vect_fail_synch.append(chr_name)
 							continue
@@ -58,11 +67,11 @@ class ReadGFF(object):
 					(result_start, result_end) = (-1, -1)
 					if (self.utils.is_integer(line_gff['start']) and self.utils.is_integer(line_gff['end'])):
 						### parse positions
-						(result_start, result_most_left_start) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name, int(line_gff['start']))
+						(result_start, result_most_left_start) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name_B, int(line_gff['start']))
 						if (result_start != -1): fail_get_position = False
 						
 						if (result_start != -1):
-							(result_end, result_most_left_end) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name, int(line_gff['end']))
+							(result_end, result_most_left_end) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name_B, int(line_gff['end']))
 							if (result_end == -1): fail_get_position = True
 						
 					### save new position

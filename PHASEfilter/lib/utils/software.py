@@ -10,7 +10,7 @@ class Software(SoftwareTest):
 	'''
 	All extra software used in the application
 	'''
-
+	## remove this algorithm
 	SOFTWARE_blast_name = 'blastn'
 	SOFTWARE_blast = { 
 					SoftwareTest.KEY_software_name : SOFTWARE_blast_name,
@@ -83,7 +83,7 @@ class Software(SoftwareTest):
 	
 	### all software that is going to be tested
 	VECT_SOFTWARE_TO_TEST = [SOFTWARE_minimap2,\
-			SOFTWARE_blast,\
+#			SOFTWARE_blast,\
 			SOFTWARE_bcftools, SOFTWARE_samtools, \
 			SOFTWARE_tabix, SOFTWARE_bgzip, \
 			SOFTWARE_lastz]
@@ -92,7 +92,7 @@ class Software(SoftwareTest):
 	VECT_SOFTWARE_DO_ALIGNMENT = [\
 				SOFTWARE_minimap2[SoftwareTest.KEY_software_name],\
 				SOFTWARE_lastz[SoftwareTest.KEY_software_name],\
-				SOFTWARE_blast[SoftwareTest.KEY_software_name],\
+#				SOFTWARE_blast[SoftwareTest.KEY_software_name],\
 				]
 
 

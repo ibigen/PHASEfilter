@@ -65,6 +65,12 @@ class CountAlleles(object):
 		"""
 		return self.equal_allele > 0
 
+	def has_loh_allele(self):
+		"""
+		:out True if any loh variants
+		"""
+		return self.loh_allele > 0
+	
 	def get_header(self):
 		"""
 		:out header
@@ -568,51 +574,67 @@ class VcfProcess(object):
 		
 		tem_file = self.utils.get_temp_file("syncronize", ".vcf")
 		chr_name = ""	### nothing processed yet
+		chr_name_B = ""
 		(lines_parsed, lines_failed_parse) = (0, 0)
 		vect_fail_synch = []
-		with open(self.file_name) as handle_read, open(tem_file, 'w') as handle_vcf_out:
-			vcf_reader = vcf.Reader(handle_read, compressed=self.is_zipped)
-			vcf_reader.infos[TAG_TO_ADD] = _Info(id=TAG_TO_ADD, num=1, type='Integer', 
-				source=None, version=None, desc=\
-				'Has the synchronize position for the reference {}'.format(\
-				lift_over_ligth.reference_from.get_reference_name()))
-			vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
-			
-			for record in vcf_reader:
-				## {'line_index': 34, 'line_raw': 'chrI\tS01\tTY1/TY2_soloLTR\t36933\t37200\t.\t+\t.\tID=TY1/TY2_soloLTR:chrI:36933-37200:+;Name=TY1/TY2_soloLTR:chrI:36933-37200:+\n', 
-				## 'line_status': 'normal', 'parents': [], 'children': [], 'line_type': 'feature', 'directive': '', 'line_errors': [], 'type': 'TY1/TY2_soloLTR', 'seqid': 'chrI', 'source': 'S01', 'start': 36933, 'end': 37200, 'score': '.', 'strand': '+', 'phase': '.', 
-				## 'attributes': {'ID': 'TY1/TY2_soloLTR:chrI:36933-37200:+', 'Name': 'TY1/TY2_soloLTR:chrI:36933-37200:+'}}
-
-				### if failed synch save line and continue
-				if (record.CHROM in vect_fail_synch):
-					vcf_write.write_record(record)
-					continue
-					
-				## test chr_name		
-				if (chr_name != record.CHROM):
-					chr_name = record.CHROM
-					if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
-					if (not lift_over_ligth.synchronize_sequences(chr_name, chr_name)):
+		
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			with open(tem_file, 'w') as handle_vcf_out:
+				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
+				vcf_reader.infos[TAG_TO_ADD] = _Info(id=TAG_TO_ADD, num=1, type='Integer', 
+					source=None, version=None, desc=\
+					'Has the synchronize position from the reference {} to {}'.format(\
+					lift_over_ligth.reference_from.get_reference_name(),
+					lift_over_ligth.reference_to.get_reference_name()))
+				vcf_write = vcf.VCFWriter(handle_vcf_out, vcf_reader)
+				
+				for record in vcf_reader:
+					## {'line_index': 34, 'line_raw': 'chrI\tS01\tTY1/TY2_soloLTR\t36933\t37200\t.\t+\t.\tID=TY1/TY2_soloLTR:chrI:36933-37200:+;Name=TY1/TY2_soloLTR:chrI:36933-37200:+\n', 
+					## 'line_status': 'normal', 'parents': [], 'children': [], 'line_type': 'feature', 'directive': '', 'line_errors': [], 'type': 'TY1/TY2_soloLTR', 'seqid': 'chrI', 'source': 'S01', 'start': 36933, 'end': 37200, 'score': '.', 'strand': '+', 'phase': '.', 
+					## 'attributes': {'ID': 'TY1/TY2_soloLTR:chrI:36933-37200:+', 'Name': 'TY1/TY2_soloLTR:chrI:36933-37200:+'}}
+	
+					### if failed synch save line and continue
+					if (record.CHROM in vect_fail_synch):
 						vcf_write.write_record(record)
-						vect_fail_synch.append(record.CHROM)
 						continue
-					
-				### test positions
-				result_start = -1
-				if (self.utils.is_integer(record.POS)):
-					### parse positions
-					(result_start, result_most_left_start) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name, int(record.POS))
-					
-				### save new position
-				if (result_start != -1):
-					### Add StartHit info
-					record.add_info(TAG_TO_ADD, value="{}".format(result_start))
-					vcf_write.write_record(record)
-					lines_parsed += 1
-				else:
-					vcf_write.write_record(record)
-					lines_failed_parse += 1
 						
+					## test chr_name		
+					if (chr_name != record.CHROM):
+						chr_name = record.CHROM
+						if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
+						
+						chr_name_B = lift_over_ligth.reference_to.get_chr_in_genome(chr_name)
+						if chr_name_B is None:
+							vect_fail_synch.append(record.CHROM)
+							continue
+				
+						if (not lift_over_ligth.synchronize_sequences(chr_name, chr_name_B)):
+							vcf_write.write_record(record)
+							vect_fail_synch.append(record.CHROM)
+							continue
+						
+					### test positions
+					result_start = -1
+					if (self.utils.is_integer(record.POS)):
+						### parse positions
+						(result_start, result_most_left_start) = lift_over_ligth.get_best_pos_in_target(chr_name, chr_name_B, int(record.POS))
+						
+					### save new position
+					if (result_start != -1):
+						### Add StartHit info
+						record.add_info(TAG_TO_ADD, value="{}".format(result_start))
+						vcf_write.write_record(record)
+						lines_parsed += 1
+					else:
+						vcf_write.write_record(record)
+						lines_failed_parse += 1
+		except Exception as e:
+			pass
+		finally:
+			handle_in.close()
+				
 		### compress or copy
 		if (file_result.endswith(".gz")): 
 			self.utils.compress_file(tem_file, file_result)

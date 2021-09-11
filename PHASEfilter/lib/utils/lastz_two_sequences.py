@@ -44,12 +44,17 @@ class LastzAlignment(object):
 		:out get cigar
 		"""
 		return self.cigar
-
-	def get_vect_cigar(self):
+	
+	def get_cigar_string(self):
 		"""
-		:out 
+		:out get cigar
 		"""
-		return self.cigar.vect_cigar_string
+		return self.cigar.get_cigar_string()
+	
+	def get_vect_cigar_string(self):
+		"""
+		"""
+		return self.cigar.get_vect_cigar_string()
 	
 	def get_position_from_2_to(self, position):
 		"""
@@ -61,6 +66,23 @@ class LastzAlignment(object):
 		(position_on_hit, left_position_on_hit) = self.cigar.get_position_from_2_to(position - self.start_query + 1)
 		return (position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if position_on_hit != -1 else -1,\
 			left_position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if left_position_on_hit != -1 else -1)
+
+	def get_start_pos(self):
+		return self.start_query - 1
+	
+	def get_start_pos_hit(self):
+		return self.start_subject - 1
+
+	def __str__(self):
+		"""
+		information
+		"""
+		return "Make cigar, Query: {}-{}  len({})    Subject: {}-{}  len({})".format(
+					self.start_query,\
+					self.end_query, \
+					self.end_query - self.start_query,\
+					self.start_subject, self.end_subject,\
+					self.end_subject - self.start_subject)
 
 
 class LastzAlignments(VectAlignments):
@@ -80,6 +102,7 @@ class LastzAlignments(VectAlignments):
 		### add new alignment
 		self.vect_alignments.append(LastzAlignment(self.debug, self.use_multithreading))
 		self.vect_alignments[-1].add_line(line_from_file_out)
+		
 
 
 class LastzTwoSequences(object):
@@ -139,7 +162,7 @@ class LastzTwoSequences(object):
 		### sort alignments
 #		lastz_alignments.print_all_alignments()
 		lastz_alignments.remove_overlap_alignments()
-		lastz_alignments.print_all_alignments()
+#		lastz_alignments.print_all_alignments()
 
 		### remove tmp file 
 		self.utils.remove_file(temp_file_out)
