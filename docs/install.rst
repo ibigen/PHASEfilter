@@ -7,14 +7,12 @@ Installation of PHASEfilter
 +++++++++++++++++++++++++++
 
 .. code-block::
-   :emphasize-lines: 1
    $ pip3 install phasefilter
 
 Installation of PHASEfilter in a virtual environment
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. code-block::
-   :emphasize-lines: 1,2,3,5
    $ virtualenv phasefilter --python=python3 --prompt "(phasefilter) "
    $ source phasefilter/bin/activate
    (phasefilter) $ pip3 install phasefilter
@@ -25,7 +23,6 @@ Installation of PHASEfilter in a virtual environment
 After that you have four scripts available:
 
 .. code-block::
-   :emphasize-lines: 1-4
    $ phasefilter
    $ make_alignment
    $ reference_statistics
