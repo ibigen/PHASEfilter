@@ -41,7 +41,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 #	--out /home/projects/ua/rita_guimaraes/syncronizationSacharo/result.gff
 #   --pass_chr chrI
 
-
+# ./synchronize_genomes.py --ref1 /home/projects/ua/candida/compare_A_vs_B/ref/genomeA/C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 /home/projects/ua/candida/compare_A_vs_B/ref/genomeB/C_albicans_SC5314_chrB_A22_chromosomes.fasta --vcf /home/projects/ua/candida/compare_A_vs_B/vcf/A-M_S4/A-M_S4_chrA_filtered_snps.vcf --out data.vcf
+# ./synchronize_genomes.py --ref1 /usr/local/databases/references/yeast/S288C/S288C_reference_chr_names_cleaned.fna --ref2 /home/projects/ua/rita_guimaraes/syncronizationSacharo/S01.assembly.final.fa --gff /home/projects/ua/rita_guimaraes/syncronizationSacharo/S01.TE.gff3 --out /home/projects/ua/rita_guimaraes/syncronizationSacharo/result.gff --pass_chr chrmt
 from optparse import OptionParser
 
 __all__ = []
