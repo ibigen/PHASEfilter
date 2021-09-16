@@ -14,10 +14,10 @@ With this tool it is possible to indentify heterozygous and loss of heterozygoty
 
 To classify variants it is always necessary to pass two VCF files, one for each reference phase. After that, the *phasefilter* will go through the variants called in *reference A* (ref1) and check if there are any homologous in the variants called in *reference B* (ref2). For each variant called in the *reference A* it can happen three situations:
 
-* both references, for the position in analysis, are equal and the variant is valid (situation 4 previous)
-* position is heterozygous in the reference and the variant reflects it, so the variant is removed (situation 1 and 2);
-* position is heterozygous in the references and the variant is homozygous, so the variant is valid but is also going to “loss of heterozygosity” (LOH) output (situation 3).
-* position is heterozygous in the references and there is no variant, because the VCF in analysis is the one called with reference A (ref1) (situation 5).
+- ** both references, for the position in analysis, are equal and the variant is valid (situation 4 previous)
+- ** position is heterozygous in the reference and the variant reflects it, so the variant is removed (situation 1 and 2);
+- ** position is heterozygous in the references and the variant is homozygous, so the variant is valid but is also going to “loss of heterozygosity” (LOH) output (situation 3).
+- ** position is heterozygous in the references and there is no variant, because the VCF in analysis is the one called with reference A (ref1) (situation 5).
 
 Most common use of the phasefilter:
 
@@ -27,11 +27,11 @@ Most common use of the phasefilter:
    
 In the previous case there are four parameteres:
 
-* ref1 - has the fasta reference of the first form of species in analysis;
-* ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
-* vcf1 - has he variants called from the ref1;
-* vcf2 - has he variants called from the ref2. It is the hit;
-* out_vcf - has the file with passed variants, not heterozygous;
+- ** ref1 - has the fasta reference of the first form of species in analysis;
+- ** ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
+- ** vcf1 - has he variants called from the ref1;
+- ** vcf2 - has he variants called from the ref2. It is the hit;
+- ** out_vcf - has the file with passed variants, not heterozygous;
 
 .. important::
    By default, heterozygous and homozygous form are defined by AC info for each variant. If AC = 1 is heterozygous, > 1 is homozygous. GATK adds this info tags at each variant,
@@ -39,16 +39,16 @@ In the previous case there are four parameteres:
    
 Four possible files will be created after the commands ends: 
 
-* <out_file>_report.txt - has the statistics about the analysis;
-* <out_file>.vcf.gz - has all variants that are not heterozygous between two references;
-* <out_file>_removed.vcf.gz - has all heterozygous variants;
-* <out_file>_LOH.vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+- ** <out_file>_report.txt - has the statistics about the analysis;
+- ** <out_file>.vcf.gz - has all variants that are not heterozygous between two references;
+- ** <out_file>_removed.vcf.gz - has all heterozygous variants;
+- ** <out_file>_LOH.vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
 
 
 If your VCF files has the allele deep (AD) format it is also possible to pass two extra parameters: 
 
-* threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
-* remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
+- ** threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
+- ** remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
   
 .. code-block:: shell
    ## other possibility
@@ -75,14 +75,14 @@ Most common use of the make_alignment:
    
 In the previous case there are four parameteres:
 
-* ref1 - has the fasta reference of the first form of species in analysis;
-* ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
-* out - name for the report;
+- ** ref1 - has the fasta reference of the first form of species in analysis;
+- ** ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
+- ** out - name for the report;
 
 This tool has two extra parameters: 
 
-* pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
-* out_alignment - folder name where an alignment will be save. It has ClustalX format.
+- ** pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
+- ** out_alignment - folder name where an alignment will be save. It has ClustalX format.
 
 .. code-block:: shell
    $ make_alignment --help
@@ -103,8 +103,8 @@ Most common use of the reference_statistics:
    
 In the previous case there are four parameteres:
 
-* ref - fasta file has sequences;
-* out - report name where will be saved the statistics;
+- ** ref - fasta file has sequences;
+- ** out - report name where will be saved the statistics;
  
 synchronize_genomes
 +++++++++++++++++++
@@ -118,14 +118,14 @@ Most common use of the synchronize_genomes:
    
 In the previous case there are four parameteres:
 
-* ref1 - has the fasta reference of the first form of species in analysis;
-* ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
-* gff - has he variants called from the ref1;
-* out - has the file with passed variants, not heterozygous;
+- ** ref1 - has the fasta reference of the first form of species in analysis;
+- ** ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
+- ** gff - has he variants called from the ref1;
+- ** out - has the file with passed variants, not heterozygous;
 
 This tool has one extra parameter: 
 
-* pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
+- ** pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 
 .. code-block:: shell
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf --out result.vcf --pass_chr chrmt
