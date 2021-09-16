@@ -6,6 +6,13 @@ This tab includes a list (chronologically ordered) of notable changes in PHASEfi
 2021
 ----
 
+September 16, 2021
+..................
+
+Add all documentation to the project 
+
+- Change command line frm make_alignment to make_alignment;
+
 July 1, 2021
 ............
 

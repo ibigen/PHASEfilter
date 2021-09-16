@@ -24,9 +24,7 @@ Dependecies
 
 PHASEfilter relies on several bioinformatic software to run:
 
-* lastz >= 1.4
-* minimap2 >= 2.0
-* blastn >= 2.3   [Optional]
+* minimap2 >= 2.2
 * samtools >= 1.3
 * bcftools >= 1.3
 * htslib >= 1.3
@@ -36,7 +34,7 @@ After that you have three scripts available
 +++++++++++++++++++++++++++++++++++++++++++
 
 .. code-block:: shell
-   $ best_alignment
    $ phasefilter
+   $ make_alignment
    $ reference_statistics
    $ synchronize_genomes

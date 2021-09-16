@@ -271,17 +271,22 @@ class Minimap2Alignments(object):
 	"""
 	can have one or more Minimap2Alignments
 	"""
+	utils = Utils()
 	
 	def __init__(self, vect_alignments):
 		"""
 		vect_alignments = [[], [], ...
 		"""
 		self.vect_alignments = []
+		self.dt_out_pos = {}
+		
 		for vect_temp in vect_alignments:
-			self.vect_alignments.append(Minimap2Alignment(vect_temp[0], Cigar([vect_temp[1]])))
+			if (vect_temp[1] in self.dt_out_pos or self.utils.is_read_reverse_strand(vect_temp[0])): continue
+			self.dt_out_pos[vect_temp[1]] = 1
+			self.vect_alignments.append(Minimap2Alignment(vect_temp[1], vect_temp[0], Cigar([vect_temp[2]])))
 
 		### order by start position
-		self.vect_alignments = sorted(self.vect_alignments, key=lambda item: item.get_start_pos()) 
+		self.vect_alignments = sorted(self.vect_alignments, key=lambda item: item.get_start_query()) 
 		
 	def get_cigar_count_elements(self):
 		count_positions = CountLength()
@@ -305,9 +310,13 @@ class Minimap2Alignments(object):
 		"""
 		return self.vect_alignments
 
-	def get_start_pos(self):
+	def get_start_query(self):
 		if (len(self.vect_alignments) == 0): return 0
-		return self.vect_alignments[0].get_start_pos()
+		return self.vect_alignments[0].get_start_query()
+	
+	def get_start_subject(self):
+		if (len(self.vect_alignments) == 0): return 0
+		return self.vect_alignments[0].get_start_subject()
 
 	def get_position_from_2_to(self, position):
 		"""
@@ -329,14 +338,17 @@ class Minimap2Alignments(object):
 
 class Minimap2Alignment(object):
 	
-	def __init__(self, start_query, cigar):
+	def __init__(self, start_query, map_flag, cigar):
 		"""
 		Result of minimap2 alignment
 		"""
 		self.start_query = start_query
 		self.start_subject = 1
+		self.map_flag = map_flag
 		self.cigar = cigar
 
+	def __str__(self):
+		return "Query: Start {}".format(self.start_query)
 
 	def get_cigar_count_elements(self):
 		return self.cigar.get_count_element()
@@ -357,10 +369,10 @@ class Minimap2Alignment(object):
 		"""
 		return self.cigar.get_vect_cigar_string()
 
-	def get_start_pos(self):
+	def get_start_query(self):
 		return self.start_query - 1
 
-	def get_start_pos_hit(self):
+	def get_start_subject(self):
 		return self.start_subject - 1
 	
 	def get_position_from_2_to(self, position):
@@ -516,10 +528,10 @@ class LiftOverLight(object):
 		### minimap2 -L ca22_1A.fasta ca22_1B.fasta -a -o temp.sam
 		## sort by MappingScore and choose the best alignment
 		## dont print 256 - "not primary alignment" and 2048 - "supplementary alignment" 
-		cmd = "{} --secondary=no -L {} {} -a -o {}; tail -n +3 {} | ".format(
+		cmd = "{} --secondary=no -H -L {} {} -a -o {}; tail -n +3 {} | ".format(
 			self.software.get_minimap2(), \
 			file_from, file_to, temp_file_out_2, temp_file_out_2)
-		cmd += "awk '{ " +  'print($4, " ", $6)' + " } '"		### to reduce the output size 
+		cmd += "awk '{ " +  'print($2, " ", $4, " ", $6)' + " } '"		### to reduce the output size 
 		cmd += " > {}".format(temp_file_out)
 
 		exist_status = os.system(cmd)
@@ -533,7 +545,7 @@ class LiftOverLight(object):
 	def get_cigar_sequence(self, sam_file_from_minimap):
 		"""
 		:in sam_file_from_minimap file name in format <start position> <cigar string>
-		:out return last line of the output file from minimap2  [[<start position>, cigar string], ...]
+		:out return last line of the output file from minimap2  [[<mapping flag>, <start position>, cigar string], ...]
 		"""
 		### open the output file and
 		vect_cigar_string = []
@@ -543,8 +555,8 @@ class LiftOverLight(object):
 				if len(temp_line) == 0 or temp_line.startswith("-L"): continue
 				
 				lst_data = line.split()
-				if (len(lst_data) == 2):
-					vect_cigar_string.append([int(lst_data[0]), lst_data[1]])
+				if (len(lst_data) == 3):
+					vect_cigar_string.append([int(lst_data[0]), int(lst_data[1]), lst_data[2]])
 		return vect_cigar_string
 
 	def _get_path_chain(self, key_chain_name):
@@ -669,39 +681,39 @@ class LiftOverLight(object):
 		else:
 			self.dt_chain[Software.SOFTWARE_minimap2_name] = { key_chain_name : Minimap2Alignments(vect_cigar_string) }
 		
-		### do the others, if needed
-		if (self.b_test_mode or (not self.impose_minimap2_only and not self.is_100_percent(\
-					Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to))):
-
-			### lastz
-			lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
-			print("*" * 50 + "\nMaking lastz on {}->{}".format(seq_name_from, seq_name_to))
-			### process cigar string
-			if (Software.SOFTWARE_lastz_name in self.dt_chain):
-				self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
-			else:
-				self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() }
-			
-			### get best algignment
-			vect_percentage_alignment = []
-			vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
-				self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to),\
-				self.get_number_alignments(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)
-				])
-			vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
-				self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to),\
-				self.get_number_alignments(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)
-				])
-			vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : (x[1], -x[2]), reverse=True)
-			self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
-		else:		### set best alignment method
-			self.dt_chain_best_method[key_chain_name] = Software.SOFTWARE_minimap2_name
+# ### do the others, if needed
+# if (self.b_test_mode or (not self.impose_minimap2_only and not self.is_100_percent(\
+# 			Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to))):
+#
+# 	### lastz
+# 	lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
+# 	print("*" * 50 + "\nMaking lastz on {}->{}".format(seq_name_from, seq_name_to))
+# 	### process cigar string
+# 	if (Software.SOFTWARE_lastz_name in self.dt_chain):
+# 		self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
+# 	else:
+# 		self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() }
+#
+# 	### get best algignment
+# 	vect_percentage_alignment = []
+# 	vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
+# 		self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to),\
+# 		self.get_number_alignments(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)
+# 		])
+# 	vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
+# 		self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to),\
+# 		self.get_number_alignments(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)
+# 		])
+# 	vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : (x[1], -x[2]), reverse=True)
+# 	self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
+# else:		### set best alignment method
+		self.dt_chain_best_method[key_chain_name] = Software.SOFTWARE_minimap2_name
 
 		self.utils.remove_file(temp_file_from)
 		self.utils.remove_file(temp_file_to)
 		self.utils.remove_file(result_file_name)
 					
-		print("Synchronize chromosome {} -> {};   Best method:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
+		print("Synchronize chromosome {} -> {};\nMethod:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
 		return True
 
 	def synchronize_sequences_all_methods(self, seq_name_from, seq_name_to):
@@ -720,38 +732,38 @@ class LiftOverLight(object):
 		temp_file_from = self._get_chr_file(self.reference_from, seq_name_from)
 		temp_file_to = self._get_chr_file(self.reference_to, seq_name_to)
 
-		result_file_name = self._run_minimap2(temp_file_from, temp_file_to)
-		vect_cigar_string = self.get_cigar_sequence(result_file_name)
-
-		### minimap2		
-		if (not vect_cigar_string is None and len(vect_cigar_string) > 0):
-			print("Passed: minimap2 alignment on {}->{}".format(seq_name_from, seq_name_to))
-
-			keep_best = True
-			### add cigar string and start
-			if (Software.SOFTWARE_minimap2_name in self.dt_chain):
-				self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignments(vect_cigar_string)
-			else:
-				self.dt_chain[Software.SOFTWARE_minimap2_name] = { key_chain_name : Minimap2Alignments(vect_cigar_string) }
+		### minimap2
+		if (Software.SOFTWARE_minimap2_name in Software.VECT_SOFTWARE_DO_ALIGNMENT):
+			result_file_name = self._run_minimap2(temp_file_from, temp_file_to)
+			vect_cigar_string = self.get_cigar_sequence(result_file_name)
+			if (not vect_cigar_string is None and len(vect_cigar_string) > 0):
+				print("Passed: minimap2 alignment on {}->{}".format(seq_name_from, seq_name_to))
+	
+				### add cigar string and start
+				if (Software.SOFTWARE_minimap2_name in self.dt_chain):
+					self.dt_chain[Software.SOFTWARE_minimap2_name][key_chain_name] = Minimap2Alignments(vect_cigar_string)
+				else:
+					self.dt_chain[Software.SOFTWARE_minimap2_name] = { key_chain_name : Minimap2Alignments(vect_cigar_string) }
 
 		### lastz
-		lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
-		print("Making lastz on {}->{}".format(seq_name_from, seq_name_to))
-		### process cigar string
-		if (Software.SOFTWARE_lastz_name in self.dt_chain):
-			self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
-		else:
-			self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() } 
+		if (Software.SOFTWARE_lastz_name in Software.VECT_SOFTWARE_DO_ALIGNMENT):
+			lastz_two_sequences = LastzTwoSequences(temp_file_from, temp_file_to)
+			print("Making lastz on {}->{}".format(seq_name_from, seq_name_to))
+			### process cigar string
+			if (Software.SOFTWARE_lastz_name in self.dt_chain):
+				self.dt_chain[Software.SOFTWARE_lastz_name][key_chain_name] = lastz_two_sequences.align_data()
+			else:
+				self.dt_chain[Software.SOFTWARE_lastz_name] = { key_chain_name : lastz_two_sequences.align_data() } 
 			
 		### blastn
-# don't run
-# blast_two_sequences = BlastTwoSequences(temp_file_from, temp_file_to)
-# print("Making blast on {}->{}".format(seq_name_from, seq_name_to))
-# ### process cigar string
-# if (Software.SOFTWARE_blast_name in self.dt_chain):
-# 	self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name] = blast_two_sequences.align_data()
-# else:
-# 	self.dt_chain[Software.SOFTWARE_blast_name] = { key_chain_name : blast_two_sequences.align_data() }
+		if (Software.SOFTWARE_blast_name in Software.VECT_SOFTWARE_DO_ALIGNMENT):
+			blast_two_sequences = BlastTwoSequences(temp_file_from, temp_file_to)
+			print("Making blast on {}->{}".format(seq_name_from, seq_name_to))
+			### process cigar string
+			if (Software.SOFTWARE_blast_name in self.dt_chain):
+				self.dt_chain[Software.SOFTWARE_blast_name][key_chain_name] = blast_two_sequences.align_data()
+			else:
+				self.dt_chain[Software.SOFTWARE_blast_name] = { key_chain_name : blast_two_sequences.align_data() }
 			
 		self.utils.remove_file(temp_file_from)
 		self.utils.remove_file(temp_file_to)
@@ -759,16 +771,13 @@ class LiftOverLight(object):
 
 		### get best alignment
 		vect_percentage_alignment = []
-		vect_percentage_alignment.append([Software.SOFTWARE_minimap2_name,\
-			self.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_from, seq_name_to)])
-		vect_percentage_alignment.append([Software.SOFTWARE_lastz_name,\
-			self.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_from, seq_name_to)])
-		vect_percentage_alignment.append([Software.SOFTWARE_blast_name,\
-			self.get_percent_alignment(Software.SOFTWARE_blast_name, seq_name_from, seq_name_to)])
+		for software_name in Software.VECT_SOFTWARE_DO_ALIGNMENT:
+			vect_percentage_alignment.append([software_name,\
+				self.get_percent_alignment(software_name, seq_name_from, seq_name_to)])
 		vect_percentage_alignment = sorted(vect_percentage_alignment, key=lambda x : x[1], reverse=True)
 		self.dt_chain_best_method[key_chain_name] = vect_percentage_alignment[0][0]
 				
-		print("Synchronize chromosome {} -> {};   Best method:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
+		print("Synchronize chromosome {} -> {};   Method:{};  Done".format(seq_name_from, seq_name_to, self.dt_chain_best_method[key_chain_name]))
 		return True
 
 
@@ -777,125 +786,134 @@ class LiftOverLight(object):
 		Create a file with the alignment, format clustal
 		:param method Name of the software that was used for alignment
 		:out None is something goes wrong
+		
+		Op BAM Description Consumesquery Consumesreference
+		M 0 alignment match (can be a sequence match or mismatch) yes yes
+		I 1 insertion to the reference yes no
+		D 2 deletion from the reference no yes
+		N 3 skipped region from the reference no yes
+		S 4 soft clipping (clipped sequences present in SEQ) yes no
+		H 5 hard clipping (clipped sequences NOT present in SEQ) no no
+		P 6 padding (silent deletion from padded reference) no no
+		= 7 sequence match yes yes
+		X 8 sequence mismatch yes yes
 		"""
 
 		### get key chan name		
 		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
-		seq_from = ""
-		seq_to = ""
+		
 		if key_chain_name in self.dt_chain: return None				## key name not found
 		
-		# Positions in the sequences 
-		cur_pos_from = self.dt_chain[method][key_chain_name].get_start_pos()
-		cur_pos_to = 0
-		
+		## for each alignment
 		for first_count, alignment in enumerate(self.dt_chain[method][key_chain_name].get_vect_alignments()):
-			
-			### need to synchronize with the previous one
-			if (first_count > 0):
-				### it is thread like a match
-				if alignment.get_start_pos() >= cur_pos_from:	## is after that
-					difference_pos = alignment.get_start_pos() - cur_pos_from 
-					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + difference_pos]
-					cur_pos_from = alignment.get_start_pos()
-					
-					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + difference_pos]
-					cur_pos_to += difference_pos
-				else:	##  need to cut both sequences
-					difference_pos = cur_pos_from - alignment.get_start_pos()
-					print(difference_pos, alignment.get_start_pos(), seq_from[len(seq_from)-(difference_pos+50):]) 
-					#seq_from = seq_from[:-difference_pos]
-					cur_pos_from = alignment.get_start_pos()
-					
-					difference_pos = cur_pos_to - alignment.get_start_pos_hit()
-					print(difference_pos, alignment.get_start_pos_hit(), seq_to[len(seq_to)-(difference_pos+50):])
-					#seq_to = seq_to[:-difference_pos]
-					cur_pos_to = alignment.get_start_pos_hit()
-					
+		
+			## sequences...
+			seq_from = ""
+			seq_to = ""
+				
+			# Positions in the sequences 
+			cur_pos_from = alignment.get_start_query()
+			cur_pos_to = alignment.get_start_subject()
+			cur_pos_from_begin = alignment.get_start_query()
+			cur_pos_to_begin = alignment.get_start_subject()
+		
 			for second_count, element in enumerate(alignment.cigar.get_best_vect_cigar_elements()):
+			#	print(cur_pos_from, cur_pos_from_begin, cur_pos_to, cur_pos_to_begin, str(element))
+				####
 				
-				### need to pass
-				if ((first_count > 0 and second_count == 0 and element.is_S()) or \
-					((first_count + 1) < \
-					len(self.dt_chain[method][key_chain_name].get_vect_alignments()) and \
-					element.is_H()) ): 
-					continue
+				if (second_count + 1 == len(alignment.cigar.get_best_vect_cigar_elements()) and \
+					(element.is_H() or element.is_S())):
+					break
 				
-				if (element.is_H() or element.is_D()):
+				if (second_count == 0):
+					## hard and soft clipping
+					if (element.is_S() or element.is_H()):
+						cur_pos_to_begin = element.length
+						cur_pos_to = element.length
+						continue
+				
+				if (element.is_D() or element.is_N()):
 					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
 					cur_pos_from += element.length
 					seq_to += "-" * element.length
-				elif (element.is_S() or element.is_I()):
+				elif (element.is_S() or element.is_I() or element.is_H()):
 					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
 					cur_pos_to += element.length
 					seq_from += "-" * element.length
 				elif (element.is_M()):
+				#	print(str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length])
 					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
 					cur_pos_to += element.length
 	
+				#	print(str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length])
 					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
 					cur_pos_from += element.length
 			
 
-		### save data
-		temp_file = self.utils.get_temp_file("set_numbers_align", ".aln")
-		if (seq_name_from == seq_name_to): seq_name_from = seq_name_from + "_from"
-		with open(temp_file, 'w') as handle_out:
-			if (len(seq_from) > len(seq_to)): seq_to += "-" * (len(seq_from) - len(seq_to))
-			elif (len(seq_from) < len(seq_to)): seq_from += "-" * (len(seq_to) - len(seq_from))
-			vect_data = [SeqRecord(Seq(seq_from), id = seq_name_from, description=""),
-							SeqRecord(Seq(seq_to), id = seq_name_to, description="")
-						]
-			
-			SeqIO.write(vect_data, handle_out, "clustal")
+			### save data
+			temp_file = self.utils.get_temp_file("set_numbers_align", ".aln")
+			seq_name_from_temp = seq_name_from
+			if (seq_name_from_temp == seq_name_to): seq_name_from_temp = seq_name_from_temp + "_from"
+			with open(temp_file, 'w') as handle_out:
+				if (len(seq_from) > len(seq_to)): seq_to += "-" * (len(seq_from) - len(seq_to))
+				elif (len(seq_from) < len(seq_to)): seq_from += "-" * (len(seq_to) - len(seq_from))
+				vect_data = [SeqRecord(Seq(seq_from), id = seq_name_from_temp, description=""),
+								SeqRecord(Seq(seq_to), id = seq_name_to, description="")
+							]
+				
+				SeqIO.write(vect_data, handle_out, "clustal")
 		
-		### set numbers
-		with open(temp_file) as handle_in, open(out_file, 'w') as handle_out:
-			b_first = True
-			(count_first, count_second) = (0, 0)
-			if method == Software.SOFTWARE_minimap2_name:
-				count_first = self.dt_chain[method][key_chain_name].get_start_pos()
-
-			space_before_seq = ""
-			for line in handle_in:
-				sz_temp = line.strip()
-				if (line.startswith("CLUSTAL X") or len(sz_temp) == 0):
-					handle_out.write(line)
-					continue
-
-				if (b_first):
-					lst_data = sz_temp.split()
-					if len(lst_data) == 2:
-						last_line = lst_data[1]
-						dash_count = last_line.count('-')
-						count_first += len(last_line) - dash_count
-						if (count_first == 0): handle_out.write(line)
-						else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_first))
+			### change the name of the file
+			out_file_rename = out_file
+			if (len(self.dt_chain[method][key_chain_name].get_vect_alignments()) > 1):
+				out_file_rename = out_file.replace(".aln", "_alignment_{}.aln".format(first_count + 1))
+				
+			### set numbers
+			with open(temp_file) as handle_in, open(out_file_rename, 'w') as handle_out:
+				b_first = True
+				(count_first, count_second) = (cur_pos_from_begin, cur_pos_to_begin)
+	
+				space_before_seq = ""
+				for line in handle_in:
+					sz_temp = line.strip()
+					if (line.startswith("CLUSTAL X") or len(sz_temp) == 0):
+						handle_out.write(line)
+						continue
+	
+					if (b_first):
+						lst_data = sz_temp.split()
+						if len(lst_data) == 2:
+							last_line = lst_data[1]
+							dash_count = last_line.count('-')
+							count_first += len(last_line) - dash_count
+							if (count_first == 0): handle_out.write(line)
+							else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_first))
+							
+							### calculate space before sequences
+							if (len(space_before_seq) == 0):
+								space_before_seq = " " * line.index(lst_data[1])
+						else:
+							handle_out.write(line)
+						b_first = False
+					else:
+						lst_data = sz_temp.split()
+						if len(lst_data) == 2:
+							dash_count = lst_data[1].count('-')
+							count_second += len(lst_data[1]) - dash_count
+							if (count_second == 0): handle_out.write(line)
+							else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_second))
+						else:
+							handle_out.write(line)
 						
-						### calculate space before sequences
-						if (len(space_before_seq) == 0):
-							space_before_seq = " " * line.index(lst_data[1])
-					else:
-						handle_out.write(line)
-					b_first = False
-				else:
-					lst_data = sz_temp.split()
-					if len(lst_data) == 2:
-						dash_count = lst_data[1].count('-')
-						count_second += len(lst_data[1]) - dash_count
-						if (count_second == 0): handle_out.write(line)
-						else: handle_out.write('{}{:>10}\n'. format(sz_temp, count_second))
-					else:
-						handle_out.write(line)
-					
-					### 
-					if (len(last_line) == len(lst_data[1])):
-						sz_match_line = ""
-						for _ in range(len(last_line)):
-							if last_line[_] == lst_data[1][_]: sz_match_line += "*"
-							else: sz_match_line += " "
-						handle_out.write(space_before_seq + sz_match_line + "\n")
-					b_first = True
+						### 
+						if (len(last_line) == len(lst_data[1])):
+							sz_match_line = ""
+							for _ in range(len(last_line)):
+								if last_line[_] == lst_data[1][_] and last_line[_] != "-" \
+									and lst_data[1][_] != "-": sz_match_line += "*"
+								else: sz_match_line += " "
+							handle_out.write(space_before_seq + sz_match_line + "\n")
+						b_first = True
 			
 		self.utils.remove_file(temp_file)
 		return out_file
@@ -916,7 +934,7 @@ class LiftOverLight(object):
 			handle_out.write("Query start\tCigar\n")
 			for alignment in self.dt_chain[method][key_chain_name].get_vect_alignments():
 				handle_out.write("{}\t{}\n".format(alignment.start_query,
-						"\t".join(alignment.get_vect_cigar_string())))
+						"\t".join(alignment.get_vect_cigar())))
 		return out_file
 
 

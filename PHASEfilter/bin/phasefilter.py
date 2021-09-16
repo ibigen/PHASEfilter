@@ -49,7 +49,6 @@ def checkRequiredArguments(opts, parser):
 	if len(missing_options) > 0:
 		parser.error('Missing REQUIRED parameters: ' + str(missing_options))
 		
-		
 def main(argv=None):
 	'''Command line options.'''
 	utils = Utils()

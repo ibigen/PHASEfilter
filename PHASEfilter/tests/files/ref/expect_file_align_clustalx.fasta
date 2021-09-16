@@ -1,104 +1,100 @@
 CLUSTAL X (1.81) multiple sequence alignment
 
 
-A_from                              --------------------------------------------------
-A                                   TACAACGACAACTAATTCCACAGCACCAAGAGGCATTTGTAATGCGGTGG        50
-                                                                                      
-
-A_from                              ---GGATTCCCGTAAACCCAAATCCTTTAATTAATGAAGAGGCAAAATTT        47
-A                                   CCTGGATTCCCGTAAACCCAAATCCTTTAATTAATGAAGAGGCAAAATTT       100
-                                       ***********************************************
-
-A_from                              GATGTGCCACCATTGATAACTCCACATGCAAGACCTATTAAGGCAACAAA        97
-A                                   GATGTGCCACCATTGATAACTCCACATGCAAGACCTATTAAGGCAACAAA       150
+A_from                              GGATTCCCGTAAACCCAAATCCTTTAATTAATGAAGAGGCAAAATTTGAT        50
+A                                   GGATTCCCGTAAACCCAAATCCTTTAATTAATGAAGAGGCAAAATTTGAT       103
                                     **************************************************
 
-A_from                              ATATACAAACAAATCTTGTAATGCTTCAACTGCTTGACTCTTTTTAAATC       147
-A                                   ATATACAAACAAATCTTGTAATGCTTCAACTGCTTGACTCTTTTTAAATC       200
+A_from                              GTGCCACCATTGATAACTCCACATGCAAGACCTATTAAGGCAACAAAATA       100
+A                                   GTGCCACCATTGATAACTCCACATGCAAGACCTATTAAGGCAACAAAATA       153
                                     **************************************************
 
-A_from                              TAGTTTCTCCTAAACCTTGATTATTAGTAGCAACTTCTTTAATCAAAACA       197
-A                                   TAGTTTCTCCTAAACCTTGATTATTAGTAGCAACTTCTTTAATCAAAACA       250
+A_from                              TACAAACAAATCTTGTAATGCTTCAACTGCTTGACTCTTTTTAAATCTAG       150
+A                                   TACAAACAAATCTTGTAATGCTTCAACTGCTTGACTCTTTTTAAATCTAG       203
                                     **************************************************
 
-A_from                              GCTTTTTCATCTTCAGTTAAAAATTTGACCAGTTTAGGTGAATCAGGACA       247
-A                                   GCTTTTTCATCTTCAGTTAAAAATTTGACCAGTTTAGGTGAATCAGGACA       300
+A_from                              TTTCTCCTAAACCTTGATTATTAGTAGCAACTTCTTTAATCAAAACAGCT       200
+A                                   TTTCTCCTAAACCTTGATTATTAGTAGCAACTTCTTTAATCAAAACAGCT       253
                                     **************************************************
 
-A_from                              TAACCAAAGAAAAATCCCTGACCAAACAAAGTTCATAAGACCAATGACCA       297
-A                                   TAACCAAAGAAAAATCCCTGACCAAACAAAGTTCATAAGACCAATGACCA       350
+A_from                              TTTTCATCTTCAGTTAAAAATTTGACCAGTTTAGGTGAATCAGGACATAA       250
+A                                   TTTTCATCTTCAGTTAAAAATTTGACCAGTTTAGGTGAATCAGGACATAA       303
                                     **************************************************
 
-A_from                              AAAAAATCAATTTCCATATTTTCAATTTTGATTCATCAGCATGTCCAAGT       347
-A                                   AAAAAATCAATTTCCATATTTTCAATTTTGATTCATCAGCATGTCCAAGT       400
+A_from                              CCAAAGAAAAATCCCTGACCAAACAAAGTTCATAAGACCAATGACCAAAA       300
+A                                   CCAAAGAAAAATCCCTGACCAAACAAAGTTCATAAGACCAATGACCAAAA       353
                                     **************************************************
 
-A_from                              CCCCAACTAAGAAGTGACCCGACAATAGTAGCTACCCCATTAAATGATAA       397
-A                                   CCCCAACTAAGAAGTGACCCGACAATAGTAGCTACCCCATTAAATGATAA       450
+A_from                              AAATCAATTTCCATATTTTCAATTTTGATTCATCAGCATGTCCAAGTCCC       350
+A                                   AAATCAATTTCCATATTTTCAATTTTGATTCATCAGCATGTCCAAGTCCC       403
                                     **************************************************
 
-A_from                              GAAGATACACATTCTTAATGGTTGGTTTTTCACAGTGTAGAAATTGTTGC       447
-A                                   GAAGATACACATTCTTAATGGTTGGTTTTTCACAGTGTAGAAATTGTTGC       500
+A_from                              CAACTAAGAAGTGACCCGACAATAGTAGCTACCCCATTAAATGATAAGAA       400
+A                                   CAACTAAGAAGTGACCCGACAATAGTAGCTACCCCATTAAATGATAAGAA       453
                                     **************************************************
 
-A_from                              AAATTGCCATACATGAAGGACTGATCATTGATTCAAATAA----------       487
-A                                   AAATTGCCATACATGAAGGACTGATCATTGATTCAAATAATAATATAAAG       550
-                                    ****************************************          
-
-A_from                              --------------------------------------------------       487
-A                                   GTATTTCCTACTACTAATGAAATGATATTATATGTGAAATTAATAAGTAT       600
-                                                                                      
-
-A_from                              TTGATGTGAATACCAGTATTTTGATTAAAAAAAAAAAGGAGTAACAAGTA       537
-A                                   TTGATGTGAATACCAGTATTTTGATT-AAAAAAAAAGGGAGTAACAAGTA       649
-                                    ************************** ********* *************
-
-A_from                              GTTGTTTACTTAATTTGAATTTGGAGGTTTGATATCGTCTGGAGAT---T       584
-A                                   GTTGTTTACTTAATTTGAATTTGGAGGTTTGATATCGTCTGGAGATCAAG       699
-                                    **********************************************    
-
-A_from                              AAGAAGAAGGAGAGAGAGAGAGAAATATTTATCTCGATTAGTTTCTGTGA       634
-A                                   AAGAAGAAGGAGAGAGAGAGAGAAATATTTATCTCGATTAGTTTCTGTGA       749
+A_from                              GATACACATTCTTAATGGTTGGTTTTTCACAGTGTAGAAATTGTTGCAAA       450
+A                                   GATACACATTCTTAATGGTTGGTTTTTCACAGTGTAGAAATTGTTGCAAA       503
                                     **************************************************
 
-A_from                              GGGTGGTGGTGGCGGAGGGCGCTAATTATAAATTTTATATTTTTTTTTTT       684
-A                                   GGGTGGTGGTGGCGGAGGGCGCTAATTATAAATTTTATA-TTTTTTTTTT       798
-                                    *************************************** **********
+A_from                              TTGCCATACATGAAGGACTGATCATTGATTCAAATAA-------------       487
+A                                   TTGCCATACATGAAGGACTGATCATTGATTCAAATAATAATATAAAGGTA       553
+                                    *************************************             
 
-A_from                              GAATCACGCACACTTCTTTTTTGTCTACAAAACTAATATCCTTACCAACC       734
-A                                   GAATCACGCACACTTCTTTTTTGTCTACAAAACTAATATCCTTACCAACC       848
+A_from                              -----------------------------------------------TTG       490
+A                                   TTTCCTACTACTAATGAAATGATATTATATGTGAAATTAATAAGTATTTG       603
+                                                                                   ***
+
+A_from                              ATGTGAATACCAGTATTTTGATTAAAAAAAAAAAGGAGTAACAAGTAGTT       540
+A                                   ATGTGAATACCAGTATTTTGATT-AAAAAAAAAGGGAGTAACAAGTAGTT       652
+                                    *********************** ********* ****************
+
+A_from                              GTTTACTTAATTTGAATTTGGAGGTTTGATATCGTCTGGAGAT---TAAG       587
+A                                   GTTTACTTAATTTGAATTTGGAGGTTTGATATCGTCTGGAGATCAAGAAG       702
+                                    *******************************************    ***
+
+A_from                              AAGAAGGAGAGAGAGAGAGAAATATTTATCTCGATTAGTTTCTGTGAGGG       637
+A                                   AAGAAGGAGAGAGAGAGAGAAATATTTATCTCGATTAGTTTCTGTGAGGG       752
                                     **************************************************
 
-A_from                              AACCTGTTAATGAATCGAACATGCATGTCCATTGCTTATCTTTTAGATAC       784
-A                                   AACCTGTTAATGAATCGAACATGCATGTCCATTGCTTATCTTTTAGATAC       898
+A_from                              TGGTGGTGGCGGAGGGCGCTAATTATAAATTTTATATTTTTTTTTTTGAA       687
+A                                   TGGTGGTGGCGGAGGGCGCTAATTATAAATTTTATA-TTTTTTTTTTGAA       801
+                                    ************************************ *************
+
+A_from                              TCACGCACACTTCTTTTTTGTCTACAAAACTAATATCCTTACCAACCAAC       737
+A                                   TCACGCACACTTCTTTTTTGTCTACAAAACTAATATCCTTACCAACCAAC       851
                                     **************************************************
 
-A_from                              TTTGCCAACAGATCAAAATA---CACCACCACCACCACCAAGAAATATCC       831
-A                                   TTTGCCAACAGATCAAAATACACCACCACCACCACCACCAAGAAATATCC       948
-                                    ********************   ***************************
-
-A_from                              TTACTGAAATTTCAAATATGAATGATAATGCTGGGGTAAACAATTCTAGT       881
-A                                   TTACTGAAATTTCAAATATGAATGATAATGCTGGGGTAAACAATTCTAGT       998
+A_from                              CTGTTAATGAATCGAACATGCATGTCCATTGCTTATCTTTTAGATACTTT       787
+A                                   CTGTTAATGAATCGAACATGCATGTCCATTGCTTATCTTTTAGATACTTT       901
                                     **************************************************
 
-A_from                              GAGAGTTCAGTGGTAACAAGCATCAGCAACACAAACCAAAGCGTAACAGT       931
-A                                   GAGAGTTCAGTGGTAACAAGCATCAGCAACACAAACCAAAGCGTAACAGT      1048
+A_from                              GCCAACAGATCAAAATA---CACCACCACCACCACCAAGAAATATCCTTA       834
+A                                   GCCAACAGATCAAAATACACCACCACCACCACCACCAAGAAATATCCTTA       951
+                                    *****************   ******************************
+
+A_from                              CTGAAATTTCAAATATGAATGATAATGCTGGGGTAAACAATTCTAGTGAG       884
+A                                   CTGAAATTTCAAATATGAATGATAATGCTGGGGTAAACAATTCTAGTGAG      1001
                                     **************************************************
 
-A_from                              TGGCAGTAGTTATAATCCTGAATCTGATGAAAAATAATATTATTATTATT       981
-A                                   TGGCAGTAGTTATAATCCTGAATCTGATGAAAAATAATATTATTATTATT      1098
+A_from                              AGTTCAGTGGTAACAAGCATCAGCAACACAAACCAAAGCGTAACAGTTGG       934
+A                                   AGTTCAGTGGTAACAAGCATCAGCAACACAAACCAAAGCGTAACAGTTGG      1051
                                     **************************************************
 
-A_from                              ATTAGTGTGAGCCAAGGCCCCACGATCTACAGATTAATCAAATCAAGTGT      1031
-A                                   ATTAGTGTGAGCCAAGGCCCCACGATCTACAGATTAATCAAATCAAGTGT      1148
+A_from                              CAGTAGTTATAATCCTGAATCTGATGAAAAATAATATTATTATTATTATT       984
+A                                   CAGTAGTTATAATCCTGAATCTGATGAAAAATAATATTATTATTATTATT      1101
                                     **************************************************
 
-A_from                              CAAGCAAACGTTTGATCCAATATAATTCTGCTTCCTGTTATTATTGTTGT      1081
-A                                   CAAGCAAACGTTTGATCCAATATAATTCTGCTTCCTGTTATTATTGTTGT      1198
+A_from                              AGTGTGAGCCAAGGCCCCACGATCTACAGATTAATCAAATCAAGTGTCAA      1034
+A                                   AGTGTGAGCCAAGGCCCCACGATCTACAGATTAATCAAATCAAGTGTCAA      1151
                                     **************************************************
 
-A_from                              TCCAGCCCCCTTTGGTTTTCTGTGCCAATGCAAAATCTGTT      1122
-A                                   TCCAGCCCCCTTTGGTTTTCTGTGCCAATGCAAAATCTGTT      1239
-                                    *****************************************
+A_from                              GCAAACGTTTGATCCAATATAATTCTGCTTCCTGTTATTATTGTTGTTCC      1084
+A                                   GCAAACGTTTGATCCAATATAATTCTGCTTCCTGTTATTATTGTTGTTCC      1201
+                                    **************************************************
+
+A_from                              AGCCCCCTTTGGTTTTCTGTGCCAATGCAAAATCTGTT      1122
+A                                   AGCCCCCTTTGGTTTTCTGTGCCAATGCAAAATCTGTT      1239
+                                    **************************************
 
 

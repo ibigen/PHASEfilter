@@ -3,7 +3,7 @@
 
 
 # PHASEfilter
-PHASEfilter is a software package that is possible to filter variants, SNPs and INDELs, that are present in heterozygous form, in phased genomes.
+PHASEfilter is a software package that is possible to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.
 
 # Installation
 
@@ -21,12 +21,13 @@ $ pip install PHASEfilter
 $ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter version) "
 $ . PHASEfilter/bin/activate
 $ pip install PHASEfilter
+OR
+$ pip3 install PHASEfilter
 ```
 
 
 The follow software must be available in your computer:
 * [minimpa2](https://github.com/lh3/minimap2) v2.21 or up
-* [lastz](https://github.com/lastz/lastz) v1.4 or up
 * [bcftools](http://www.htslib.org/download/) v1.3 or up
 * [samtools](http://www.htslib.org/download/) v1.3 or up
 * [htslib](http://www.htslib.org/download/) v1.3 or up
@@ -38,8 +39,9 @@ The follow software must be available in your computer:
 ## Filter variants in phased genomes
 
 This software that can identify heterozygosity positions between two phased references.
-The software starts by aligning pairs of diploid chromosomes, based on three different approaches, Minimap2, Lastz and Blastn summing the match positions and obtaining the percentage of effective alignment. The alignment software with a higher percentage is the one chosen for the synchronization of a specific chromosome. With synchronization done it is possible to identify the position of a variation, in both elements of a pair of chromosomes, allowing variants removal if it meets a following established criteria.
-To classify variants it is necessary to pass two VCF files, one for each reference phase. After that, the PHASEfilter will go through the variants called in reference A and check if there are any homologous in the variants called in reference B. For each variant called in the reference A it can happen three situations: 1) both references, for the position in analysis, are equal and the variant is valid; 2) position is heterozygous in the reference and the variant reflects it, so the variant is removed.
+The software starts by aligning pairs of diploid chromosomes, based on Minimap2 aligner. With synchronization done it is possible to identify the position of a variation, in both pair of chromosomes, allowing variants to be removed if they meets some established criterias.
+To classify variants it is necessary to pass two VCF files, one for each reference phase. After that, the PHASEfilter will go through the variants called in reference A and check if there are any homologous in the variants called in reference B. For each variant called in the reference A it can happen three situations: 1) both references, for the position in analysis, are equal and the variant is valid; 2) the position is heterozygous in the references and the variant reflects it, so the variant is removed; 3) the position is heterozygous in the references and the variant is homozygous. It goes to the valid variants file but it also go to the Loss Of Heterozygous (LOH )file.
+The variant file in analysis it is always the one passed in parameter '--vcf1'.
 
 ```
 $ phasefilter --help
@@ -48,7 +50,7 @@ $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albica
 
 ## Synchronize annotation genomes
 
-Synchronize annotations genomes adapting the annotations that are in reference 1 to the reference 2, adding the tags 'StartHit' and 'EndHit' to the result file. In VCF type files only add 'StartHit' tag in Info. The annotations, input file, need to be in VCF or GFF3, and belong to the reference 1.
+Synchronize annotations genomes adapting the annotations that are in reference 1 to the reference 2, adding the tags 'StartHit' and 'EndHit' to the result file. In VCF type files only add 'StartHit' tag in Info. The annotations (input file need to be in VCF or GFF3 and belong to the reference 1.
 
 ```
 $ synchronize_genomes --help
@@ -56,14 +58,14 @@ $ synchronize_genomes --ref1 S288C_reference.fna --ref2 S01.assembly.final.fa --
 $ synchronize_genomes --ref1 S288C_reference.fna --ref2 S01.assembly.final.fa --vcf S288C_reference.vcf.gz --out result.vcf.gz
 ```
 
-## Best alignment
+## Make alignments
 
-Create a list with the best algorithm to make the alignment between chromosomes.
+Obtain the percentage of the minimap2 alignment between chromosomes and create an output in ClustalX format.
 
 ```
-$ best_alignment --help
-$ best_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt
-$ best_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt --pass_chr chrmt --out_alignment syncronizationSacharo
+$ make_alignment --help
+$ make_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt
+$ make_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt --pass_chr chrmt --out_alignment syncronizationSacharo
 ```
 
 ## Reference Statistics

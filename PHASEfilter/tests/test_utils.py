@@ -155,6 +155,14 @@ class Test(unittest.TestCase):
 		cigar_2.remove_itens_string(50, True)
 		self.assertEqual([''], cigar_2.get_vect_cigar_string())
 
+	def test_map_flags(self):
+		utils = Utils()
+		self.assertEqual(True, utils.is_supplementary_alignment(2048))
+		self.assertEqual(True, utils.is_supplementary_alignment(2064))
+		self.assertEqual(False, utils.is_supplementary_alignment(0))
+		self.assertEqual(True, utils.is_read_reverse_strand(2064))
+		self.assertEqual(False, utils.is_read_reverse_strand(2))
+
 
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.test_refernce_names']

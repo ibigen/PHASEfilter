@@ -69,7 +69,7 @@ setuptools.setup(
 	],
 	entry_points={
 		'console_scripts': [
-			'best_alignment = PHASEfilter.bin.best_alignment:main',
+			'best_alignment = PHASEfilter.bin.make_alignment:main',
 			'reference_statistics = PHASEfilter.bin.reference_statistics:main',
 			'phasefilter = PHASEfilter.bin.phasefilter:main',
 			'synchronize_genomes = PHASEfilter.bin.synchronize_genomes:main',

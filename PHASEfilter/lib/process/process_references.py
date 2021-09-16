@@ -10,7 +10,6 @@ from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
 from PHASEfilter.lib.utils.read_gff import ReadGFF
 from PHASEfilter.lib.utils.software import Software
 from PHASEfilter.lib.utils.vcf_process import VcfProcess
-from PHASEfilter.lib.utils.testing_software import SoftwareTest
 from operator import itemgetter
 import os
 
@@ -46,7 +45,7 @@ class ProcessTwoReferences(object):
 					self.reference_1.get_reference_name(),\
 					self.reference_2.get_reference_name())\
 					+ "Software\tSplit Alignments\tLength Match Source\tLength Source\tLength Match Hit\tLength Hit\t"\
-					+ "Cigar Match\tCigar Deletion\tCigar Insertion\tMatch VS Ins+Del %\tAlignment %\tBest\n")
+					+ "Cigar Match\tCigar Deletion\tCigar Insertion\tMatch VS Ins+Del %\tAlignment %\n")
 			
 			for chr_name_A in self.reference_1.vect_reference:
 				if (chr_name_A.lower() in vect_pass_ref):
@@ -82,6 +81,8 @@ class ProcessTwoReferences(object):
 		"""
 		process by chromosome
 		"""
+	#	if (chr_name_A != "Ca22chr5A_C_albicans_SC5314"): return
+		
 		print("*" * 50 + "\n" + "*" * 50 + "\nStart processing {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		handle_write.write("{}\t{}\t".format(chr_name_A, chr_name_B))
@@ -92,7 +93,7 @@ class ProcessTwoReferences(object):
 		lift_over_ligth.synchronize_sequences_all_methods(chr_name_A, chr_name_B)
 		
 		vect_out = []
-		for software in Software.VECT_SOFTWARE_DO_ALIGNMENT:
+		for software in Software.VECT_SOFTWARE_SAVE_ALIGNMENT:
 			count_elements = lift_over_ligth.get_count_cigar_length(software, chr_name_A, chr_name_B)
 			
 			if (count_elements == None):
@@ -136,7 +137,7 @@ class ProcessTwoReferences(object):
 		### save data
 		for _, line in enumerate(vect_out):
 			if (_ > 0): handle_write.write("\t\t")
-			handle_write.write("{}{}\n".format(line[0], "\t*" if _ in vect_best else ""))
+			handle_write.write("{}\n".format(line[0]))
 		
 		### remove temp files
 		self.utils.remove_dir(temp_work_dir)

@@ -14,7 +14,7 @@ from PHASEfilter.lib.utils.software import Software
 ### run command line
 # export PYTHONPATH='/home/mmp/git/PHASEfilter'
 # python3 -m unittest -v tests.test_vcf
-
+# python3 -m unittest discover -s tests -p 'test_*.py'
 class Test(unittest.TestCase):
 
 

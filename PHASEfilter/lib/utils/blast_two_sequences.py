@@ -296,9 +296,11 @@ class BlastAlignment(object):
         return (position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if position_on_hit != -1 else -1,\
             left_position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if left_position_on_hit != -1 else -1)
 
-    def get_start_pos(self):
+    def get_start_query(self):
         return self.start_query - 1
     
+    def get_start_subject(self):
+        return self.start_subject - 1
     
 class Reversor:
     def __init__(self, obj):
@@ -542,9 +544,13 @@ class VectAlignments(object):
     def get_vect_alignments(self):
         return self.vect_alignments
 
-    def get_start_pos(self):
+    def get_start_query(self):
         if (len(self.vect_alignments) == 0): return 0
         return self.vect_alignments[0].start_query - 1
+    
+    def get_start_subject(self):
+        if (len(self.vect_alignments) == 0): return 0
+        return self.vect_alignments[0].start_subject - 1
 
 
 class BlastAlignments(VectAlignments):

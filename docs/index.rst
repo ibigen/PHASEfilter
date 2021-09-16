@@ -15,10 +15,9 @@ Highlights
 ++++++++++
 
 * filter SNPs and INDELs;
-* choose best alignment tool, on the fly, to align two phased reference genomes;
+* identify Loss of Heterozygous (LOH);
+* create an alignment of two phased reference genomes;
 * possible to redefine the Allele Frequency threshold to redefine heterozygous form;
-* compare both directions, A from to B and B to A references, automatically;
-
 
 Contact
 +++++++

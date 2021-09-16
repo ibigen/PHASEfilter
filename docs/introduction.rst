@@ -4,14 +4,14 @@ Introduction of PHASEfilter
 ***************************
 
 PHASEfilter is a bioinformatic package that allow to identify the heterozygous variants that are present in diploid species.
-For that it is necessary to have a diploid version of the reference genome and two variant files (vcf), one for each ploidy of the reference. 
+For that, it is necessary to have a diploid version of the reference genome and two variant files (vcf), one for each ploidy of the reference. 
 
 This package offer four tools:
 
 * phasefilter
 * reference_statistics
 * synchronize_genomes
-* best_alignment
+* make_alignment
 
 phasefilter
 +++++++++++
@@ -33,7 +33,7 @@ synchronize_genomes
 Synchronize two references and add two new fields (StartHit;EndHit) GFF with the positions on hit reference. If you you a VCF file only adds (start_hit) tag to the VCF INFO.
 It accept 4 mandatory parameters and one optional parameter. It is necessary to pass a VCF or a GFF file.
 
-best_alignment
+make_alignment
 ++++++++++++++
 
-Identifies best algorithm to align two nucleotide sequences. It accept 3 mandatory parameters and two optional parameters.
+Obtain the percentage of the minimap2 alignment between chromosomes and create an output in Clustal X format. It accept 3 mandatory parameters and two optional parameters.

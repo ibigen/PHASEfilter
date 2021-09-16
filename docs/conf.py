@@ -167,6 +167,6 @@ texinfo_documents = [
 
 ### add extra css
 def setup(app):
-    app.add_stylesheet('css/phasefilter.css')
+    app.add_css_file('css/phasefilter.css')
 
 

@@ -67,10 +67,10 @@ class LastzAlignment(object):
 		return (position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if position_on_hit != -1 else -1,\
 			left_position_on_hit + self.start_query - 1 + (self.start_subject - self.start_query) if left_position_on_hit != -1 else -1)
 
-	def get_start_pos(self):
+	def get_start_query(self):
 		return self.start_query - 1
 	
-	def get_start_pos_hit(self):
+	def get_start_subject(self):
 		return self.start_subject - 1
 
 	def __str__(self):

@@ -275,7 +275,11 @@ class Utils(object):
 		return v.lower() in ("yes", "true", "t", "1", "y")
 
 
-
+	def is_supplementary_alignment(self, value):
+		return (0x800 & value) > 0
+	def is_read_reverse_strand(self, value):
+		return (0x10 & value) > 0
+	
 class NucleotideCodes(object):
 	
 	def __init__(self):
@@ -326,10 +330,11 @@ class CigarElement(object):
 	CIGAR_TAG_I = 'I'
 	CIGAR_TAG_D = 'D'
 	CIGAR_TAG_H = 'H'
+	CIGAR_TAG_N = 'N'
 
 	### add all tags that can be parsed
 	DICT_CIGAR_TAGS = { CIGAR_TAG_M : 1, CIGAR_TAG_S : 1, CIGAR_TAG_I : 1, CIGAR_TAG_D : 1,\
-				CIGAR_TAG_H : 1 }
+				CIGAR_TAG_H : 1, CIGAR_TAG_N : 1 }
 	
 	## soft and hard clip
 	DICT_CIGAR_TAGS_CLIP = { CIGAR_TAG_S : 1, CIGAR_TAG_H : 1 }
@@ -342,6 +347,7 @@ class CigarElement(object):
 	def is_S(self): return self.tag == CigarElement.CIGAR_TAG_S
 	def is_I(self): return self.tag == CigarElement.CIGAR_TAG_I
 	def is_D(self): return self.tag == CigarElement.CIGAR_TAG_D
+	def is_N(self): return self.tag == CigarElement.CIGAR_TAG_N
 	def is_H(self): return self.tag == CigarElement.CIGAR_TAG_H
 
 	def __str__(self):
@@ -355,6 +361,7 @@ class CountLength(object):
 		self.miss_match = 0			## S or H
 		self.length_match = 0		## count number of Match
 		self.length_del = 0			## count number of Del
+		self.length_skipped = 0			## count number of Skipped region from the reference
 		self.length_ins = 0			## count number of Ins
 	
 	def __add__(self, other):
@@ -364,6 +371,7 @@ class CountLength(object):
 		self.miss_match += other.miss_match
 		self.length_match += other.length_match
 		self.length_del += other.length_del
+		self.length_skipped += other.length_skipped
 		self.length_ins += other.length_ins
 		return self
 
@@ -395,6 +403,7 @@ class CountLength(object):
 
 	def get_cigar_match(self): return self.length_match
 	def get_cigar_del(self): return self.length_del
+	def get_cigar_skipped(self): return self.length_skipped
 	def get_cigar_ins(self): return self.length_ins
 	
 	def get_header(self):

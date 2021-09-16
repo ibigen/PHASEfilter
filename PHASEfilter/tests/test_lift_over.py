@@ -121,16 +121,16 @@ class Test(unittest.TestCase):
 		self.assertEqual("94.55", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b)))
 	
 		## lastz
-		self.assertEqual("1122\t1186\t0\t1120\t2\t66\t94.3", str(lift_over_ligth.get_count_cigar_length(\
-			Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
-		self.assertEqual(["487M60I26M1D70M3I89M1D130M3I318M"], lift_over_ligth.get_cigar_string(\
-			Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b))
-		self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1, Software.SOFTWARE_lastz_name))
-		self.assertEqual((60, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 7, Software.SOFTWARE_lastz_name))
-		self.assertEqual((540, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487, Software.SOFTWARE_lastz_name))
-		self.assertEqual((480, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 427, Software.SOFTWARE_lastz_name))
-		self.assertEqual((779, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 664, Software.SOFTWARE_lastz_name))
-		self.assertEqual("94.55", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
+# self.assertEqual("1122\t1186\t0\t1120\t2\t66\t94.3", str(lift_over_ligth.get_count_cigar_length(\
+# 	Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
+# self.assertEqual(["487M60I26M1D70M3I89M1D130M3I318M"], lift_over_ligth.get_cigar_string(\
+# 	Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b))
+# self.assertEqual((54, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1, Software.SOFTWARE_lastz_name))
+# self.assertEqual((60, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 7, Software.SOFTWARE_lastz_name))
+# self.assertEqual((540, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 487, Software.SOFTWARE_lastz_name))
+# self.assertEqual((480, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 427, Software.SOFTWARE_lastz_name))
+# self.assertEqual((779, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 664, Software.SOFTWARE_lastz_name))
+# self.assertEqual("94.55", "{:.2f}".format(lift_over_ligth.get_percent_alignment(Software.SOFTWARE_lastz_name, seq_name_a, seq_name_b)))
 	
 		#### save alignment file
 		temp_out_file = utils.get_temp_file_with_path(temp_work_dir, "align", ".aln")
@@ -143,8 +143,6 @@ class Test(unittest.TestCase):
 		out_result_expected = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/ref/expect_file_align_clustalx.fasta")
 		self.assertTrue(os.path.exists(out_result_expected))
 		temp_diff = utils.get_temp_file_with_path(temp_work_dir, "diff_file", ".txt")
-		print(temp_out_file)
-		print(out_result_expected)
 		cmd = "diff {} {} > {}".format(temp_out_file, out_result_expected, temp_diff)
 		os.system(cmd)
 		vect_result = utils.read_text_file(temp_diff)
@@ -175,15 +173,15 @@ class Test(unittest.TestCase):
 		self.assertEqual("B", seq_name_b)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 	
-		self.assertEqual(['96S92M', '48M4I44M92H'], lift_over_ligth.get_cigar_string(\
+		self.assertEqual(['48M4I44M92S'], lift_over_ligth.get_cigar_string(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
-		self.assertEqual((97, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1))
-		self.assertEqual((144, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 48))
-		self.assertEqual((145, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
+		self.assertEqual((1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 1))
+		self.assertEqual((48, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 48))
+		self.assertEqual((53, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 49))
 		self.assertEqual((-1, -1), lift_over_ligth.get_pos_in_target(seq_name_a, seq_name_b, 490))
-		self.assertEqual("184\t188\t4\t184\t0\t4\t97.9", str(lift_over_ligth.get_count_cigar_length(\
+		self.assertEqual("92\t96\t92\t92\t0\t4\t95.8", str(lift_over_ligth.get_count_cigar_length(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b)))
-		self.assertEqual(2, lift_over_ligth.get_number_alignments(\
+		self.assertEqual(1, lift_over_ligth.get_number_alignments(\
 			Software.SOFTWARE_minimap2_name, seq_name_a, seq_name_b))
 		utils.remove_dir(temp_work_dir)
 	
@@ -244,25 +242,24 @@ class Test(unittest.TestCase):
 	
 		out_result_expected = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files/referenceSaccharo/out_sync_saccharo_X.txt')
 	
-		temp_diff = utils.get_temp_file("diff_file", ".txt")
+		temp_diff = utils.get_temp_file_with_path(temp_work_dir, "diff_file", ".txt")
 		cmd = "diff {} {} > {}".format(temp_out, out_result_expected, temp_diff)
 		os.system(cmd)
 		vect_result = utils.read_text_file(temp_diff)
 		self.assertEqual(0, len(vect_result))
 	
 		self.assertEqual((-1, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 1))
-		self.assertEqual((-1, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 2))
-		self.assertEqual((142, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 3))
+		self.assertEqual((160, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 2))
+		self.assertEqual((161, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 3))
 		self.assertEqual(reference_a.get_base_in_position(seq_name_a, 3, 4, temp_out),
 						reference_b.get_base_in_position(seq_name_b, 142, 143, temp_out))
-		self.assertEqual((202, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 48))
+		self.assertEqual((208, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 48))
 		self.assertEqual(reference_a.get_base_in_position(seq_name_a, 48, 49, temp_out),
 						reference_b.get_base_in_position(seq_name_b, 202, 203, temp_out))
 		self.assertEqual((325, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 168))
 		self.assertEqual((457, -1), lift_over_ligth.get_best_pos_in_target(seq_name_a, seq_name_b, 300))
 		self.assertEqual(reference_a.get_base_in_position(seq_name_a, 300, 301, temp_out),
 						reference_b.get_base_in_position(seq_name_b, 457, 458, temp_out))
-	
 		utils.remove_file(temp_out)
 		utils.remove_dir(temp_work_dir)
 
@@ -281,13 +278,25 @@ class Test(unittest.TestCase):
 		impose_minimap2_only = False
 		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences("chrX", "chrX")
-		self.assertEqual(Software.SOFTWARE_lastz_name, lift_over_ligth.get_best_algorithm("chrX", "chrX"))
+		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm("chrX", "chrX"))
 		
 		self.assertTrue(['19M1D8M1I32M14I13M1I6M1I28M23I22M1I126M2D117M3I29M1I1694M', '99M132D60M'], \
 			lift_over_ligth.get_cigar_string(Software.SOFTWARE_lastz_name, "chrX", "chrX"))
-		self.assertEqual((246, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
+		self.assertEqual((261, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 48))
 		self.assertEqual((438, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 200))
-		self.assertEqual((-1, 217), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 20))
+		self.assertEqual((239, -1), lift_over_ligth.get_best_pos_in_target("chrX", "chrX", 20))
+		
+		
+		alignment_file = utils.get_temp_file_with_path(temp_work_dir, "alignment", ".fna")
+		lift_over_ligth.create_alignment_file(alignment_file, Software.SOFTWARE_minimap2_name, "chrX", "chrX")
+		seq_file_alignment = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/synchronize/alignment_minimap.aln")
+		self.assertTrue(os.path.exists(seq_file_alignment))
+		
+		temp_diff = utils.get_temp_file_with_path(temp_work_dir, "diff_file", ".txt")
+		cmd = "diff {} {} > {}".format(seq_file_alignment, alignment_file, temp_diff)
+		os.system(cmd)
+		vect_result = utils.read_text_file(temp_diff)
+		self.assertEqual(0, len(vect_result))
 		utils.remove_dir(temp_work_dir)
 
 

@@ -1,0 +1,188 @@
+CLUSTAL X (1.81) multiple sequence alignment
+
+
+chrX_from                           CCCACACACACACCACACCCACACCCACACACACCACACCCACACACCAC        50
+chrX                                CCCAC-CACACACCACACCCACA-CCACACAC-CCACA-CCAC---CCAC       263
+                                    ***** ***************** ******** ***** ****   ****
+
+chrX_from                           ACCCACACCA-ACTCTCTCTCATC-TACCT-TTACTCGCGCTGTCACACC        97
+chrX                                A-CCAC-CCACACCCTCTCACATCACACCTCACACTCTCACTGTCATACC       311
+                                    * **** *** ** ***** ****  ****   **** * ****** ***
+
+chrX_from                           TTAC----------------CCGG------C-TTTCTGACCGAAATT-AA       123
+chrX                                TTACCTCTCTCTTCTCTCTACCTGTCATACCTTTTCTGACCGAAATTAAA       361
+                                    ****                ** *      * *************** **
+
+chrX_from                           AAAAAATGAAAATGAAATCCTGTTCTTTAGCCCTACAACACTTTTACATA       173
+chrX                                AAAAAATGAAAATGAAACCCTGTTCTTTAGCCCTACAGCACTTCTACATA       411
+                                    ***************** ******************* ***** ******
+
+chrX_from                           GCCCTAAATAGCCCTAAATAGCCCTCATTTACGTCTCCTCCAAGCCCTAT       223
+chrX                                GCCCTAAATAGCCCTAAATAGCCCTCATGTACGTCTCCTCCAAGCCCTGT       461
+                                    **************************** ******************* *
+
+chrX_from                           TGACTCTTACCCGGAGTTTCAGCTAAAAGCTATACTTACTACCTTTATTT       273
+chrX                                TGTCTCTTACCCGGATGTTCAACCAAAAGC--TACTTACTACCTTTATTT       509
+                                    ** ************  **** * ******  ******************
+
+chrX_from                           TATGTTTACTTTTTATAGACTGTCTTTTCATCCTACTCCTTCGCACTTGT       323
+chrX                                TATGTTTACTTTTTATAGATTGTCTTTTTATCCTACTCTTTCCCACTTGT       559
+                                    ******************* ******** ********* *** *******
+
+chrX_from                           CTCTCGCTACTGCCGTGCAACAAACACTAAATCAAAACAGTAAAA---TA       370
+chrX                                CTCTCGCTACTGCCGTGCAACAAACACTAAATCAAAACAGTGAAATACTA       609
+                                    ***************************************** ***   **
+
+chrX_from                           CTACATCAAAACGCATATTCCCTAG-AAAAAAATTTTCTTACAATATACT       419
+chrX                                CTACATCAAAACGCATATTCCCTAGAAAAAAAAATTTCTTACAATATACT       659
+                                    ************************* ******* ****************
+
+chrX_from                           ATACTACACAATACATAATCAGTGACTTTCGTAACAACAATTTCCTTCAC       469
+chrX                                ATACTACACAATACATAATCACTGACTTTCGTAACAACAATTTCCTTCAC       709
+                                    ********************* ****************************
+
+chrX_from                           TCTCCAACTTCTCTGCTCGAATCCCTACATAATAATATATCAAATCTACC       519
+chrX                                TCTCCAACTTCTCTGCTCGAATCTCTACATAATAATATATCAAATCTACC       759
+                                    *********************** **************************
+
+chrX_from                           GTCTGGAACATCATCGCTATCCAGCTCTTTGTGAACCGCTACCATCAGCA       569
+chrX                                GTCTGGAACATCATCGCTATCCAGCTCTTTGTGAACCGCTACCATCAGCA       809
+                                    **************************************************
+
+chrX_from                           TGTACAGTGGTACCCTCGTGTCATCTGCAGCGAGAACTTCAACGTTTGCC       619
+chrX                                TGTACAGCGGTACCCTCGTGTTATCTGCAGCGAGAACTTCAACGTTTGCC       859
+                                    ******* ************* ****************************
+
+chrX_from                           AAATCAAGCCAATGTGGTAACAACCACACCTCCGAAATCTGCTCCAAAAG       669
+chrX                                AAATCAAGCCAATGTGGTAACAACCACACCTCCGAAATCTGCTCCAAAAG       909
+                                    **************************************************
+
+chrX_from                           ATACTCCAGTTTCTGCCGAAATGTTTTATTGTAGAACAGCCCTATCAGCA       719
+chrX                                ATATTCCAGTTTCTGCCGAAATGTTTTATTGCAGAACAGCCCTATCAGCA       959
+                                    *** *************************** ******************
+
+chrX_from                           TCGAGAGGAATGCCGTCCAATGCGGCACTTTAGATGGGGTAACTCCCAGC       769
+chrX                                TCGACAGGAATGCCGTCCAATGCGGCACTTTAGATGGGGTAACTCCCAGC      1009
+                                    **** *********************************************
+
+chrX_from                           GCAATCTGATCTCGCAAGTGCATTCCTAGACTTAATTCATATCTGCTCCT       819
+chrX                                GCAAGCTGATCTCGCAAGTGCATTCCTAGACTTAATTCATATCTGCTCCT      1059
+                                    **** *********************************************
+
+chrX_from                           CAACTGTCGATGATGCCTGCTAAACTGCAGCTTGACGTACTGCGGACCCT       869
+chrX                                CAACTGTCGATGATGCCTGCTAAACTGCAGCTTGACGTACTGCGGACCCT      1109
+                                    **************************************************
+
+chrX_from                           GCAGTCCAGCGCTCGTCATGGAACGCAAACGCTGAAAAACTCCACCTTTC       919
+chrX                                GCAGTCCAGCGCTCGTCATGGAACGCAAACGCTGAAAAACTCCAACTTTC      1159
+                                    ******************************************** *****
+
+chrX_from                           TCGAGCGCTTCCACAACAACCGTATCGTCTTTTGCCTCCCATTCTTCCTG       969
+chrX                                TCGAGCGCTTCCACAAAGACCGTATCGTCTTTTGCCTCCCATTCTTCCCG      1209
+                                    ****************  ****************************** *
+
+chrX_from                           GCACTTTTTTTCGTCCCAGTTCAAAAAGTACTGCAGCACCTCTGTCTTCG      1019
+chrX                                GCACTTTTTTTCGTCCCAGTTCAAAAAGTACTGCAGCACCTCTGTCTTCG      1259
+                                    **************************************************
+
+chrX_from                           ATTCACGCAAGTTGCTCCATACTTTAAAATACAACTCTTTGATCTGCCTT      1069
+chrX                                ATTCACGCAAGTTGCTCCATACTTTATAATACAACTCTTTGATCTGCCTT      1309
+                                    ************************** ***********************
+
+chrX_from                           CCAGACATGCGGAAAACTTGGCTCCCTTGCTTGCCTCTTGTCGAATCCAA      1119
+chrX                                CCAGACATGCGGAAAACTTGGCTCCCTTGCTTGCCTCTTGTCGAATCCAA      1359
+                                    **************************************************
+
+chrX_from                           TACACTAATTGTTTCTCTTCTTCTAGTAATGGCCAGGTACCAAGCATAAT      1169
+chrX                                TACACTAATTGTTTCTCTTCTTCTAGTAATGGCCAGGTACCAAGCATAAT      1409
+                                    **************************************************
+
+chrX_from                           TTCTCTGTATCTGAGAGTAGATCTCTCTCCTTTTTACGCTAAAATATTTC      1219
+chrX                                TTCTCTGTATCTGAGAGTAGATCTCTCCCCTTTTTACGCTAAAATATTTC      1459
+                                    *************************** **********************
+
+chrX_from                           AAATATCCTACAGGGTCCCCATGATATGGCTCGATGTCTTCCAAGTATTC      1269
+chrX                                AAATATCCTACAGGGTCCCCATGATATGGCTCGATGTCTTCCAAGTATTC      1509
+                                    **************************************************
+
+chrX_from                           TTTGTATTCCTCGTCATTTCGCAGCATTCTCTCCACAGCTAGTGCTTCCC      1319
+chrX                                TTTGTATTCCTCGTCATTTCGCAGCATTCTCTCCACAGCTAGTGCTTCCC      1559
+                                    **************************************************
+
+chrX_from                           AAGCTATCCTCCGATACGATACTTTCTGGCCAGCCCAACAGACACAGAGC      1369
+chrX                                AAGCCATCCTCCGATACGATACTTTCTGGCCAGCCCAACAGACACAGAGC      1609
+                                    **** *********************************************
+
+chrX_from                           TCGAACATCTTTTGACAGCCCTTGCATAATCCGTATTGTGTGAACACTCC      1419
+chrX                                TCGAACATCTTTTGACAGCCCTTGCATAATCCGTATTGTGTGAATACTCC      1659
+                                    ******************************************** *****
+
+chrX_from                           CTCTGGGCAGAAGTATATGTCAATACCATAGAGGAAAAGATGTTTAATTT      1469
+chrX                                CTCTGGGCAGAAGTATACGTCAATACCATAGAGGAAAAGATGTTTAATTT      1709
+                                    ***************** ********************************
+
+chrX_from                           CGTCAGACCGAAATCCAAGAAACTGTAAGACATTCATATTCTCGGAAGTA      1519
+chrX                                CGTCAGACCGAAATCCAAGAAACTGTAAGACATTCATATTCTCGGAAGTA      1759
+                                    **************************************************
+
+chrX_from                           TTGGGAAATTGTGCTTTCAGTTTCTTTCTCTCTAGCAAAACCATTTGACT      1569
+chrX                                TTGGGAAATTGTGCTTTCAGTTTCTTTCTCTCTAGCAAAACCATTTGACT      1809
+                                    **************************************************
+
+chrX_from                           CCCTTTCCGCTTATACGACTCTTTGTTAATGTCGGTGACTGGATGGAATC      1619
+chrX                                CCCTTTCCGCTTATACGACTCTTTGTTAATGTCGGTGACTGGATGGAATC      1859
+                                    **************************************************
+
+chrX_from                           TATTATCCTCAGCATTGCCATCTTTATTGGCGTCCTCCTTGGCACTAGCG      1669
+chrX                                TATTATCCTCAGCATTGCCATCTTTATTGGCGTCCTCCTTGGCACTAGCG      1909
+                                    **************************************************
+
+chrX_from                           TTGGTACTTTCAGTGGTAGTAGCACTAGTGTTGGAGTTGGTACTTTCGGT      1719
+chrX                                TTGGTACTTTCAGTGGTAGT-G----------------------------      1930
+                                    ******************** *                            
+
+chrX_from                           GGTAGCAGCACTAGTGTTGGAGTTGGTACTTTCAGTGGTAGTAGCATTAG      1769
+chrX                                -------GCATTAGTGCTGGAGTTGGTGCTAGCAGTGGTAGTGGCATTAG      1973
+                                           *** ***** ********** **  ********** *******
+
+chrX_from                           TGCTGGAGTTGGTACTTTCAGTGGTAGTAGCATTAGTGCTGGAGTTGGTA      1819
+chrX                                TGCTGGAGTTGGTGCTAGCAGTGGTAGTAGCACTAGTGTTGGAGTCGGTA      2023
+                                    ************* **  ************** ***** ****** ****
+
+chrX_from                           CTTTCAGTGGTAGTAGCATTAGTGTTGGAGTTGGTACTTTCAGTGGTAGT      1869
+chrX                                CTTTCGGTGGTAGTAGCACTAGTGTTGGAGTCGGTACTTTCGGTGGTAGT      2073
+                                    ***** ************ ************ ********* ********
+
+chrX_from                           AGCATTAGTGCTAGAGTTGATACTTTTAGTGGTAGTAGCACTAGTCCTGA      1919
+chrX                                AGCACTAGTGTTGGAGTTGGTACTTTCAGTGGTAGTCGCACTAGTCCTGA      2123
+                                    **** ***** * ****** ****** ********* *************
+
+chrX_from                           CGTTGATGCTGGCAGTGGTAGTCGCACTAGTGCTGGAGTTGGTACTTTCA      1969
+chrX                                CGTTGATGCTGG------------------------------------CA      2137
+                                    ************                                    **
+
+chrX_from                           GTGGTAGTAGCACTAGTCCTGACGTTGATGCTGGCAGTGGTAGTAGCACT      2019
+chrX                                GTGGTAGTAGCACTAGTCCTGACGTTGGTGCTGGCAGTGGTAGTA-----      2182
+                                    *************************** *****************     
+
+chrX_from                           AGTGTTGGAGTTGGTACTTTCGGTGGTAGTAGCATTAGTGCTGGAGTTGG      2069
+chrX                                --------------------------------------------------      2182
+                                                                                      
+
+chrX_from                           TACTTTCAGTGGTAGTCGCATTAGTGCTGGAGTTGGTACTTTCAGTGGTA      2119
+chrX                                -----------------GCATTAGTGCTGGAGTTGGTACTTTCAGTGGTA      2215
+                                                     *********************************
+
+chrX_from                           GTAGCACTAGTCCTGACGTTGATGCTGGCAGTGGTAGTAGCACTAGTCCT      2169
+chrX                                GTCGCACTAGTCCTGACGTTGATGCTGGCAGTGGTAGTAGCACTAGTCCT      2265
+                                    ** ***********************************************
+
+chrX_from                           GACGTTGGTGCTGGCAGTGGTAGTAGCATTAGTGCTGGAGTTGGTAGTCG      2219
+chrX                                GACGTTGGTGCTGGCAGTGGTAGTAGCATTAGTGCTGGAGTTGGTAGTCG      2315
+                                    **************************************************
+
+chrX_from                           CATTGGTACTGGCATT      2235
+chrX                                CATTGGTACTGGCATT      2331
+                                    ****************
+
+
