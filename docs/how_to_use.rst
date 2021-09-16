@@ -21,7 +21,8 @@ To classify variants it is always necessary to pass two VCF files, one for each 
 
 Most common use of the phasefilter:
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2
    $ phasefilter --help
    $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
    
@@ -50,7 +51,8 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
 -  threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
 -  remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
   
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 2,3
    ## other possibility
    $ phasefilter --help
    $ phasefilter --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
@@ -68,7 +70,8 @@ make_alignment
 Align two fasta files and creates a report with the alignment percentage. This tool also creates a ClustalX alignment file that is produced with the results of minimpa2 aligner. It accpets three mandatory parameters as two optinal parameters.
 Most common use of the make_alignment:
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2
    $ make_alignment --help
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt
 
@@ -84,7 +87,8 @@ This tool has two extra parameters:
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 -  out_alignment - folder name where an alignment will be save. It has ClustalX format.
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2
    $ make_alignment --help
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt --pass_chr chrI,chrII --out_alignment path_alignment
 
@@ -97,7 +101,8 @@ reference_statistics
 Creates a report based on the number of bases that exists in the chromosomes present in fasta file.
 Most common use of the reference_statistics:
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2
    $ reference_statistics --help
    $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out report_stats.txt
    
@@ -112,7 +117,8 @@ synchronize_genomes
 Synchronize two references and add two new fields (StartHit;EndHit) to GFF files with the positions of the second reference, the hit reference (ref2). For VCF files only adds (start_hit) to Info notations. It accepts 4 mandatory parameters and one optional. It is necessary to pass a VCF or a GFF file.
 Most common use of the synchronize_genomes:
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2
    $ synchronize_genomes --help
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
    
@@ -127,7 +133,8 @@ This tool has one extra parameter:
 
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1-3
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf --out result.vcf --pass_chr chrmt
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf.gz --pass_chr chr_to_pass
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf

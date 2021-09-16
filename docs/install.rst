@@ -3,16 +3,18 @@
 Installation of PHASEfilter
 ***************************
 
-Installation of PHASEfilter:
-++++++++++++++++++++++++++++
+Installation of PHASEfilter
++++++++++++++++++++++++++++
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1
    $ pip3 install phasefilter
 
-Installation of PHASEfilter in a virtual environment:
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+Installation of PHASEfilter in a virtual environment
+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1,2,3,5
    $ virtualenv phasefilter --python=python3 --prompt "(phasefilter) "
    $ source phasefilter/bin/activate
    (phasefilter) $ pip3 install phasefilter
@@ -30,10 +32,11 @@ PHASEfilter relies on several bioinformatic software to run:
 -  htslib >= 1.3
 -  bgzip >= 1.3
 
-After that you have three scripts available
-+++++++++++++++++++++++++++++++++++++++++++
+After that you have four scripts available
+++++++++++++++++++++++++++++++++++++++++++
 
-.. code-block:: shell
+.. code-block:: bash
+   :emphasize-lines: 1-4
    $ phasefilter
    $ make_alignment
    $ reference_statistics
