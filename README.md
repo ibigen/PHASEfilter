@@ -31,7 +31,6 @@ The follow software must be available in your computer:
 * [bcftools](http://www.htslib.org/download/) v1.3 or up
 * [samtools](http://www.htslib.org/download/) v1.3 or up
 * [htslib](http://www.htslib.org/download/) v1.3 or up
-* [blastn](https://www.ncbi.nlm.nih.gov/books/NBK52640/) [Optional] v2.3 or up 
 
 
 # All software available

@@ -14,10 +14,10 @@ Welcome to PHASEfilter's documentation!
 Highlights
 ++++++++++
 
-- ** filter SNPs and INDELs;
-- ** identify Loss of Heterozygous (LOH);
-- ** create an alignment of two phased reference genomes;
-- ** possible to redefine the Allele Frequency threshold to redefine heterozygous form;
+#. **filter SNPs and INDELs**;
+#. **identify Loss of Heterozygous (LOH)**;
+#. **create an alignment of two phased reference genomes**;
+#. **possible to redefine the Allele Frequency threshold to redefine heterozygous form**;
 
 Contact
 +++++++
