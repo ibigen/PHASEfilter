@@ -8,10 +8,10 @@ For that, it is necessary to have a diploid version of the reference genome and 
 
 This package offer four tools:
 
-#. phasefilter
-#. reference_statistics
-#. synchronize_genomes
-#. make_alignment
+-  phasefilter
+-  reference_statistics
+-  synchronize_genomes
+-  make_alignment
 
 phasefilter
 +++++++++++
