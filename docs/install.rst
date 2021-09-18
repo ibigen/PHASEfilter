@@ -3,15 +3,16 @@
 Installation of PHASEfilter
 ***************************
 
-Installation of PHASEfilter
-+++++++++++++++++++++++++++
+Regular Install
++++++++++++++++
 
 .. code-block:: shell
    :linenos:
+   
    $ pip3 install phasefilter
 
-Installation of PHASEfilter in a virtual environment
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+PHASEfilter in a virtual environment
+++++++++++++++++++++++++++++++++++++
 
 .. code-block:: shell
    :linenos:

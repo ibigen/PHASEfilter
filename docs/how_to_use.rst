@@ -5,7 +5,7 @@ How to use
 
 PHASEfilter package offers four main tools to the user:
 
-phasefilter
+PHASEfilter
 +++++++++++
 
 With this tool it is possible to indentify heterozygous and loss of heterozygoty between two diplod references. It is also possible to set a threshold of heterozygous/homozygous variant base on Allele Deep (AD). A threshold to remove variants with low Allele freqeuncy is also available.
