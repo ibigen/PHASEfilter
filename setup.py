@@ -8,6 +8,7 @@ from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 ## 
 ## python3 setup.py sdist bdist_wheel
 ## python3 -m twine upload dist/*
+#### and press cancel in all windows
 ### to test in virtual env
 ## python3 -m pip install dist/PHASEfilter-0.1-py3-none-any.whl --install-option test
 
@@ -24,13 +25,14 @@ class bdist_wheel(_bdist_wheel):
 setuptools.setup(
 	name='PHASEfilter',
 	version=version.VERSION_package,
-	scripts=['PHASEfilter/bin/phasefilter.py', 
-			'PHASEfilter/bin/best_alignment.py',
+	scripts=['PHASEfilter/bin/phasefilter.py',
+			'PHASEfilter/bin/phasefilter_single.py', 
+			'PHASEfilter/bin/make_alignment.py',
 			'PHASEfilter/bin/reference_statistics.py',
 			'PHASEfilter/bin/synchronize_genomes.py'],
 	author="Miguel Pinheiro",
 	author_email="monsanto@ua.pt",
-	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form, in phased genomes.",
+	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.",
 	long_description_content_type="text/markdown",
 	url="https://github.com/ibigen/PHASEfilter",
 	packages=setuptools.find_packages(),
@@ -56,7 +58,7 @@ setuptools.setup(
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX :: Linux",
 #		'Operating System :: POSIX',
-#		"Operating System :: MacOS :: MacOS X",
+		"Operating System :: MacOS :: MacOS X",
 		"Intended Audience :: Science/Research",
 		"Topic :: Scientific/Engineering :: Bio-Informatics",
 	],
@@ -69,20 +71,22 @@ setuptools.setup(
 	],
 	entry_points={
 		'console_scripts': [
-			'best_alignment = PHASEfilter.bin.make_alignment:main',
+			'make_alignment = PHASEfilter.bin.make_alignment:main',
 			'reference_statistics = PHASEfilter.bin.reference_statistics:main',
 			'phasefilter = PHASEfilter.bin.phasefilter:main',
+			'phasefilter_single = PHASEfilter.bin.phasefilter_single:main',
 			'synchronize_genomes = PHASEfilter.bin.synchronize_genomes:main',
 		],
 	},
 	tests_require=['tox'],
 	
 	# Note that this is a string of words separated by whitespace, not a list.
-	keywords='filtering synchronize genome bioinformatics ',  # Optional
+	keywords='SNPs INDEL phased genome filtering bioinformatics',  # Optional
 	
 	project_urls={  # Optional
 		'Bug Reports': 'https://github.com/ibigen/PHASEfilter/issues',
 		'Source': 'https://github.com/ibigen/PHASEfilter',
+		'Documentation': 'https://phasefilter.readthedocs.io/en/latest/index.html',
 	},
 	
 )

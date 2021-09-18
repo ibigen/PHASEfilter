@@ -42,17 +42,22 @@ class ProcessTwoGenomes(object):
 		:out get file name where report will be saved
 		"""
 		return os.path.join(os.path.dirname(self.outfile_vcf),\
-			"{}_{}".format(self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', ''),\
-			"removed.vcf.gz"))
+			"removed_{}".format(os.path.basename(self.outfile_vcf)))
 
 	def get_vcf_loh_file(self):
 		"""
 		:out get file name where report will be saved
 		"""
 		return os.path.join(os.path.dirname(self.outfile_vcf),\
-			"{}_{}".format(self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', ''),\
-			"LOH.vcf.gz"))
+			"LOH_{}".format(os.path.basename(self.outfile_vcf)))
 	
+	def get_vcf_file_name(self):
+		"""
+		:out get file name where report will be saved
+		"""
+		return os.path.join(os.path.dirname(self.outfile_vcf),\
+			"valid_{}".format(os.path.basename(self.outfile_vcf)))
+
 	def process(self):
 		"""
 		save one VCF with Heterozygous SNPs remove, from 1 to 2 
@@ -127,7 +132,7 @@ class ProcessTwoGenomes(object):
 			handle_write.write("Total\t\t{}\n".format(str(count_alleles)))
 			
 		### join vcf output files
-		if has_vcf_results_global: self.run_extra_software.concat_vcf(temp_work_dir, prefix, extension_out + ".gz", self.outfile_vcf)
+		if has_vcf_results_global: self.run_extra_software.concat_vcf(temp_work_dir, prefix, extension_out + ".gz", self.get_vcf_file_name())
 		if has_vcf_removed_results_global: self.run_extra_software.concat_vcf(temp_work_dir_vcf_removed, prefix, extension_out + ".gz", self.get_vcf_removed_file())
 		if has_vcf_loh_results_global: self.run_extra_software.concat_vcf(temp_work_dir_vcf_loh, prefix, extension_out + ".gz", self.get_vcf_loh_file())
 		
@@ -145,15 +150,15 @@ class ProcessTwoGenomes(object):
 		self.utils.remove_dir(temp_work_dir_vcf_loh)
 			
 		### print info
-		if has_vcf_results_global: print("VCF result: {}".format(self.outfile_vcf))
-		else: print("There's no variants for the file '{}'.".format(self.outfile_vcf))
+		if has_vcf_results_global: print("VCF result: {}".format(self.get_vcf_file_name()))
+		else: print("There's no variants for the file '{}'.".format(self.get_vcf_file_name()))
 		if has_vcf_removed_results_global: print("VCF removed variants result: {}".format(self.get_vcf_removed_file()))
 		else: print("There's no variants for the file '{}'.".format(self.get_vcf_removed_file()))
 		if has_vcf_loh_results_global: print("VCF LOH variants result: {}".format(self.get_vcf_loh_file()))
 		else: print("There's no variants for the file '{}'.".format(self.get_vcf_loh_file()))
 		print("Report result: {}".format(self.get_report_file()))
-	
-	
+
+
 	def process_chromosome(self, chr_name_A, chr_name_B, vcf_out_temp, vcf_out_removed_temp, vcf_out_LOH_temp,
 						report_out_temp, print_results = True):
 		"""

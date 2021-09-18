@@ -27,7 +27,7 @@ $ pip3 install PHASEfilter
 
 
 The follow software must be available in your computer:
-* [minimpa2](https://github.com/lh3/minimap2) v2.21 or up
+* [minimpa2](https://github.com/lh3/minimap2) v2.22 or up
 * [bcftools](http://www.htslib.org/download/) v1.3 or up
 * [samtools](http://www.htslib.org/download/) v1.3 or up
 * [htslib](http://www.htslib.org/download/) v1.3 or up

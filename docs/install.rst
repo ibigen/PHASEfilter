@@ -6,13 +6,16 @@ Installation of PHASEfilter
 Installation of PHASEfilter
 +++++++++++++++++++++++++++
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
    $ pip3 install phasefilter
 
 Installation of PHASEfilter in a virtual environment
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ virtualenv phasefilter --python=python3 --prompt "(phasefilter) "
    $ source phasefilter/bin/activate
    (phasefilter) $ pip3 install phasefilter
@@ -20,10 +23,13 @@ Installation of PHASEfilter in a virtual environment
    (phasefilter) $ pip3 install phasefilter --install-option test
 
 
-After that you have four scripts available:
+After that you have five scripts available:
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ phasefilter
+   $ phasefilter_single
    $ make_alignment
    $ reference_statistics
    $ synchronize_genomes

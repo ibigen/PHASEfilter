@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# INSaFLU documentation build configuration file, created by
+# PHASEfilter documentation build configuration file, created by
 # sphinx-quickstart on Thu Jan 11 09:25:25 2018.
 #
 # This file is execfile()d with the current directory set to its
@@ -143,6 +143,8 @@ latex_documents = [
      'Miguel Pinheiro', 'manual'),
 ]
 
+## ADD miguel 
+latex_use_xindy = False
 
 # -- Options for manual page output ---------------------------------------
 

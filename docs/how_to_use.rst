@@ -21,9 +21,11 @@ To classify variants it is always necessary to pass two VCF files, one for each 
 
 Most common use of the phasefilter:
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ phasefilter --help
-   $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir
    
 In the previous case there are four parameteres:
 
@@ -31,18 +33,22 @@ In the previous case there are four parameteres:
 -  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
 -  vcf1 - has he variants called from the ref1;
 -  vcf2 - has he variants called from the ref2. It is the hit;
--  out_vcf - has the file with passed variants, not heterozygous;
+-  out - directory where the files will be saved;
 
 .. important::
    By default, heterozygous and homozygous form are defined by AC info for each variant. If AC = 1 is heterozygous, > 1 is homozygous. GATK adds this info tags at each variant,
    Loss Of Hetrozygous (LOH) is only detected if the VCF file ad the AC info tag for each variant.
    
-Four possible files will be created after the commands ends: 
+Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
 
--  <out_file>_report.txt - has the statistics about the analysis;
--  <out_file>.vcf.gz - has all variants that are not heterozygous between two references;
--  <out_file>_removed.vcf.gz - has all heterozygous variants;
--  <out_file>_LOH.vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+-  [A]_to_[B]_report.txt - has the statistics about the analysis;
+-  valid_[A]_to_[B].vcf.gz - has all variants that are not heterozygous between two references;
+-  removed_[A]_to_[B].vcf.gz - has all heterozygous variants;
+-  LOH_[A]_to_[B].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+-  [B]_to_[A]_report.txt - has the statistics about the analysis from ;
+-  valid_[B]_to_[A].vcf.gz - has all variants that are not heterozygous between two references;
+-  removed_[B]_to_[A].vcf.gz - has all heterozygous variants;
+-  LOH_[B]_to_[A].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
 
 
 If your VCF files has the allele deep (AD) format it is also possible to pass two extra parameters: 
@@ -50,7 +56,9 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
 -  threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
 -  remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
   
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    ## other possibility
    $ phasefilter --help
    $ phasefilter --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
@@ -59,7 +67,43 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
    If you pass a value to remove variants with low Allele Frequency, this value will be calculated with the counts that are in Allele Count (AC) in vcf file.
 
 .. important::
-   The vcf file in analysis it is always the one in --ref1 parameters,
+   The vcf file in analysis it is always the one in *ref1* parameters,
+
+
+phasefilter_single
+++++++++++++++++++
+
+This tool do as the same of the previous script but only analysis from Reference A (ref1) to Reference B (ref2)
+
+Most common use of the phasefilter:
+
+.. code-block:: shell
+   :linenos:
+
+   $ phasefilter_single --help
+   $ phasefilter_sinlge --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   
+In the previous case there are four parameteres:
+
+-  ref1 - has the fasta reference of the first form of species in analysis;
+-  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
+-  vcf1 - has he variants called from the ref1;
+-  vcf2 - has he variants called from the ref2. It is the hit;
+-  out_vcf - has the file with with results: 1) passed variants; 2) heterozygous; 3) LOH variants;
+
+
+Four possible files will be created after the commands ends: 
+
+-  <out_file>_report.txt - has the statistics about the analysis;
+-  valid_<out_file>.vcf.gz - has all variants that are not heterozygous between two references;
+-  removed_<out_file>.vcf.gz - has all heterozygous variants;
+-  LOH_<out_file>.vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+
+
+If your VCF files has the allele deep (AD) format it is also possible to pass two extra parameters: 
+
+-  threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
+-  remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
 
 
 make_alignment
@@ -68,7 +112,9 @@ make_alignment
 Align two fasta files and creates a report with the alignment percentage. This tool also creates a ClustalX alignment file that is produced with the results of minimpa2 aligner. It accpets three mandatory parameters as two optinal parameters.
 Most common use of the make_alignment:
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ make_alignment --help
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt
 
@@ -84,7 +130,9 @@ This tool has two extra parameters:
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 -  out_alignment - folder name where an alignment will be save. It has ClustalX format.
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ make_alignment --help
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt --pass_chr chrI,chrII --out_alignment path_alignment
 
@@ -97,7 +145,9 @@ reference_statistics
 Creates a report based on the number of bases that exists in the chromosomes present in fasta file.
 Most common use of the reference_statistics:
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ reference_statistics --help
    $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out report_stats.txt
    
@@ -112,7 +162,9 @@ synchronize_genomes
 Synchronize two references and add two new fields (StartHit;EndHit) to GFF files with the positions of the second reference, the hit reference (ref2). For VCF files only adds (start_hit) to Info notations. It accepts 4 mandatory parameters and one optional. It is necessary to pass a VCF or a GFF file.
 Most common use of the synchronize_genomes:
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ synchronize_genomes --help
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
    
@@ -127,7 +179,9 @@ This tool has one extra parameter:
 
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 
-.. code-block::
+.. code-block:: shell
+   :linenos:
+
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf --out result.vcf --pass_chr chrmt
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf.gz --pass_chr chr_to_pass
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf

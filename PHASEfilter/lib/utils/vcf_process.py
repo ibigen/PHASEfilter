@@ -5,7 +5,6 @@ Created on 13/05/2020
 '''
 
 import collections
-import gzip
 try:
 	import vcf
 except ImportError as error:
@@ -192,6 +191,28 @@ class VcfProcess(object):
 		finally:
 			handle_in.close()
 		return False
+
+	def get_reference_name(self):
+		"""
+		:param reference_file_name; reference file name without path
+		
+		## from VCF file example
+		### ##reference=file:///usr/share/databases/references/candida/albicans_SC5314/v_22/C_albicans_SC5314_A22_chromosomes.fasta
+		"""
+		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
+		else: handle_in = open(self.file_name, 'r')
+		try:
+			vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
+			
+			for header_file in vcf_reader._header_lines:
+				if header_file.lower().startswith('##reference'):
+					file_name = header_file.split('/')[-1]
+					return file_name.split('/')[-1]
+		except Exception as e:
+			pass
+		finally:
+			handle_in.close()
+		return ""
 			
 	def get_ratio(self, vect_data, count_base):
 		"""
