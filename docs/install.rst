@@ -6,13 +6,23 @@ Installation of PHASEfilter
 Regular Install
 +++++++++++++++
 
+Install directly with pip:
+
 .. code-block:: shell
    :linenos:
    
    $ pip3 install phasefilter
 
+.. important::
+   When install 'pyvcf', dependent package, and if your setuptools>=58 it goes to throw an error: "error in PyVCF setup command: use_2to3 is invalid."
+   Please, use setuptools<58.
+   Setuptools>=58 breaks support for use_2to3 thats why you are facing this error for the package 'pyvcf'.
+   
+   
 PHASEfilter in a virtual environment
 ++++++++++++++++++++++++++++++++++++
+
+Install with virtual environment:
 
 .. code-block:: shell
    :linenos:
@@ -23,6 +33,10 @@ PHASEfilter in a virtual environment
    ### OR if you want to run the tests
    (phasefilter) $ pip3 install phasefilter --install-option test
 
+.. important::
+   When install 'pyvcf', dependent package, and if your setuptools>=58 if goes to throw an error: "error in PyVCF setup command: use_2to3 is invalid."
+   Please, use setuptools<58.
+   Setuptools>=58 breaks support for use_2to3 thats why you are facing this error.
 
 After that you have five scripts available:
 

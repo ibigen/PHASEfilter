@@ -14,8 +14,8 @@
 # 	15.10       # Date based release
 # 	23          # Serial release
 
-VERSION_package = "0.3.0"				### version of the package
-VERSION_make_alignement = "0.3.0"		### version of this script
-VERSION_phase_filter = "0.3.0"
-VERSION_reference_statistics = "0.3.0"
-VERSION_synchronize_genomes = "0.3.0"
+VERSION_package = "0.3.3"				### For pypi
+VERSION_make_alignement = "0.3.3"		### version of this script
+VERSION_phase_filter = "0.3.3"
+VERSION_reference_statistics = "0.3.3"
+VERSION_synchronize_genomes = "0.3.3"

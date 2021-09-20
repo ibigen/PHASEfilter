@@ -93,7 +93,7 @@ class CountAlleles(object):
 
 	def add_line(self, line):
 		lst_data = line.split()
-		if (len(lst_data) == 9 or len(lst_data) == 10):
+		if (len(lst_data) == 10 or len(lst_data) == 11):
 			self.equal_allele += int(lst_data[0])
 			self.diff_allele += int(lst_data[1])
 			self.loh_allele += int(lst_data[2])
@@ -101,13 +101,13 @@ class CountAlleles(object):
 			self.dont_have_hit_postion += int(lst_data[4])
 			self.could_not_fetch_vcf_record += int(lst_data[5])
 		## without AD filter
-		if len(lst_data) == 9:
+		if len(lst_data) == 10:
 			self.total_alleles += int(lst_data[6])
 		## with AD filter 
-		if len(lst_data) == 10:
+		if len(lst_data) == 11:
 			self.filter_threshold_ratio_AD += int(lst_data[6])
 			self.total_alleles += int(lst_data[7])
-			
+		
 	def __str__(self):
 		"""
 		:out statistics results
@@ -557,12 +557,14 @@ class VcfProcess(object):
 									vcf_write_removed.write_record(record)
 							if (count_record == 0):
 								self.count_alleles.add_could_not_fetch_vcf_record()
-								if (self.b_print_results): print("ErrorFetchRecord: ", record.heterozygosity, record)
+								if (self.b_print_results):
+									print("Error FetchRecord: ", record.heterozygosity, record)
+									print("Position from: {}    Position To: {}".format(record.POS, position))
 								vcf_write.write_record(record)
 						else:
 							### save in an output
 							if (self.b_print_results):
-								print("ErrorPos: ", record.heterozygosity, record)
+								print("Erro Pos: ", record.heterozygosity, record)
 								print("Position hit: {}    Position most left: {}".format(position, position_most_left))
 							vcf_write.write_record(record)
 							self.count_alleles.add_dont_have_hit_postion()

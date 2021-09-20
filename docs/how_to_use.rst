@@ -3,7 +3,7 @@
 How to use
 **********
 
-PHASEfilter package offers four main tools to the user:
+PHASEfilter package offers four main tools to the user.
 
 PHASEfilter
 +++++++++++
