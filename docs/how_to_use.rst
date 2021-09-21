@@ -25,7 +25,8 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter --help
-   $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir
+   $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz \
+   --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir
    
 In the previous case there are four parameteres:
 
@@ -61,7 +62,9 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
 
    ## other possibility
    $ phasefilter --help
-   $ phasefilter --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   $ phasefilter --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz \
+   --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir \
+   --threshold_heterozygous_AD 0.4 --remove_variants_by_AD_ratio 0.1
    
 .. note::
    If you pass a value to remove variants with low Allele Frequency, this value will be calculated with the counts that are in Allele Count (AC) in vcf file.
@@ -81,7 +84,8 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter_single --help
-   $ phasefilter_sinlge --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   $ phasefilter_sinlge --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz \
+   --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
    
 In the previous case there are four parameteres:
 
@@ -134,7 +138,8 @@ This tool has two extra parameters:
    :linenos:
 
    $ make_alignment --help
-   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt --pass_chr chrI,chrII --out_alignment path_alignment
+   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
+   --pass_chr chrI,chrII --out_alignment path_alignment
 
 .. note::
    Save the alignements take long time.

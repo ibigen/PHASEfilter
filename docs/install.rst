@@ -54,7 +54,7 @@ Dependecies
 
 PHASEfilter relies on several bioinformatic software to run:
 
--  minimap2 >= 2.2
+-  minimap2 >= 2.22
 -  samtools >= 1.3
 -  bcftools >= 1.3
 -  htslib >= 1.3
