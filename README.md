@@ -100,4 +100,4 @@ $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out retport.txt
 
 # Documentation
 
-PHASEfilter documentation is available [![ReadTheDocs: PHASEfilter](https://symbols.getvecta.com/stencil_94/31_readthedocs-icon.5efd9d4cc8.svg)](https://phasefilter.readthedocs.io/en/latest/)
+PHASEfilter documentation is available [ReadTheDocs: PHASEfilter](https://phasefilter.readthedocs.io/en/latest/)
