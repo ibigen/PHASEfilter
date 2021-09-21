@@ -1,5 +1,5 @@
 
-[![License: MIT](https://img.shields.io/badge/License-MIT%20-blue.svg)]
+[![License: MIT](https://img.shields.io/badge/License-MIT%20-blue.svg)](https://www.mit.edu/~amini/LICENSE.md)
 
 
 # PHASEfilter
@@ -97,7 +97,7 @@ $ reference_statistics --ref some_fasta_file.fasta --out retport.txt
 $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out retport.txt
 ```
 
-<!--
+
 # Documentation
-PHASEfilter documentation is available https://phasefilter.readthedocs.io/en/latest/
--->
+
+PHASEfilter documentation is available [![ReadTheDocs: PHASEfilter](https://symbols.getvecta.com/stencil_94/31_readthedocs-icon.5efd9d4cc8.svg)](https://phasefilter.readthedocs.io/en/latest/)
