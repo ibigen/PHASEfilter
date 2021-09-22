@@ -300,19 +300,20 @@ class VcfProcess(object):
 
 			### test heterozygous
 			if (len(record.samples) > 0):
+				### on the reference only look for the first one
 				sample = record.samples[0]
 
 				### calculate ratio if necessary
 				if (self.threshold_heterozygous_ad != -1.0 and 'AD' in sample.data._fields):
 					index = sample.data._fields.index('AD')
-					ratio_ad = self.get_ratio(sample.data[index], count_base + 1)	### ratio to define Hetero and Homo
+					ratio_ad = self.get_ratio(sample.data[index], 1)	### ratio to define Hetero and Homo
 					if (self.b_print_results): print("Ratio: ", record, "->",  record_hit, ratio_ad)
 					
 					### define heterozygous or homozygous
 					if (self.threshold_heterozygous_ad >= ratio_ad):
 						is_allele_heterozygous = True
 				else:
-					if ('AC' in record.INFO and record.INFO['AC'][count_base] == 1):
+					if ('AC' in record.INFO and record.INFO['AC'][0] == 1):
 						is_allele_heterozygous = True
 
 			### test wildcard in alt base
@@ -370,14 +371,14 @@ class VcfProcess(object):
 				### calculate ratio if necessary
 				if (self.threshold_heterozygous_ad != -1.0 and 'AD' in sample.data._fields):
 					index = sample.data._fields.index('AD')
-					ratio_ad = self.get_ratio(sample.data[index], count_base + 1)	### ratio to define Hetero and Homo
+					ratio_ad = self.get_ratio(sample.data[index], 1)	### ratio to define Hetero and Homo
 					if (self.b_print_results): print("Ratio: ", record, "->",  record_hit, ratio_ad)
 					
 					### define heterozygous or homozygous
 					if (self.threshold_heterozygous_ad >= ratio_ad):
 						is_allele_heterozygous = True
 				else:
-					if ('AC' in record.INFO and record.INFO['AC'][count_base] == 1):
+					if ('AC' in record.INFO and record.INFO['AC'][0] == 1):
 						is_allele_heterozygous = True
 
 			### test wildcard in alt base
@@ -525,7 +526,7 @@ class VcfProcess(object):
 				
 				for record in vcf_reader:
 					if (record.is_snp or record.is_indel):
-						# print(record.heterozygosity, record)
+						#print(record.heterozygosity, record)
 						
 						## remove variant if is low AD and user define it
 						sample = record.samples[0]
