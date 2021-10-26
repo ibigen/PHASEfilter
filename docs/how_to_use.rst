@@ -3,9 +3,9 @@
 How to use
 **********
 
-PHASEfilter package offers four main tools to the user.
+PHASEfilter package offers five main tools to the user.
 
-PHASEfilter
+phasefilter
 +++++++++++
 
 With this tool it is possible to indentify heterozygous and loss of heterozygoty between two diplod references. It is also possible to set a threshold of heterozygous/homozygous variant base on Allele Deep (AD). A threshold to remove variants with low Allele freqeuncy is also available.
@@ -25,8 +25,9 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter --help
-   $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz \
-   --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
+   $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
+   --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
    
 In the previous case there are four parameteres:
 
@@ -42,14 +43,28 @@ In the previous case there are four parameteres:
    
 Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
 
--  [A]_to_[B]_report.txt - has the statistics about the analysis;
+-  report_[A]_to_[B].txt - has the statistics about the analysis;
 -  valid_[A]_to_[B].vcf.gz - has all variants that are not heterozygous between two references;
 -  removed_[A]_to_[B].vcf.gz - has all heterozygous variants;
--  LOH_[A]_to_[B].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
--  [B]_to_[A]_report.txt - has the statistics about the analysis from ;
+-  LOH_[A]_to_[B].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'valid_[A]_to_[B].vcf.gz' file.
+
+-  report_[B]_to_[A].txt - has the statistics about the analysis from ;
 -  valid_[B]_to_[A].vcf.gz - has all variants that are not heterozygous between two references;
 -  removed_[B]_to_[A].vcf.gz - has all heterozygous variants;
--  LOH_[B]_to_[A].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+-  LOH_[B]_to_[A].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'valid_[B]_to_[A].vcf.gz' file.
+
+Headings description in report files:
+
+-  **Heterozygous (Removed)**  Heterozygous identified and they go the re remove_[YYY]_to[XXX].vcf.gz file
+-  **Keep alleles**   Alleles present in valid_[YYY]_to[XXX].vcf.gz file
+-  **LOH alleles Loss of Heterozygous** They are in valid_[YYY]_to[XXX].vcf.gz and LOH_[YYY]_to[XXX].vcf.gz file.
+-  **Other than SNP** Other variants thar are not SNPs and INDELs and they go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Don't have hit position** Variants that don’t have position in hit (ref B) genome and they go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Could Not Fetch VCF Record on Hit**   Variants that are present in source file but not in hit VCF file. They go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Total alleles**  All the alleles present in the source vcf file. Analyzed alleles.
+-  **Total Alleles new Source VCF**  Total alleles that are in valid_[YYY]_to[XXX].vcf.gz file
+-  **Method**   Alignment method.
+-  **Alignment %** Percentage of alignment.
 
 
 If your VCF files has the allele deep (AD) format it is also possible to pass two extra parameters: 
@@ -84,8 +99,9 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter_single --help
-   $ phasefilter_sinlge --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz \
-   --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
+   $ phasefilter_single --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
+   --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
    
 In the previous case there are four parameteres:
 
@@ -98,7 +114,7 @@ In the previous case there are four parameteres:
 
 Four possible files will be created after the commands ends: 
 
--  <out_file>_report.txt - has the statistics about the analysis;
+-  report_<out_file>.txt - has the statistics about the analysis;
 -  valid_<out_file>.vcf.gz - has all variants that are not heterozygous between two references;
 -  removed_<out_file>.vcf.gz - has all heterozygous variants;
 -  LOH_<out_file>.vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
@@ -120,14 +136,15 @@ Most common use of the make_alignment:
    :linenos:
 
    $ make_alignment --help
-   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
+   $ make_alignment --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --out report.txt
 
    
 In the previous case there are four parameteres:
 
 -  ref1 - has the fasta reference of the first form of species in analysis;
 -  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
--  out - name for the report;
+-  out  - name for the report;
 
 This tool has two extra parameters: 
 
@@ -154,7 +171,8 @@ Most common use of the reference_statistics:
    :linenos:
 
    $ reference_statistics --help
-   $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out report_stats.txt
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
+   $ reference_statistics --ref temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --out report_stats.txt
    
 In the previous case there are four parameteres:
 
@@ -171,14 +189,14 @@ Most common use of the synchronize_genomes:
    :linenos:
 
    $ synchronize_genomes --help
-   $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
+   $ synchronize_genomes --ref1 S288C_reference_chr.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
    
 In the previous case there are four parameteres:
 
 -  ref1 - has the fasta reference of the first form of species in analysis;
 -  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
--  gff - has he variants called from the ref1;
- out - has the file with passed variants, not heterozygous;
+-  gff  - has he variants called from the ref1;
+-  out  - has the file with passed variants, not heterozygous;
 
 This tool has one extra parameter: 
 
@@ -190,5 +208,10 @@ This tool has one extra parameter:
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf --out result.vcf --pass_chr chrmt
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf.gz --pass_chr chr_to_pass
    $ synchronize_genomes --ref1 S288C_reference_chr_names_cleaned.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf
+   
+   ### with example data
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
+   $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
+   --vcf temp_raw_data/T1_Fluc_7A_snps.vcf.gz --out result.vcf
 
 

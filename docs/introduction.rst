@@ -1,7 +1,7 @@
 
-***************************
-Introduction of PHASEfilter
-***************************
+************
+Introduction
+************
 
 PHASEfilter is a bioinformatic package that allow to identify the heterozygous variants that are present in diploid species.
 For that, it is necessary to have a diploid version of the reference genome and two variant files (vcf), one for each ploidy of the reference. 

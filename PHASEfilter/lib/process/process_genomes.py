@@ -34,8 +34,8 @@ class ProcessTwoGenomes(object):
 		:out get file name where report will be saved
 		"""
 		return os.path.join(os.path.dirname(self.outfile_vcf),\
-			"{}_{}".format(self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', ''),\
-			"report.txt"))
+			"{}_{}.txt".format("report",
+			self.utils.get_file_name_without_extension(self.outfile_vcf).replace('.vcf', '')))
 
 	def get_vcf_removed_file(self):
 		"""

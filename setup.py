@@ -29,7 +29,8 @@ setuptools.setup(
 			'PHASEfilter/bin/phasefilter_single.py', 
 			'PHASEfilter/bin/make_alignment.py',
 			'PHASEfilter/bin/reference_statistics.py',
-			'PHASEfilter/bin/synchronize_genomes.py'],
+			'PHASEfilter/bin/synchronize_genomes.py',
+			'PHASEfilter/bin/copy_raw_data_example_phasefilter.py'],
 	author="Miguel Pinheiro",
 	author_email="monsanto@ua.pt",
 	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.",
@@ -49,7 +50,7 @@ setuptools.setup(
 		#	Development Status :: 5 - Production/Stable
 		#	Development Status :: 6 - Mature
 		#	Development Status :: 7 - Inactive
-		'Development Status :: 3 - Alpha',
+		'Development Status :: 2 - Pre-Alpha',
 		"Programming Language :: Python :: 3.5",
 		"Programming Language :: Python :: 3.6",
 		"Programming Language :: Python :: 3.7",
@@ -76,6 +77,7 @@ setuptools.setup(
 			'phasefilter = PHASEfilter.bin.phasefilter:main',
 			'phasefilter_single = PHASEfilter.bin.phasefilter_single:main',
 			'synchronize_genomes = PHASEfilter.bin.synchronize_genomes:main',
+			'copy_raw_data_example_phasefilter = PHASEfilter.bin.copy_raw_data_example_phasefilter:main',
 		],
 	},
 	tests_require=['tox'],

@@ -1,7 +1,7 @@
 
-***************************
-Installation of PHASEfilter
-***************************
+************
+Installation
+************
 
 Regular Install
 +++++++++++++++
@@ -48,6 +48,7 @@ After that you have five scripts available:
    $ make_alignment
    $ reference_statistics
    $ synchronize_genomes
+   $ copy_raw_data_example_phasefilter
    
 Dependecies
 +++++++++++

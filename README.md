@@ -3,7 +3,7 @@
 
 
 # PHASEfilter
-PHASEfilter is a software package that is possible to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.
+PHASEfilter is a software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.
 
 # Installation
 
@@ -12,7 +12,7 @@ This installation is oriented for Linux distributions.
 ### Install directly
 
 ```
-$ pip install PHASEfilter
+$ pip3 install PHASEfilter
 ```
 
 ### Install with virtualenv
@@ -49,14 +49,29 @@ $ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albica
 
 Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
 
--  [A]_to_[B]_report.txt - has the statistics about the analysis;
+-  report_[A]_to_[B].txt - has the statistics about the analysis;
 -  valid_[A]_to_[B].vcf.gz - has all variants that are not heterozygous between two references;
 -  removed_[A]_to_[B].vcf.gz - has all heterozygous variants;
 -  LOH_[A]_to_[B].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
--  [B]_to_[A]_report.txt - has the statistics about the analysis from ;
+
+-  report_[B]_to_[A].txt - has the statistics about the analysis from ;
 -  valid_[B]_to_[A].vcf.gz - has all variants that are not heterozygous between two references;
 -  removed_[B]_to_[A].vcf.gz - has all heterozygous variants;
 -  LOH_[B]_to_[A].vcf.gz - has all variants that are loss of heterozygous between two references. This variants are also in 'out_file.vcf.gz' file.
+
+Headings description in report files:
+
+-  **Heterozygous (Removed)**  Heterozygous identified and they go the re remove_[YYY]_to[XXX].vcf.gz file
+-  **Keep alleles**   Alleles present in valid_[YYY]_to[XXX].vcf.gz file
+-  **LOH alleles Loss of Heterozygous** They are in valid_[YYY]_to[XXX].vcf.gz and LOH_[YYY]_to[XXX].vcf.gz file.
+-  **Other than SNP** Other variants thar are not SNPs and INDELs and they go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Don't have hit position** Variants that don’t have position in hit (ref B) genome and they go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Could Not Fetch VCF Record on Hit**   Variants that are present in source file but not in hit VCF file. They go to valid_[YYY]_to[XXX].vcf.gz file
+-  **Total alleles**  All the alleles present in the source vcf file. Analyzed alleles.
+-  **Total Alleles new Source VCF**  Total alleles that are in valid_[YYY]_to[XXX].vcf.gz file
+-  **Method**   Alignment method.
+-  **Alignment %** Percentage of alignment.
+
 
 ## Filter variants in phased genomes but only one direction
 

@@ -23,9 +23,9 @@ Contact
 +++++++
 If you have any questions, comments or suggestions, please contact <monsanto@ua.pt>
 
-*********
-Contents:
-*********
+********
+Contents
+********
 
 .. toctree::
    :maxdepth: 2
