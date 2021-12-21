@@ -146,7 +146,7 @@ In the previous case there are four parameteres:
 -  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
 -  out  - name for the report;
 
-This tool has two extra parameters: 
+This tool has three extra parameters: 
 
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
 -  out_alignment - folder name where an alignment will be save. It has ClustalX format.
@@ -157,6 +157,8 @@ This tool has two extra parameters:
    $ make_alignment --help
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
    --pass_chr chrI,chrII --out_alignment path_alignment
+   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
+   --pass_chr chrI,chrII --out_alignment path_alignment --out_new_reference path_new_reference
 
 .. note::
    Save the alignements take long time.
@@ -189,7 +191,10 @@ Most common use of the synchronize_genomes:
    :linenos:
 
    $ synchronize_genomes --help
+   $ copy_raw_data_example_phasefilter --out temp_raw_data
    $ synchronize_genomes --ref1 S288C_reference_chr.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
+   OR
+   $ synchronize_genomes --ref1 S288C_reference_chr.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf
    
 In the previous case there are four parameteres:
 
@@ -197,6 +202,10 @@ In the previous case there are four parameteres:
 -  ref2 - has the fasta reference of the second form of species in analysis. It is the hit;
 -  gff  - has he variants called from the ref1;
 -  out  - has the file with passed variants, not heterozygous;
+
+Can also change the gff parameter to vcf:
+
+-  vcf  - has he variants called from the ref1;
 
 This tool has one extra parameter: 
 

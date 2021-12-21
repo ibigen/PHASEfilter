@@ -112,6 +112,14 @@ $ reference_statistics --ref some_fasta_file.fasta --out retport.txt
 $ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out retport.txt
 ```
 
+## Copy some example data to test all tools
+
+It is possible to copy some example data and test the tools available
+
+```
+$ copy_raw_data_example_phasefilter --help
+$ copy_raw_data_example_phasefilter --out temp_dir
+```
 
 # Documentation
 

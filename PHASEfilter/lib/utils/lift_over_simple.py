@@ -4,7 +4,7 @@ Created on 16/12/2019
 @author: mmp
 '''
 import sys, os
-from PHASEfilter.lib.utils.util import Utils, Cigar, CountLength
+from PHASEfilter.lib.utils.util import Utils, Cigar, CountLength, NucleotideCodes
 from PHASEfilter.lib.utils.blast_two_sequences import BlastTwoSequences
 from PHASEfilter.lib.utils.lastz_two_sequences import LastzTwoSequences
 from Bio import SeqIO
@@ -918,6 +918,74 @@ class LiftOverLight(object):
 		self.utils.remove_file(temp_file)
 		return out_file
 
+	def get_chr_synchronized_with_other_chr(self, seq_name_from, seq_name_to):
+		""" return a chr with vector with two sequences synchronized and a dictonary with IUPAC insertions"""
+		
+		method = self.get_method_best_method(seq_name_from, seq_name_to)
+		key_chain_name = self._get_key_chain_name(seq_name_from, seq_name_to)
+		if key_chain_name in self.dt_chain: return None				## key name not found
+		
+		## return the original 
+		if (len(self.dt_chain[method][key_chain_name].get_vect_alignments()) > 1):
+			return (None, None)
+		
+		## seq to return
+		nucleotids = NucleotideCodes()
+		seq_return = None
+		dt_report_iupac = { _ : 0 for _ in nucleotids.vect_iupac }
+		
+		## for each alignment
+		for alignment in self.dt_chain[method][key_chain_name].get_vect_alignments():
+		
+			## sequences...
+			seq_from = ""
+			seq_to = ""
+				
+			# Positions in the sequences 
+			cur_pos_from = alignment.get_start_query()
+			cur_pos_to = alignment.get_start_subject()
+		
+			for second_count, element in enumerate(alignment.cigar.get_best_vect_cigar_elements()):
+			#	print(cur_pos_from, cur_pos_from_begin, cur_pos_to, cur_pos_to_begin, str(element))
+				####
+				
+				if (second_count + 1 == len(alignment.cigar.get_best_vect_cigar_elements()) and \
+					(element.is_H() or element.is_S())):
+					break
+				
+				if (second_count == 0):
+					## hard and soft clipping
+					if (element.is_S() or element.is_H()):
+						cur_pos_to = element.length
+						continue
+				
+				if (element.is_D() or element.is_N()):
+					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+					cur_pos_from += element.length
+					seq_to += "-" * element.length
+				elif (element.is_S() or element.is_I() or element.is_H()):
+					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+					cur_pos_to += element.length
+					seq_from += "-" * element.length
+				elif (element.is_M()):
+				#	print(str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length])
+					seq_to += str(self.reference_to.reference_dict[seq_name_to].seq)[cur_pos_to: cur_pos_to + element.length]
+					cur_pos_to += element.length
+	
+				#	print(str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length])
+					seq_from += str(self.reference_from.reference_dict[seq_name_from].seq)[cur_pos_from: cur_pos_from + element.length]
+					cur_pos_from += element.length
+
+			### create the reference with IUPAC
+			if len(seq_from) > 0:
+				seq_return = ""
+				for _, base_from in enumerate(seq_from):
+					(base, has_degenerated_base) = nucleotids.get_iupac_based_on_bases(base_from, seq_to[_])
+					if (not base is None):
+						seq_return += base
+						if (has_degenerated_base): dt_report_iupac[base] += 1
+
+		return (seq_return, dt_report_iupac)
 
 	def create_cigar_file(self, out_file, method, seq_name_from, seq_name_to):
 		"""

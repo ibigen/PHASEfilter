@@ -6,6 +6,15 @@ This tab includes a list (chronologically ordered) of notable changes in PHASEfi
 2021
 ----
 
+October 26, 2021
+................
+
+Add new tool
+
+-  Create a tool to copy some data to test the some tools;
+-  Add the possibility of creation a reference with degenerated bases for heterozygous positions. IUPAC codes will be applied. It is only available for SNPs;
+
+
 September 17, 2021
 ..................
 

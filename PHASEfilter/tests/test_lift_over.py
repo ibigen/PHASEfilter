@@ -218,7 +218,7 @@ class Test(unittest.TestCase):
 		utils.remove_dir(temp_work_dir)
 	
 	
-	def test_list_over_saccharo_chr_xi(self):
+	def test_lift_over_saccharo_chr_xi(self):
 		utils = Utils("synchronize")
 		temp_work_dir = utils.get_temp_dir()
 	
@@ -264,7 +264,7 @@ class Test(unittest.TestCase):
 		utils.remove_dir(temp_work_dir)
 
 	
-	def test_list_over_saccharo_chr_xi_small(self):
+	def test_lift_over_saccharo_chr_xi_small(self):
 		utils = Utils("synchronize")
 		temp_work_dir = utils.get_temp_dir()
 	
@@ -297,6 +297,47 @@ class Test(unittest.TestCase):
 		os.system(cmd)
 		vect_result = utils.read_text_file(temp_diff)
 		self.assertEqual(0, len(vect_result))
+		utils.remove_dir(temp_work_dir)
+
+
+	def test_create_new_ref_chr_xi(self):
+		utils = Utils("synchronize")
+		temp_work_dir = utils.get_temp_dir()
+	
+		seq_file_name_a = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/chrX.fasta")
+		seq_file_name_b = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files/referenceSaccharo/S01.chrX.fasta")
+		self.assertTrue(os.path.exists(seq_file_name_a))
+		self.assertTrue(os.path.exists(seq_file_name_b))
+	
+		seq_name_a = "chrX"
+		seq_name_b = "chrX_S01"
+		reference_a = Reference(seq_file_name_a)
+		reference_b = Reference(seq_file_name_b)
+		impose_minimap2_only = False
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
+		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
+	
+		temp_out_report = utils.get_temp_file_with_path(temp_work_dir, "out_sync_saccharo", ".txt")
+		temp_out_sync = utils.get_temp_file_with_path(temp_work_dir, "out_sync_saccharo", ".fasta")
+		process_two_references = ProcessTwoReferences(seq_file_name_a, seq_file_name_b, temp_out_report, None, temp_out_sync)
+		process_two_references.process()
+
+		### test reference	
+		out_result_expected = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files/referenceSaccharo/out_new_ref_saccharo_X.fasta')
+		temp_diff = utils.get_temp_file_with_path(temp_work_dir, "diff_file", ".txt")
+		cmd = "diff {} {} > {}".format(temp_out_sync, out_result_expected, temp_diff)
+		os.system(cmd)
+		vect_result = utils.read_text_file(temp_diff)
+		self.assertEqual(0, len(vect_result))
+		
+		### test report
+		out_result_expected = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files/result/report_sync_reference.txt')
+		cmd = "diff {} {} > {}".format(temp_out_report, out_result_expected, temp_diff)
+		os.system(cmd)
+		vect_result = utils.read_text_file(temp_diff)
+		self.assertEqual(0, len(vect_result))
+		
 		utils.remove_dir(temp_work_dir)
 
 

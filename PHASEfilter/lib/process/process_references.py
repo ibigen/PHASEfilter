@@ -3,13 +3,16 @@ Created on 06/12/2019
 
 @author: mmp
 '''
-from PHASEfilter.lib.utils.util import Utils
+from PHASEfilter.lib.utils.util import Utils, NucleotideCodes
 from PHASEfilter.lib.utils.reference import Reference
 from PHASEfilter.lib.utils.lift_over_simple import LiftOverLight
 from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
 from PHASEfilter.lib.utils.read_gff import ReadGFF
 from PHASEfilter.lib.utils.software import Software
 from PHASEfilter.lib.utils.vcf_process import VcfProcess
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
 from operator import itemgetter
 import os
 
@@ -18,15 +21,20 @@ class ProcessTwoReferences(object):
 	utils = Utils("synchronize")
 	run_extra_software = RunExtraSoftware()
 	
-	def __init__(self, reference_1, reference_2, outfile, out_path_alignments = None):
+	def __init__(self, reference_1, reference_2, outfile_report, out_path_alignments = None,
+				out_new_reference = None):
 		"""
 		set the data
+		:param  reference_1 reference 1
+		:param  reference_2 reference 2
+		:param  outfile_report report file
 		"""
 		### read references
 		self.reference_1 = Reference(reference_1)
 		self.reference_2 = Reference(reference_2)
-		self.outfile = outfile
+		self.outfile = outfile_report
 		self.out_path_alignments = out_path_alignments
+		self.out_new_reference = out_new_reference
 
 	def process(self, vect_pass_ref = []):
 		"""
@@ -40,6 +48,7 @@ class ProcessTwoReferences(object):
 		vect_not_process_A = []
 		temp_work_dir = self.utils.get_temp_dir()
 		
+		dict_change_nucleotids = {}
 		with open(self.outfile, 'w') as handle_write:
 			handle_write.write("Source genome\t{}\nHit genome\t{}\n\nSource genome\tHit genome\nChromosomes\tChromosomes\t".format(\
 					self.reference_1.get_reference_name(),\
@@ -60,8 +69,12 @@ class ProcessTwoReferences(object):
 				vect_process_B.append(chr_name_B)
 
 				### processing chromosomes
-				self._process_chromosome(chr_name_A, chr_name_B, handle_write)
+				lift_over_ligth = self._process_chromosome(chr_name_A, chr_name_B, handle_write)
 				
+				### save new reference that implies IUPAC codes for heterozygous positions
+				if (not self.out_new_reference is None):
+					dict_change_nucleotids[chr_name_A] = self.save_new_reference(chr_name_A, chr_name_B, lift_over_ligth)
+		
 		### print chr not process
 		vect_not_processed_B = self.reference_2.chr_not_included(vect_process_B)
 		vect_not_processed_A = vect_not_process_A
@@ -70,6 +83,16 @@ class ProcessTwoReferences(object):
 		if (len(vect_not_processed_B) == 0): print("All chromosomes are processed for genome 2")
 		else: print("Warning: chromosomes not processed for {}: ['{}']".format(self.reference_2.get_reference_name(), "', '".join(vect_not_processed_B)))
 	
+		### report of degenerated bases
+		if (not self.out_new_reference is None):
+			nucleotids = NucleotideCodes()
+			with open(self.outfile, 'a') as handle_write:
+				handle_write.write("\n\nChr. name\tNew Ref.\t" + "\t".join(nucleotids.vect_iupac_only_two_degenerated_bases) + "\n")
+				for chr_name_A in self.reference_1.vect_reference:
+					handle_write.write("{}\t{}\t{}\n".format(chr_name_A, "Yes" if len(dict_change_nucleotids[chr_name_A]) > 0 else "No", \
+							"\t".join([str(dict_change_nucleotids[chr_name_A].get(key, 0)) for key in nucleotids.vect_iupac_only_two_degenerated_bases])))
+					
+					
 		### remove tmp files
 		self.utils.remove_dir(temp_work_dir)
 			
@@ -144,7 +167,8 @@ class ProcessTwoReferences(object):
 		print("Processed {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		
-		
+		return lift_over_ligth
+
 	def parse_gff(self, gff_file_to_parse, vect_pass_ref, vect_type_to_process):
 		"""
 		:param gff_file_to_parse file gff3 to parse
@@ -188,5 +212,21 @@ class ProcessTwoReferences(object):
 		if (len(vect_fail_synch) > 0): print("Chromosomes that Failed to synch.: {}".format(",".join(vect_fail_synch)))
 		self.utils.remove_dir(temp_work_dir)
 
+	def save_new_reference(self, chr_name_A, chr_name_B, lift_over_ligth):
+		"""
+		Save new reference for heterozygous position between two chromosomes
+		"""
+		
+		reference_result, dict_change = lift_over_ligth.get_chr_synchronized_with_other_chr(chr_name_A, chr_name_B)
+		vec_fasta = []
+		if reference_result is None: 
+			vec_fasta.append(SeqRecord(self.reference_1[chr_name_A], id = chr_name_A , description="") )
+		else:
+			vec_fasta.append(SeqRecord(Seq(reference_result), id = chr_name_A , description="") )
+			
+		with open(self.out_new_reference, "a") as handle_out:
+			SeqIO.write(vec_fasta, handle_out, "fasta")
 
+		return dict_change
 
+			

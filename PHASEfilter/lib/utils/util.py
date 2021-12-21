@@ -300,10 +300,47 @@ class NucleotideCodes(object):
 						'V' : ['A', 'C', 'G'],
 						'N' : ['A', 'C', 'G', 'T', 'U'],
 					}
+		self.vect_iupac = ['A', 'C', 'G', 'T', 'U', 'R', 'Y', 'S', 'W', 'K', 'M', 'B', 'D', 'H', 'V', 'N']
+		self.vect_iupac_only_two_degenerated_bases = ['R', 'Y', 'S', 'W', 'K', 'M']
+		
+		self.dt_primary_bases = { 'A': 1, 'C': 1, 'T': 1, 'G': 1, 'U': 1 }
+		
+		## has two bases for each yupac code
+		self.dt_two_codes_iupac = {}
+		self.create_two_codes_iupac()
 
 	def has_this_base(self, base_ref, base_test):
 		return base_ref.upper() in self.dt_codes and base_test.upper() in self.dt_codes[base_ref.upper()]
 
+	def create_two_codes_iupac(self):
+		
+		for key in self.dt_codes:
+			if key == 'T': self.dt_two_codes_iupac["TT"] = "T"
+			elif key == 'U': self.dt_two_codes_iupac["UU"] = "U"
+			elif len(self.dt_codes[key]) == 1: self.dt_two_codes_iupac["{}{}".format(key, key)] = key
+			elif len(self.dt_codes[key]) == 2: 
+				self.dt_two_codes_iupac["{}{}".format(self.dt_codes[key][0], self.dt_codes[key][1])] = key
+				self.dt_two_codes_iupac["{}{}".format(self.dt_codes[key][1], self.dt_codes[key][0])] = key
+				
+				if self.dt_codes[key][1] == "T":
+					self.dt_two_codes_iupac["{}U".format(self.dt_codes[key][0])] = key
+					self.dt_two_codes_iupac["U{}".format(self.dt_codes[key][0])] = key
+				if self.dt_codes[key][0] == "T":
+					self.dt_two_codes_iupac["{}U".format(self.dt_codes[key][1])] = key
+					self.dt_two_codes_iupac["U{}".format(self.dt_codes[key][1])] = key
+
+	def get_iupac_based_on_bases(self, base1, base2):
+		""" try to find in 
+		return (Base to pass, True if change to a degenerated base)"""
+		if base1 == '-': return (None, False)
+		
+		base1 = base1.upper()
+		if (not base1 in self.dt_primary_bases): return (base1, False)
+		base2 = base2.upper()
+		if (not base2 in self.dt_primary_bases): return (base1, False)
+		if (base2 == 'U'): base2 = 'T'
+		return_base = self.dt_two_codes_iupac.get(base1 + base2, base1)
+		return (return_base, False if return_base in self.dt_primary_bases else True)
 
 class CigarElement(object):
 	"""

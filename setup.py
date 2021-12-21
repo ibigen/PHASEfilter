@@ -37,6 +37,16 @@ setuptools.setup(
 	long_description_content_type="text/markdown",
 	url="https://github.com/ibigen/PHASEfilter",
 	packages=setuptools.find_packages(),
+	package_data={
+			'PHASEfilter': ['tests/files/gff3/*',
+						'tests/files/real_raw_data/*',
+						'tests/files/ref/*',
+						'tests/files/referenceSaccharo/*',
+						'tests/files/result/*',
+						'tests/files/software/*',
+						'tests/files/synchronize/*',
+						'tests/files/vcf/*'],
+			},
 	license='MIT',
 	python_requires='>=3.5',
 	include_package_data=True, # include other files

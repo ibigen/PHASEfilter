@@ -48,7 +48,7 @@ from optparse import OptionParser
 __all__ = []
 __version__ = version.VERSION_make_alignement
 __date__ = '2020-05-01'
-__updated__ = '2021-09-06'
+__updated__ = '2021-10-26'
 
 def checkRequiredArguments(opts, parser):
 	missing_options = []
@@ -72,30 +72,33 @@ def main(argv=None):
 	program_longdesc = '''
 	Make the align of two nucleotide sequences. It accept 3 mandatory parameters and two optional parameters.
 	Creates a report to identify the percentage of alignment.
+	Has optional can save the alignments between chromossomes and create new references based on bases that are ambiguous between synchronized positions in chromosomes.
 	''' # optional - give further explanation about what the program does
 	program_license = "Copyright 2020 (iBiMED)											\
 				Licensed under the MIT\nhttps://spdx.org/licenses/MIT.html"
 
 	if argv is None:
 		argv = sys.argv[1:]
-	
+
 		# setup option parser
 		parser = OptionParser(version=program_version_string, epilog=program_longdesc, description=program_license)
 		parser.add_option("--ref1", dest="reference_1", help="[REQUIRED] reference for genome 1", metavar="FILE")
 		parser.add_option("--ref2", dest="reference_2", help="[REQUIRED] reference for genome 2", metavar="FILE")
 		parser.add_option("--out", dest="outfile", help="[REQUIRED] report in tab separated value (tsv)", metavar="FILE")
 		parser.add_option("--pass_chr", dest="pass_chr", help="[Optional] name of chromosomes to not processed. More than one chr splitted by comma, example 'chrI,chrII'")
-		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each chromosome synchronization.'", metavar="PATH")
+		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each synchronized chromosome.'", metavar="PATH")
+		parser.add_option("--out_new_reference", dest="out_new_reference", help="[Optional] create new reference for ref1 that has IUPAC codes for bases that are ambiguous between synchronized positions in chromosomes.'", metavar="FILE")
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
 		checkRequiredArguments(opts, parser)
 			
-		if opts.reference_1:      print("reference 1          = %s" % opts.reference_1)
-		if opts.reference_2:      print("reference 2          = %s" % opts.reference_2)
-		if opts.outfile:          print("out file             = %s" % opts.outfile)
-		if opts.pass_chr:         print("not processed chr.   = %s" % opts.pass_chr)
-		if opts.out_alignment:    print("out path alignments  = %s" % opts.out_alignment)
+		if opts.reference_1:       print("reference 1          = %s" % opts.reference_1)
+		if opts.reference_2:       print("reference 2          = %s" % opts.reference_2)
+		if opts.outfile:           print("out file             = %s" % opts.outfile)
+		if opts.pass_chr:          print("not processed chr.   = %s" % opts.pass_chr)
+		if opts.out_alignment:     print("out path alignments  = %s" % opts.out_alignment)
+		if opts.out_new_reference:  print("out file new ref.   = %s" % opts.out_new_reference)
 
 		if (opts.reference_1 == opts.reference_2): sys.exit("Error: you have the same reference file")
 		
@@ -106,7 +109,8 @@ def main(argv=None):
 		if (opts.out_alignment and not os.path.exists(opts.out_alignment)):
 			os.makedirs(opts.out_alignment, exist_ok=True)
 			
-		process_two_references = ProcessTwoReferences(opts.reference_1, opts.reference_2, opts.outfile, opts.out_alignment)
+		process_two_references = ProcessTwoReferences(opts.reference_1, opts.reference_2, 
+					opts.outfile, opts.out_alignment, opts.out_new_reference)
 		
 		### test all software needed to run this script
 		software = Software()
@@ -123,6 +127,9 @@ def main(argv=None):
 			
 		## make dir if does not exist
 		utils.make_path(os.path.dirname(opts.outfile))
+		if opts.out_new_reference: utils.make_path(os.path.dirname(opts.out_new_reference))
+		
+		## process
 		process_two_references.process(vect_pass_chr)
 
 if __name__ == "__main__":

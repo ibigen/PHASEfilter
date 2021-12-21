@@ -1,0 +1,10 @@
+Source genome	chrX
+Hit genome	S01.chrX
+
+Source genome	Hit genome
+Chromosomes	Chromosomes	Software	Split Alignments	Length Match Source	Length Source	Length Match Hit	Length Hit	Cigar Match	Cigar Deletion	Cigar Insertion	Match VS Ins+Del %	Alignment %
+chrX	chrX_S01	minimap2	1	745750	745751	745158	745471	744824	926	334	99.8	99.98
+
+
+Chr. name	New Ref.	R	Y	S	W	K	M
+chrX	Yes	12	16	2	12	6	5

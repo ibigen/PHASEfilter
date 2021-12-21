@@ -163,7 +163,25 @@ class Test(unittest.TestCase):
 		self.assertEqual(True, utils.is_read_reverse_strand(2064))
 		self.assertEqual(False, utils.is_read_reverse_strand(2))
 
+	def test_iupac_bases(self):
+		nucleotide = NucleotideCodes()
 
+		self.assertEqual((None, False), nucleotide.get_iupac_based_on_bases('-', 'A'))
+		self.assertEqual(('Z', False), nucleotide.get_iupac_based_on_bases('Z', 'A'))
+		self.assertEqual(('Z', False), nucleotide.get_iupac_based_on_bases('Z', 'a'))
+		self.assertEqual(('Z', False), nucleotide.get_iupac_based_on_bases('Z', '-'))
+		self.assertEqual(('+', False), nucleotide.get_iupac_based_on_bases('+', '-'))
+		self.assertEqual(('Y', True), nucleotide.get_iupac_based_on_bases('C', 'T'))
+		self.assertEqual(('Y', True), nucleotide.get_iupac_based_on_bases('C', 'u'))
+		self.assertEqual(('Y', True), nucleotide.get_iupac_based_on_bases('C', 'U'))
+		self.assertEqual(('Y', True), nucleotide.get_iupac_based_on_bases('U', 'C'))
+		self.assertEqual(('W', True), nucleotide.get_iupac_based_on_bases('T', 'A'))
+		self.assertEqual(('M', True), nucleotide.get_iupac_based_on_bases('A', 'C'))
+		self.assertEqual(('A', False), nucleotide.get_iupac_based_on_bases('A', 'A'))
+		self.assertEqual(('M', True), nucleotide.get_iupac_based_on_bases('a', 'C'))
+		self.assertEqual(('C', False), nucleotide.get_iupac_based_on_bases('c', 'c'))
+		
+		
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.test_refernce_names']
 	unittest.main()

@@ -77,11 +77,10 @@ def main(argv=None):
 			if (len(read_input.strip()) > 0 and read_input.upper() != 'Y'): sys.exit("Exit by the user.")
 
 		### Copy data
-		utils.make_path(os.path.dirname(opts.out))
+		utils.make_path(opts.out)
 		base_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests/files/real_raw_data") 
-		
-		print(base_path)
-		cmd = "cp {}/* {}".format(base_path, opts.out)
+		cmd = "cp {}/*.fasta {}; cp {}/*.gz {}; cp {}/*.gz.tbi {}; ".format(base_path, opts.out,
+									base_path, opts.out, base_path, opts.out)
 		exist_status = os.system(cmd)
 		if (exist_status != 0):
 			raise Exception("Fail to copy file") 
