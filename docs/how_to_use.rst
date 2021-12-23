@@ -39,9 +39,9 @@ In the previous case there are four parameteres:
 
 .. important::
    By default, heterozygous and homozygous form are defined by AC info for each variant. If AC = 1 is heterozygous, > 1 is homozygous. GATK adds this info tags at each variant,
-   Loss Of Hetrozygous (LOH) is only detected if the VCF file ad the AC info tag for each variant.
+   Loss Of Heterozygous (LOH) is only detected if the VCF file has the AC info tag for each variant.
    
-Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
+Eight possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
 
 -  report_[A]_to_[B].txt - has the statistics about the analysis;
 -  valid_[A]_to_[B].vcf.gz - has all variants that are not heterozygous between two references;
@@ -71,7 +71,7 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
 
 -  threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
 -  remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
-  
+ 
 .. code-block:: shell
    :linenos:
 
@@ -83,6 +83,8 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
    
 .. note::
    If you pass a value to remove variants with low Allele Frequency, this value will be calculated with the counts that are in Allele Count (AC) in vcf file.
+   For these two last parameters the Allele Frequency it will be calculated with the ratio of AD format field from VCF. AD='<reads ref>,<reads alt1>, <reads alt2>, etc".
+   The parameter 'threshold_heterozygous_AD' will replace Allele Frequency (AF) if defined. This is will be used to define if a variant is Homozygous or Heterozygous. 
 
 .. important::
    The vcf file in analysis it is always the one in *ref1* parameters,
@@ -125,6 +127,9 @@ If your VCF files has the allele deep (AD) format it is also possible to pass tw
 -  threshold_heterozygous_AD - it is possible to define heterozygous/homozygous level define by Allele Deep counts, otherwise it is defined by Allele Count (AC);
 -  remove_variants_by_AD_ratio - you can remove variants based on low Allele Frequency for each variant. The Allele Frequency it will be obtained by Allele Deep counts.
 
+.. note::
+   For these two last parameters the Allele Frequency it will be calculated with the ratio of AD format field from VCF. AD='<reads ref>,<reads alt1>, <reads alt2>, etc".
+   The parameter 'threshold_heterozygous_AD' will replace Allele Frequency (AF) if defined. This is will be used to define if a variant is Homozygous or Heterozygous. 
 
 make_alignment
 ++++++++++++++
