@@ -1,7 +1,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT%20-blue.svg)](https://www.mit.edu/~amini/LICENSE.md)
 
-
 # PHASEfilter
 PHASEfilter is a software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.
 
@@ -21,8 +20,10 @@ $ pip3 install PHASEfilter
 $ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter version) "
 $ . PHASEfilter/bin/activate
 $ pip install PHASEfilter
-OR
-$ pip3 install PHASEfilter
+
+## install all Software dependencies of PHASEfilter 
+$ cd PHASEfilter/bin/
+$ ./install_phasefilter_dependencies.sh
 ```
 
 

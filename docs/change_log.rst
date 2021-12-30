@@ -6,6 +6,14 @@ This tab includes a list (chronologically ordered) of notable changes in PHASEfi
 2021
 ----
 
+December 30, 2021
+.................
+
+Add script to install all software dependencies
+
+-  Add the shell script "install_phasefilter_dependencies.sh" to install all dependencies automatically;
+
+
 October 26, 2021
 ................
 
