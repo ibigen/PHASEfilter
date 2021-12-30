@@ -6,7 +6,7 @@ from PHASEfilter.lib.constants import version
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
 ## 
-## python3 setup.py sdist bdist_wheel
+## python3 setup.py sdist bdist_wheel --plat-name=linux_x86_64
 ## python3 -m twine upload dist/*
 #### and press cancel in all windows
 ### to test in virtual env
@@ -30,7 +30,8 @@ setuptools.setup(
 			'PHASEfilter/bin/make_alignment.py',
 			'PHASEfilter/bin/reference_statistics.py',
 			'PHASEfilter/bin/synchronize_genomes.py',
-			'PHASEfilter/bin/copy_raw_data_example_phasefilter.py'],
+			'PHASEfilter/bin/copy_raw_data_example_phasefilter.py',
+			'PHASEfilter/bin/install_phasefilter_dependencies.sh'],
 	author="Miguel Pinheiro",
 	author_email="monsanto@ua.pt",
 	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.",
@@ -50,7 +51,7 @@ setuptools.setup(
 	license='MIT',
 	python_requires='>=3.5',
 	include_package_data=True, # include other files
-	platforms='linux',
+	platforms='linux_x86_64',
 	classifiers=[
 		# How mature is this project? Common values are
 		#   Development Status :: 1 - Planning
@@ -60,7 +61,7 @@ setuptools.setup(
 		#	Development Status :: 5 - Production/Stable
 		#	Development Status :: 6 - Mature
 		#	Development Status :: 7 - Inactive
-		'Development Status :: 2 - Pre-Alpha',
+		'Development Status :: 5 - Production/Stable',
 		"Programming Language :: Python :: 3.5",
 		"Programming Language :: Python :: 3.6",
 		"Programming Language :: Python :: 3.7",
