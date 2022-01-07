@@ -66,7 +66,7 @@ setuptools.setup(
 		"Programming Language :: Python :: 3.6",
 		"Programming Language :: Python :: 3.7",
 		"Programming Language :: Python :: 3.8",
-		"Programming Language :: Python :: 3.9",
+#		"Programming Language :: Python :: 3.9",
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX :: Linux",
 #		'Operating System :: POSIX',

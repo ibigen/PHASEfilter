@@ -17,13 +17,22 @@ $ pip3 install PHASEfilter
 ### Install with virtualenv
 
 ```
-$ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter version) "
+$ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter 0.3.7) "
 $ . PHASEfilter/bin/activate
-$ pip install PHASEfilter
+(phasefilter 0.3.7) $ pip install PHASEfilter
 
 ## install all Software dependencies of PHASEfilter 
-$ cd PHASEfilter/bin/
-$ ./install_phasefilter_dependencies.sh
+(phasefilter 0.3.7) $ cd PHASEfilter/bin/
+(phasefilter 0.3.7) $ ./install_phasefilter_dependencies.sh
+```
+
+### Install with conda
+
+```
+$ wget https://github.com/ibigen/PHASEfilter/tree/main/conda/conda_phasefilter_env.yml -O conda_phasefilter_env.yml 
+$ conda env create -f conda_phasefilter_env.yml
+$ conda activate PHASEfilter
+$ python -m pip install PHASEfilter
 ```
 
 
@@ -45,7 +54,9 @@ The variant file in analysis it is always the one passed in parameter '--vcf1'.
 
 ```
 $ phasefilter --help
-$ phasefilter --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out output_dir
+## You can can copy some example data to test the commands
+$ copy_raw_data_example_phasefilter --out temp_raw_data
+$ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
 ```
 
 Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
@@ -73,6 +84,9 @@ Headings description in report files:
 -  **Method**   Alignment method.
 -  **Alignment %** Percentage of alignment.
 
+**Note:** You can can copy some example data to test the commands.
+{: .note}
+
 
 ## Filter variants in phased genomes but only one direction
 
@@ -89,6 +103,9 @@ Synchronize annotations genomes adapting the annotations that are in reference 1
 
 ```
 $ synchronize_genomes --help
+## You can can copy some example data to test the commands
+$ copy_raw_data_example_phasefilter --out temp_raw_data
+$ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --gff temp_raw_data/T1_Fluc_7A_snps.gff3.gz --out T1_Fluc_7A_snps.sync.gff3.gz
 $ synchronize_genomes --ref1 S288C_reference.fna --ref2 S01.assembly.final.fa --gff S288C_reference.gff3 --out result.gff3 --pass_chr chrmt
 $ synchronize_genomes --ref1 S288C_reference.fna --ref2 S01.assembly.final.fa --vcf S288C_reference.vcf.gz --out result.vcf.gz
 ```
@@ -99,7 +116,9 @@ Obtain the percentage of the minimap2 alignment between chromosomes and create a
 
 ```
 $ make_alignment --help
-$ make_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt
+## You can can copy some example data to test the commands
+$ copy_raw_data_example_phasefilter --out temp_raw_data
+$ make_alignment --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --out report.txt
 $ make_alignment --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --out report.txt --pass_chr chrmt --out_alignment syncronizationSacharo
 ```
 
@@ -109,8 +128,10 @@ With this application it is possible to obtain the number of nucleotides by chro
 
 ```
 $ reference_statistics --help
-$ reference_statistics --ref some_fasta_file.fasta --out retport.txt
-$ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta --out retport.txt
+## You can can copy some example data to test the commands
+$ copy_raw_data_example_phasefilter --out temp_raw_data
+$ reference_statistics --ref temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --out report_stats.txt
+$ reference_statistics --ref Ca22chr1A_C_albicans_SC5314.fasta.gz --out retport.txt
 ```
 
 ## Copy some example data to test all tools

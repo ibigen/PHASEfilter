@@ -94,7 +94,7 @@ class Reference(object):
 		if (not os.path.exists(reference_file)): raise Exception("Can't locate the reference file: '" + reference_file + "'")
 
 		if self.utils.is_gzip(reference_file):
-			## create tmp file
+			## create tmp file, need to this because faidx does not index gzip files
 			self.temp_file_name = self.utils.get_temp_file(os.path.basename(reference_file), ".fasta")
 			cmd = "gzip -cd " + reference_file + " > " + self.temp_file_name
 			os.system(cmd)

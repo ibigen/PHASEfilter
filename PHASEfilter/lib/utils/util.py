@@ -43,7 +43,6 @@ class Utils(object):
 		"""
 		return (not self.is_integer(sz_value) and not self.is_float(sz_value))
 	
-
 	def read_key_from_file(self, file_name, b_convert_value_to_int = False, b_aggregate_same_key = False):
 		"""
 		Read key file

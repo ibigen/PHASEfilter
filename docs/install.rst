@@ -27,21 +27,35 @@ Install with virtual environment:
 .. code-block:: shell
    :linenos:
 
-   $ virtualenv phasefilter --python=python3 --prompt "(phasefilter 0.3.6) "
+   $ virtualenv phasefilter --python=python3 --prompt "(phasefilter 0.3.7) "
    $ source phasefilter/bin/activate
-   (phasefilter 0.3.6) $ pip install phasefilter
+   (phasefilter 0.3.7) $ pip install phasefilter
    
    ### To install all software dependencies of PHASEfilter 
-   (phasefilter 0.3.6) $ cd phasefilter/bin/
-   (phasefilter 0.3.6) $ ./install_phasefilter_dependencies.sh
+   (phasefilter 0.3.7) $ cd phasefilter/bin/
+   (phasefilter 0.3.7) $ ./install_phasefilter_dependencies.sh
 
 
 .. important::
    When install 'pyvcf', dependent package, and if your setuptools>=58 if goes to throw an error: "error in PyVCF setup command: use_2to3 is invalid."
    Please, use setuptools<58.
    Setuptools>=58 breaks support for use_2to3 thats why you are facing this error.
+   
+PHASEfilter with conda
+++++++++++++++++++++++
 
-After that you have five scripts available:
+Install with conda:
+
+.. code-block:: shell
+   :linenos:
+
+   $ wget https://github.com/ibigen/PHASEfilter/tree/main/conda/conda_phasefilter_env.yml -O conda_phasefilter_env.yml 
+   $ conda env create -f conda_phasefilter_env.yml
+   $ conda activate PHASEfilter
+   $ python -m pip install PHASEfilter
+ 
+
+After that you have six scripts available:
 
 .. code-block:: shell
    :linenos:

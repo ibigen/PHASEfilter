@@ -3,6 +3,7 @@ Created on 02/12/2020
 
 @author: mmp
 '''
+import gzip
 from gff3tool.lib.gff3 import Gff3
 from PHASEfilter.lib.utils.util import Utils
 
@@ -30,7 +31,10 @@ class ReadGFF(object):
 		chr_name_B = ""
 		vect_fail_synch = []
 		(lines_parsed, lines_failed_parse) = (0, 0)
-		with open(self.file_name) as handle_read, open(file_result, 'w') as handle_out:
+		
+		### gff out
+		with (gzip.open(file_result, 'wt') if self.utils.is_gzip(file_result) else open(file_result, 'w')) as handle_out, \
+			(gzip.open(self.file_name, mode='rt') if self.utils.is_gzip(self.file_name) else open(self.file_name, mode='r')) as handle_read:
 			gff = Gff3(handle_read)
 			for line_gff in gff.lines:
 				## {'line_index': 34, 'line_raw': 'chrI\tS01\tTY1/TY2_soloLTR\t36933\t37200\t.\t+\t.\tID=TY1/TY2_soloLTR:chrI:36933-37200:+;Name=TY1/TY2_soloLTR:chrI:36933-37200:+\n', 
@@ -40,7 +44,7 @@ class ReadGFF(object):
 				fail_get_position = True
 				if line_gff['line_type'] == 'feature' and (line_gff['type'] in vect_type_to_process or\
 					ReadGFF.PROCESS_TYPE_all in vect_type_to_process):
-
+	
 					### if failed synch save line and continue
 					if (line_gff["seqid"].lower() in vect_fail_synch):
 						handle_out.write(line_gff["line_raw"])
@@ -50,7 +54,7 @@ class ReadGFF(object):
 					if (chr_name != line_gff["seqid"]):
 						chr_name = line_gff["seqid"]
 						if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
-
+	
 						#### get chromosome name in other reference						
 						chr_name_B = lift_over_ligth.reference_to.get_chr_in_genome(chr_name)
 						if chr_name_B is None:
@@ -76,8 +80,8 @@ class ReadGFF(object):
 						
 					### save new position
 					if (not fail_get_position and result_start != -1 and result_end != -1):
-						handle_out.write(line_gff["line_raw"].strip() + ";StartHit={};EndHit={}\n".format(
-							result_start, result_end))
+						handle_out.write(line_gff["line_raw"].strip() + \
+							";StartHit={};EndHit={}\n".format(result_start, result_end))
 						lines_parsed += 1
 					else:
 						handle_out.write(line_gff["line_raw"])

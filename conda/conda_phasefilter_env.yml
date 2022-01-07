@@ -1,0 +1,19 @@
+name: PHASEfilter
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - pip
+  - python3
+  - minimap2
+  - bcftools
+  - samtools
+  - htslib
+  - pyvcf==0.6.8
+  - pysam==0.15.2
+  - biopython==1.78
+  - wheel
+  - pip:
+    - gff3tool==2.0.1
+

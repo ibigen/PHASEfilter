@@ -25,6 +25,7 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter --help
+   ### can copy some example data
    $ copy_raw_data_example_phasefilter --out temp_raw_data
    $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
    --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
@@ -197,9 +198,11 @@ Most common use of the synchronize_genomes:
 
    $ synchronize_genomes --help
    $ copy_raw_data_example_phasefilter --out temp_raw_data
-   $ synchronize_genomes --ref1 S288C_reference_chr.fna --ref2 S01.assembly.final.fa --gff S01.TE.gff3 --out result.gff
+   $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
+   --gff temp_raw_data/T1_Fluc_7A_snps.gff3 --out T1_Fluc_7A_snps.sync.gff3
    OR
-   $ synchronize_genomes --ref1 S288C_reference_chr.fna --ref2 S01.assembly.final.fa --vcf S01.TE.vcf.gz --out result.vcf
+   $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
+   --vcf temp_raw_data/T1_Fluc_7A_snps.vcf.gz --out T1_Fluc_7A_snps.sync.vcf
    
 In the previous case there are four parameteres:
 

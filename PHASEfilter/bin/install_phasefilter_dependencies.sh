@@ -1,4 +1,16 @@
+#!/bin/bash
 set -e
+
+### remove possible remain files
+remove_file () {
+        if [[ -f "$1" ]]; then
+                rm -rf $1
+        fi
+}
+remove_file "minimap2"
+remove_file "k8"
+remove_file "libhts.so.3"
+
 
 #### MINIMAP2
 echo "Install minimap2"
