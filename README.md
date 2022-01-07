@@ -3,6 +3,7 @@
 
 # PHASEfilter
 PHASEfilter is a software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.
+It is an easily implementable tool that provides a simple approach to detect and filter heterozygous SNPs and INDELs in diploid species based on a phased genome assembly.
 
 # Installation
 
@@ -32,7 +33,6 @@ $ . PHASEfilter/bin/activate
 $ wget https://raw.githubusercontent.com/ibigen/PHASEfilter/main/conda/conda_phasefilter_env.yml -O conda_phasefilter_env.yml
 $ conda env create -f conda_phasefilter_env.yml
 $ conda activate PHASEfilter
-$ python -m pip install PHASEfilter
 ```
 
 

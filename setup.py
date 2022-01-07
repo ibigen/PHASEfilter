@@ -35,6 +35,7 @@ setuptools.setup(
 	author="Miguel Pinheiro",
 	author_email="monsanto@ua.pt",
 	description="Software package to filter variants, SNPs and INDELs, that are present in heterozygous form in phased genomes.",
+	long_description=long_description,
 	long_description_content_type="text/markdown",
 	url="https://github.com/ibigen/PHASEfilter",
 	packages=setuptools.find_packages(),

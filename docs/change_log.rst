@@ -6,6 +6,13 @@ This tab includes a list (chronologically ordered) of notable changes in PHASEfi
 2021
 ----
 
+December 7, 2022
+................
+
+Improve "synchronize_genomes" tool
+
+-  It is possible to load "gff3.gz" and write output in "gz" too;
+
 December 30, 2021
 .................
 

@@ -52,7 +52,6 @@ Install with conda:
    $ wget https://raw.githubusercontent.com/ibigen/PHASEfilter/main/conda/conda_phasefilter_env.yml -O conda_phasefilter_env.yml
    $ conda env create -f conda_phasefilter_env.yml
    $ conda activate PHASEfilter
-   $ python -m pip install PHASEfilter
  
 
 After that you have six scripts available:
