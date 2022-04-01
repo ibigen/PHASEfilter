@@ -155,7 +155,8 @@ In the previous case there are four parameteres:
 This tool has three extra parameters: 
 
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
--  out_alignment - folder name where an alignment will be save. It has ClustalX format.
+-  out_alignment - folder name where an alignment will be save. It has ClustalX format;
+-  out_new_reference - create a new reference with degenerated bases on heterozygous positions.
 
 .. code-block:: shell
    :linenos:
