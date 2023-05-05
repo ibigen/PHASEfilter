@@ -4,6 +4,7 @@ Created on 06/12/2019
 @author: mmp
 '''
 from PHASEfilter.lib.utils.util import Utils, NucleotideCodes
+from PHASEfilter.lib.utils.chain import Chain
 from PHASEfilter.lib.utils.reference import Reference
 from PHASEfilter.lib.utils.lift_over_simple import LiftOverLight
 from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
@@ -21,8 +22,8 @@ class ProcessTwoReferences(object):
 	utils = Utils("synchronize")
 	run_extra_software = RunExtraSoftware()
 	
-	def __init__(self, reference_1, reference_2, outfile_report, out_path_alignments = None,
-				out_new_reference = None):
+	def __init__(self, reference_1, reference_2, outfile_report, chain_name = None, out_path_alignments = None,
+				out_new_reference = None, threading = 1):
 		"""
 		set the data
 		:param  reference_1 reference 1
@@ -35,6 +36,8 @@ class ProcessTwoReferences(object):
 		self.outfile = outfile_report
 		self.out_path_alignments = out_path_alignments
 		self.out_new_reference = out_new_reference
+		self.chain_name = chain_name
+		self.threading = threading
 
 	def process(self, vect_pass_ref = []):
 		"""
@@ -112,7 +115,8 @@ class ProcessTwoReferences(object):
 		
 		temp_work_dir = self.utils.get_temp_dir()
 		
-		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir)
+		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir,
+									 None, False, self.threading)
 		lift_over_ligth.synchronize_sequences_all_methods(chr_name_A, chr_name_B)
 		
 		vect_out = []
@@ -182,7 +186,7 @@ class ProcessTwoReferences(object):
 
 		temp_work_dir = self.utils.get_temp_dir()		
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, impose_minimap2_only, False)
+		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, self.chain_name, impose_minimap2_only, False)
 		
 		read_gff = ReadGFF(gff_file_to_parse)
 		(lines_parsed, lines_failed_parse, vect_fail_synch) = read_gff.parse_gff(self.outfile, vect_type_to_process, vect_pass_ref, lift_over_ligth)
@@ -203,7 +207,7 @@ class ProcessTwoReferences(object):
 
 		temp_work_dir = self.utils.get_temp_dir()		
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, impose_minimap2_only, False)
+		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, self.chain_name, impose_minimap2_only, False)
 		
 		read_vcf = VcfProcess(vcf_file_to_parse, -1.0, -1.0)
 		(lines_parsed, lines_failed_parse, vect_fail_synch) = read_vcf.parse_vcf(self.outfile, vect_pass_ref, lift_over_ligth)

@@ -8,7 +8,7 @@ PHASEfilter package offers five main tools to the user.
 phasefilter
 +++++++++++
 
-With this tool it is possible to indentify heterozygous and loss of heterozygoty between two diplod references. It is also possible to set a threshold of heterozygous/homozygous variant base on Allele Deep (AD). A threshold to remove variants with low Allele freqeuncy is also available.
+With this tool it is possible to indentify heterozygous and loss of heterozygoty between two diploid references. It is also possible to set a threshold of heterozygous/homozygous variant base on Allele Deep (AD). A threshold to remove variants with low Allele frequency is also available.
 
 .. image:: _static/images/main_image.png
 
@@ -25,10 +25,22 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter --help
+   
    ### can copy some example data
    $ copy_raw_data_example_phasefilter --out temp_raw_data
+   
+   ### run PHASEfilter
    $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
    --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
+   $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
+   --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
+   
+   ### run PHASEfilter with chain, if available
+   $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
+   --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir \
+   --chain_A_B temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain \
+   --chain_B_A temp_raw_data/Assembly22_hapB_To_Assembly22_hapA.over.chain
+   
    
 In the previous case there are four parameteres:
 
@@ -37,6 +49,11 @@ In the previous case there are four parameteres:
 -  vcf1 - has he variants called from the ref1;
 -  vcf2 - has he variants called from the ref2. It is the hit;
 -  out - directory where the files will be saved;
+
+You can use a chain if exists:
+
+-  chain_A_B - chain from haplotype A to haplotype B;
+-  chain_B_A - chain from haplotype B to haplotype A;
 
 .. important::
    By default, heterozygous and homozygous form are defined by AC info for each variant. If AC = 1 is heterozygous, > 1 is homozygous. GATK adds this info tags at each variant,
@@ -102,9 +119,18 @@ Most common use of the phasefilter:
    :linenos:
 
    $ phasefilter_single --help
+   
+   ### can copy some example data
    $ copy_raw_data_example_phasefilter --out temp_raw_data
+   
+   ### run PHASEfilter
    $ phasefilter_single --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
    --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out_vcf A-M_S4.vcf.gz
+   
+   ### run PHASEfilter with chain, if available
+   $ phasefilter_single --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \ 
+   --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out_vcf A-M_S4.vcf.gz \
+   --chain temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain
    
 In the previous case there are four parameteres:
 
@@ -114,6 +140,9 @@ In the previous case there are four parameteres:
 -  vcf2 - has he variants called from the ref2. It is the hit;
 -  out_vcf - has the file with with results: 1) passed variants; 2) heterozygous; 3) LOH variants;
 
+You can use a chain if exists:
+
+-  chain - chain from haplotype A to haplotype B, in previous example;
 
 Four possible files will be created after the commands ends: 
 
@@ -166,6 +195,10 @@ This tool has three extra parameters:
    --pass_chr chrI,chrII --out_alignment path_alignment
    $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
    --pass_chr chrI,chrII --out_alignment path_alignment --out_new_reference path_new_reference
+   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
+   --out_new_reference path_new_reference
+   $ make_alignment --ref1 C_albicans_SC5314_chrA_A22_chromosomes.fasta --ref2 C_albicans_SC5314_chrB_A22_chromosomes.fasta --out report.txt \
+   --out_new_reference path_new_reference --threading 4
 
 .. note::
    Save the alignements take long time.
@@ -205,6 +238,13 @@ Most common use of the synchronize_genomes:
    $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
    --vcf temp_raw_data/T1_Fluc_7A_snps.vcf.gz --out T1_Fluc_7A_snps.sync.vcf
    
+   ## with chain
+   $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
+   --gff temp_raw_data/T1_Fluc_7A_snps.gff3 --out T1_Fluc_7A_snps.sync.gff3 --chain temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain
+   OR
+   $ synchronize_genomes --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta \
+   --vcf temp_raw_data/T1_Fluc_7A_snps.vcf.gz --out T1_Fluc_7A_snps.sync.vcf --chain temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain
+   
 In the previous case there are four parameteres:
 
 -  ref1 - has the fasta reference of the first form of species in analysis;
@@ -219,6 +259,10 @@ Can also change the gff parameter to vcf:
 This tool has one extra parameter: 
 
 -  pass_chr - name or names of chromossomes to pass. Can be more than one separated by comma. It is the prefix of the chromossome that is necessary to pass;
+
+You can also pass a chain if exists:
+
+- chain -  chain from haplotype A to haplotype B, in previous example;
 
 .. code-block:: shell
    :linenos:

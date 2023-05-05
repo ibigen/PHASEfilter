@@ -9,6 +9,7 @@ from PHASEfilter.lib.utils.vcf_process import VcfProcess, CountAlleles
 from PHASEfilter.lib.utils.lift_over_simple import LiftOverLight
 from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
 import os
+from alembic.ddl import oracle
 
 class ProcessTwoGenomes(object):
 	
@@ -16,7 +17,7 @@ class ProcessTwoGenomes(object):
 	run_extra_software = RunExtraSoftware()
 	
 	def __init__(self, reference_1, reference_2, vcf_1, vcf_2, threshold_heterozygous_ad,
-				threshold_remove_variant_ad, outfile_vcf):
+				threshold_remove_variant_ad, outfile_vcf, chain_from_to):
 		"""
 		set the data
 		"""
@@ -28,6 +29,7 @@ class ProcessTwoGenomes(object):
 		self.outfile_vcf = outfile_vcf
 		self.threshold_heterozygous_ad = threshold_heterozygous_ad
 		self.threshold_remove_variant_ad = threshold_remove_variant_ad
+		self.chain_name = chain_from_to
 	
 	def get_report_file(self):
 		"""
@@ -95,7 +97,11 @@ class ProcessTwoGenomes(object):
 							self.process_chromosome(chr_name_A, chr_name_B, vcf_out_temp,
 							vcf_out_removed_temp, vcf_out_LOH_temp, report_out_temp,
 							print_results)
-
+			
+			### test if everything went well
+			if has_vcf_results is None or has_vcf_removed_results is None or \
+				has_vcf_loh_results is None: continue
+				
 			### test if has results
 			if (has_vcf_results):			### make gzip file
 				self.run_extra_software.make_bgz(vcf_out_temp, vcf_out_temp + ".gz")
@@ -169,8 +175,11 @@ class ProcessTwoGenomes(object):
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		temp_work_dir = self.utils.get_temp_dir()
 		
-		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir)
-		lift_over_ligth.synchronize_sequences(chr_name_A, chr_name_B)
+		lift_over_ligth = LiftOverLight(self.reference_1, self.reference_2, temp_work_dir, self.chain_name)
+		
+		### test if synchronization was well done
+		if not lift_over_ligth.synchronize_sequences(chr_name_A, chr_name_B):
+			return (None, None, None)
 		
 		### get only vcf sequences from chr_name_A
 		(vcf_1_only_chr, number_of_records_1) = self.run_extra_software.get_vcf_with_only_chr(self.vcf_1, chr_name_A, temp_work_dir)
@@ -203,11 +212,11 @@ class ProcessTwoGenomes(object):
 		### write the report
 		best_method = lift_over_ligth.get_method_best_method(chr_name_A, chr_name_B)
 		with open(report_out_temp, 'w') as handle_write:
+			f_percent_alignment = lift_over_ligth.get_percent_alignment(best_method, chr_name_A, chr_name_B)
+			if self.utils.is_float(f_percent_alignment): f_percent_alignment = "{:.2f}".format(f_percent_alignment)
 			handle_write.write(str(count_alleles) +\
-					"\t{}\t{:.2f}\n".format(best_method,\
-					lift_over_ligth.get_percent_alignment(best_method, chr_name_A, chr_name_B)))
+					"\t{}\t{}\n".format(best_method, f_percent_alignment))
 
-			
 		### remove temp files
 		self.utils.remove_dir(temp_work_dir)
 		self.utils.remove_file(vcf_1_only_chr)
@@ -217,4 +226,6 @@ class ProcessTwoGenomes(object):
 		print("Processed {} chr: {} ->  {} chr: {}".format(self.reference_1.get_reference_name(),\
 					chr_name_A, self.reference_2.get_reference_name(), chr_name_B))
 		return (has_result_file, has_vcf_removed_results, has_vcf_loh_results)
-		
+
+
+

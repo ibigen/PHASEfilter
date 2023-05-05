@@ -3,7 +3,19 @@ Change log
 
 This tab includes a list (chronologically ordered) of notable changes in PHASEfilter.
 
-2021
+
+2023
+----
+
+May 5, 2023
+...........
+
+Introduce the chain possibility
+
+-  If exist a chain it is possible to use it;
+
+
+2022
 ----
 
 December 7, 2022
@@ -12,6 +24,9 @@ December 7, 2022
 Improve "synchronize_genomes" tool
 
 -  It is possible to load "gff3.gz" and write output in "gz" too;
+
+2021
+----
 
 December 30, 2021
 .................

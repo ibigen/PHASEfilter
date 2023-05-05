@@ -56,6 +56,8 @@ def main(argv=None):
 	8) T1_Fluc_7A_indels.vcf.gz.tbi
 	9) T1_Fluc_7B_indels.vcf.gz
 	10) T1_Fluc_7B_indels.vcf.gz.tbi
+	11) Assembly22_hapA_To_Assembly22_hapB.over.chain
+	12) Assembly22_hapB_To_Assembly22_hapA.over.chain
 	''' # optional - give further explanation about what the program does
 	program_license = "Copyright 2020 (iBiMED)											\
 				Licensed under the MIT\nhttps://spdx.org/licenses/MIT.html"

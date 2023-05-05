@@ -29,7 +29,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		
 		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
@@ -88,7 +88,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = True
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 	
 		temp_file = utils.get_temp_file("base_name", ".fasta")
@@ -133,7 +133,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 	
 		### impose lastz best alignment

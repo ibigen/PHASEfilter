@@ -40,7 +40,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)
@@ -101,7 +101,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)
@@ -161,7 +161,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)
@@ -221,7 +221,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)
@@ -280,7 +280,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)
@@ -339,7 +339,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("Ca22chr1A_C_albicans_SC5314", seq_name_a)

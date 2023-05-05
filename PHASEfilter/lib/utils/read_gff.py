@@ -51,7 +51,7 @@ class ReadGFF(object):
 						continue
 				
 					## test chr_name					
-					if (chr_name != line_gff["seqid"]):
+					if (not lift_over_ligth.chain.has_chain() and chr_name != line_gff["seqid"]):
 						chr_name = line_gff["seqid"]
 						if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
 	

@@ -98,7 +98,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("A", seq_name_a)
@@ -165,7 +165,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = True
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("A", seq_name_a)
@@ -197,7 +197,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = True
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 	
 		seq_name_a = reference_a.get_first_seq()
 		self.assertEqual("B", seq_name_a)
@@ -232,7 +232,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
 	
@@ -276,7 +276,7 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences("chrX", "chrX")
 		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm("chrX", "chrX"))
 		
@@ -314,13 +314,13 @@ class Test(unittest.TestCase):
 		reference_a = Reference(seq_file_name_a)
 		reference_b = Reference(seq_file_name_b)
 		impose_minimap2_only = False
-		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, impose_minimap2_only, True)
+		lift_over_ligth = LiftOverLight(reference_a, reference_b, temp_work_dir, None, impose_minimap2_only, True)
 		lift_over_ligth.synchronize_sequences(seq_name_a, seq_name_b)
 		self.assertEqual(Software.SOFTWARE_minimap2_name, lift_over_ligth.get_best_algorithm(seq_name_a, seq_name_b))
 	
 		temp_out_report = utils.get_temp_file_with_path(temp_work_dir, "out_sync_saccharo", ".txt")
 		temp_out_sync = utils.get_temp_file_with_path(temp_work_dir, "out_sync_saccharo", ".fasta")
-		process_two_references = ProcessTwoReferences(seq_file_name_a, seq_file_name_b, temp_out_report, None, temp_out_sync)
+		process_two_references = ProcessTwoReferences(seq_file_name_a, seq_file_name_b, temp_out_report, None, None, temp_out_sync)
 		process_two_references.process()
 
 		### test reference	

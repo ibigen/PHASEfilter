@@ -30,7 +30,7 @@ class Test(unittest.TestCase):
 		threshold_ad = -1.0
 		threshold_remove_variant_ad = -1.0
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad,
-						threshold_remove_variant_ad, outfile_vcf)
+						threshold_remove_variant_ad, outfile_vcf, None)
 	
 		chr_name_A = "Ca22chr1A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr1B_C_albicans_SC5314"
@@ -68,7 +68,7 @@ class Test(unittest.TestCase):
 		threshold_ad = 0.01
 		threshold_remove_variant_ad = -1.0
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad,
-						threshold_remove_variant_ad, outfile_vcf)
+						threshold_remove_variant_ad, outfile_vcf, None)
 	
 		chr_name_A = "Ca22chr1A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr2B_C_albicans_SC5314"
@@ -106,7 +106,7 @@ class Test(unittest.TestCase):
 		threshold_ad = 0.01
 		threshold_remove_variant_ad = -1.0
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad,
-						threshold_remove_variant_ad, outfile_vcf)
+						threshold_remove_variant_ad, outfile_vcf, None)
 	
 		chr_name_A = "Ca22chr2A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr1B_C_albicans_SC5314"
@@ -144,7 +144,7 @@ class Test(unittest.TestCase):
 		threshold_ad = 0.01
 		threshold_remove_variant_ad = -1.0
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad,
-						threshold_remove_variant_ad, outfile_vcf)
+						threshold_remove_variant_ad, outfile_vcf, None)
 	
 		chr_name_A = "Ca22chr2A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr2B_C_albicans_SC5314"
@@ -182,7 +182,7 @@ class Test(unittest.TestCase):
 		threshold_ad = 0.3
 		threshold_remove_variant_ad = 0.2
 		process_two_genomes = ProcessTwoGenomes(seq_file_name_a, seq_file_name_b, vcf_1, vcf_2, threshold_ad,
-						threshold_remove_variant_ad, outfile_vcf)
+						threshold_remove_variant_ad, outfile_vcf, None)
 
 		chr_name_A = "Ca22chr1A_C_albicans_SC5314"
 		chr_name_B = "Ca22chr1B_C_albicans_SC5314"

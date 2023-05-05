@@ -18,13 +18,13 @@ $ pip3 install PHASEfilter
 ### Install with virtualenv
 
 ```
-$ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter 0.3.7) "
+$ virtualenv PHASEfilter --python=python3 --prompt "(PHASEfilter 1.1.0) "
 $ . PHASEfilter/bin/activate
-(phasefilter 0.3.7) $ pip install PHASEfilter
+(phasefilter 1.1.0) $ pip install PHASEfilter
 
 ## install all Software dependencies of PHASEfilter 
-(phasefilter 0.3.7) $ cd PHASEfilter/bin/
-(phasefilter 0.3.7) $ ./install_phasefilter_dependencies.sh
+(phasefilter 1.1.0) $ cd PHASEfilter/bin/
+(phasefilter 1.1.0) $ ./install_phasefilter_dependencies.sh
 ```
 
 ### Install with conda
@@ -57,6 +57,9 @@ $ phasefilter --help
 ## You can can copy some example data to test the commands
 $ copy_raw_data_example_phasefilter --out temp_raw_data
 $ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir
+
+## you can use chain if exists
+$ phasefilter --ref1 temp_raw_data/Ca22chr7A_C_albicans_SC5314.fasta --ref2 temp_raw_data/Ca22chr7B_C_albicans_SC5314.fasta --vcf1 temp_raw_data/T1_Fluc_7A_snps.vcf.gz --vcf2 temp_raw_data/T1_Fluc_7B_snps.vcf.gz --out output_dir --chain_A_B temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain --chain_B_A temp_raw_data/Assembly22_hapB_To_Assembly22_hapA.over.chain
 ```
 
 Eighth possible files will be created after the commands ends. The outputs are from refrence A (ref1) to reference B (ref2), and from reference B (ref2) to reference A (ref1).
@@ -95,6 +98,9 @@ This tool do as the same of the previous script but only analysis from Reference
 ```
 $ phasefilter_single --help
 $ phasefilter_single --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf out_result.vcf.gz
+
+## with chain
+$ phasefilter_single --ref1 Ca22chr1A_C_albicans_SC5314.fasta --ref2 Ca22chr1B_C_albicans_SC5314.fasta --vcf1 A-M_S4_chrA_filtered_snps.vcf.gz --vcf2 A-M_S4_chrB_filtered_snps.vcf.gz --out_vcf out_result.vcf.gz --chain temp_raw_data/Assembly22_hapA_To_Assembly22_hapB.over.chain
 ```
 
 ## Synchronize annotation genomes

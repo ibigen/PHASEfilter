@@ -152,5 +152,60 @@ class RunExtraSoftware(object):
 			self.utils.remove_file(temp_file)
 			self.utils.remove_file(temp_file + ".tbi")
 			return vect_out
+		else:
+			return self.utils.read_text_file(temp_file)
 		return []
+
+	def get_position_by_chain(self, chain_file, seq_name_from, seq_name_to, pos_from,
+					 file_to_write = None, file_to_write_2 = None, file_to_write_3 = None):
+		"""
+		return position by chain name
+		liftOver: liftOver oldFile map.chain newFile unMapped
+		:out -1 if didn't found
+		"""
+		if (not file_to_write is None): temp_file = file_to_write
+		else: temp_file = self.utils.get_temp_file("out_chain", ".txt")
+		if (not file_to_write_2 is None): temp_file_2 = file_to_write_2
+		else: temp_file_2 = self.utils.get_temp_file("out_chain", ".txt")
+		if (not file_to_write_3 is None): temp_file_3 = file_to_write_3
+		else: temp_file_3 = self.utils.get_temp_file("out_chain", ".txt")
+		
+		## create temp file
+		with open(temp_file, 'w') as handle_write:
+			handle_write.write("{} {} {}".format(seq_name_from, pos_from, pos_from))
+			
+		cmd = "{} {} {} {} {}".format(self.software.get_liftOver(),\
+					temp_file, chain_file, temp_file_2, temp_file_3)
+		exist_status = os.system(cmd)
+		if (exist_status != 0):
+			raise Exception("Fail to run chain.\n{}".format(cmd))
+		
+		vect_out = self.utils.read_text_file(temp_file_2)
+		vect_out_not_mapped = self.utils.read_text_file(temp_file_3)
+		if len(vect_out_not_mapped) > 0: return -1
+		if len(vect_out) > 0 and vect_out[0].startswith(seq_name_to): return vect_out[0].split()[1]
+		
+		if (file_to_write is None): self.utils.remove_file(temp_file)
+		if (file_to_write_2 is None): self.utils.remove_file(temp_file_2)
+		if (file_to_write_3 is None): self.utils.remove_file(temp_file_3)
+
+		return -1
+
+	def get_position_by_chain_and_file(self, chain_file, file_in_bed, file_out, file_unmapped):
+		"""
+		return position by chain name
+		liftOver: liftOver oldFile map.chain newFile unMapped
+		:param file_in_bed in bed separated by spaces
+		chr1 743267 743268
+		chr1 766408 766409
+		chr1 773885 773886
+		:out file_out
+		"""
+		cmd = "{} {} {} {} {}".format(self.software.get_liftOver(),\
+					file_in_bed, chain_file, file_out, file_unmapped)
+		exist_status = os.system(cmd)
+		if (exist_status != 0):
+			raise Exception("Fail to run chain.\n{}".format(cmd))
+		
+		return file_out
 

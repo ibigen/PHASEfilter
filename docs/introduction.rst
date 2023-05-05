@@ -4,7 +4,8 @@ Introduction
 ************
 
 PHASEfilter is a bioinformatic package that allow to identify the heterozygous variants that are present in diploid species.
-For that, it is necessary to have a diploid version of the reference genome and two variant files (vcf), one for each ploidy of the reference. 
+For that, it is necessary to have a diploid version of the reference genome and two variant files (vcf), one for each ploidy of the reference.
+The software has the capability to create the synchronization between diploid chromosomes but you can use a chain if it is available. 
 
 This package offer five tools:
 
@@ -19,7 +20,7 @@ phasefilter
 
 Identifies heterozygous variations and create three VCF files for each direction of analysis: 1) valid; 2) heterozygous variants; 3) loss of heterozygous (LOH).
 Make the analysis in both directions, from reference A to reference B and vice-versa.
-It accept 5 mandatory parameters and two optional parameters.
+It accept 5 mandatory parameters and four optional parameters.
 It is also possible define the threshold of Heterozygous/Homozygous variants based on Allele Count (AC) that must exist in the VCF file. These values are added by the caller, like GATK.
 A threshold that allow to remove variants with low Allele Frequency values it is also possible to set, but once again, it is ncessary to have Allele Count (AC) in each variant in VCF.
 
@@ -28,7 +29,7 @@ phasefilter_single
 
 Identifies heterozygous variations and create three VCF files: 1) valid; 2) heterozygous variants; 3) loss of heterozygous (LOH).
 Only make the analysis in one direction, from reference A to reference B.
-It accept 5 mandatory parameters and two optional parameters.
+It accept 5 mandatory parameters and three optional parameters.
 It is also possible define the threshold of Heterozygous/Homozygous variants based on Allele Count (AC) that must exist in the VCF file. These values are added by the caller, like GATK.
 A threshold that allow to remove variants with low Allele Frequency values it is also possible.
 

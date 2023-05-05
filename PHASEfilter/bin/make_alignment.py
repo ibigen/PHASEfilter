@@ -88,6 +88,7 @@ def main(argv=None):
 		parser.add_option("--pass_chr", dest="pass_chr", help="[Optional] name of chromosomes to not processed. More than one chr splitted by comma, example 'chrI,chrII'")
 		parser.add_option("--out_alignment", dest="out_alignment", help="[Optional] save the aligments, one for each synchronized chromosome.'", metavar="PATH")
 		parser.add_option("--out_new_reference", dest="out_new_reference", help="[Optional] create new reference for ref1 that has IUPAC codes for bases that are ambiguous between synchronized positions in chromosomes.'", metavar="FILE")
+		parser.add_option("-t", "--threading", dest="threading", type="int", help="[Optional] threading.'", default=1)
 
 		# process options
 		(opts, args) = parser.parse_args(argv)
@@ -99,9 +100,11 @@ def main(argv=None):
 		if opts.pass_chr:          print("not processed chr.   = %s" % opts.pass_chr)
 		if opts.out_alignment:     print("out path alignments  = %s" % opts.out_alignment)
 		if opts.out_new_reference:  print("out file new ref.   = %s" % opts.out_new_reference)
+		if opts.threading:         print("threading            = %s" % opts.threading)
 
 		if (opts.reference_1 == opts.reference_2): sys.exit("Error: you have the same reference file")
 		
+		## test reference files
 		utils.test_file_exists(opts.reference_1)
 		utils.test_file_exists(opts.reference_2)
 
@@ -109,8 +112,10 @@ def main(argv=None):
 		if (opts.out_alignment and not os.path.exists(opts.out_alignment)):
 			os.makedirs(opts.out_alignment, exist_ok=True)
 			
+		chain_name = None		## not need in this case
 		process_two_references = ProcessTwoReferences(opts.reference_1, opts.reference_2, 
-					opts.outfile, opts.out_alignment, opts.out_new_reference)
+					opts.outfile, chain_name, opts.out_alignment, opts.out_new_reference,
+					opts.threading)
 		
 		### test all software needed to run this script
 		software = Software()

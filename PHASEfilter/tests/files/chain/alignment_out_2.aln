@@ -1,0 +1,2352 @@
+CLUSTAL X (1.81) multiple sequence alignment
+
+
+Ca22chr2A_C_albicans_SC5314         ACACTCACCGTTTCTAACTGCTTAACCTATTACTATTAAGAATTCGCTAT        50
+Ca22chr2B_C_albicans_SC5314         ACACTCACCGTTTCTAACTGCTTAACCTATTACTATTAAGAATTCGCTAT        50
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTTTTTTACTGATTGCTTTACATTTTATTTACTTGATGAGGAGTTTATA       100
+Ca22chr2B_C_albicans_SC5314         TGTTTTTTACTGATTGCTTTACATTTTATTTACTTGATGAGGAGTTTATA       100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTATCCTTCTTTTAGGATGCCTTCTCCTTGAACTTTTTACTTTGTATTTT       150
+Ca22chr2B_C_albicans_SC5314         GTATCCTTCTTTTAGGATGCCTTCTCCTTGAACTTTTTACTTTGTATTTT       150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTCTTTGGATTGTTTATATTTATATGTTATATAGTTTATAAACGTCTT       200
+Ca22chr2B_C_albicans_SC5314         TTTTCTTTGGATTGTTTATATTTATATGTTATATAGTTTATAAACGTCTT       200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATTGCGGCGGTCTTAATTTTCGCATGCGGTCTTGCTAACAAAATTTGTT       250
+Ca22chr2B_C_albicans_SC5314         TATTGCGGCGGTCTTAATTTTCGCATGCGGTCTTGCTAACAAAATTTGTT       250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGCAATGCGGTCTTAAACCCGCGAGCAGAAAAAGATGGCTTGGCTGTYCA       300
+Ca22chr2B_C_albicans_SC5314         AGCAATGCGGTCTTAAACCCGCGAGCAGAAAAAGATGGCTTGGCTGTYCA       300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCTCTCAGTACTTCCCAATTCCCTTGCYACTTCCATTGCCACGTCGACT       350
+Ca22chr2B_C_albicans_SC5314         TTCTCTCAGTACTTCCCAATTCCCTTGCYACTTCCATTGCCACGTCGACT       350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCCATGTCTCTCAGAGTAGTTTCCAATCCCTTAAAAATCATACCCGAGCT       400
+Ca22chr2B_C_albicans_SC5314         TCCATGTCTCTCAGAGTAGTTTCCAATCCCTTAAAAATCATACCCGAGCT       400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAATAATTTCCCGCGAATCCCTGACTAGCTTGGCCAGCAACRGTTTCGC       450
+Ca22chr2B_C_albicans_SC5314         GCAATAATTTCCCGCGAATCCCTGACTAGCTTGGCCAGCAACRGTTTCGC       450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATCCGTGAATTTCCAACACCTRATTCCCATGTCCCCACTGTYGACTTCT       500
+Ca22chr2B_C_albicans_SC5314         CATCCGTGAATTTCCAACACCTRATTCCCATGTCCCCACTGTYGACTTCT       500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCAAAGCACATTKCCAATTACTCAGACTTCACACTCCATCTTCATTACC       550
+Ca22chr2B_C_albicans_SC5314         CTCAAAGCACATTKCCAATTACTCAGACTTCACACTCCATCTTCATTACC       550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTTTCTCTGTCTGGCCCTCTCTCCCAAGAATATTTTCTTTGACTTTCGC       600
+Ca22chr2B_C_albicans_SC5314         CTTTTCTCTGTCTGGCCCTCTCTCCCAAGAATATTTTCTTTGACTTTCGC       600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGCAATTTTCTCTGCTTTCAAACAATTTGCTAAAATTCCTTCCAACGAC       650
+Ca22chr2B_C_albicans_SC5314         TGGCAATTTTCTCTGCTTTCAAACAATTTGCTAAAATTCCTTCCAACGAC       650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGGCAGTTCTCTCACGTCTTGKTCTAGCATTAGATTTAGCCCCATCTCT       700
+Ca22chr2B_C_albicans_SC5314         ATGGCAGTTCTCTCACGTCTTGKTCTAGCATTAGATTTAGCCCCATCTCT       700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAACCACCCACTGATTTGACATCTTTTTCAAAATAAGTTTTCCAAATAAA       750
+Ca22chr2B_C_albicans_SC5314         CAACCACCCACTGATTTGACATCTTTTTCAAAATAAGTTTTCCAAATAAA       750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGACTTTTCCATAAACTCTTTATCTCCCGGGTGTCTRACTTCCAATTCA       800
+Ca22chr2B_C_albicans_SC5314         ATGACTTTTCCATAAACTCTTTATCTCCCGGGTGTCTRACTTCCAATTCA       800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTATCATTCACATCTGCATAATCCATTTTACCTGATTGTCTGAATATCT       850
+Ca22chr2B_C_albicans_SC5314         AGTATCATTCACATCTGCATAATCCATTTTACCTGATTGTCTGAATATCT       850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACTGATTGTTGATTGATTGTTGATTGCCTGGTTGTTGAAGAAAAAAACT       900
+Ca22chr2B_C_albicans_SC5314         GACTGATTGTTGATTGATTGTTGATTGCCTGGTTGTTGAAGAAAAAAACT       900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTGTAAAATAGTTTGTTTTTTTCTGCCAKYTTTTTTTCTGCCATCTTTT       950
+Ca22chr2B_C_albicans_SC5314         GGTGTAAAATAGTTTGTTTTTTTCTGCCAKYTTTTTTTCTGCCATCTTTT       950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTGTTGACGTGTCCCYSGCTCACCGATCACCCACGGGTCTCCCACCGGC      1000
+Ca22chr2B_C_albicans_SC5314         TTTGTTGACGTGTCCCYSGCTCACCGATCACCCACGGGTCTCCCACCGGC      1000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCCCGATTTTCACAACTACACAATCAACTGCCTCCAAAACAGTCAAATA      1050
+Ca22chr2B_C_albicans_SC5314         ACCCCGATTTTCACAACTACACAATCAACTGCCTCCAAAACAGTCAAATA      1050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTACCCACTAAACTTCACAATAGAGTCGCAACKTTAATAGTTSTTCTG      1100
+Ca22chr2B_C_albicans_SC5314         ACTTACCCACTAAACTTCACAATAGAGTCGCAACKTTAATAGTTSTTCTG      1100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTGTTTAGCTGTTTCTAAATTTAACTTTTGCCATCTTAAACTCAAAAA      1150
+Ca22chr2B_C_albicans_SC5314         ACTTGTTTAGCTGTTTCTAAATTTAACTTTTGCCATCTTAAACTCAAAAA      1150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAGACTTCCCTTACTCCTTTCAGTAAATTCTATTCTCCTGCTTCTTCTT      1200
+Ca22chr2B_C_albicans_SC5314         ATAGACTTCCCTTACTCCTTTCAGTAAATTCTATTCTCCTGCTTCTTCTT      1200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGAAGTTAATTCTCTTACTATACACAATTACAAGTCTAAAACTCTATTAT      1250
+Ca22chr2B_C_albicans_SC5314         TGAAGTTAATTCTCTTACTATACACAATTACAAGTCTAAAACTCTATTAT      1250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCTGTGCATCAATTCTTTGTTTGAATTTCCCCATTTTCACCCCAACTA      1300
+Ca22chr2B_C_albicans_SC5314         TTGCTGTGCATCAATTCTTTGTTTGAATTTCCCCATTTTCACCCCAACTA      1300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAACCAACTTTTAGCTCAGAATTTTTGCAAACTCGAGCCCAAAATTTTCC      1350
+Ca22chr2B_C_albicans_SC5314         GAACCAACTTTTAGCTCAGAATTTTTGCAAACTCGAGCCCAAAATTTTCC      1350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTCCTCGGAAATAACTTATTCCCGAAAATGGCAAAAAATGTCGTCGCCT      1400
+Ca22chr2B_C_albicans_SC5314         TCTCCTCGGAAATAACTTATTCCCGAAAATGGCAAAAAATGTCGTCGCCT      1400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAAAAAGATGRCAAAATTTYCCCATACAAAATTAAAGATGACAAAAAAT      1450
+Ca22chr2B_C_albicans_SC5314         CAAAAAAGATGRCAAAATTTYCCCATACAAAATTAAAGATGACAAAAAAT      1450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCGCACCACCAAAAAAAGATGGCAAAAAAAAGTCGCACCCCCAAAAAAA      1500
+Ca22chr2B_C_albicans_SC5314         GTCGCACCACCAAAAAAAGATGGCAAAAAAAAGTCGCACCCCCAAAAAAA      1500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATGGCAAAAATATGTCGCACCACCAAAAAAAAGTCGCATAGTTAAAAAA      1550
+Ca22chr2B_C_albicans_SC5314         GATGGCAAAAATATGTCGCACCACCAAAAAAAAGTCGCATAGTTAAAAAA      1550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGATGACAAAAAAATGTCGTAAAATCGGCCAAAACTGACTAAAACGGGC      1600
+Ca22chr2B_C_albicans_SC5314         AAGATGACAAAAAAATGTCGTAAAATCGGCCAAAACTGACTAAAACGGGC      1600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTAGCTCAACAMCCAAAAGAGGYATCRACTTCTAACCTTGATAGGTAGA      1650
+Ca22chr2B_C_albicans_SC5314         TCTAGCTCAACAMCCAAAAGAGGYATCRACTTCTAACCTTGATAGGTAGA      1650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCTACAGAGTGAGAGCTATCTAGTGGTGCTTTAAAAAGTGCAAAAAGTG      1700
+Ca22chr2B_C_albicans_SC5314         ATCTACAGAGTGAGAGCTATCTAGTGGTGCTTTAAAAAGTGCAAAAAGTG      1700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGYATCTACCTACTGTTTTTCCGCCTTTTCTACTCACCCACCTTTAACCG      1750
+Ca22chr2B_C_albicans_SC5314         GGYATCTACCTACTGTTTTTCCGCCTTTTCTACTCACCCACCTTTAACCG      1750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCATATCTCGGCAACCAGTGCTCCGTTTGCTCCCAAACACAGCCCATCM      1800
+Ca22chr2B_C_albicans_SC5314         CGCATATCTCGGCAACCAGTGCTCCGTTTGCTCCCAAACACAGCCCATCM      1800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATTCCYACACCCCTAAACAACCTATATAAGCCCTAAAAACCCATAAAAA      1850
+Ca22chr2B_C_albicans_SC5314         TATTCCYACACCCCTAAACAACCTATATAAGCCCTAAAAACCCATAAAAA      1850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAACCCCAAAAAAACTTGGTAAATTTTTGTCATCTTTTTTTGACARCTTG      1900
+Ca22chr2B_C_albicans_SC5314         AAACCCCAAAAAAACTTGGTAAATTTTTGTCATCTTTTTTTGACARCTTG      1900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAAAATCTTTGCCATCTTTTTTTTCGCGCCTAACAAAATTTGTTAGCAAA      1950
+Ca22chr2B_C_albicans_SC5314         TAAAATCTTTGCCATCTTTTTTTTCGCGCCTAACAAAATTTGTTAGCAAA      1950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAATTTTTGCCATCTTTTTTCCGCGTTTCCATTAGTATGGAACAACACG      2000
+Ca22chr2B_C_albicans_SC5314         AAAATTTTTGCCATCTTTTTTCCGCGTTTCCATTAGTATGGAACAACACG      2000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGGGGTCCTTGTAGGTTGTGTTGATAGAGCAGGTAGAGCAGGTAGAGATG      2050
+Ca22chr2B_C_albicans_SC5314         GGGGGTCCTTGTAGGTTGTGTTGATAGAGCAGGTAGAGCAGGTAGAGATG      2050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTTCGTATKTTTGTGCGTATTTTTGCGCATTGTGGGGTGTTGTTGCGCA      2100
+Ca22chr2B_C_albicans_SC5314         TGTTCGTATKTTTGTGCGTATTTTTGCGCATTGTGGGGTGTTGTTGCGCA      2100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGTTGCGCATTTTTTCTGTTGACCACGGATGTCTAACTTCAAGCGAGCA      2150
+Ca22chr2B_C_albicans_SC5314         TTGTTGCGCATTTTTTCTGTTGACCACGGATGTCTAACTTCAAGCGAGCA      2150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCCGAGCAAAGCGAGAGTCACACAAACAAGTTTAGATTTAGCAATAATTT      2200
+Ca22chr2B_C_albicans_SC5314         CCCGAGCAAAGCGAGAGTCACACAAACAAGTTTAGATTTAGCAATAATTT      2200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTAGCCAATASAGGCCACACACCTCGAGTGAGCAACACTTCTCCAACTG      2250
+Ca22chr2B_C_albicans_SC5314         TCTAGCCAATASAGGCCACACACCTCGAGTGAGCAACACTTCTCCAACTG      2250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCGCACCACAACCGTACGGATGCTCACCTTTTTTTTTTTTTYYTTTTTGG      2300
+Ca22chr2B_C_albicans_SC5314         CCGCACCACAACCGTACGGATGCTCACCTTTTTTTTTTTTTYYTTTTTGG      2300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTGCTTGCACCCCCTTTAGTCCGGATGTGTGTGAGAATGARTTGGGTGT      2350
+Ca22chr2B_C_albicans_SC5314         GGTGCTTGCACCCCCTTTAGTCCGGATGTGTGTGAGAATGARTTGGGTGT      2350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCGGATGCTTTAGATAGTTGATTGAYTGTACGGATGTTTGACTTGGGTAG      2400
+Ca22chr2B_C_albicans_SC5314         GCGGATGCTTTAGATAGTTGATTGAYTGTACGGATGTTTGACTTGGGTAG      2400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTGCTGTTCAATTAGAGGGTGGTTTATTTGAGAGCGTTTTAATTTGGGT      2450
+Ca22chr2B_C_albicans_SC5314         GGTGCTGTTCAATTAGAGGGTGGTTTATTTGAGAGCGTTTTAATTTGGGT      2450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGAGGAGTTGTTGAGGTATAGAGTATTTCAAAATRGGAATGTTGTTCCA      2500
+Ca22chr2B_C_albicans_SC5314         TCGAGGAGTTGTTGAGGTATAGAGTATTTCAAAATRGGAATGTTGTTCCA      2500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACTAGGGGGGTTGTTCAATTAGGTATGAAAGTGGTTCAAATCAGTGAAT      2550
+Ca22chr2B_C_albicans_SC5314         AACTAGGGGGGTTGTTCAATTAGGTATGAAAGTGGTTCAAATCAGTGAAT      2550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGTTTAATCTTGATGTAGTTGTTCAATCTTAGAGTAGTTCAAATTTGAA      2600
+Ca22chr2B_C_albicans_SC5314         AAGTTTAATCTTGATGTAGTTGTTCAATCTTAGAGTAGTTCAAATTTGAA      2600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGAGTTCTAGATTGGTGTAGTTGTTTTAGAGTTAGTGTTGAGAGAKGTT      2650
+Ca22chr2B_C_albicans_SC5314         GAGAGTTCTAGATTGGTGTAGTTGTTTTAGAGTTAGTGTTGAGAGAKGTT      2650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAAATCAAGGGTAGTTCCGGTACAGTGAKTTGTTTAATCACAGAGTAGTT      2700
+Ca22chr2B_C_albicans_SC5314         TAAATCAAGGGTAGTTCCGGTACAGTGAKTTGTTTAATCACAGAGTAGTT      2700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAAATTTGAAGAGACTTCCAAATTGGGTTGGGTGTTGTTCAATTAGAGAG      2750
+Ca22chr2B_C_albicans_SC5314         GAAATTTGAAGAGACTTCCAAATTGGGTTGGGTGTTGTTCAATTAGAGAG      2750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGTTTATTTGAGAGAGTTGTAATTTAGGTTCTAGGAGTTGTTCAAACTC      2800
+Ca22chr2B_C_albicans_SC5314         CTGTTTATTTGAGAGAGTTGTAATTTAGGTTCTAGGAGTTGTTCAAACTC      2800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAGTTGCTCATTTGAGAAGAGATTTCCAAATCGATTGTACAGTTATTCA      2850
+Ca22chr2B_C_albicans_SC5314         AGAGTTGCTCATTTGAGAAGAGATTTCCAAATCGATTGTACAGTTATTCA      2850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTTGCCATCCGGTTAATACATTGGTTAAAAATAGGGATACACTGTTTC      2900
+Ca22chr2B_C_albicans_SC5314         AGTTTGCCATCCGGTTAATACATTGGTTAAAAATAGGGATACACTGTTTC      2900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCACGTGTAGTTTCCAAGAGAGATATTCAATTACTGAGTGGTTCATTTGA      2950
+Ca22chr2B_C_albicans_SC5314         TCACGTGTAGTTTCCAAGAGAGATATTCAATTACTGAGTGGTTCATTTGA      2950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGTGTGCCGAATTGGTTGAATTGGGGTTGTTAAATCTGGTTTAAATAGT      3000
+Ca22chr2B_C_albicans_SC5314         GAGTGTGCCGAATTGGTTGAATTGGGGTTGTTAAATCTGGTTTAAATAGT      3000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTGGTACAGTGAGTTGAGAGTTCTAGAGATATTCWAATTTATTWCCAGA      3050
+Ca22chr2B_C_albicans_SC5314         TCTGGTACAGTGAGTTGAGAGTTCTAGAGATATTCWAATTTATTWCCAGA      3050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAAAGCATTTGTTGATATTGCTGCAAATTAGAGCAGTAAGTTAGATCAT      3100
+Ca22chr2B_C_albicans_SC5314         TTAAAGCATTTGTTGATATTGCTGCAAATTAGAGCAGTAAGTTAGATCAT      3100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTGAATTGGTTACAGAACTGCTAGTGTGGGCTAACGAGTGGGTTAATTG      3150
+Ca22chr2B_C_albicans_SC5314         TTTGAATTGGTTACAGAACTGCTAGTGTGGGCTAACGAGTGGGTTAATTG      3150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGTGGTGATTACAGCAGGGGGTAGTTTTAGAGTGGTTCAGCTTGGTTAG      3200
+Ca22chr2B_C_albicans_SC5314         TTGTGGTGATTACAGCAGGGGGTAGTTTTAGAGTGGTTCAGCTTGGTTAG      3200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         RCAWTTGTTAGTGTTAGCTAGATCTTGAGGGATTTTTGAATTCGGAGTTG      3250
+Ca22chr2B_C_albicans_SC5314         RCAWTTGTTAGTGTTAGCTAGATCTTGAGGGATTTTTGAATTCGGAGTTG      3250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         MTAACACGTACAAGTCGYTCTTGTTGGCAGTTAGACTTCCGTAAATTAAA      3300
+Ca22chr2B_C_albicans_SC5314         MTAACACGTACAAGTCGYTCTTGTTGGCAGTTAGACTTCCGTAAATTAAA      3300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGTGGCCCCCCCTTGGTTAGTCTTGGCTGGGGCTACATCTGAAGRTGT      3350
+Ca22chr2B_C_albicans_SC5314         CCAGTGGCCCCCCCTTGGTTAGTCTTGGCTGGGGCTACATCTGAAGRTGT      3350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAAAAAATTTTGGGAAAATTCAWCWCTATCTCTGATGAAGAACCTTCGG      3400
+Ca22chr2B_C_albicans_SC5314         CCAAAAAATTTTGGGAAAATTCAWCWCTATCTCTGATGAAGAACCTTCGG      3400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATGAAATTTGATCGACAAATTTCTCTTCACCTGTCGTTACCGCGTTTTT      3450
+Ca22chr2B_C_albicans_SC5314         GATGAAATTTGATCGACAAATTTCTCTTCACCTGTCGTTACCGCGTTTTT      3450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGTAAGCTTCATTTTTATGATCTGATTACTCCTTGAATGACTTTTCCTC      3500
+Ca22chr2B_C_albicans_SC5314         ATGTAAGCTTCATTTTTATGATCTGATTACTCCTTGAATGACTTTTCCTC      3500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACAACTGTGCTTGATGTCTTATAGASAYGGGTTTATCCTCCAATTCAGA      3550
+Ca22chr2B_C_albicans_SC5314         TACAACTGTGCTTGATGTCTTATAGASAYGGGTTTATCCTCCAATTCAGA      3550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTTCTGCTTCGTTTGGCCTACAGTTAGTCTTGCCATTCGAGGTGTCTYT      3600
+Ca22chr2B_C_albicans_SC5314         GTTTCTGCTTCGTTTGGCCTACAGTTAGTCTTGCCATTCGAGGTGTCTYT      3600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTATACATCTACATGCTTCACTACCCCCTACTRACCCCCTCTCTTTGTTC      3650
+Ca22chr2B_C_albicans_SC5314         CTATACATCTACATGCTTCACTACCCCCTACTRACCCCCTCTCTTTGTTC      3650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCCCAAGTCACCCAGTTCGGACTATAATGCACCACCTCCTGGTAAGCAGG      3700
+Ca22chr2B_C_albicans_SC5314         GCCCAAGTCACCCAGTTCGGACTATAATGCACCACCTCCTGGTAAGCAGG      3700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACCATATCCCTCCACTTCCACCTGCATACCCAACATGATACTTCTTGTT      3750
+Ca22chr2B_C_albicans_SC5314         TACCATATCCCTCCACTTCCACCTGCATACCCAACATGATACTTCTTGTT      3750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGTCCAACTCTAGCTGGCTGATCCCATTGCGGTCCTTGTAGATGTAGT      3800
+Ca22chr2B_C_albicans_SC5314         CCAGTCCAACTCTAGCTGGCTGATCCCATTGCGGTCCTTGTAGATGTAGT      3800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGCCCTTCTCTCYGGAATATTCSTGAGAATTAGTCCTAGTACACGATAGR      3850
+Ca22chr2B_C_albicans_SC5314         TGCCCTTCTCTCYGGAATATTCSTGAGAATTAGTCCTAGTACACGATAGR      3850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATTAATTTTTAATAAGCAAAAAACAGAGTAAATAAAGTTTACGCCCACT      3900
+Ca22chr2B_C_albicans_SC5314         CATTAATTTTTAATAAGCAAAAAACAGAGTAAATAAAGTTTACGCCCACT      3900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAAGTGTCTACTRAAACTCGGTCTCTATATCCTAAATACCTTTCTTTTC      3950
+Ca22chr2B_C_albicans_SC5314         AAAAGTGTCTACTRAAACTCGGTCTCTATATCCTAAATACCTTTCTTTTC      3950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTCTKTTTATACTAATTCCCGGCTCTCGATGAGTGCAAATTTTTCACC      4000
+Ca22chr2B_C_albicans_SC5314         TCTTCTKTTTATACTAATTCCCGGCTCTCGATGAGTGCAAATTTTTCACC      4000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AATGTTGACCTAATACGTACRACTTATATTAATGGAATCTGAGTATCAGT      4050
+Ca22chr2B_C_albicans_SC5314         AATGTTGACCTAATACGTACRACTTATATTAATGGAATCTGAGTATCAGT      4050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAACACTTGATAGTATATTAATCACTATGTGTGCGTATGTAGATATATAC      4100
+Ca22chr2B_C_albicans_SC5314         GAACACTTGATAGTATATTAATCACTATGTGTGCGTATGTAGATATATAC      4100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCCTCAACAGACCGATCCTTCGGAGGTCGTGTCTCCGTCTACACTCTGG      4150
+Ca22chr2B_C_albicans_SC5314         TTCCTCAACAGACCGATCCTTCGGAGGTCGTGTCTCCGTCTACACTCTGG      4150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGTAGATGTCCCTATATATCAAGGTGKTATTTCCCTGACACAAACGTCG      4200
+Ca22chr2B_C_albicans_SC5314         GTGTAGATGTCCCTATATATCAAGGTGKTATTTCCCTGACACAAACGTCG      4200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATAAACCAACAAGAATAATTTTATCACACCTTTATTTCCCCCCACCATG      4250
+Ca22chr2B_C_albicans_SC5314         CATAAACCAACAAGAATAATTTTATCACACCTTTATTTCCCCCCACCATG      4250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGAAAACCTCCAAACAAGATTACATAACTCACTCGACGAGATATTGAA      4300
+Ca22chr2B_C_albicans_SC5314         CCAGAAAACCTCCAAACAAGATTACATAACTCACTCGACGAGATATTGAA      4300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCATCAGGATACATATTTGAGATAATCGACCAAAACAGAAAACAAAGCA      4350
+Ca22chr2B_C_albicans_SC5314         ATCATCAGGATACATATTTGAGATAATCGACCAAAACAGAAAACAAAGCA      4350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGTGATAACTAGCCCCAACAACGAACTAATCCAAAAATCCATAACCCAA      4400
+Ca22chr2B_C_albicans_SC5314         ATGTGATAACTAGCCCCAACAACGAACTAATCCAAAAATCCATAACCCAA      4400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGCTCAACGGCGAAATCCAAAACTTCCATGCTATTCTAGACCAAACAGT      4450
+Ca22chr2B_C_albicans_SC5314         CTGCTCAACGGCGAAATCCAAAACTTCCATGCTATTCTAGACCAAACAGT      4450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCGAAACTCAATGATGCAGAGTGGTGTCTCGGCGTTATGGTTGAAAAGA      4500
+Ca22chr2B_C_albicans_SC5314         GTCGAAACTCAATGATGCAGAGTGGTGTCTCGGCGTTATGGTTGAAAAGA      4500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAAGAAACTTGACGAATTGAAAGTCAAAGAAGAAGCGGCAAGAAAGAAG      4550
+Ca22chr2B_C_albicans_SC5314         AAAAGAAACTTGACGAATTGAAAGTCAAAGAAGAAGCGGCAAGAAAGAAG      4550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAAGAAGAGGCCAAGAAGAAGGAAGAAGAGGTCAAGAAAAAGGCAGAGGA      4600
+Ca22chr2B_C_albicans_SC5314         GAAGAAGAGGCCAAGAAGAAGGAAGAAGAGGTCAAGAAAAAGGCAGAGGA      4600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGCGAAGAAGTGTTTTATTTTACTTTTCTGTCAAATTTGCACTACTTTTA      4650
+Ca22chr2B_C_albicans_SC5314         AGCGAAGAAGTGTTTTATTTTACTTTTCTGTCAAATTTGCACTACTTTTA      4650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATTTGTGTGCAAATATTCTATTTTACTTGATTTTTATATACTTTTATTTT      4700
+Ca22chr2B_C_albicans_SC5314         ATTTGTGTGCAAATATTCTATTTTACTTGATTTTTATATACTTTTATTTT      4700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACAATACTTTTTTATAGGACTTTTTATATCTTTTCTTTATCAACTCATCT      4750
+Ca22chr2B_C_albicans_SC5314         ACAATACTTTTTTATAGGACTTTTTATATCTTTTCTTTATCAACTCATCT      4750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTATACAATATATTCTTACGATTATAACTTTCAATTAAGAAATACAACT      4800
+Ca22chr2B_C_albicans_SC5314         TTTATACAATATATTCTTACGATTATAACTTTCAATTAAGAAATACAACT      4800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TYTTATTAGCATTCTCCTACAAGTTCTTAAGTTCCTAGGAAATTCTTCGA      4850
+Ca22chr2B_C_albicans_SC5314         TYTTATTAGCATTCTCCTACAAGTTCTTAAGTTCCTAGGAAATTCTTCGA      4850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACTATAATTAAAGACGAAAAGTGTAAAACAAACAGAAGGCAGAGGAGGC      4900
+Ca22chr2B_C_albicans_SC5314         AACTATAATTAAAGACGAAAAGTGTAAAACAAACAGAAGGCAGAGGAGGC      4900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         YAARAAGGCAGAGACCGCCCCACAAAAGTTTGACAACTTTGACGACTTTA      4950
+Ca22chr2B_C_albicans_SC5314         YAARAAGGCAGAGACCGCCCCACAAAAGTTTGACAACTTTGACGACTTTA      4950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGGCTTTGACATCAACGACAATACCAACGACGAAGACATGTTGTCCAAC      5000
+Ca22chr2B_C_albicans_SC5314         TTGGCTTTGACATCAACGACAATACCAACGACGAAGACATGTTGTCCAAC      5000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGGACTACGAGGACCTAAAATTGGACGACAAAGTACCTGCCACCACAGA      5050
+Ca22chr2B_C_albicans_SC5314         ATGGACTACGAGGACCTAAAATTGGACGACAAAGTACCTGCCACCACAGA      5050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAACAACTTGGACATGAACAACATACTTGAAAACGACGAGCTGATACTAG      5100
+Ca22chr2B_C_albicans_SC5314         CAACAACTTGGACATGAACAACATACTTGAAAACGACGAGCTGATACTAG      5100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGGGTTGAACATGACATTGCTCGACAATGGCGACCACGTAAACGAAGAG      5150
+Ca22chr2B_C_albicans_SC5314         ACGGGTTGAACATGACATTGCTCGACAATGGCGACCACGTAAACGAAGAG      5150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTGATGTAGACAGCTTTTTAAACCAGTTTGGCAATTARGGGCTCTGTTC      5200
+Ca22chr2B_C_albicans_SC5314         TTTGATGTAGACAGCTTTTTAAACCAGTTTGGCAATTARGGGCTCTGTTC      5200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACAAGACATATRCAGATAGTACAGGAATAAGAAAAGAAATATTTTATAG      5250
+Ca22chr2B_C_albicans_SC5314         TACAAGACATATRCAGATAGTACAGGAATAAGAAAAGAAATATTTTATAG      5250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTATATATTTCAAGTGTTTATTCTGTTCAACAAGTTCTAACCGTAGATAC      5300
+Ca22chr2B_C_albicans_SC5314         TTATATATTTCAAGTGTTTATTCTGTTCAACAAGTTCTAACCGTAGATAC      5300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCAAGCACCAAGTCAGACATTACTGAGCTAGCTTAACGGRCCAACTACT      5350
+Ca22chr2B_C_albicans_SC5314         ACCAAGCACCAAGTCAGACATTACTGAGCTAGCTTAACGGRCCAACTACT      5350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAAATTGCAATCCGTTCTTTACTTGAGTCAGTCGACTCTACAACAACTA      5400
+Ca22chr2B_C_albicans_SC5314         TTAAATTGCAATCCGTTCTTTACTTGAGTCAGTCGACTCTACAACAACTA      5400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCCTGAGGTGRTTATTTTTTGGTGGAAATTTTGACCAAATTCTTAAGCAA      5450
+Ca22chr2B_C_albicans_SC5314         TCCTGAGGTGRTTATTTTTTGGTGGAAATTTTGACCAAATTCTTAAGCAA      5450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAGTCTTYAATCGTTTGATCAGCTTAAATCTTCTTCAAACCATTCCAAA      5500
+Ca22chr2B_C_albicans_SC5314         AAAGTCTTYAATCGTTTGATCAGCTTAAATCTTCTTCAAACCATTCCAAA      5500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACCCCATATACCGGTCTTCCCATCAACTACTAAACTCTAGCCCTAGGAC      5550
+Ca22chr2B_C_albicans_SC5314         TACCCCATATACCGGTCTTCCCATCAACTACTAAACTCTAGCCCTAGGAC      5550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTTTTAGTTTCTCATTTTGCACTTCTCTGGATCAACCCTTTTTTTTTTC      5600
+Ca22chr2B_C_albicans_SC5314         TGTTTTAGTTTCTCATTTTGCACTTCTCTGGATCAACCCTTTTTTTTTTC      5600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGTTTAAAAAATCTAAAAAAAAAAAATTTTCTTCCTCATCTTACACCTT      5650
+Ca22chr2B_C_albicans_SC5314         TCGTTTAAAAAATCTAAAAAAAAAAAATTTTCTTCCTCATCTTACACCTT      5650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCCTACCATAGCCATGTCAGTACTAACCCGCAAACGTGTCATCTCCCCA      5700
+Ca22chr2B_C_albicans_SC5314         CTCCTACCATAGCCATGTCAGTACTAACCCGCAAACGTGTCATCTCCCCA      5700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTGATTCACCTAATAAGAAACAAAATACCATGTCAGATGACCAGTTTTC      5750
+Ca22chr2B_C_albicans_SC5314         TCTGATTCACCTAATAAGAAACAAAATACCATGTCAGATGACCAGTTTTC      5750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAGAAAATGTACACTACATACGTCAAGTCGGCATTGCTATCCCTAGAAA      5800
+Ca22chr2B_C_albicans_SC5314         AGAGAAAATGTACACTACATACGTCAAGTCGGCATTGCTATCCCTAGAAA      5800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCGATGCCTTGCCCATCAACACCATCACAGATAAAATCAATCTCCCCATT      5850
+Ca22chr2B_C_albicans_SC5314         CCGATGCCTTGCCCATCAACACCATCACAGATAAAATCAATCTCCCCATT      5850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGCCACCCCGAATCAATCACACTCCCCCAATTTCAGATCGTCTTGAACGG      5900
+Ca22chr2B_C_albicans_SC5314         GGCCACCCCGAATCAATCACACTCCCCCAATTTCAGATCGTCTTGAACGG      5900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTCGTGTCAAATACCTCACGCTTGGACAACACCGCATGCAGCAACCTCA      5950
+Ca22chr2B_C_albicans_SC5314         ACTCGTGTCAAATACCTCACGCTTGGACAACACCGCATGCAGCAACCTCA      5950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTTGCCATTTTGAGATACAACTGGCTAGACATAGCCGATACCGATGGG      6000
+Ca22chr2B_C_albicans_SC5314         TCTTTGCCATTTTGAGATACAACTGGCTAGACATAGCCGATACCGATGGG      6000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACCACCGTTTCGCTGAATCGTATTCCCAATTCCTCGTTGCATTGGTGTC      6050
+Ca22chr2B_C_albicans_SC5314         TACCACCGTTTCGCTGAATCGTATTCCCAATTCCTCGTTGCATTGGTGTC      6050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACGCTCCCAAAATACCTCCATGAAGTGACAAACAAACTTATCCAGGAAT      6100
+Ca22chr2B_C_albicans_SC5314         GACGCTCCCAAAATACCTCCATGAAGTGACAAACAAACTTATCCAGGAAT      6100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGACTCGCCAAATACGACCCACCACCACGAAATACTCACCAAAATCATC      6150
+Ca22chr2B_C_albicans_SC5314         TTGACTCGCCAAATACGACCCACCACCACGAAATACTCACCAAAATCATC      6150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATACGTTCCCACATCAATCAACTCAATCCCACAACTCTTGCAAAAAAA      6200
+Ca22chr2B_C_albicans_SC5314         AAATACGTTCCCACATCAATCAACTCAATCCCACAACTCTTGCAAAAAAA      6200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTCCCCCACCACATTTCGTCCTCGACAAAGGAACTTACCAACTACGTGC      6250
+Ca22chr2B_C_albicans_SC5314         CTTCCCCCACCACATTTCGTCCTCGACAAAGGAACTTACCAACTACGTGC      6250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAACCTAGTCCGCGTCTTGGACTACACTCCAGAGTTACAATTCAGTATA      6300
+Ca22chr2B_C_albicans_SC5314         AGAACCTAGTCCGCGTCTTGGACTACACTCCAGAGTTACAATTCAGTATA      6300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGCAACTAATCATCGAGTCGAGTATAAAACTAGACGTTGAACTCCAGAA      6350
+Ca22chr2B_C_albicans_SC5314         TGGCAACTAATCATCGAGTCGAGTATAAAACTAGACGTTGAACTCCAGAA      6350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGAACTTGACGACCTAGACGACGAAGAGATCGAAGATTTGATTAGTGGCG      6400
+Ca22chr2B_C_albicans_SC5314         CGAACTTGACGACCTAGACGACGAAGAGATCGAAGATTTGATTAGTGGCG      6400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGAAGACTCCGACAGCGAAGACGAATGGGAGGTCACCACCACCTCCATC      6450
+Ca22chr2B_C_albicans_SC5314         AAGAAGACTCCGACAGCGAAGACGAATGGGAGGTCACCACCACCTCCATC      6450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATCCCTCCTGTCCAAACTCGATAGCATTATCAGCACCCTCTTGACTAC      6500
+Ca22chr2B_C_albicans_SC5314         AAATCCCTCCTGTCCAAACTCGATAGCATTATCAGCACCCTCTTGACTAC      6500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACCGCCAACTCATTCACCATCGAAGAACTAAACAACGGAAACGGTGTCA      6550
+Ca22chr2B_C_albicans_SC5314         CACCGCCAACTCATTCACCATCGAAGAACTAAACAACGGAAACGGTGTCA      6550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCTCTTCAACACCATCAACTCCCTCTTCAAAAGCCACATCTTGCCCACC      6600
+Ca22chr2B_C_albicans_SC5314         ACCTCTTCAACACCATCAACTCCCTCTTCAAAAGCCACATCTTGCCCACC      6600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACTTTACCAAACTGATCCAGTTTATCCTATTCCACATCACCCAGTTCCA      6650
+Ca22chr2B_C_albicans_SC5314         CACTTTACCAAACTGATCCAGTTTATCCTATTCCACATCACCCAGTTCCA      6650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCTGAATTGGCCGACTCATACTTGGTATTGCTCATCGATGTGGCTTTCA      6700
+Ca22chr2B_C_albicans_SC5314         ACCTGAATTGGCCGACTCATACTTGGTATTGCTCATCGATGTGGCTTTCA      6700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCCCAGCGAAATCTTGGAAAAGCGTCTCAAGGCAATGCAGTACTTGTCG      6750
+Ca22chr2B_C_albicans_SC5314         ACCCCAGCGAAATCTTGGAAAAGCGTCTCAAGGCAATGCAGTACTTGTCG      6750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCATACATCGCCAGAGCCAAAAACCTTTCCCGCCACCAGGTCATCTTCAT      6800
+Ca22chr2B_C_albicans_SC5314         TCATACATCGCCAGAGCCAAAAACCTTTCCCGCCACCAGGTCATCTTCAT      6800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTCAGTTATCTTGTCGGTTGGCTCAACAAGTTTATCATCGAAAGAGAAC      6850
+Ca22chr2B_C_albicans_SC5314         TGTCAGTTATCTTGTCGGTTGGCTCAACAAGTTTATCATCGAAAGAGAAC      6850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGAGGTCGAGTCTAGTGGCGACAAACAAGTCGGGGGTATGGAACGATTC      6900
+Ca22chr2B_C_albicans_SC5314         AAGAGGTCGAGTCTAGTGGCGACAAACAAGTCGGGGGTATGGAACGATTC      6900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAACTATTCTACGCCGCATTTCAGGCATTGCTCTACATCTTCTGTTTCCG      6950
+Ca22chr2B_C_albicans_SC5314         AAACTATTCTACGCCGCATTTCAGGCATTGCTCTACATCTTCTGTTTCCG      6950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCACGAACTACTCTCCACCACCGAAAACGACTGGGAGTGCGACCTCGACA      7000
+Ca22chr2B_C_albicans_SC5314         CCACGAACTACTCTCCACCACCGAAAACGACTGGGAGTGCGACCTCGACA      7000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTCTTCCAAAGAGCTATCCTTACCAAGTTTAACCCGCTAAAGTTCTGT      7050
+Ca22chr2B_C_albicans_SC5314         AGTTCTTCCAAAGAGCTATCCTTACCAAGTTTAACCCGCTAAAGTTCTGT      7050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACGAGACCGTGGTGTACATATTTGCCAAGTTGGCCACCAAACTCAATGT      7100
+Ca22chr2B_C_albicans_SC5314         GACGAGACCGTGGTGTACATATTTGCCAAGTTGGCCACCAAACTCAATGT      7100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGCTACTGCTACTCCATCATCGAACACAATAAACGCGAGAGAATGTTGC      7150
+Ca22chr2B_C_albicans_SC5314         CTGCTACTGCTACTCCATCATCGAACACAATAAACGCGAGAGAATGTTGC      7150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACACAAACGCATTGCCTTCCGCAGTTGGCAACTTTAAACAGAAACAAGAG      7200
+Ca22chr2B_C_albicans_SC5314         ACACAAACGCATTGCCTTCCGCAGTTGGCAACTTTAAACAGAAACAAGAG      7200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCTTGGACTTGGAAGCTTACTTCCCATTCGATCCATTGGTCTTGCCCAT      7250
+Ca22chr2B_C_albicans_SC5314         TTCTTGGACTTGGAAGCTTACTTCCCATTCGATCCATTGGTCTTGCCCAT      7250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAGCAAATCCATCGTCGCTCCAAACTACATAGAATGGTCAGAAGATACCC      7300
+Ca22chr2B_C_albicans_SC5314         CAGCAAATCCATCGTCGCTCCAAACTACATAGAATGGTCAGAAGATACCC      7300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGCCGAAGAAACCGATAGTGAAGACGATATATAGTGTGTATAGAAATAA      7350
+Ca22chr2B_C_albicans_SC5314         ATGCCGAAGAAACCGATAGTGAAGACGATATATAGTGTGTATAGAAATAA      7350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAAAAAAAAAATTACCATAACCAAAATGGCGGGCAAAAAAATAATGATC      7400
+Ca22chr2B_C_albicans_SC5314         ATAAAAAAAAAATTACCATAACCAAAATGGCGGGCAAAAAAATAATGATC      7400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAGCCGAGGATCGAACTCGAGACCTTTTCCGTGTGAAGGAAACGTGATAC      7450
+Ca22chr2B_C_albicans_SC5314         TAGCCGAGGATCGAACTCGAGACCTTTTCCGTGTGAAGGAAACGTGATAC      7450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCTACACCACTAAACCATTTTACGAAAAATTATACATTGACTATGTCAA      7500
+Ca22chr2B_C_albicans_SC5314         CGCTACACCACTAAACCATTTTACGAAAAATTATACATTGACTATGTCAA      7500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACCGAAAATTACCACACCTGCTGCAACACCACAATATACACTGGCGAAC      7550
+Ca22chr2B_C_albicans_SC5314         TACCGAAAATTACCACACCTGCTGCAACACCACAATATACACTGGCGAAC      7550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTGACCGCCAATCGACGCATCATACAACTTGTACAACCCGTTAGTGCCC      7600
+Ca22chr2B_C_albicans_SC5314         ACTGACCGCCAATCGACGCATCATACAACTTGTACAACCCGTTAGTGCCC      7600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCCTGACAGTGCCAGAACCGCGTGCTGCCATGGAGTGAAAGCAACCGCTT      7650
+Ca22chr2B_C_albicans_SC5314         GCCTGACAGTGCCAGAACCGCGTGCTGCCATGGAGTGAAAGCAACCGCTT      7650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCATTCGACGAAACAACCGACCATCCCTTATTGAACAACGCACTGGACT      7700
+Ca22chr2B_C_albicans_SC5314         ACCATTCGACGAAACAACCGACCATCCCTTATTGAACAACGCACTGGACT      7700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCGACGGCAAATCAAACTGAAACTGGTGGTTAGCAACAATCTCTCCAATA      7750
+Ca22chr2B_C_albicans_SC5314         GCGACGGCAAATCAAACTGAAACTGGTGGTTAGCAACAATCTCTCCAATA      7750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCACCTCGCTGGTCATACAATACACCATCACTAAGCATAAAGTATTGTGG      7800
+Ca22chr2B_C_albicans_SC5314         GCACCTCGCTGGTCATACAATACACCATCACTAAGCATAAAGTATTGTGG      7800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGACTTCCCAACCTTGCAGTAAACCGGGGTCACCTTACACTTGCCACACG      7850
+Ca22chr2B_C_albicans_SC5314         GGACTTCCCAACCTTGCAGTAAACCGGGGTCACCTTACACTTGCCACACG      7850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTCTGGTGCCATATACGAACTATTCCCCATCAAGCACTCAACGGTAGCG      7900
+Ca22chr2B_C_albicans_SC5314         GCTCTGGTGCCATATACGAACTATTCCCCATCAAGCACTCAACGGTAGCG      7900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCCATGGAACAACTGGCCATCGCCAATCTCAAATACCTTATACGTGGT      7950
+Ca22chr2B_C_albicans_SC5314         TTGCCATGGAACAACTGGCCATCGCCAATCTCAAATACCTTATACGTGGT      7950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTACCCAACCTGGGCACCTAACGAAAACCGAATCGGAGCACTAGCCAAAC      8000
+Ca22chr2B_C_albicans_SC5314         GTACCCAACCTGGGCACCTAACGAAAACCGAATCGGAGCACTAGCCAAAC      8000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACTGACAAGCACAATAGTATAGAATAAAACTAAGCAAATCATTGCTGAT      8050
+Ca22chr2B_C_albicans_SC5314         CACTGACAAGCACAATAGTATAGAATAAAACTAAGCAAATCATTGCTGAT      8050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAAAAAAAAACGAGAGGCGACAATCCCTCCACTATTTATAGTTGGGTGT      8100
+Ca22chr2B_C_albicans_SC5314         CAAAAAAAAAACGAGAGGCGACAATCCCTCCACTATTTATAGTTGGGTGT      8100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCCTTTTTTTTTTGCAACAGATTGTTTACATTTTCTATAAACTCTATACT      8150
+Ca22chr2B_C_albicans_SC5314         CCCTTTTTTTTTTGCAACAGATTGTTTACATTTTCTATAAACTCTATACT      8150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCTCATTAATAAACTTTGCTACTAAATTATATGCAAACTTGTCTTTGAA      8200
+Ca22chr2B_C_albicans_SC5314         CGCTCATTAATAAACTTTGCTACTAAATTATATGCAAACTTGTCTTTGAA      8200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCTCCCTTGATTGCTCTTTCGGCCCCTTGTTTGCTAATATAGTCCAAGC      8250
+Ca22chr2B_C_albicans_SC5314         ATCTCCCTTGATTGCTCTTTCGGCCCCTTGTTTGCTAATATAGTCCAAGC      8250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTCAACATAGACTAGCCCTGCATGTATACCACCAGGCTCAGTATAGTAT      8300
+Ca22chr2B_C_albicans_SC5314         ACTCAACATAGACTAGCCCTGCATGTATACCACCAGGCTCAGTATAGTAT      8300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGACGCCACCTTTAATAATGTTGTAAAAATCATCGACCCCATCTCTCAA      8350
+Ca22chr2B_C_albicans_SC5314         TCGACGCCACCTTTAATAATGTTGTAAAAATCATCGACCCCATCTCTCAA      8350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACCTCTCTCTCTCCCACAATCATCAACGTGTTACCGTTCAACGCCTCAA      8400
+Ca22chr2B_C_albicans_SC5314         AACCTCTCTCTCTCCCACAATCATCAACGTGTTACCGTTCAACGCCTCAA      8400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTCCTTCCAGTGCTCGTCCCAATTGGTATTGGTAAATGTCAAAAAATTA      8450
+Ca22chr2B_C_albicans_SC5314         CCTCCTTCCAGTGCTCGTCCCAATTGGTATTGGTAAATGTCAAAAAATTA      8450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAATAAACAGTTTATCGTTATCCCCAGCATACAACTCTCCCATGGACGT      8500
+Ca22chr2B_C_albicans_SC5314         TTAATAAACAGTTTATCGTTATCCCCAGCATACAACTCTCCCATGGACGT      8500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCTTGTGCACCTAGATCGCCCCACACATCGCACCCGTGTCGTGGCGGAA      8550
+Ca22chr2B_C_albicans_SC5314         GTCTTGTGCACCTAGATCGCCCCACACATCGCACCCGTGTCGTGGCGGAA      8550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTTCGGGGTGGTGCATGGCTGCACCCACGGCGATACCAATATCAATGCC      8600
+Ca22chr2B_C_albicans_SC5314         GTTTCGGGGTGGTGCATGGCTGCACCCACGGCGATACCAATATCAATGCC      8600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTGGCTGTGGCAAATCAAGCAGCACGTTATACTGCTGCAACTGCTGCTT      8650
+Ca22chr2B_C_albicans_SC5314         TGTGGCTGTGGCAAATCAAGCAGCACGTTATACTGCTGCAACTGCTGCTT      8650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGCCTCTTCCGGATATGCTATGGCTCTGGCCAACGACAACGACATATGTG      8700
+Ca22chr2B_C_albicans_SC5314         GGCCTCTTCCGGATATGCTATGGCTCTGGCCAACGACAACGACATATGTG      8700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCCCTGCTGAATCCCCTAACAACAAAATATCCTTATACCCTTGGGCCACC      8750
+Ca22chr2B_C_albicans_SC5314         CCCCTGCTGAATCCCCTAACAACAAAATATCCTTATACCCTTGGGCCACC      8750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATTGTTATACGTAACCAAATGCTCATACAACTGTGTCGGATAAACATT      8800
+Ca22chr2B_C_albicans_SC5314         AAATTGTTATACGTAACCAAATGCTCATACAACTGTGTCGGATAAACATT      8800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCAAACATGGTCAACGAATAGTCAACCACCAAAATCGACGTGTTCTCCG      8850
+Ca22chr2B_C_albicans_SC5314         ATCAAACATGGTCAACGAATAGTCAACCACCAAAATCGACGTGTTCTCCG      8850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCGCATGGTCATCCAACGCATAGTGCAACGCCGAAACAAAAACAAACTGC      8900
+Ca22chr2B_C_albicans_SC5314         CCGCATGGTCATCCAACGCATAGTGCAACGCCGAAACAAAAACAAACTGC      8900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACTCAAACATGTTCAACAAGTACCCTCCGCCATGGATATAGATCAACAC      8950
+Ca22chr2B_C_albicans_SC5314         GACTCAAACATGTTCAACAAGTACCCTCCGCCATGGATATAGATCAACAC      8950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGCCCTGGGTATCTGCCTTGTGGATCCAATAACTATACTCATCAAACT      9000
+Ca22chr2B_C_albicans_SC5314         CTTGCCCTGGGTATCTGCCTTGTGGATCCAATAACTATACTCATCAAACT      9000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTCCCCAAAATGCGCCAACCCCGATGCCAATGGATGGGTCTTGAACTTG      9050
+Ca22chr2B_C_albicans_SC5314         TTTCCCCAAAATGCGCCAACCCCGATGCCAATGGATGGGTCTTGAACTTG      9050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAATCACCTTGTCAATCGGCTGGTAGATAACCGCTTTAATATTCTCCTT      9100
+Ca22chr2B_C_albicans_SC5314         GCAATCACCTTGTCAATCGGCTGGTAGATAACCGCTTTAATATTCTCCTT      9100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGTAGTTCCCCGAAACATGGTACTGCACCGATAACAACACATTCTTCC      9150
+Ca22chr2B_C_albicans_SC5314         CTTGTAGTTCCCCGAAACATGGTACTGCACCGATAACAACACATTCTTCC      9150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACAACGAGTTGCGGAACTCCTGATTAGTACGTGAATATGGTGTGCCCACC      9200
+Ca22chr2B_C_albicans_SC5314         ACAACGAGTTGCGGAACTCCTGATTAGTACGTGAATATGGTGTGCCCACC      9200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTATAGTACTGCAACACCGTCTTGGTCACAGTATATGGCAATGTAACCAA      9250
+Ca22chr2B_C_albicans_SC5314         GTATAGTACTGCAACACCGTCTTGGTCACAGTATATGGCAATGTAACCAA      9250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTAAGAAAAAAATCAATTGTAATCATGGTCCCATGCATAAGCAAGATAA      9300
+Ca22chr2B_C_albicans_SC5314         TTTAAGAAAAAAATCAATTGTAATCATGGTCCCATGCATAAGCAAGATAA      9300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTTTTTTGACGTCGACTTTTTTTTCTTTTTTTTTTTTTCCTCTGTTTT      9350
+Ca22chr2B_C_albicans_SC5314         ACTTTTTTTGACGTCGACTTTTTTTTCTTTTTTTTTTTTTCCTCTGTTTT      9350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTACACGACTACAACTTAAAACTATTTGAGCTTTGTGGCCCGCTGGCCT      9400
+Ca22chr2B_C_albicans_SC5314         CCTACACGACTACAACTTAAAACTATTTGAGCTTTGTGGCCCGCTGGCCT      9400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTGAGATTACCTTTAATGTCTCTCATCTCACCCTTATTGCCAATGACA      9450
+Ca22chr2B_C_albicans_SC5314         TTTTGAGATTACCTTTAATGTCTCTCATCTCACCCTTATTGCCAATGACA      9450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTAAGGTTCTTTGCACCAGCCAACGTATCGACAACACCATCTTTCCTTTG      9500
+Ca22chr2B_C_albicans_SC5314         GTAAGGTTCTTTGCACCAGCCAACGTATCGACAACACCATCTTTCCTTTG      9500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGTTTGGTCTCTTGTCTTTGGTTAAACGTCTTGGCCTTCTTTCTCTTGC      9550
+Ca22chr2B_C_albicans_SC5314         ACGTTTGGTCTCTTGTCTTTGGTTAAACGTCTTGGCCTTCTTTCTCTTGC      9550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAGCACGTCTTAACCTCTGTTTATCTTCACGACTCAACTCATCTTTCGAG      9600
+Ca22chr2B_C_albicans_SC5314         TAGCACGTCTTAACCTCTGTTTATCTTCACGACTCAACTCATCTTTCGAG      9600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACGACAAACCAGACTTTAATTGCACTTGCGACTTGCCCTTAACTCCATC      9650
+Ca22chr2B_C_albicans_SC5314         TACGACAAACCAGACTTTAATTGCACTTGCGACTTGCCCTTAACTCCATC      9650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCCTTAGCCTCATCATCACCAATCTTATATATCTCCTGTGGTGCCAACC      9700
+Ca22chr2B_C_albicans_SC5314         ACCCTTAGCCTCATCATCACCAATCTTATATATCTCCTGTGGTGCCAACC      9700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGACTCGTTCGACACATGCAATGGCTGCGCATCTTCCATGCTAATACTA      9750
+Ca22chr2B_C_albicans_SC5314         TCGACTCGTTCGACACATGCAATGGCTGCGCATCTTCCATGCTAATACTA      9750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGGTAACCTTAATATCAATGGTCTTGGCTTGGTGTGGTTTGGGAATGAA      9800
+Ca22chr2B_C_albicans_SC5314         TCGGTAACCTTAATATCAATGGTCTTGGCTTGGTGTGGTTTGGGAATGAA      9800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGAGCTGAACACAACGCATCTAATTTATGTGTAACCTTGGTAAACAACT      9850
+Ca22chr2B_C_albicans_SC5314         ATGAGCTGAACACAACGCATCTAATTTATGTGTAACCTTGGTAAACAACT      9850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACTAATCTCGTCGTGCTGTTTCTTCACCTCTTCGTTGATCGATTCTTGT      9900
+Ca22chr2B_C_albicans_SC5314         CACTAATCTCGTCGTGCTGTTTCTTCACCTCTTCGTTGATCGATTCTTGT      9900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTGCATCAACATGGTTATACTCATCCTCATACAACTCAGCTAACGACTT      9950
+Ca22chr2B_C_albicans_SC5314         TGTGCATCAACATGGTTATACTCATCCTCATACAACTCAGCTAACGACTT      9950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGACGACTTTTGTTCAGAAACCTCGGCTCGTGGCGTCTTGTGGAACTTGG     10000
+Ca22chr2B_C_albicans_SC5314         GGACGACTTTTGTTCAGAAACCTCGGCTCGTGGCGTCTTGTGGAACTTGG     10000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATGTCTGTTATTATACGTCTGGGCAAATCATTAAAATCGTCTTCCTTG     10050
+Ca22chr2B_C_albicans_SC5314         AAATGTCTGTTATTATACGTCTGGGCAAATCATTAAAATCGTCTTCCTTG     10050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATACGTTTGCGAATAAGGTCTTCCAATGTCTGCGTCGACTCCTCAGTTAT     10100
+Ca22chr2B_C_albicans_SC5314         ATACGTTTGCGAATAAGGTCTTCCAATGTCTGCGTCGACTCCTCAGTTAT     10100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACCGGAACCGGTTTGGATGTACGGTCAAAAGCTATTTCAGTCTCCTCCA     10150
+Ca22chr2B_C_albicans_SC5314         CACCGGAACCGGTTTGGATGTACGGTCAAAAGCTATTTCAGTCTCCTCCA     10150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAACGATTCTCGCGGTCTATCTTTAGACGTGATCTCACCTTTCATTGTC     10200
+Ca22chr2B_C_albicans_SC5314         ATAACGATTCTCGCGGTCTATCTTTAGACGTGATCTCACCTTTCATTGTC     10200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATTTCTTATCTGCCACCAATTCTGCTTCCAACCTGGCAATTTCCGCTTG     10250
+Ca22chr2B_C_albicans_SC5314         CATTTCTTATCTGCCACCAATTCTGCTTCCAACCTGGCAATTTCCGCTTG     10250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATAGACTTTTGCTGCTTTTCAAACGACGACAAACTTTCCTTTGGCTGTG     10300
+Ca22chr2B_C_albicans_SC5314         GATAGACTTTTGCTGCTTTTCAAACGACGACAAACTTTCCTTTGGCTGTG     10300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTCCTCCTCGGCAAATAAATCTAGCATAGCCGAGTTGACTGCATTGTCG     10350
+Ca22chr2B_C_albicans_SC5314         GCTCCTCCTCGGCAAATAAATCTAGCATAGCCGAGTTGACTGCATTGTCG     10350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAATCATCTTCCTCAAACTCCTCTTTTTCAGGCACTTGTTGCTTAAACTT     10400
+Ca22chr2B_C_albicans_SC5314         TAATCATCTTCCTCAAACTCCTCTTTTTCAGGCACTTGTTGCTTAAACTT     10400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCCTGGCTTGTCGTAAAAGTCATTGTAGTAATCCATCTCATCGTCGTCGC     10450
+Ca22chr2B_C_albicans_SC5314         TCCTGGCTTGTCGTAAAAGTCATTGTAGTAATCCATCTCATCGTCGTCGC     10450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACTCAAACTATCAAAATAGTCTATCTCATCGTCGTTATTATCGTTCTCC     10500
+Ca22chr2B_C_albicans_SC5314         CACTCAAACTATCAAAATAGTCTATCTCATCGTCGTTATTATCGTTCTCC     10500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAGCCAAGACTTGTTTGTTGAACTCGTCAATATCGAAAAACCCATCATT     10550
+Ca22chr2B_C_albicans_SC5314         ATAGCCAAGACTTGTTTGTTGAACTCGTCAATATCGAAAAACCCATCATT     10550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGGCCAAACGCATCTTTATGGATAGGTTCGGCGTCTTCCTCTTCTTCGG     10600
+Ca22chr2B_C_albicans_SC5314         AAGGCCAAACGCATCTTTATGGATAGGTTCGGCGTCTTCCTCTTCTTCGG     10600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTGTTCTTCCTCCAGTTCAACTTGGGGTTCTTCATCCTCTGGCTGTTCT     10650
+Ca22chr2B_C_albicans_SC5314         GCTGTTCTTCCTCCAGTTCAACTTGGGGTTCTTCATCCTCTGGCTGTTCT     10650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTGTTCCAGTTCTTCCTCGACTTCCTCGAGTTCCTCTTCTTCTGCCGG     10700
+Ca22chr2B_C_albicans_SC5314         TCTTGTTCCAGTTCTTCCTCGACTTCCTCGAGTTCCTCTTCTTCTGCCGG     10700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGGTTCCTCTTCTTCTTGAGTGTCCTCTTCTTCTTGAGTGTTCTCTTCTT     10750
+Ca22chr2B_C_albicans_SC5314         CGGTTCCTCTTCTTCTTGAGTGTCCTCTTCTTCTTGAGTGTTCTCTTCTT     10750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTCTTCTTCATCTCTTACCATCCCTTGTATCTCCGGTATAACACTCCCC     10800
+Ca22chr2B_C_albicans_SC5314         CCTCTTCTTCATCTCTTACCATCCCTTGTATCTCCGGTATAACACTCCCC     10800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACAACTCCTCACCCACCCCATCGAGAACCATTTTTGTTTGTCCAAAAAC     10850
+Ca22chr2B_C_albicans_SC5314         AACAACTCCTCACCCACCCCATCGAGAACCATTTTTGTTTGTCCAAAAAC     10850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCGATGAGTCTAACCCATCAATATATATCTCATCCAACACAGAATACT     10900
+Ca22chr2B_C_albicans_SC5314         TTGCGATGAGTCTAACCCATCAATATATATCTCATCCAACACAGAATACT     10900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTCGCCAACGGGTCTATAAACGACTTGACTAGCTTATTAAAAAACTCT     10950
+Ca22chr2B_C_albicans_SC5314         TTTTCGCCAACGGGTCTATAAACGACTTGACTAGCTTATTAAAAAACTCT     10950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCATCAGTCTTAAATATCTCATACGGCCTATCGTATATAGTCTGAAGTGT     11000
+Ca22chr2B_C_albicans_SC5314         CCATCAGTCTTAAATATCTCATACGGCCTATCGTATATAGTCTGAAGTGT     11000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGCTTGTGTCATGATTGGTAAAAGAGTAACACAACAAAATTTTTTTTTTT     11050
+Ca22chr2B_C_albicans_SC5314         AGCTTGTGTCATGATTGGTAAAAGAGTAACACAACAAAATTTTTTTTTTT     11050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCGATGCACATTTATTTTTTTTTTCTATAAATCAGATCTGGGTATACT     11100
+Ca22chr2B_C_albicans_SC5314         TTGCGATGCACATTTATTTTTTTTTTCTATAAATCAGATCTGGGTATACT     11100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAGTAGTTGGCCATAAAATATAAAATTTGTACAGCACTAGCATTTACTAA     11150
+Ca22chr2B_C_albicans_SC5314         TAGTAGTTGGCCATAAAATATAAAATTTGTACAGCACTAGCATTTACTAA     11150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAACTTCTTCTTGGCATGTTGCGATGGATCGTTGTTACAGTACACTGAGT     11200
+Ca22chr2B_C_albicans_SC5314         CAACTTCTTCTTGGCATGTTGCGATGGATCGTTGTTACAGTACACTGAGT     11200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATCGTCATCAAAACTGCCTCTAAACAGCTTGCTATAGCGGTCAAACGTA     11250
+Ca22chr2B_C_albicans_SC5314         CATCGTCATCAAAACTGCCTCTAAACAGCTTGCTATAGCGGTCAAACGTA     11250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAACGTGTAGATGCTGCAATCAGAGTAAAGTACAACGACAGGTCCTTGGG     11300
+Ca22chr2B_C_albicans_SC5314         GAACGTGTAGATGCTGCAATCAGAGTAAAGTACAACGACAGGTCCTTGGG     11300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCTTGCAAGTACTGGTAGATATAATTCCCTTGCTTAACCACTTCATCCC     11350
+Ca22chr2B_C_albicans_SC5314         GTCTTGCAAGTACTGGTAGATATAATTCCCTTGCTTAACCACTTCATCCC     11350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATACTGTCCAAACAGGTCACTCAACCTAAATGCATCTGCAAACCCTGCA     11400
+Ca22chr2B_C_albicans_SC5314         TATACTGTCCAAACAGGTCACTCAACCTAAATGCATCTGCAAACCCTGCA     11400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACAAGAGATGAACATACTCTAAGTTATTGTTCCAGTTCCCGTTCCCATC     11450
+Ca22chr2B_C_albicans_SC5314         AACAAGAGATGAACATACTCTAAGTTATTGTTCCAGTTCCCGTTCCCATC     11450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTAGAATGCACCACCAGGGTTGGTGGCTGCCAGCGCCAACTCTAACGCCT     11500
+Ca22chr2B_C_albicans_SC5314         GTAGAATGCACCACCAGGGTTGGTGGCTGCCAGCGCCAACTCTAACGCCT     11500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTCCAACATATCCTGGTCACCCCTGAATTTGTGCAAATACACAAGCGTG     11550
+Ca22chr2B_C_albicans_SC5314         TGTCCAACATATCCTGGTCACCCCTGAATTTGTGCAAATACACAAGCGTG     11550
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTAATAGAACACCCAATCGTATACGTCAACTTCCCCTTATCCACCTGACC     11600
+Ca22chr2B_C_albicans_SC5314         CTAATAGAACACCCAATCGTATACGTCAACTTCCCCTTATCCACCTGACC     11600
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAATCGTTCTTATCTGTTCCATCAAAAAATAACTTGTCCTGGGGGTCCT     11650
+Ca22chr2B_C_albicans_SC5314         CAAATCGTTCTTATCTGTTCCATCAAAAAATAACTTGTCCTGGGGGTCCT     11650
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAAATTCTTAAACATGAAATCCATACAATCAGTTGCAAATTCAAGCAAC     11700
+Ca22chr2B_C_albicans_SC5314         GCAAATTCTTAAACATGAAATCCATACAATCAGTTGCAAATTCAAGCAAC     11700
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGTTGTCGCGGGTTATATCGTACAACCTAACTGCAGCCAAAGCAGCTTC     11750
+Ca22chr2B_C_albicans_SC5314         GAGTTGTCGCGGGTTATATCGTACAACCTAACTGCAGCCAAAGCAGCTTC     11750
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACTGTCGAAATCGACGCAATATAATTCTTATCTTTCTTCCAGATAATCC     11800
+Ca22chr2B_C_albicans_SC5314         GACTGTCGAAATCGACGCAATATAATTCTTATCTTTCTTCCAGATAATCC     11800
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACCATTAGGACCCTGTTGCGTCTGAATATACAACACAATATCTTTAGCA     11850
+Ca22chr2B_C_albicans_SC5314         CACCATTAGGACCCTGTTGCGTCTGAATATACAACACAATATCTTTAGCA     11850
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGTCCAAATACTTTTGTTGGCCAGTCATCTTAAACGCATCAATAAACAC     11900
+Ca22chr2B_C_albicans_SC5314         TGGTCCAAATACTTTTGTTGGCCAGTCATCTTAAACGCATCAATAAACAC     11900
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAAGCAAGCTGCGCAATGTCGTCGGAATAAACCTCAACACCATCGTTTG     11950
+Ca22chr2B_C_albicans_SC5314         CCAAGCAAGCTGCGCAATGTCGTCGGAATAAACCTCAACACCATCGTTTG     11950
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCGACGCCAGAAACGCTTTGGTAGCTGAATCATAATACTGCATTATTCTA     12000
+Ca22chr2B_C_albicans_SC5314         GCGACGCCAGAAACGCTTTGGTAGCTGAATCATAATACTGCATTATTCTA     12000
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTAATGTCACTTCAACACCAGAAACATCGCCGGTTTTGACAATCGCCTC     12050
+Ca22chr2B_C_albicans_SC5314         TCTAATGTCACTTCAACACCAGAAACATCGCCGGTTTTGACAATCGCCTC     12050
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCCCAACACTGCCATTGTCCACAAAACAGGTAACGTGTAGCCGTCATTAC     12100
+Ca22chr2B_C_albicans_SC5314         TCCCAACACTGCCATTGTCCACAAAACAGGTAACGTGTAGCCGTCATTAC     12100
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTGGAGTCGTTATCATTCCACTTTCCGTCTCCCCAAAACCTTTGCCAG     12150
+Ca22chr2B_C_albicans_SC5314         AGTTGGAGTCGTTATCATTCCACTTTCCGTCTCCCCAAAACCTTTGCCAG     12150
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTTAAACATGGTATTATAGTATGAGTTGCCAGGGGTAGGCACACTGCT     12200
+Ca22chr2B_C_albicans_SC5314         ACTTTAAACATGGTATTATAGTATGAGTTGCCAGGGGTAGGCACACTGCT     12200
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGACGAACTGGTGGATAAACTGGTTGATAAACTGGATTCTAAACTGGTTG     12250
+Ca22chr2B_C_albicans_SC5314         GGACGAACTGGTGGATAAACTGGTTGATAAACTGGATTCTAAACTGGTTG     12250
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTTGCACTGGAGGTAAAACTTTCAGCTAAACTAGATGTTGGGGCCTCT     12300
+Ca22chr2B_C_albicans_SC5314         TCTTTGCACTGGAGGTAAAACTTTCAGCTAAACTAGATGTTGGGGCCTCT     12300
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGCTAGTGGCACTGTATATCTGTGTTCCCACTTGCGTTACTGTTACTAT     12350
+Ca22chr2B_C_albicans_SC5314         AAGCTAGTGGCACTGTATATCTGTGTTCCCACTTGCGTTACTGTTACTAT     12350
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCGACGGGCGCAGTAACAACAACTGTACGCACATTAGCTGGTGCACTCA     12400
+Ca22chr2B_C_albicans_SC5314         CTCGACGGGCGCAGTAACAACAACTGTACGCACATTAGCTGGTGCACTCA     12400
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACACAATGGTAGAATCAACACCAATATTCCAAAACCGTGCATTGCTGTG     12450
+Ca22chr2B_C_albicans_SC5314         AACACAATGGTAGAATCAACACCAATATTCCAAAACCGTGCATTGCTGTG     12450
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGCCAACACCCACCCTCAACTATCACAGTCCGACCCAACGATATATATA     12500
+Ca22chr2B_C_albicans_SC5314         GTGCCAACACCCACCCTCAACTATCACAGTCCGACCCAACGATATATATA     12500
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGCGACATCTCATCGGTTTTGAATTTGTAATAAATGCCAAATCCAATTA     12550
+Ca22chr2B_C_albicans_SC5314         CTGCGACATCTCATCGGTTTTGGATCTGTAACAAACGCCAAATCTAATTA     12550
+                                    ********************** ** ***** *** ******** *****
+
+Ca22chr2A_C_albicans_SC5314         TGATGTGAAACAAAAACAAAACATTCTTGGTCGCAACACAAGAAAAAAAA     12600
+Ca22chr2B_C_albicans_SC5314         TGATGTGAAACAAAAACAAAACATTCTTGGTCGCAACACAA-AAAAAAAA     12599
+                                    ***************************************** ********
+
+Ca22chr2A_C_albicans_SC5314         AATTTCATTTCACTTTCTCTACAAAGATGAGAGCATACAATCACCCTATA     12650
+Ca22chr2B_C_albicans_SC5314         AATTTCATTTCACTTTCTCTACAAAGATGAGAGCATACAAACACCCTGTA     12649
+                                    **************************************** ****** **
+
+Ca22chr2A_C_albicans_SC5314         CTAGTTAACCCTACACGTTGGCTAAGAGGGCCAAAGAAACACGCTGCAGC     12700
+Ca22chr2B_C_albicans_SC5314         CTAGTTAACCCTACACGTTGGCTAAGAGGGCCAAAGAAACACGCTGCAGC     12699
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATTGTACCAGAATGGGTACTACCCGTCCCTAGACAACAACCCATTTGCAT     12750
+Ca22chr2B_C_albicans_SC5314         ATTGTACCATAATGGGTACTACCCGTCCCTAGACAACAACCCATTTGCAT     12749
+                                    ********* ****************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGCATTGGCACGACTCGACGCAAACTCGCCTTCATCAACTTTACCCATA     12800
+Ca22chr2B_C_albicans_SC5314         TGGCATTGGCACGACTCGACGCAAACTCGCCTTCATCAACTTTACCCATA     12799
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGCAATGGCATACCGTTGACAGTTACCCAACAGGACAACCACCACGTCCT     12850
+Ca22chr2B_C_albicans_SC5314         GGCAATGGCATACCGTTGACAGTTACCCAACAGGACAACCACCACGTCCT     12849
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACCCCAACCCTAAACGACACCATCGAGCCCAGTCGATTAATCGTCAATA     12900
+Ca22chr2B_C_albicans_SC5314         CACCCCAACCCTAAACGACACCGCCGAGCCCAGTCGATTAATCGTTAATA     12899
+                                    **********************  ********************* ****
+
+Ca22chr2A_C_albicans_SC5314         GTGCCAGATATATTAAATTGATCGTCGATAGGCCAAAGGCAATTCAAAAG     12950
+Ca22chr2B_C_albicans_SC5314         GTGCCAGATATATTAAATTGATCGTCGATAGGCCAAAGGCAATTCAAAAG     12949
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGGTGCCCCTACAGTTCATACAGCAATGCAAGTCGTCAAAAGCAAAAGT     13000
+Ca22chr2B_C_albicans_SC5314         TTGGTGCCCCTACAGTTCATACAGCAATGCAAGTCGTCAAAAGCAAAAGT     12999
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGCATGGATAGGGATATGGTGGATGTGATCGACAAGATGTATAGGCAGA     13050
+Ca22chr2B_C_albicans_SC5314         TAGCATGAATAGGGATATGGTGGATGTGATAGACAAGATGTATAGGCAGA     13049
+                                    * ***** ********************** *******************
+
+Ca22chr2A_C_albicans_SC5314         GGATAGAGGAACTACTTGAGGATGTGGGCAACGAGTCAGGAGAGTCAGGC     13100
+Ca22chr2B_C_albicans_SC5314         GGATAGAGGAACTACTTGAGGATGTGGGCAACGAGTCAGGAGAATCAGGC     13099
+                                    ******************************************* ******
+
+Ca22chr2A_C_albicans_SC5314         ATCATCCTCAAACCCATGGACGTGCCAGTACGTATCGAGGGAAGCACCAC     13150
+Ca22chr2B_C_albicans_SC5314         ATCATCCTCAAACCCATGGACGTGCCAGTACGTATCGAGGGAAGCACCAC     13149
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTACGTCAACAACATATTCACTACCCACCCTAAATTCATCAACTACACCC     13200
+Ca22chr2B_C_albicans_SC5314         CTACGTCAACAACATATTCACTACCCACCCTAAATTCATCAACTACACCC     13199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCGCGAGCTATCACAATTAATACTAGCGTATACTGATTTTGTAAATCTA     13250
+Ca22chr2B_C_albicans_SC5314         ACCGCGAGCTATCACAATTAATACTAGCGTATACTGATTTTGTAAATCTA     13249
+                                    * ************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAACATTAATCTAAATAACCCAAAGTGTAAGCACCGTCATAAGCAAGTTA     13300
+Ca22chr2B_C_albicans_SC5314         TAACATTAATCTAAATAACCCAAAGTGTAAGCACCGTCATAAGCAAGTTA     13299
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGATAAACGATGGTTGGTAACTAACACCACCGCTCTTCTTACTTGTAGT     13350
+Ca22chr2B_C_albicans_SC5314         GTGATAAACGATGGTTGGTAACTAACACCACCGCTCTTCTTACTTGTAGT     13349
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTGGCAGATTGGCCAGTAACGGTAGCCAATGTAGTGGCAACATCAGCAC     13400
+Ca22chr2B_C_albicans_SC5314         AGTGGCAGATTGGCCAGTAACGGTAGCCAATGTAGTGGCAACATCAGCAC     13399
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAGCTTGCTTAACCCACGAGTTGACACTAGAAGCTTGAATAGTAGAATCA     13450
+Ca22chr2B_C_albicans_SC5314         CAGCTTGCTTAACCCACGAGTTGACACTGGAAGCTTGAATGGTAGAATCA     13449
+                                    **************************** *********** *********
+
+Ca22chr2A_C_albicans_SC5314         AACGATGTAGAGTTAGACACCCAAACAACAGCATTGCCACTCAGGTCAAA     13500
+Ca22chr2B_C_albicans_SC5314         AACGATGTAGAGTTAGACACCCAAACAACAGCATTGCCACTCAGGTCAAA     13499
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGCAACACCACCACTCATAGTGCCAGTCAAATCACGCTCAATATAGGCGG     13550
+Ca22chr2B_C_albicans_SC5314         GGCAACACCACCACTCATAGTGCCAGTCAAGTCACGCTCAATATAGGCAG     13549
+                                    ****************************** ***************** *
+
+Ca22chr2A_C_albicans_SC5314         GTGCAGCCATACCAGTTTGAATATCATCAGACCCTTGGTAATCGTGAATG     13600
+Ca22chr2B_C_albicans_SC5314         GTGCAGCCATACCAGTTTGAATATCATCGGACCCTTGGTAATCGTGAATG     13599
+                                    **************************** *********************
+
+Ca22chr2A_C_albicans_SC5314         GTGCTGTACATGTGAAGGTACTCAGTCGAGTTCATCACTTCAAAAATGTC     13650
+Ca22chr2B_C_albicans_SC5314         GTGCTGTACATGTGAAGGTACTCGGTCGAGTTCATCACTTCAAAAATGTC     13649
+                                    *********************** **************************
+
+Ca22chr2A_C_albicans_SC5314         AAACTCACCACACCCAGATCTCCAGCACGAACAATTAACATTCATTGAGT     13700
+Ca22chr2B_C_albicans_SC5314         AAACTCACCACACCCAGATCTCCAGCACGAACAATTAACATTCATTGAGT     13699
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTGTGCGGTTCTTGGAATATGCGCATTCAAAAGCCAAATGGCCGGCATG     13750
+Ca22chr2B_C_albicans_SC5314         ACTGTGCGGTTCTTGGAATATGCGCATTCAAAAGCCAAATGGCCGGCATG     13749
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGTAGTTGGAAATATCAGTTGACGTATGTGTCTCATTTGGCATTTGGAA     13800
+Ca22chr2B_C_albicans_SC5314         TTGTAGTTGGAAATATCGGTTGACGTATGTGTCTCATTTGGCATTTGGAA     13799
+                                    ***************** ********************************
+
+Ca22chr2A_C_albicans_SC5314         TTCAAACAAAAACATTTTCGTGGTACCGTAAAACCCATGGTAGGCAGGAA     13850
+Ca22chr2B_C_albicans_SC5314         TTCAAACAAAAACATTTTCGTGGTACCGTAAAACCCATGGTAGGCAGGAA     13849
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTCGCTTCTGTAGACACCACAATCGTTGTTGTACCCGGACTTGCCACAG     13900
+Ca22chr2B_C_albicans_SC5314         TGTCGCTTCTATAGACACCACAATCGTTGTTGTACCCGGACTTGCCACAG     13899
+                                    ********** ***************************************
+
+Ca22chr2A_C_albicans_SC5314         CTAATGTTGGAGAAAATCACAAACTCGTCGTTCGAGTTGATCAACGTATT     13950
+Ca22chr2B_C_albicans_SC5314         CTAATGTTGGAGAAAATCACAAACTCGTCGTTCGAGTTGATCAACGTATT     13949
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTGGCCAAAACAGTCGACGAGTCGGCTTTGGAAATACCATCGGTACCAG     14000
+Ca22chr2B_C_albicans_SC5314         TTTGGCCAAAACAGTCGACGAGTCGGCTTTGGAAATACCATCGGTACCAG     13999
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATATGTCAACCCAATACCCAAACACGAAGAGTTCTTACCGGCACTCGTC     14050
+Ca22chr2B_C_albicans_SC5314         CATATGTCAACCCAATACCCAAACACGAAGAGTTCTTACCGGCACTTGTC     14049
+                                    ********************************************** ***
+
+Ca22chr2A_C_albicans_SC5314         AAAAACGTGACATTCTCACTGGTTCCACTCGACCCTTCGTAGTAACTCAA     14100
+Ca22chr2B_C_albicans_SC5314         AAAAACGTGACATTCTCACTGGTTCCGCTCGACCCTTCGTAGTAACTCAA     14099
+                                    ************************** ***********************
+
+Ca22chr2A_C_albicans_SC5314         TCTCTTCCAGTCGCCAGAACTATCATCACCATACTTGAACCCATCTGAAA     14150
+Ca22chr2B_C_albicans_SC5314         TCTCTTCCAGTCGCCAGAACTATCATCACCATACTTGAACCCGTCTGAAA     14149
+                                    ****************************************** *******
+
+Ca22chr2A_C_albicans_SC5314         CGTAGGACGCAAATTTGTTCAATACAAGTGGACCACGGAAATGCACAGAA     14200
+Ca22chr2B_C_albicans_SC5314         CGTAGGACGCAAATTTGTTCAATACAAGTGGACCACGGAAATGCACAGAA     14199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTCTTCGTTCAATGGTGCGTTCGTCCCAGAAAACGATACTGGCGTTTT     14250
+Ca22chr2B_C_albicans_SC5314         ACTTCTTCGTTCAATGGTGCGTTCGTCCCAGAAAACGATACTGGCGTTTT     14249
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTAACTTCACATGAACACGAATCTTTATAGATATTACTCAACTTTTCAA     14300
+Ca22chr2B_C_albicans_SC5314         GTTAACTTCACATGAACACGAATCTTTATAGATATTACTTAACTTTTCAA     14299
+                                    *************************************** **********
+
+Ca22chr2A_C_albicans_SC5314         CTTGGTTATAAGTACCAGAAAACCCAAGATTACTAAACTGGATAGCTTCA     14350
+Ca22chr2B_C_albicans_SC5314         CTTGGTTATAAGTGCCAGAAAACCCAAGATTACTAAACTGGATAGCTTCA     14349
+                                    ************* ************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTCTTGGTTGGCAGCAGTAGCCACTGAAACTAATGTAGATACTAACAA     14400
+Ca22chr2B_C_albicans_SC5314         ACTTCTTGGTTGGCAGCAGTAGCCACCGAAACTAATGTAGATACTAACAA     14399
+                                    ************************** ***********************
+
+Ca22chr2A_C_albicans_SC5314         TGATGAAAATAACATGGTTTGATGTACAAGAAAAAAAAAATTGCCAAATC     14450
+Ca22chr2B_C_albicans_SC5314         TGATGAAAATAACATGGTTTGATGTACAAGAAAAAAAAAATTGCCAAATC     14449
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGGCGATGCTGTGCTATATATAGTATAAGGGATATAAAACAAGGCTTGG     14500
+Ca22chr2B_C_albicans_SC5314         TCGGCGATGCTGTGCTATATATAGTATAAGGGATATAAAACAAGGCTTGG     14499
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATCTTCCGTTTTTTTTCGCAGAAGCAAAATATTCTCAATTAAAGATCC     14550
+Ca22chr2B_C_albicans_SC5314         AAATCTTCCGTTTTTTTTCGCAGAAGCAAAATATTCTCAATTAAAGATCC     14549
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAATCTGGCCAAAACAATAACATGGACAAGTGCCACCACCTGGTATACAC     14600
+Ca22chr2B_C_albicans_SC5314         GAATCTGGCCAAAACAATAACATGGACAAGTGCCACCACCTGGTATACAC     14599
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGCCATCTAGTATACTACCCACTACGCTACCATCGTGGTACCTATTGCCC     14650
+Ca22chr2B_C_albicans_SC5314         TGCCATCTAGTATACTACCCACTACACTACCATCGTGGTACCTATTGCCC     14649
+                                    ************************* ************************
+
+Ca22chr2A_C_albicans_SC5314         ACCCTACCTCTGCCTTTCCGTGTTCAGGTATAGACACACATGTCCTAAAC     14700
+Ca22chr2B_C_albicans_SC5314         ACCCTACCTCTGGCTTTCCGTGTTCAGGTATAGACATACATGTCCTAAAC     14699
+                                    ************ *********************** *************
+
+Ca22chr2A_C_albicans_SC5314         TTTTTCCTGAACCGCCCCTTTTTACACAAAATCTAGAATGTCGCGCTGCG     14750
+Ca22chr2B_C_albicans_SC5314         TTCTTCTTGAACCGCCCCTTTTTACACAAAATCTAGAATGTCGCGCTGCG     14749
+                                    ** *** *******************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTTCTATCCAATAAATTTCATCGCCTTTTTTTTTTTTTTTTTTTCAACA     14800
+Ca22chr2B_C_albicans_SC5314         ACTTCTATCCAATAAATTTCATCGCCTTTTTTTTTTTTTTTTTTTCAACA     14799
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCCTATTCACACCACACCCAAAATGCTCCGCAAGTACTCCACATCATGTC     14850
+Ca22chr2B_C_albicans_SC5314         TCCTATTCACACCACACCCAAAATGCTCCGCAAGTACTCCACATCATGTC     14849
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCTGGAATCGTTCCGACTAGCCATGGGAAGAGTCTCGTCCCAGGCGATG     14900
+Ca22chr2B_C_albicans_SC5314         TTCTGGAATCGTTCCGACTAGCCATGGGAAGAGTCTCGTCCCAGGCGATG     14899
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCTTGACTTCAGCAACATCCAATCTTAACGAATTGCACGGTATGACCTT     14950
+Ca22chr2B_C_albicans_SC5314         ATCTTGACTTCAGCAACATCCAACCTTAACGAATTGCACGGTATGACCTT     14949
+                                    *********************** **************************
+
+Ca22chr2A_C_albicans_SC5314         GGGTTCGGTGTGTTCATTGTCGGTGTTCCCATCTCCGTTTATACAGTTTA     15000
+Ca22chr2B_C_albicans_SC5314         GGGTTCGGTGTGTTCATTGTCGGTGTTCCCATCTCCGCTTATACAGTTTA     14999
+                                    ************************************* ************
+
+Ca22chr2A_C_albicans_SC5314         ATTTGCATTTACCTTCATACACTTCGAGCGAGTTGCATAAACATAAATAC     15050
+Ca22chr2B_C_albicans_SC5314         ATTTGCATTTACCTTCATACACTTCGAGCGAGTTGCATAAACATAAATAC     15049
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGCATTGCACGTATTGCCGCCAACGAAAAACTCGGTCCATCTAAGTCG     15100
+Ca22chr2B_C_albicans_SC5314         CTTGCATTGCACGTATTGCCGCCAACGAAAAACTCGGTCCATCTAAGTCG     15099
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AATATTTGCCAAAGGCGTCAAGCTCAACAAGGGGGCAAAGCTAGCACCAA     15150
+Ca22chr2B_C_albicans_SC5314         AATATTTGCCAAAGGCGTCAAGCTCAACAAGGGGGCAAAGCTAGCACCAA     15149
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAAGGAAGAGAAAATCGACGGCCAGGTATTCCACGAAATGACAAAACCA     15200
+Ca22chr2B_C_albicans_SC5314         CAAAGGAAGAGAAAATCGACGGCCAGGTATTCCACGAAATGACAAAACCA     15199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCACACGTCTCCAAAAGGGAGTTGACTACCTGTTCTACAACATATCTGA     15250
+Ca22chr2B_C_albicans_SC5314         TTCACACGTCTCCAAAAGGGAGTTGACTACCTGTTCTACAACATATCTGA     15249
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGTGCAAATACCAATATTGTCCAACGTCGAAACAACATTGATATGTCAAA     15300
+Ca22chr2B_C_albicans_SC5314         TGTGCAAATACCAATATTGTCCAACGTCGAAACAACATTGATATGTCAAA     15299
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACGAAACACCTTCCCTGTCGACAACCACGAAATATGGGTCGCAGACGTC     15350
+Ca22chr2B_C_albicans_SC5314         CACGAAACACCTTCCCTGTCGACAACCACGAAATATGGGTCGCAGACGTC     15349
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCGATATAATACACAACAAGACCCAAAAATCTGGCGGCATACTATACTT     15400
+Ca22chr2B_C_albicans_SC5314         GTCGATATAATACACAACAAGACCCAAAAATCTGGCGGCATACTATACTT     15399
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGATAGAGGGTTCCACAAGATCGGCAAATCGTTGTCAGAAGATTAGGTGT     15450
+Ca22chr2B_C_albicans_SC5314         TGATAGAGGGTTCCACAAGATCGGCAAATCGTTGTCAGAAGATTAGGTGT     15449
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATATTACTATGCTACTAATTCATTATACTCACGAGTTAAACTTTCGGTTT     15500
+Ca22chr2B_C_albicans_SC5314         ATATTACTATGCTACTAATTCATTATACTCACGAGTTAAACTTTCGGTTT     15499
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTGGATAATTTTCGGCAAGATCGTCTCAAACTTTTCGTTAGTGCGTTTC     15550
+Ca22chr2B_C_albicans_SC5314         CCTGGATAATTTTCGGCAAGATCGTCTCAAACTTTTCGTTAGTGCGTTTC     15549
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACCTCTTTGTAAACTTGGCCAGAATCTCATTCTTCTTAATGTTCTTAAT     15600
+Ca22chr2B_C_albicans_SC5314         AACCTCTTTGTAAACTTGGCCAGAATCTCATTCTTCTTAATGTTCTTAAT     15599
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCCGTTGACAAGTTTCGAAGTTCTTCCTGTTTGGCTGCTTGTTTGACCA     15650
+Ca22chr2B_C_albicans_SC5314         GTCCGTTGACAAGTTTCGAAGTTCTTCCTGTTTGGCTGCTTGTTTGACCA     15649
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCAACTTTTGACTCTTTGCACTGAGCGACGTTAACTCTTGGCTGGCAGTC     15700
+Ca22chr2B_C_albicans_SC5314         TCAACTTTTGACTCTTTGCACTGAGCGACGTTAACTCTTGGCTGGCAGTC     15699
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAAGTTCGGCTCGGGCATCTTTCATTCTCGACTCAAAATCGGCATAGAT     15750
+Ca22chr2B_C_albicans_SC5314         TTAAGTTCGGCTCGGGCATCTTTCATTCTCGACTCAAAATCAGCATAGAT     15749
+                                    ***************************************** ********
+
+Ca22chr2A_C_albicans_SC5314         CTTGTTCAATTCAGCAATTTCTTGTAACTGCGCAGACTCTTTGCTTTTCA     15800
+Ca22chr2B_C_albicans_SC5314         CTTGTTCAATTCAGCAATTTCTTGTAACTGCGCAGACTCTTTGCTTTTCA     15799
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCCTCCTGCAACTTGCCTTCGGTTTTACTCAACTCCAGAATCTCCTTG     15850
+Ca22chr2B_C_albicans_SC5314         TTGCCTCCTGCAACTTGCCTTCGGTTTTACTCAACTCCAGAATCTCCTTG     15849
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCAATCCCTCAATCTCGTTCTCCAACTGCATCACAGAATGTTTTAACCC     15900
+Ca22chr2B_C_albicans_SC5314         TTCAATCCCTCAATCTCGTTCTCCAACTGCATCACAGAATGTTTTAACCC     15899
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGATCTTTCCAAAAATACGATTATCATTGCCCTGACGGTTCTTTGAGA     15950
+Ca22chr2B_C_albicans_SC5314         CTTGATCTTTCCAAAAATACGATTATCATTGCCCTGACGGTTCTTTGAGA     15949
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTGTTTTTGAGCAACTCAATAGAGTTTCTCATCTCAGTGATCTTTTTG     16000
+Ca22chr2B_C_albicans_SC5314         TTTTGTTTTTGAGCAACTCAATAGAGTTTCTCATCTCAGTGATCTTTTTG     15999
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTCGTCTTTCTTATACTTTTTAAGCTTGGCCTTGAGGGATTCTGTTTT     16050
+Ca22chr2B_C_albicans_SC5314         TTTTCGTCTTTCTTATACTTTTTAAGCTTGGCCTTGAGGGATTCTGTTTT     16049
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTCATTACCGACTCAAGCGAGGTCTGCAACGTGGCCAACGACGAAGTTT     16100
+Ca22chr2B_C_albicans_SC5314         GTTCATTACCGACTCAAGCGAGGTCTGCAACGTGGCCAACGACGAAGTTT     16099
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTTGCTCGACTTGTTAATAACCTGGTTGTCGTCATCAGTAGTGTTTATC     16150
+Ca22chr2B_C_albicans_SC5314         CCTTGCTCGACTTGTTAATAACCTGGTTGTCGTCATCAGTAGTGTTTATC     16149
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACAAGATGGTTCAACACCAGCGACTTGGCCACGATGTCTACCTCATACTG     16200
+Ca22chr2B_C_albicans_SC5314         ACAAGATGGTTCAACACCAGCGACTTGGCCACGATGTCTACCTCATACTG     16199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAACAATGGCGTCAACCCATAAATCACAAGATACTCACCAACAACTTTGA     16250
+Ca22chr2B_C_albicans_SC5314         AAACAATGGCGTCAACCCATAAATCACAAGATACTCACCAACAACTTTGA     16249
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AATACGACCACTTGATATTGTTAAGTCTCACTTCAATATCCTCTCGAATC     16300
+Ca22chr2B_C_albicans_SC5314         AATACGACCACTTGATATTGTTAAGTCTCACTTCAATATCCTCTCGAATC     16299
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACGACAACACATGGAGTACCACTTTCGACGAATCAATCACCATAATCGC     16350
+Ca22chr2B_C_albicans_SC5314         GACGACAACACATGGAGTACCACTTTCGACGAATCAATCACCATAATCGC     16349
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATGGGGACATTGGGTTGTACTTCCTTCGTCAAAAACACTCCACCCTCAT     16400
+Ca22chr2B_C_albicans_SC5314         CATGGGGACATTGGGTTGTACTTCCTTCGTCAAAAACACTCCACCCTCAT     16399
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTCTTCTTGGTCAGCTCGCCATTAAACAAGTTGGGGTTCTTCAAAATC     16450
+Ca22chr2B_C_albicans_SC5314         TTTTCTTCTTGGTCAGCTCGCCATTAAACAAGTTGGGGTTCTTCAAAATC     16449
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTTTCACTGCTGCAATGATCGACCAAAATGGCTGTACAATAATGGTGTT     16500
+Ca22chr2B_C_albicans_SC5314         GCTTTCACTGCTGCAATGATCGACCAAAATGGCTGTACAATAATGGTGTT     16499
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCAATAAGAGTCACGTTGGGAGAAATGGTCGTTGTAGTCAAAGACGTCG     16550
+Ca22chr2B_C_albicans_SC5314         TTCAATAAGAGTCACGTTGGGAGAAATGGTCGTTGTAGTCAAAGACGTCG     16549
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGTGGTAGAACTGGTGAGCGAAGTAGTGGTGCTTGTAGTAGTCGTTTTC     16600
+Ca22chr2B_C_albicans_SC5314         ACGTGGTAGAACTGGTGAGCGAAGTAGTGGTGCTTGTAGTAGTCGTTTTC     16599
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGGCCAAATTCGATAACGACGACGCCCGCATACGGTTCTTCATAACCGA     16650
+Ca22chr2B_C_albicans_SC5314         ATGGCCAAATTCGATAACGACGACGCCCGCATACGGTTCTTCATAACCGA     16649
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAACTTGCTATTGAAAGGCGAAATAATGAAATTCTCAAAGTTCTTTAATG     16700
+Ca22chr2B_C_albicans_SC5314         TAACTTGCTATTGAAAGGCGAAATAATGAAATTCTCAAAGTTCTTTAATG     16699
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCACCGAATAGTTGCTATTGTAATTACCATTAAACTTGGGCAAATTCTTG     16750
+Ca22chr2B_C_albicans_SC5314         CCACCGAATAGTTGCTATTGTAATTACCATTAAACTTGGGCAAATTCTTG     16749
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGTAAATATCCAACAATTGATTGTTATCGACATTTACTGATATGTCGTC     16800
+Ca22chr2B_C_albicans_SC5314         GTGTAAATATCCAACAATTGATTGTTATCGACATTTACTGATATGTCGTC     16799
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTGGGATAGAGCTCTGGGCAATTGGCGATTGCCTAAACAACGCTTGGA     16850
+Ca22chr2B_C_albicans_SC5314         AGTTGGGATAGAGCTCTGGGCAATTGGCGATTTCCTAAACAACGCTTGGA     16849
+                                    ******************************** *****************
+
+Ca22chr2A_C_albicans_SC5314         TGATTGTGTGTATGCATAAAAACAAATATACCTGCACATTCCAGTGGCTG     16900
+Ca22chr2B_C_albicans_SC5314         TGATTGTGTGTATGCATAAAAACAAATATACCTGCACATTCCAGTGGCTG     16899
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATTAAAGTTGGTGATATGCGCCGAGTATTGCGGGGTGCTAAATAGCTG     16950
+Ca22chr2B_C_albicans_SC5314         AAATTAAAGTTGGTGATATGCGCCGAGTATTGCGGGGTGCTAAATAGCTG     16949
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAACGATAAGTTGACCCAATTCAATACATACTTGACATAGTTGATAATAA     17000
+Ca22chr2B_C_albicans_SC5314         AAACGATAAGTTGACCCAATTCAATACATAGTTGACATAGTTGATAATAA     16999
+                                    ****************************** *******************
+
+Ca22chr2A_C_albicans_SC5314         TAAAACACACAATCGCATTGATCAAGTTGCTGTTGAATATACGGTTCTTA     17050
+Ca22chr2B_C_albicans_SC5314         TAAAACACACAATCGCATTGATCAAGTTGCTGTTGAATATACGGTTCTTA     17049
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGTCGTACTGGATCTTTGTGGTAAACTTTTTTGATGATATCGAGTTGAT     17100
+Ca22chr2B_C_albicans_SC5314         TCGTCGTACTGGATCTTTGTGGTAAACTTTTTTGATGATATCGAGTTGAT     17099
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAGTTTATCGACGACGACCCAATAAACTCACTAGCAACAATCGCCTTGG     17150
+Ca22chr2B_C_albicans_SC5314         ATAGTTTATCGACGATGACCCAATAAACTCACTAGCAACAATCGCCTTGG     17149
+                                    *************** **********************************
+
+Ca22chr2A_C_albicans_SC5314         AAAGAATGACTAGATAATTGAAATAACTCTTCTTCTTTACAACTTTACCC     17200
+Ca22chr2B_C_albicans_SC5314         AAAGAATGACTAGATAATTGAAATAACTCTTCTTCTTTACAACTTTACCC     17199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACCCATAAAAAAGAAACACGTCTATTGCACCCATCTTGATAAAAGTCAC     17250
+Ca22chr2B_C_albicans_SC5314         AACCCATAAAAAAGAAACACGTCTATTGCACCCATCTTGATAAAAGTCAC     17249
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAACGAGTGTTTCACATTAGTGAATGCCAACTTATGCAGTTGTGGCAATA     17300
+Ca22chr2B_C_albicans_SC5314         CAACGAGTGTTTCACATTAGTGAATGCCAACTTATGCAGCTGTGGCAATA     17299
+                                    *************************************** **********
+
+Ca22chr2A_C_albicans_SC5314         AAAAGTTTATCAAGAATTTCCCACCCATAAAGTTTGACCCCAACATCAAA     17350
+Ca22chr2B_C_albicans_SC5314         AAAAGTTTATCAAGAATTTCCCGCCCATAAAGTTTGACCCCAACATCAAA     17349
+                                    ********************** ***************************
+
+Ca22chr2A_C_albicans_SC5314         TACACAACCAATAGCCCTAAGGACATGTACTGTGGGAACGAAAGCATAAT     17400
+Ca22chr2B_C_albicans_SC5314         TACACAACCAATAGCCCTAAGGACATGTATTGTGGGAACGAAAGCATAAT     17399
+                                    ***************************** ********************
+
+Ca22chr2A_C_albicans_SC5314         GAAAACTAGCGACAAGATATCACGCAAACTCGAAGACGATGGGAAGTTGG     17450
+Ca22chr2B_C_albicans_SC5314         GAAAACTAGCGACAAGATATCACGCAAACTCGAAGACGATGGGAAGTTGG     17449
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATTATTGCTTTGGTAGTGATGGTGGTGATGGTGGTGGTGAAGATCTGAT     17500
+Ca22chr2B_C_albicans_SC5314         CATTATTGCTTTGGTAGTGATGGTGGTGATGGTGGTGGTGAAGATCTGAT     17499
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGGATCGTGAACGCAGACCAGCGGTGGCTTTCTCTAATATCTCTTGGTT     17550
+Ca22chr2B_C_albicans_SC5314         GTGGATCGTGAACGCAGACCAGCAGTGGCTTTCTCTAATATCTCTTGGTT     17549
+                                    *********************** **************************
+
+Ca22chr2A_C_albicans_SC5314         GACTCCCTTGCCGTTTGCATCATGATAATGGTGATGGTGGTACGATGGAG     17600
+Ca22chr2B_C_albicans_SC5314         GACTCCCTTGCCGTTTGCATCATGATAATGGTGATGGTGGTACGATGGAG     17599
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTGCTGCATGACATGGATTGGTTACTCCCAGTTTGGTGTTGGTTCGCTA     17650
+Ca22chr2B_C_albicans_SC5314         GCTGTTGCATGACATGGATTGGTTACTCCCGGTTTGGTGTTGGTTCGCTA     17649
+                                    **** ************************* *******************
+
+Ca22chr2A_C_albicans_SC5314         TTTTTCATTTTGATGTAAAGTTTTTCTGCGAAAAAAAAAAGGCGAAAAAA     17700
+Ca22chr2B_C_albicans_SC5314         TTTTTCATTTTGATGTAAAGTTTTTCTGCGAAAAAAAAAAAGCAAAAAAA     17699
+                                    **************************************** ** ******
+
+Ca22chr2A_C_albicans_SC5314         ATTTTGCTCTGCAACGACAGGACAGGACTGGCCACCAAACAACAGCCAGG     17750
+Ca22chr2B_C_albicans_SC5314         ATTTTGCTCTGCAACGACAGGACAGGACTGGCCACCAAACAGCAGCCAGG     17749
+                                    ***************************************** ********
+
+Ca22chr2A_C_albicans_SC5314         TAAAGGTTAATATCTAGTAGGATGAGTAGCTACATGCTATTGGTTCTTAC     17800
+Ca22chr2B_C_albicans_SC5314         TAAAGGTCAATATCTAGTAGGATGAGTAGCTACATGCTATTGGTTCTTAC     17799
+                                    ******* ******************************************
+
+Ca22chr2A_C_albicans_SC5314         TGCCATTAGCATGCTTGCGTTGCCACTAGTAGTCTTGGGTCGTTGGACCA     17850
+Ca22chr2B_C_albicans_SC5314         TGCCATTAGCATGCTTGCGTTGCCACTAGTAGTCTTGGGTCGTTGGACCA     17849
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCACATCTCCTTGGTGTACAACTTTTTGGGTCAAATTTTTACCAAAATA     17900
+Ca22chr2B_C_albicans_SC5314         ACCGCATCTCCTTGGTGTACAACTTTTTGGGTCAAATTTTTACCAAAATA     17899
+                                    *** **********************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGCTAAAATACAGGAACTCCGGATCATATATTTATCCGCAAATTGTGAA     17950
+Ca22chr2B_C_albicans_SC5314         GAGCTAAAATACAGGAACTCCGGATCATATATTTATCCGCAAATTGTGAA     17949
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTGTGTTTGTGCCAACACTGATTGTTCTGTCTTTGTCATCACTCGTTTT     18000
+Ca22chr2B_C_albicans_SC5314         ACTGTGTTTGTGCCAACACTGATTGTTCTGTCTTTGTCATCACTCGTTTT     17999
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAAGGGTACCAACCAAGTTTCAAAATCCTGAAACAGTGCCAACTTTCTC     18050
+Ca22chr2B_C_albicans_SC5314         GCAAGGGTACCAACCAAGTTTCAAAATCCTGAAACAGTGCCAACTTTCTC     18049
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGGGGAAATACTGTTCGGCTATGGTTGTGGCAATTATGAGCACAAGACG     18100
+Ca22chr2B_C_albicans_SC5314         GTGGGGAAATAATGTTCGGCTATGGTTGTGGCAATTATGAGCACAAGACG     18099
+                                    *********** **************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCGATTAAACTTGCCCCAAACAATTGGCTTTTGTGCTATCGGGTGGCTT     18150
+Ca22chr2B_C_albicans_SC5314         GTCGATTAAACTTGCCCCAAACAATTGGCTTTTGTGCTATCGGGTGGCTT     18149
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAGTGTTTTGTACACGCCACCAACAAATTTTAGTTGCTCACCAACTAAC     18200
+Ca22chr2B_C_albicans_SC5314         TTAGTGTTTTGTACACGCCACCAACAAATTTTAGTTGCTCACCAACTAAC     18199
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCCCCCCTTCCCGACGCTCTTTTGAGTAAAAATTTTTTTTTTTGTTTGTT     18250
+Ca22chr2B_C_albicans_SC5314         -CCCCCCTTCCCGACGCTCTTTTGAGTAAAAATTTTTTTTTTTGTTTGTT     18248
+                                     *************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGCATTTGTACTTTTTTTTTGGTTTTGTATTCCAACGGTTTTTTTATGG     18300
+Ca22chr2B_C_albicans_SC5314         TGGCATTTGTACTTTTTTTTTGGTTTTGTATTCCAACGGTTTTTTTATGG     18298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGGTGATATCTGACGGTGACATTTTTCGGTTACACTAATAAAAGCAATGT     18350
+Ca22chr2B_C_albicans_SC5314         TGGTGATATCTGACGGTGACATTTTTCGGTTACACTAATAAAAGCAATGT     18348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACATTTGTTTGGAGCATCACACAACGCCTGACGGTTCATTGTTCAGTGT     18400
+Ca22chr2B_C_albicans_SC5314         GACATTTGTTTGGAGCATCACACAACGCCTGACGGTTCATTGTTCAGTGT     18398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCCTCCGATGTGATGCTGAAAGTTATCTATAAAAGTTTATTACGGCCAT     18450
+Ca22chr2B_C_albicans_SC5314         CGCCTCCGATGTGATGCTGAAAGTTATCTATAAAAGTTTATTACGGCCAT     18448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGGCAATTTTGTTATCTTTGTTTTTGGCGATTGTATTGTTTTTCGTCTA     18500
+Ca22chr2B_C_albicans_SC5314         ACGGCAATTTTGTTATCTTTGTTTTTGGCGATTGTATTGTTTTTCGTCTA     18498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCTGAAATCCTATTGGCTCATGTCGTTTGGTAATGACGCGTTTTGTACAA     18550
+Ca22chr2B_C_albicans_SC5314         CCTGAAATCCTATTGGCTCATGTCGTTTGGTAATGACGCGTTTTGTACAA     18548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAAAAAAAACATAATGTAATGCACAAGATATTAAATCTGCATTGTAACA     18600
+Ca22chr2B_C_albicans_SC5314         AAAAAAAAAACATAATGTAATGCACAAGATATTAAATCTGCATTGTAACA     18598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAAAGTCATGACAAACAACAACAACAGCATTACATAGAATTTACAGACCA     18650
+Ca22chr2B_C_albicans_SC5314         GAAAGTCATGACAAACAACAACAACAGCATTACATAGAATTTACAGACCA     18648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAATTTTACCTTTTACAATTCTAAATAAAGTTTTACCAGTGCTTGTGTT     18700
+Ca22chr2B_C_albicans_SC5314         AAAATTTTACCTTTTACAATTCTAAATAAAGTTTTACCAGTGCTTGTGTT     18698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCATAGATCTTACTCAAATTATATTTGAATACTATCAGCAGAAACAATA     18750
+Ca22chr2B_C_albicans_SC5314         CGCATAGATCTTACTCAAATTATATTTGAATACTACCAGCAGAAACAATA     18748
+                                    *********************************** **************
+
+Ca22chr2A_C_albicans_SC5314         CTTGGTGTACAGGCTTAATCGCCCTTCTCTCTCGTGCCCGAAATAAACCT     18800
+Ca22chr2B_C_albicans_SC5314         CTTGGTGTACAGGCTTAATCGCCCTTCTCTCTTGTGCCCGAAATAAACCT     18798
+                                    ******************************** *****************
+
+Ca22chr2A_C_albicans_SC5314         CCTATTTTAAATTGTACATGAAACGTACAAAAGCAAAAATTTTTTTTTTG     18850
+Ca22chr2B_C_albicans_SC5314         CCTATTTTAAATTGTACATGAAACGTACAAAAGCAAAATTTTTTTTTTTG     18848
+                                    ************************************** ***********
+
+Ca22chr2A_C_albicans_SC5314         TGGCGATTTTCACTTTCTCTTCAAAATTCAAATTGTCCAAAAACTTTTCT     18900
+Ca22chr2B_C_albicans_SC5314         TGGCGATTTTCACTTTCTCTTCAAAATTCAAATTGTCCAAAAACTTTTCT     18898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGTTGCTCATCTTTTTTTTTATATAAACTCAACCTTTATCTTATTTTAA     18950
+Ca22chr2B_C_albicans_SC5314         CTGTTGCTCATCTTTTTTTTTATATAAACTCAACCTTTATCTTATTTTAA     18948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGATTAAGTTTGTGTTTAATAGGTTTTTCTCCCGCAACAGTTTATCAACG     19000
+Ca22chr2B_C_albicans_SC5314         AGATTAAGTTTGTGTTTAATAGGTTTTTCTCCCACAACAGTTTATCAACG     18998
+                                    ********************************* ****************
+
+Ca22chr2A_C_albicans_SC5314         CTTTCCCCGTTTTTATATCACTTCATTGAGTCCCCGTTCACTAGTACCAG     19050
+Ca22chr2B_C_albicans_SC5314         CTTTCCCCGTTTTTATATCACTTCATTGAGTCCCCGTTCACTAGTACCAG     19048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGTCAACTTTTAAAAAAAAAGAAATTCTTACAGTAGTGCACACTTGCT     19100
+Ca22chr2B_C_albicans_SC5314         CTTGTCAACTTTTAAAAAAAAAGAAATTCTTACAGTAGTGCACACTTGCT     19098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAAAAAACCGAATTTTCAATCCCATCACATCAAACGGAACGACTGAGGA     19150
+Ca22chr2B_C_albicans_SC5314         CAAAAAAACCGAATTTTCAATCCCATCACATCAAACGGAACGACTGAGGA     19148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAAAA-AAGACAACATTAAAATTTTTTTT---CTTTTTTTTTTTTTCCT     19196
+Ca22chr2B_C_albicans_SC5314         AAAAAAAAAGACAACATTAAAATTTTTTTTCTTTTTTTTTTTTTTTTCCT     19198
+                                    ****** ***********************    ****************
+
+Ca22chr2A_C_albicans_SC5314         TTCCCATCTCCATATTACCATCTTCCTTTCAAGCTTTATACTTCAGGAGA     19246
+Ca22chr2B_C_albicans_SC5314         TTCCCATCTCCATATTACCATCTTCCTTTCAAGCTTTATACTTCAGGAGA     19248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATCATATCGTTACTATCAAGGTATTTAGCAAACCAACACATATACCTTT     19296
+Ca22chr2B_C_albicans_SC5314         TATCATATCGTTACTATCAAGGTATTTAGCAAACCAACACATATACCTTT     19298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCGTGATACCAGATTCTTGTCGACAACCGAAAAAAAAAGAAAGATAATTT     19346
+Ca22chr2B_C_albicans_SC5314         GCGTGATACCAGATTCTTGTCGACAACCGAAAAAAAAAGAAAGATAATTT     19348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACAAAGTCCAGACAGCATCAACAACAAAAAGTTTTTTTTGT-TTCCCTT     19395
+Ca22chr2B_C_albicans_SC5314         CACAAAGTCCAGACAGCATCAACAACAAAAAGTTTTTTTTTGTTTCCCTT     19398
+                                    ****************************************   *******
+
+Ca22chr2A_C_albicans_SC5314         TTTTTTTACGACACCAACCGATATATATGAATCAAACTCTTGTCAGAATG     19445
+Ca22chr2B_C_albicans_SC5314         TTTTTTTACGACACCAACCGGTATATATGAATCAAACTCTTGTCAGAATG     19448
+                                    ******************** *****************************
+
+Ca22chr2A_C_albicans_SC5314         ATGAACATGCCCAACGAAGATCCTAACGTATCGAGTGAAGAAGCTGCCGC     19495
+Ca22chr2B_C_albicans_SC5314         ATGAACATGCCCAACGAAGATCCTAACGTATCGAGTGAAGAAGCTGCCGC     19498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGCTAATGTTGCAACTATTCACAATATCAAAAACGAAGACTCCATGCACC     19545
+Ca22chr2B_C_albicans_SC5314         TGCTAATGTTGCAACTATTCACAATATCAAAAACGAAGACTCCATGCACC     19548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCAATTTGGACACCATCAGCCTTCAAT---TTATGATCAACAACAACAA     19592
+Ca22chr2B_C_albicans_SC5314         ATCAATTTGGACACCATCAGCCTTCCATTTATGATCAACAACAACAACAA     19598
+                                    ************************* **   * ** * ************
+
+Ca22chr2A_C_albicans_SC5314         CAACAGCAACACCACCACCAGCTTCCTCACCATCCTATTCACTATCATGG     19642
+Ca22chr2B_C_albicans_SC5314         CAACAGCAACACCACCACCAGCTTCCTCACCATCCTATTCACTATCATGG     19648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATTGCTCAGCAACAACAGTCCCAGCTTCCTCATTTCGCTATGCATCCAT     19692
+Ca22chr2B_C_albicans_SC5314         TATTGCTCAGCAACAACAGTCCCAGCTTCCTCATTTCGCTATGCATCCAT     19698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAGCTGGTGTCAACAACAACCAACATTTGAACCACCAGCCATACCAGCAG     19742
+Ca22chr2B_C_albicans_SC5314         CAGCTGGTGTCAACAACAACCAACATTTGAACCACCAGCCATACCAGCAG     19748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGTCGCACTACAATGCCCAACAAATGCATCAACAACAATTACACCATCA     19792
+Ca22chr2B_C_albicans_SC5314         ATGTCGCACTATAATGCCCAACAAATGCATCAACAACAATTACACCATCA     19798
+                                    *********** **************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTGATGACCCCAAACCCATACCAACAACATTTCCAACAACAAATGCACC     19842
+Ca22chr2B_C_albicans_SC5314         GTTGATGACCCCAAACCCATACCAACAACATTTCCAACAACAAATGCACC     19848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCAATTACACCACGAGGACCATTTGAATATGCATTTCAACCCAATGTCC     19892
+Ca22chr2B_C_albicans_SC5314         CTCAATTACACCACGAGGACCATTTGAATATGCATTTCAACCCAATGTCC     19898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATCCACAACAACAACAGCAGCAACAGCAGCAGCAACAACAACAACAACA     19942
+Ca22chr2B_C_albicans_SC5314         TATCCACAACAACAACAGCAGCAACAACAGCAGCAGCAACAACAACAACA     19948
+                                    ************************** ******** **************
+
+Ca22chr2A_C_albicans_SC5314         ACATTTGCACCATTTCGGTCACCAAATTCCAGCCCCCCCTGCTCAACAAG     19992
+Ca22chr2B_C_albicans_SC5314         ACATTTGCACCATTTCGGTCACCAAATTCCAGCCCCCCCTGCTCAACAAG     19998
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCCCAACACCTCAGCAGCCACATTTGCATCAACAAATTCCTCATCCATTA     20042
+Ca22chr2B_C_albicans_SC5314         GCCCAACACCTCAGCAGCCACATTTGCATCAACAAATTCCTCATCCATTA     20048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCACACCACCAAACTCCCCAACCAACACCACAACCTTTGGCTCAGCAACA     20092
+Ca22chr2B_C_albicans_SC5314         TCACACCACCAAACTCCCCAACCAACACCACAACCTTTGGCTCAGCAACA     20098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTGCCTCAACCAGCAAGACAACCACGTCAAACCAAGAAACAAAAACAAC     20142
+Ca22chr2B_C_albicans_SC5314         ACTGCCTCAACCAGCAAGACAACCACGTCAAACCAAGAAACAAAAACAAC     20148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGCACAAAACCAAGACCAAGCTGACGCTCAATCACAAGCCCAACAGCAC     20192
+Ca22chr2B_C_albicans_SC5314         AAGCACAAAACCAAGACCAAGCTGACGCTCAATCACAAGCCCAACAGCAC     20198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATATGGCTATGATGGCTCGTGCTAACCAAAACGATATGTTGGAATCGTC     20242
+Ca22chr2B_C_albicans_SC5314         CATATGGCTATGATGGCTCGTGCTAACCAAAACGATATGTTGGAATCGTC     20248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GACCAGAAAAGTCGCACCTAGATCTAGCGATTTGTTCCGTGTTGGGCCTC     20292
+Ca22chr2B_C_albicans_SC5314         GACCAGAAAAGTCGCACCTAGATCTAGCGATTTGTTCCGTGTTGGGCCTC     20298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATTTTCCATCAGCAAACAACACCAGCCAGTATATTGTGTGGGGACCGAT     20342
+Ca22chr2B_C_albicans_SC5314         CATTTTCCATCAGCAAACAACACCAGCCAGTATATTGTGTGGGGACCGAT     20348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGCCAGTGACACCATTGTTGCATGCCCGTATTGATAGAGGGTTTGAGAT     20392
+Ca22chr2B_C_albicans_SC5314         ATGCCAGTGACACCATTGTTGCATGCCCGTATTGATAGAGGGTTTGAGAT     20398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGGCGAAACCGGTTCTTGGATTGGCTATAAGCGTAACTACTTTACCTTGG     20442
+Ca22chr2B_C_albicans_SC5314         GGGCGAAACCGGTTCTTGGATTGGCTATAAGCGTAACTACTTTACCTTGG     20448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCATCGTTTACATTGCAAGACTTCGATTTTGAAAAGTTCATCGGCAAC     20492
+Ca22chr2B_C_albicans_SC5314         TTGCATCGTTTACATTGCAAGACTTCGATTTTGAAAAGTTCATCGGCAAC     20498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGTTCTACACTTACGACAAGGTCAACAACAAGGTTAATGGTTTCCCACC     20542
+Ca22chr2B_C_albicans_SC5314         AAGTTCTACACTTACGACAAGGTCAACAACAAGGTTAATGGTTTCCCACC     20548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCATCACCCTAGCCACCCACAAAACCAGCCCCAAAACCATCCCGGCCATC     20592
+Ca22chr2B_C_albicans_SC5314         TCATCACCCTAGCCACCCACAAAACCAGCCCCAAAACCATCCCGGCCATC     20598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACACCACAACCAACACGCTGGCGAACTGAGAGTTCCAATTAGTTATTTT     20642
+Ca22chr2B_C_albicans_SC5314         CACACCACAACCAACACGCTGGCGAACTGAGAGTTCCAATTAGTTATTTT     20648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAATTAGGTTAGTGGCCAAGTGTTCTGATGAAGATGTTGCCATCTCCTT     20692
+Ca22chr2B_C_albicans_SC5314         GCAATTAGGTTAGTGGCCAAGTGTTCTGATGAAGATGTTGCCATCTCCTT     20698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATCCAGCACACTGCTAAAAGAGATAAAGGTCCACAGTTCCCACCACCAA     20742
+Ca22chr2B_C_albicans_SC5314         GATCCAGCACACTGCTAAAAGAGATAAAGGTCCACAGTTCCCACCACCAA     20748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTACCCTGCAGTTCCTTCAGAGTTGCCTGACCACGAGACTGTCAAAGTA     20792
+Ca22chr2B_C_albicans_SC5314         TCTACCCTGCAGTTCCTTCAGAGTTGCCTGACCACGAGACTGTCAAAGTA     20798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTGTAACAAACGTAACAACAACAAGATCGAAACTATGAATAAAATCTT     20842
+Ca22chr2B_C_albicans_SC5314         AGTTGTAACAAACGTAACAACAACAAGATCGAAACTATGAATAAAATCTT     20848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTACTTTGATAGGGGAAACTACTACCAAGAGTACAATTTGGATAGCTACA     20892
+Ca22chr2B_C_albicans_SC5314         TTACTTTGATAGGGGAAACTACTACCAAGAGTACAATTTGGATAGCTACA     20898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGGACCAGTCGATATTGAAAAGCTACCCTAGTCAATCCATTTCCAAGGTG     20942
+Ca22chr2B_C_albicans_SC5314         AGGACCAGTCGATATTGAAAAGCTACCCTAGTCAATCCATTTCCAAGGTG     20948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTAGATTCGAAAGAATCCAATTCACCAGCTCTATTAGAGTTAAAAGCAC     20992
+Ca22chr2B_C_albicans_SC5314         GCTAGATTTGAAAGAATCCAATTCACCAGCTCTATTAGAGTTAAAAGCAC     20998
+                                    ******** *****************************************
+
+Ca22chr2A_C_albicans_SC5314         CAACACAACTGCTAGATACTTTACCTTGCATGTCGAATTATTGGGTATAA     21042
+Ca22chr2B_C_albicans_SC5314         CAACACAACTGCTAGATACTTTACCTTGCATGTCGAATTATTGGGTATAA     21048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGAGGACGAGGACTTGCAGATCCAACCAATCTTATTGAGTTCAATTGAA     21092
+Ca22chr2B_C_albicans_SC5314         TCGAGGACGAGGACTTGCAGATCCAACCAATCTTATTAAGTTCAATTGAA     21098
+                                    ************************************* ************
+
+Ca22chr2A_C_albicans_SC5314         TCACCGCCTTTAATTGTCAGAGGCAGATCTCCGTCAAGCTACCACAAAGA     21142
+Ca22chr2B_C_albicans_SC5314         TCACCGCCTTTAATCGTCAGAGGCAGATCTCCTTCAAGCTACCACAAAGA     21148
+                                    ************** ***************** *****************
+
+Ca22chr2A_C_albicans_SC5314         TAGAACTTCTGGGTATAGGGCTACAAACACCCCAACCCCTACTCCTCCAC     21192
+Ca22chr2B_C_albicans_SC5314         TAGAACTTCTGGGTATAGGGCTACAAACACCCCAACCCCTACTCCTCCAC     21198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTAAGCAAAACTATAGATTTTTTTTTTTTTTTGATGATGACGAAGAAAG     21242
+Ca22chr2B_C_albicans_SC5314         AGTAAGCAAAACTATAGATTTTTTTTTTTTTTTGATGATGACGAAGAAAG     21248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTGATTTTAAAGTTTAAAGTAAATAAAAAAATTTTGTATTATAATTACA     21292
+Ca22chr2B_C_albicans_SC5314         GTTGATTTTAAAGTTTAAAGTAAATAAAAAAATTTTGTATTATAATTACA     21298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAAAGATCACAAAATATATACACTGATACATATATAAAGCTTTTATTTG     21342
+Ca22chr2B_C_albicans_SC5314         CAAAAGATCACAAAATATATACACTGATACATATATAAAGCTTTTATTTG     21348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAATAGTAATCTTATTTATAGCCGTAACTGCCCCATCCCCACAAAATATC     21392
+Ca22chr2B_C_albicans_SC5314         TAATAGTAATCTTATTTATAGCCGTAACTGCCCCATCCCCACAAAATATC     21398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAGCCAGGTGTCGTGTACCAATCACCCGCACCAAAAAATTTTTTATGTT     21442
+Ca22chr2B_C_albicans_SC5314         AGAGCCAGGTGTCGTGTACCAATCACCCGCACCAAAAAAATTTTTAGGTT     21448
+                                    *************************************** ****** ***
+
+Ca22chr2A_C_albicans_SC5314         TCTCCCCACTACAGGAGCCAACGTAAGAAAAAAAAAATATTTGATTCTCA     21492
+Ca22chr2B_C_albicans_SC5314         TCTCCCCACTACAGGAGCCAACGTAAGAAAAAAAAAATATTTGATTCTCA     21498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCAAATAATAATTGTGACATTAATAAGACATTGCTGAAGTATGACCCAAT     21542
+Ca22chr2B_C_albicans_SC5314         TCAAATAATAATTGTGACATTAATAAGACATTGCTGAAGTATGACCCAAT     21548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTAATAGTGACTCGTCAAGTACTGGCGACGTACCCAATATCAACACTTCG     21592
+Ca22chr2B_C_albicans_SC5314         CTAATAGTGACTCGTCAAGTACTGGCGACGTACCCAATATCAACACTTTG     21598
+                                    ************************************************ *
+
+Ca22chr2A_C_albicans_SC5314         CTAATACCGTCGATCTCAAAACCAGTATACTCACGTATCCCTATCCCGGG     21642
+Ca22chr2B_C_albicans_SC5314         CTAATACCGTCGACCTCAAAACCAGTATACTCACGTATCCCTATCCCGGG     21648
+                                    ************* ************************************
+
+Ca22chr2A_C_albicans_SC5314         CCATTTAAGCAATGATCAATCCACCCCCATTGAGGATATTAAGATTATCG     21692
+Ca22chr2B_C_albicans_SC5314         CCATTTAAGCAATGATCAATCCACCCCCATTGAGGATATTAAGATTATCG     21698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAAACAGAGCATAGACTATATAATAAGGTCAGGTCTAGCTGGTGGCTTA     21742
+Ca22chr2B_C_albicans_SC5314         ATAAACAGAGCATAGACTATATAATAAGGTCAGGTCTAGCTGGTGGCTTA     21748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTGGATCTTGTGCCAAGACCTTAGTGGCACCTTTGGACAGAATCAAGAT     21792
+Ca22chr2B_C_albicans_SC5314         GCTGGATCTTGTGCCAAGACCTTAGTGGCACCTTTGGACAGAATCAAGAT     21798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTGTTCCAAACATCAAACCCAGAATTCATAAAGTATAGAGGAACATTTG     21842
+Ca22chr2B_C_albicans_SC5314         CTTGTTCCAAACATCAAACCCAGAATTCATAAAGTATAGAGGAACATTTG     21848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCGGGTTCATTGATGCTGGAAAACGTATATGGAAAACCGACGGGGTAATG     21892
+Ca22chr2B_C_albicans_SC5314         GCGGGTTCATTGATGCTGGAAAACGTATATGGAAAGCCGACGGGGTAATG     21898
+                                    *********************************** **************
+
+Ca22chr2A_C_albicans_SC5314         GGGTTGTACCAAGGTAACTCAGTGACTTTGTTACGTATCTTCCCCTATGC     21942
+Ca22chr2B_C_albicans_SC5314         GGGTTGTACCAAGGTAACTCAGTGACTTTGTTACGTATCTTCCCCTATGC     21948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGCAATCAAATTTGTTGCCTATGAACAAATTCGTACTTTTTTGATCCCAA     21992
+Ca22chr2B_C_albicans_SC5314         AGCAATCAAATTTGTTGCCTATGAACAAATTCGTACTTTTTTGATCCCAA     21998
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGACAGTTACGAAACCGCCGCTAGAAGATTTATGGCTGGGTCGTTATCA     22042
+Ca22chr2B_C_albicans_SC5314         ACGACAGTTACGAAACCGCCGCTAGAAGATTTATGGCTGGGTCGTTATCA     22048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGACTAGCATCGGTGTTTTTCACGTATCCACTAGACTTAGTTAGAGTGAG     22092
+Ca22chr2B_C_albicans_SC5314         GGACTAGCATCGGTGTTTTTCACGTATCCACTAGACTTAGTTAGAGTGAG     22098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATTAGCATTTGAAACTAGAAACTTGTCTCATTCACAAATCCATCACCACC     22142
+Ca22chr2B_C_albicans_SC5314         ATTAGCATTTGAAACTAGAAACTTGTCTCATTCACAAATCCATCACCACC     22148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACAAAGAGTTTATGGCCCATCGTCGAGGAAGAATATTTTCTACCGTCAGC     22192
+Ca22chr2B_C_albicans_SC5314         ACAAAGAGTTTATGGCCCATCGTCGAGGAAGAATATTTTCTACCGTCAGC     22198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTAATTTATAACGAAAACCCACCAATCAAAACCACTGACCCGTCGTGGTT     22242
+Ca22chr2B_C_albicans_SC5314         CTAATTTATAACGAAAACCCACCAATCAAAACCACTGACCCGTCGTGGTT     22248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAAATTAATGCGAAAATCGTTCCCGTCACCCATAAACCATTTAGCCAATT     22292
+Ca22chr2B_C_albicans_SC5314         GAAATTAATGCGAAAATCGTTCCCGTCACCCATAAACCATTTAGCCAATT     22298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTACCGTGGGTTTGCCCCGACAATATTAGGTATGATCCCTTACGCTGGT     22342
+Ca22chr2B_C_albicans_SC5314         TCTACCGTGGGTTTGCCCCGACAATATTAGGTATGATCCCTTATGCTGGT     22348
+                                    ******************************************* ******
+
+Ca22chr2A_C_albicans_SC5314         GTCTCATTCTACACTCATGATTTGTTGCACGATATTTTGCGCTCCAAATG     22392
+Ca22chr2B_C_albicans_SC5314         GTCTCATTCTACACTCATGATTTGTTGCACGATATTTTGCGCTCCAAATG     22398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTCGCAAAATATACTGTCCAATCAACCAACCACCAAAACGTCGTGGTAA     22442
+Ca22chr2B_C_albicans_SC5314         GCTCGCAAAATATACTGTCCAATCAACCAACCACCAAAACGTCGTGGTAA     22448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAAAAAGGGGAAATCGTCCAGAGAATCACGTGCGCCCCTAAAAGCATAT     22492
+Ca22chr2B_C_albicans_SC5314         AGAAAAAGGGGAAATCGTCCAGAGAATCACGTGCGCCCCTAAAAGCATAT     22498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCACAATTATTTGCTGGTGGGTTGGCTGGGTTATGTTCCCAGACCGCCGC     22542
+Ca22chr2B_C_albicans_SC5314         GCACAATTATTTGCTGGTGGGTTGGCTGGGTTATGTTCCCAGACCGCCGC     22548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTACCCGTTTGAAGTTATCCGAAGAAGAATGCAAGTGGGAGGCGCCATAA     22592
+Ca22chr2B_C_albicans_SC5314         CTACCCGTTTGAAGTTATCCGAAGAAGAATGCAAGTGGGAGGCGCCATAA     22598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCAGGGTCAGTTTTTGTCATTCAAAAACACAGCAAAACTAATCTATCGA     22642
+Ca22chr2B_C_albicans_SC5314         ACCAGGGCCAGTTTTTGTCATTCAAAAACACAGCAAAACTAATCTATCGA     22648
+                                    ******* ******************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGAACGGACTTCAAGGGTTTTTCGTTGGGTTGAGTATTGGTTATATGAA     22692
+Ca22chr2B_C_albicans_SC5314         GAGAACGGACTTCAAGGGTTTTTCGTTGGGTTGAGTATTGGTTATATGAA     22698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTAGTGCCCATGGTTGCATGCTCGTTCTTTGTCTACGAAAGAATGAAAA     22742
+Ca22chr2B_C_albicans_SC5314         AGTAGTGCCCATGGTTGCATGCTCGTTCTTTGTCTACGAAAGAATGAAAA     22748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTTCTTAGGTATATAGAGAGCCTATTTATATGTACATGAAATCAGAAAA     22792
+Ca22chr2B_C_albicans_SC5314         AGTTCTTAGGTATATAGAGAGCCTATTTATATGTACATGAAATCAGAAAA     22798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCACCACCACTTCTTATTGCCTGGCTTGACTCCAAACTTGGTCGACGAA     22842
+Ca22chr2B_C_albicans_SC5314         ACCACCACCACTTCTTATTGCCTGGCTTGACTCCAAACTTGGCCGACGAA     22848
+                                    ****************************************** *******
+
+Ca22chr2A_C_albicans_SC5314         GCAGTAATATCTTTGATCCCGGACTTTGCCAAATCCTTAGCAATACTAGC     22892
+Ca22chr2B_C_albicans_SC5314         GCAGTAATATCTTTGATCCCGGACTTTGCCAAATCCTTAGCAATACTGGC     22898
+                                    *********************************************** **
+
+Ca22chr2A_C_albicans_SC5314         AGTGGTCGACAACTTGTCCGTACCAATCCTGAACCCCCAACCTCTCAAGA     22942
+Ca22chr2B_C_albicans_SC5314         AGTGGTCGACAACTTGTCCGTACCAATCCTGAACCCCCAACCTCTCAAGA     22948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTTCACTATTCCCGGTGTAATGGCAGCAGTGATTGGCAACCTAATGAAA     22992
+Ca22chr2B_C_albicans_SC5314         GTTTCACTATTCCCGGCGTAATGGCAGCAGTGATTGGCAACCTAATGAAA     22998
+                                    **************** *********************************
+
+Ca22chr2A_C_albicans_SC5314         ATTAACGATTTATGGATCCCATACGCAATGGCAAACTCTGTCCATGAAAA     23042
+Ca22chr2B_C_albicans_SC5314         ATTAACGATTTATGAATCCCATACGCAATGGCAAACTCTGTCCATGAAAA     23048
+                                    ************** ***********************************
+
+Ca22chr2A_C_albicans_SC5314         TTGACTCAATATGTAGCTGACCATCGACCCAGAATTTTCCGAGGTTGTTT     23092
+Ca22chr2B_C_albicans_SC5314         TTGGCTCAATATGTAGCTGACCATCGACCCAGAATTTTCCGAGGTTGTTT     23098
+                                    *** **********************************************
+
+Ca22chr2A_C_albicans_SC5314         CGCCTTGTGACTCAATGTCTTGCTGGATCTTGTTAATCTCTTGTTTCTTC     23142
+Ca22chr2B_C_albicans_SC5314         CGCCCTGCGACTCAATGTCTTGCTGGATCTTGTTAATCTCTTGTTTCTTC     23148
+                                    **** ** ******************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCAACTCTTCATCAGAAATACCGTACCCAAACGTTTGTTTCACTTTATT     23192
+Ca22chr2B_C_albicans_SC5314         TTCAACTCTTCATCAGAAATACCGTACCCAAACGTTTGTTTCACTTTATT     23198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCATACACCTCAATCTTTTCTTGTCCCATAGAATGAACCAAAACATAAC     23242
+Ca22chr2B_C_albicans_SC5314         CTCATACACCTCAATCTTTTCTTGTCCCATAGAATGAACCAAAACATAAC     23248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATATTGGCAAATCAATACAAGAGAGACCCAAGTATACCGCAAGTGCCGGA     23292
+Ca22chr2B_C_albicans_SC5314         ATATTGGCAAATCAATACAAGAGAGACCCAAGTATACCGCAAGTGCCGGA     23298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATCCATACTCTTTCATTAGGGCTTTTATTCCCTGTGGTTTTGCAGCACG     23342
+Ca22chr2B_C_albicans_SC5314         TACCCATACTCTTTCATTAGGGCTTTTATTCCCTGTGGTTTCGCAGCACG     23348
+                                    ** ************************************** ********
+
+Ca22chr2A_C_albicans_SC5314         TGTAGACTGAAACCGGAACATCCCATGATTAACAAATCGAAGTGGCCTAA     23392
+Ca22chr2B_C_albicans_SC5314         TGTAGACTGAAACCGGAACATCCCATGATTAACAAATCGAAGTGGCCTAA     23398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCCGACCCAAAACCCTTGAACAGAAACATCGTTGATGAAAAAGAAACA     23442
+Ca22chr2B_C_albicans_SC5314         TTGCCGACCCAAAACCCTTGAACAGAAACATCGTTGATGAAAAAGAAACA     23448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGAAATTTTTT-TTTTTGGGAGTTGCGAGCAAATAAAAAATTGCTTTTT     23491
+Ca22chr2B_C_albicans_SC5314         GAGAAATTTTTTTTTTTTGGGAGTTGCGAGCAAATAAAAAATTGCTTTTT     23498
+                                    ************ *************************************
+
+Ca22chr2A_C_albicans_SC5314         CTATACACCTTTTATCTAAACTGAGAAAAGTACTTTTCATCTTCAAATCT     23541
+Ca22chr2B_C_albicans_SC5314         CTATACACCTTTTATCTAAACTGAGAAAAGTACTTTTCATCTTCAAATCT     23548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGATTTCACCAAATCAACCACTTCTTTCAGATACACATCTTCAATCTTTT     23591
+Ca22chr2B_C_albicans_SC5314         TGATTTCACCAAATCAACCACTTCTTTCAGATACACATCTTCAATCTTTT     23598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACCACCATTGAGAACCCTCTTTTCGTGATTTCTTTGTTCGTCTTTAGTC     23641
+Ca22chr2B_C_albicans_SC5314         CACCACCATTGAGAACCCTCTTTTCGTGATTTCTTTGTTCGTCTTTAGTC     23648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATGACAACAACATTCTGCAACGATATTTCTTTACTGGGGTCCCATCGCGA     23691
+Ca22chr2B_C_albicans_SC5314         ATGACAACAACATTCTGAAACGATATTTCTTTACTGGGGTCCCATCGCGA     23698
+                                    ***************** ********************************
+
+Ca22chr2A_C_albicans_SC5314         TAATGTCAACCGTGTAGAGTAATTCGAAATCGGCGATTTCCCACGGAAAA     23741
+Ca22chr2B_C_albicans_SC5314         TAATGTCAAACGTGTAGAGTAATTCGAAATCGGCGATTTCCCACGGAAAA     23748
+                                    ********* ****************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTCCTCCAAAATATAATTAACCTCATGCATGGCTATCTGTACACGTTGG     23791
+Ca22chr2B_C_albicans_SC5314         CTTCCTCCAAAATATAATTAACCTCATGCATGGCTATCTGTACACGTTGG     23798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCAGTCTTGCCTATTCTAGTTTGTTGTCCCGCAAGACTTTGCAACAAGTC     23841
+Ca22chr2B_C_albicans_SC5314         TCAGTCTTGCCTATTCTAGTTTGTTGTCCCGCAAGACTTTGCAACAAGTC     23848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCGTATATCTTGTACCTGTTCTTACCTTCAACTGGCTCCATGGGATACC     23891
+Ca22chr2B_C_albicans_SC5314         GTCGTATATCTTGTACCTGTTCTTACCTTCAACTGGCTCCATGGGATACC     23898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTGCGACTGTACTTAAAATATATGTAGCAATAGCCAACCCAAATATACCA     23941
+Ca22chr2B_C_albicans_SC5314         CTGCGACTGTAGTTAAAATATATGTAGCAATAGCCAACCCAAACATACCA     23948
+                                    *********** ******************************* ******
+
+Ca22chr2A_C_albicans_SC5314         GGCATTGTACCCAAAACCGGCAAGATTCTCACACGGAAATCCTTTAGTGC     23991
+Ca22chr2B_C_albicans_SC5314         GGCATTGTACCCAAAACCGGCAAGATTCTCACACGAAAATCCTTTAGTGC     23998
+                                    *********************************** **************
+
+Ca22chr2A_C_albicans_SC5314         TGACAATTGATCAACATTTCCTTTGGTAAACTCGTCATCGGGTAACGGCA     24041
+Ca22chr2B_C_albicans_SC5314         CGACAATTGATCAACATTTCCTTTGGTAAACTCGTCATCGGGTAACGGCA     24048
+                                     *************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACAATTTGGCCTTTCTTGGGTCGGGCTTCTCTGCTGAAAACACAACAGGT     24091
+Ca22chr2B_C_albicans_SC5314         ACAATTTGGCCTTTCTTGGGTCGGGCTTCTCTGCTGAAAACACAACAGGT     24098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATACCATTAATAATACCACGCTTTTTGAGAACCACTCTAATTTTCTTCAT     24141
+Ca22chr2B_C_albicans_SC5314         ATACCATTAATAATACCACGCTTTTTGAGAACCACTCTAATTTTCTTCAT     24148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAACGGGTCTTCTTCGGTTTTGGAGATATCAGCTAGATTAATTCTCGTAG     24191
+Ca22chr2B_C_albicans_SC5314         TAACGGGTCTTCTTCGGTTTTGGAGATATCAGCTAGATTAATTCTCGTAG     24198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTCCAGCTTTGTGGCTGCTCCTCCTGAAGATACTATTGGCAATTTCTTT     24241
+Ca22chr2B_C_albicans_SC5314         GGTCCAGCTTTGTGGCTGCTCCTCCTGAAGATACTATTGGCAATTTCTTT     24248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCGTGGCAGTACGCCAACAAGTCACACTTTGTGTCTAAATTATCAATACA     24291
+Ca22chr2B_C_albicans_SC5314         TCGTGGCAGTACGCCAACAAGTCACACTTTGTGTCTAAATTATCAATACA     24298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCAACGATAAATGTTGGCTGAAAATCGTCGCCATAAATCAACTCCTCTG     24341
+Ca22chr2B_C_albicans_SC5314         ATCAACGATAAATGTTGGCTGGAAATCGTCGCCATAAATCAACTCCTCTG     24348
+                                    ********************* ****************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGCTCTAGATTCCACAATTGATTGCGTGTATCTATCTCTATCCAAGGG     24391
+Ca22chr2B_C_albicans_SC5314         CCAGCTCTAGATTCCACAATTGATTGCGTGTATCTATCTCTATCCAAGGG     24398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAATCTCCAATAAATGGTTCTTGATGCACTCGACCTTAGGGATTCCCAC     24441
+Ca22chr2B_C_albicans_SC5314         GCAATCTCCAATAAATGGTTCTTGATGCACTCGACCTTAGGGATTCCCAC     24448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCCTTTAATGTTGCAACTGCATGTCTATTCAATGAGCTCAACGACACTT     24491
+Ca22chr2B_C_albicans_SC5314         ATCCTTTAATGTTGCAACTGCATGTCTATTCAATGAGCTCAACGACACTT     24498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTCAAAATCAATAATACGCAAGCTTTCAACACCCGATCTTGCCAACATG     24541
+Ca22chr2B_C_albicans_SC5314         GGTCAAAATCAATAATACGCAAGCTTTCAACACCTGATCTTGCCAACATG     24548
+                                    ********************************** ***************
+
+Ca22chr2A_C_albicans_SC5314         GTGGCGACCCATGAACCTACACCACCAGCTCCAACAACTACAACTCGTTG     24591
+Ca22chr2B_C_albicans_SC5314         GTGGCGACCCATGAACCTACACCACCAGCTCCAACAACTACAACTCGTTG     24598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTACGCACCTTGTCCATACCGTCTTCAGTAAGAAAGGCATAATTACGGG     24641
+Ca22chr2B_C_albicans_SC5314         TTTACGCACCTTGTCCATACCATCTTCAGTAAGAAAGGCATAATTACGGG     24648
+                                    ********************* ****************************
+
+Ca22chr2A_C_albicans_SC5314         CTAACTGTTCTCGAATCAATTCTTCTGAATGGTCTCGTTTGGCAGGAGTC     24691
+Ca22chr2B_C_albicans_SC5314         CTAACTGTTCTCGAATCAATTCTTTTGAATGGTCTCGTTTGGCAGGAGTC     24698
+                                    ************************ *************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTTGGGAGGTTGGGGATGTATTTTCTTTCTTTCATAGCAATGGAACGC     24741
+Ca22chr2B_C_albicans_SC5314         TCTTTGGGAGGTTGGGGATGTATTTTCTTTCTTTCATAGCAATGGAACGC     24748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCTACTAATCCAATAGTAACAGCTGCCGTAGCCACTACAGATAGTATTA     24791
+Ca22chr2B_C_albicans_SC5314         CTCTACTAATCCAATAGTAACAGCCGCCGTAGCCACTACAGATAGTATTA     24798
+                                    ************************ *************************
+
+Ca22chr2A_C_albicans_SC5314         TAGATCTTGGTGACATCTAAGGATGATGGACCCAAAAAAAAAAAAAAAAA     24841
+Ca22chr2B_C_albicans_SC5314         TAGATCTTGGTGACATCTAAGGATGATGGACCCAAAAAAAAAAAAAAAAA     24848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTTTTTTTCTCTTCTTCTTCTCACTGATAAAAGTTTATATATTCGGTAC     24891
+Ca22chr2B_C_albicans_SC5314         TTTTTTTTTCTCTTCTTCTTCTCACTGATAAAAGTTTATATATTCGGTAC     24898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCTATCTATACACTAAAACTTGGCTTTGTCACCTTTTCTACCAACAGTA     24941
+Ca22chr2B_C_albicans_SC5314         ATCTATCTATACACTAAAACTTGGCTTTGTCACCTTTTCTACCAACAGTA     24948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTTTTAATCAAACCATTTGGATCAGGTGCTGGGTAGAACAAGTCTTTGTT     24991
+Ca22chr2B_C_albicans_SC5314         CTTTTAATCAAACCATTTGGATCAGGTGCTGGGTAGAACAAGTCTTTGTT     24998
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTCTTTAATGCCCTTCCATTCCAAATTGAACAAGATGTAATGTTTATTTG     25041
+Ca22chr2B_C_albicans_SC5314         GTCTTTAATGCCCTTCCATTCCAAATTGAACAAGATGTAATGTTTATTTG     25048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTAAAACATAGCTAACAGTACCAACTTGCTTTACGGTTTCCAAAATCTTG     25091
+Ca22chr2B_C_albicans_SC5314         GTAAAACATAGCTAACAGTACCAACTTGCTTTACGGTTTCCAAAATCTTG     25098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGAGACATGTTGTACATGGTGGATTGGACCGAAGGAGAATTTTCTTTACA     25141
+Ca22chr2B_C_albicans_SC5314         TGAGACATGTTGTACATGGTGGATTGGACCGAAGGAGAATTTTCTTTACA     25148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAACAATTCTAATGTGACATCTCTAGCAGTATTATATGTGGTGTCAAACA     25191
+Ca22chr2B_C_albicans_SC5314         GAACAATTCTAATGTGACATCTCTAGCAGTATTATATGTGGTGTCAAACA     25198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATTTTGGTTGCGATAATATGTCGTCTAAAGTAGCGATCTGTGTTGGATCA     25241
+Ca22chr2B_C_albicans_SC5314         ATTTTGGTTGCGATAATATGTCGTCTAAAGTAGCGATCTGTGTTGGATCA     25248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AATGTCCACGAAGCATCAACATCAGTCGACAAGATTCTATCTTTGGTAGG     25291
+Ca22chr2B_C_albicans_SC5314         AATGTCCACGAAGCATCAACATCAGTCGACAAGATTCTATCTTTGGTAGG     25298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCAAAGTGGTGTAGTCACACACATTATACCCATAAAACATGGACCCAG     25341
+Ca22chr2B_C_albicans_SC5314         TTGCAAAGTGGTGTAGTCACACACATTATACCCATAAAACATGGACCCAG     25348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGATTTCAACACCGTCAAGTCCTTGATTGAGGACGACAATTGTAATTTC     25391
+Ca22chr2B_C_albicans_SC5314         TTGATTTCAACACCGTCAAGTCCTTGATTGAGGACGACAATTGTAATTTC     25398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGGTGTGCTTGTCGTAGTTCAAATAAGTACGTCTAGTTTCTGGCCCTTC     25441
+Ca22chr2B_C_albicans_SC5314         TTGGTGTGCTTGTCGTAGTTCAAATAAGTACGTCTAGTTTCTGGCCCTTC     25448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGCTTGAATGAATGAGCATGTTCCTTACCTTCTAACTTAATCTTTGACC     25491
+Ca22chr2B_C_albicans_SC5314         GTGCTTGAATGAATGAGCATGTTCCTTACCTTCTAACTTAATCTTTGACC     25498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATTTGGCTTGAATAATGGTAACTTCAATCCCATCAACATGTCCGTATTTA     25541
+Ca22chr2B_C_albicans_SC5314         ATTTGGCTTGAATAATGGTAACTTCAATCCCATCAACATGTCCGTATTTA     25548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTGGTGAAATGTTTAGCTAAATGAGCAGCAAACCTTTCAATTGGCCAAAC     25591
+Ca22chr2B_C_albicans_SC5314         GTGGTGAAATGTTTAGCTAAATGAGCAGCAAACCTTTCAATTGGCCAAAC     25598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCAGTGGTTTTGGCTTCAACCAAAATCGTGTTTTTGACCGTATCAGTAG     25641
+Ca22chr2B_C_albicans_SC5314         ATCAGTGGTTTTGGCTTCAACCAAAATCGTGTTTTTGACCGTATCAGTAG     25648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAACAATCGACGAGTTGTCGGCTTTGGTGTACGATTCATCAAATTTACCT     25691
+Ca22chr2B_C_albicans_SC5314         GAACAATCGACGAATTGTCGGCTTTGGTGTATGATTCATCAAATTTACCT     25698
+                                    ************* ***************** ******************
+
+Ca22chr2A_C_albicans_SC5314         CTCAACAAAACCTGGACATTAGCTTCAAGAACATCTTGCACAGTTGGGTT     25741
+Ca22chr2B_C_albicans_SC5314         CTCAACAAAACCTGGACATTAGCTTCAAGAACATCTTGCACAGTTGGGTT     25748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TGATGGATCTTTTTTGACCTTTAAAAATTTGACATTACCTTTACCGTAGG     25791
+Ca22chr2B_C_albicans_SC5314         TGATGGATCTTTTTTGACCTTTAAAAATTTGACATTACCTTTACCGTAGG     25798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGAGGAGTATAATTCGGATTGCATGATTAGTTGTTGATTGAGAGAGAAC     25841
+Ca22chr2B_C_albicans_SC5314         TTGAGGAGTATAATTCGGATTGCATGATTAGTTGTTGATTGAGAGAAAAC     25848
+                                    ********************************************** ***
+
+Ca22chr2A_C_albicans_SC5314         TAGAAAAAAAGGAAGAGGAATAAACCAGTCTATTTATACTTTTTTGTCCA     25891
+Ca22chr2B_C_albicans_SC5314         TAGAAAAAAAGGAAGAGGAATAAACCAGTCTATTTATACTTTTTTGTCCA     25898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATCTATTGGTTTGCTTTAATTTCGGAGATCTCCACAGAAAGCCGCACAC     25941
+Ca22chr2B_C_albicans_SC5314         TATCTATTGGTTTGCTTTAATTTCGGAGATCTCCACAGAAAGCCGCACAC     25948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACGTCTACTTCAAGTAATCTCTGATAACAAAAAAA---AAAAATCGGGGT     25988
+Ca22chr2B_C_albicans_SC5314         ACGTCTACTTCAAGTAATCTCTGATAACAAAAAAAAAAAAAAATCGGGGT     25998
+                                    ***********************************   ************
+
+Ca22chr2A_C_albicans_SC5314         GCCTATGCGGAGGACCGCAAACATATATTAACACTATTTAATCATTTTTC     26038
+Ca22chr2B_C_albicans_SC5314         GCCTATGCGGAGGACCGCAAACATATATTAACACTATTTAATCATTTTTC     26048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTATCAGTATCAGCTGATTCTTCAACATTGCTTTCATCTTCGGCAAATCG     26088
+Ca22chr2B_C_albicans_SC5314         TTATCAGTATCAGCTGATTCTTCAACATTGCTTTCATCTTCGGCAAATCG     26098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAAGCTTTTTACTTTCTTGGTGGTTGTAGCGTCCTGAACACTTACCCCAG     26138
+Ca22chr2B_C_albicans_SC5314         TAAGCTTTTTACTTTCTTGGTGGTTGTAGCGTCCTGAACACTTACCCCAG     26148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGCTTTAACATTTTCTGATGACTCCAATGCTTCTTCCTGTTTATTATCA     26188
+Ca22chr2B_C_albicans_SC5314         TTGCTTTAACATTTTCTGATGACTCCAATGCTTCTTCCTGTTTATTATCA     26198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AATATCAATTCTGCAGTTCGTATCCATCTTCTTCTCCTGGTGTATTTGGA     26238
+Ca22chr2B_C_albicans_SC5314         AATATCAATTCTGCAGTTCGTATCCATCTTCTTCTCCTGGTGTATTTGGA     26248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATGTGTCTTCTGTAGAAGGTTTTTTCCATGTATTATCATAATATATAA     26288
+Ca22chr2B_C_albicans_SC5314         AAATGTGTCTTCTGTAGAAGGTTTTTTCCATGTATTATCATAATATATAA     26298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACCCTTCATCGTTGGTTGGGTTAGCAGTTGTTTTTGATCTCTTAGAGCTC     26338
+Ca22chr2B_C_albicans_SC5314         ACCCTTCATCGTTGGTTGGGTTAGCAGTTGTTTTTGATCTCTTAGAGCTC     26348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATAAAGTAATTGCACCATCGTTGGTTAAATCTAATCTCCAAGTCTTATC     26388
+Ca22chr2B_C_albicans_SC5314         GATAAAGTAATTGCACCATCGTTGGTTAAATCTAATCTCCAAGTCTTATC     26398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AACCCATCTCCAAGTAGCGCCCTGCATATTGGAATCGCCATTCGTAGCAT     26438
+Ca22chr2B_C_albicans_SC5314         GACCCATCTCCAAGTAGCGCCCTGCATATTGGAATCGCCATTCGTAGCAT     26448
+                                     *************************************************
+
+Ca22chr2A_C_albicans_SC5314         CATCGGCAGCATTGGGTAATTTAAACGAGTCAATCGAACTACTCTCATTC     26488
+Ca22chr2B_C_albicans_SC5314         CATCGGCAGCATTGGGTAATTTAAACGAGTCAATCGAACTACTCTCATTC     26498
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAAAACTCATCAGTCCATGGAGTTCTTTCATAGGACAATAAATTGCTTGT     26538
+Ca22chr2B_C_albicans_SC5314         AAAAACTCATCAGTCCATGGAGTTCTTTCATAGGACAATAAATTGCTTGT     26548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGCCAATACCCAACCACTTTCTTTGGTTCTCGTATATGACGTATGTGA     26588
+Ca22chr2B_C_albicans_SC5314         CCAGCCAATACCCAACCACTTTCTTTGATTCTCGTATATGACGTATGTGA     26598
+                                    *************************** **********************
+
+Ca22chr2A_C_albicans_SC5314         ATCGAACAGGTTTGTTTGACTTTGAAGATGTGCCACTGCTGCTGACCTTT     26638
+Ca22chr2B_C_albicans_SC5314         ATCGAACAGGTTTGTTTGACTTTGAAGATGTGCCACTGCTGCTGACCTTT     26648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCAAATGCGGCAGCAAAAAGCGAATGGTTCTTGGTCTCCGACAAATCCAA     26688
+Ca22chr2B_C_albicans_SC5314         GCAAATGCGGCAGCAAAAAGCGAATGGTTCTTGGTCTCCGACAAATCCAA     26698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCCTGTCAAATAAAAGAAAATTAGCCTGACAATCTTTAACTTCCAAAGAA     26738
+Ca22chr2B_C_albicans_SC5314         CCCTGTCAAATAAAAGAAAATTAGCCTGACAATCTTTAACTTCCAAAGAA     26748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTCTTCTGGTGACAATTGAATACGACGAATGGTAGGTTAGCAAGTACACA     26788
+Ca22chr2B_C_albicans_SC5314         TTCTTCTGGTGACAATTGAATACGACGAATGGTAGGTTAGCAAGTACACA     26798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAGTCAATAGTAATATTGTCCTTGGCTTGATCAACAAAAACGTAACCAC     26838
+Ca22chr2B_C_albicans_SC5314         CCAGTCAATAGTAATATTGTCCTTGGCTTGATCAACAAAAACGTAACCAC     26848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGATAAACTGGAGTCAAAAACAATGTAGTGAATATCAATCTCTTAATGT     26888
+Ca22chr2B_C_albicans_SC5314         AAGATAAACTGGAGTCAAAAACAATGTAGTGAATATCAATCTCTTAATGT     26898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGTATGCCGTCAACGATAACGACGTAATTGGCAGCAACAAGATATCTGCC     26938
+Ca22chr2B_C_albicans_SC5314         CGTATGCCGTCAACGATAACGACGTAATTGGCAGCAACAAGATATCTGCC     26948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTAACACACGTCGACGTCAATGCCTGGACAACATCATCCAACGTAGGATG     26988
+Ca22chr2B_C_albicans_SC5314         TTAACACACGTCGACGTCAATGCCTGGACAACATCATCTAACGTAGGATG     26998
+                                    ************************************** ***********
+
+Ca22chr2A_C_albicans_SC5314         CAAGTTTGCCTCTTTAATGATCTTATTGTTCAACAACGCATACGAAATCA     27038
+Ca22chr2B_C_albicans_SC5314         CAAGTTTGCCTCTTTAATGATCTTATTGTTCAACAACGCATACGAAATCA     27048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATATTGCCACAAGAATTAAATGACCCAGCCAAATGACTAAATTCTCAAAG     27088
+Ca22chr2B_C_albicans_SC5314         ATATTGCCACAAGAATTAAATGACCCAGCCAAATGACTAAATTCTCAAAG     27098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATAAAACAACCAACGCATACAAGCTGATAATAACCACATTGACCCAGTA     27138
+Ca22chr2B_C_albicans_SC5314         TATAAAACAACCAACGCATACAAGCTGATAATAACCACGTTGACCCAGTA     27148
+                                    ************************************** ***********
+
+Ca22chr2A_C_albicans_SC5314         ATCGTCATTAGTCCATGTTGTTATTGAAAGGAGTTTATTGATAATAATCA     27188
+Ca22chr2B_C_albicans_SC5314         ATCGTCATTAGTCCATGTTGTTATTGAAAGGAGTTTATTGATAATAATCA     27198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGTAAGGATACGAGTTCACCAATGCCTTGGAAACCAGAGGCGGCGTCGAT     27238
+Ca22chr2B_C_albicans_SC5314         AGTAAGGATACGAGTTCACCAATGCCTTGGAAACCAGAGGCGGCGTCGAT     27248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GATAATAACGGAGAAGATTGCGGTTTTGCATTTAGTTTTGGATCTGTCAC     27288
+Ca22chr2B_C_albicans_SC5314         GATAATAACGGAGAAGATTGCGGTTTTGCATTTAGTTTTGGATCTGTCAC     27298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CTCAGCGAAATTGGCCCTCAATTCTGTTGATGTTTCTGTTGTAGCTGTGG     27338
+Ca22chr2B_C_albicans_SC5314         CTCAGCGAAATTGGCCCTCAATTCTGTTGATGTTTCTGTTGTAGCTGTGG     27348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CACTCTCTCCAACTGTGCTTGTGGCTGTGGAGACAGGATTCTTATTAGTC     27388
+Ca22chr2B_C_albicans_SC5314         CACTCTCTCCAACTGTGCTTGTGGCTGTAGAGACAGGATTCTTATTAGTC     27398
+                                    **************************** *********************
+
+Ca22chr2A_C_albicans_SC5314         CCCAGACTAGCTTCCACTTTCGACATAACGATTGATTAGTTGATGGATTA     27438
+Ca22chr2B_C_albicans_SC5314         CCCAGACTAGCTTCCACTTTCGACATAACGATTGATTAGTTGATGGATTA     27448
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGTGTGGAAGTGGGAAAAACTTAATTTTATCTTGTGTGATTTCACACCGC     27488
+Ca22chr2B_C_albicans_SC5314         GGTGTGGAAGTGGGAAAAACTTAATTCTATCTTGTGTGATTTCACACCGC     27498
+                                    ************************** ***********************
+
+Ca22chr2A_C_albicans_SC5314         AAGCAAAAAAAAAAAAAATGCACCAGAAACTTATAGTTACCCCAATCACC     27538
+Ca22chr2B_C_albicans_SC5314         AAGCAAAAAAAAAAAAAATGCACCAGAAACTTATAGTTACCCCAATCACC     27548
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAATCGTTCCCTGCGTGTGACTTTTTCTTGTGGCTATGGACTTTTCAAAC     27588
+Ca22chr2B_C_albicans_SC5314         CAATCGTTCCCTGCGTGTGACTTTTTCTTGTGGCTATGGACTTTTCAAAC     27598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTACTATCTAACGAAATCAATAAGAAACGTAAAAAGGTAGCTGCAAATGG     27638
+Ca22chr2B_C_albicans_SC5314         TTGCTATCTAACGAAATCAATAAGAAACGTAAAAAGGTAGCTGCAAATGG     27648
+                                    ** ***********************************************
+
+Ca22chr2A_C_albicans_SC5314         AAGGAAACGCAGCAAAGTGTCTACCACCGCCAAAGAACCGGCGGTAGTTG     27688
+Ca22chr2B_C_albicans_SC5314         AAGGAAACGCAGCAAAGTGTCTACCACCGCCAAAGAACCGGCGGTAGTTG     27698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTGAGCATGCACCAGAAACAATCAACCCCCAGCCTACTACGACAAACGAT     27738
+Ca22chr2B_C_albicans_SC5314         TTGAGCATGCATCAGAAACAATCAACCCCCAGCCTACTACGACAAACGAT     27748
+                                    *********** **************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGCCAAGTGAAGAACAATTAGATACAAAGTTGTCACAATTTGGTGAACT     27788
+Ca22chr2B_C_albicans_SC5314         GAGCCAAGTGAAGAACAATTAGATACAAAGTTGTCACAATTTGGTGAACT     27798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGATACGTCCTTATCGAAATCAGAAAAGGCCAGGAAATTGCAATTACTAC     27838
+Ca22chr2B_C_albicans_SC5314         AGATACGTCCTTATCGAAATCAGAAAAGGCCAGGAAATTGCAATTACTAC     27848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TACAACAGCAAATCAAAAACACAAAGTACAAGGCATGGCTAGATCAAGAG     27888
+Ca22chr2B_C_albicans_SC5314         TACAACAGCAAATCAAAAACACAAAGTACAAGGCATGGCTAGATCAAGAG     27898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GCTCCGTTGTACCAAGACCCCGAAAAGCAATTGATCACGCTTGATTTGAT     27938
+Ca22chr2B_C_albicans_SC5314         GCTCCGTTGTACCAAGACCCCGAAAAGCAGTTGATCACGCTTGATTTGAT     27948
+                                    ***************************** ********************
+
+Ca22chr2A_C_albicans_SC5314         AACTGATATAACAAATAAACAAGACGAAGTATACCTAAAGCTACGGGTAT     27988
+Ca22chr2B_C_albicans_SC5314         AACTGATATAACAAATAAACAAGACGAAGTATACCTAAAGCTACGGGTAT     27998
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACATAAAGCAGCTAATTAAACAATGGCAAGAATGCGATAACGACGACCAA     28038
+Ca22chr2B_C_albicans_SC5314         ACATAAAGCAGCTAATTAAACAATGGCAAGAATGCGATAACGACGACCAA     28048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GAGTTATTGATGGAAACGAAAAAGAGTATAGTCAAATTGTTATACAAGCT     28088
+Ca22chr2B_C_albicans_SC5314         GAGTTATTGATGGAAACAAAGAAAAGTATAGTCAAATTGTTATACAAGCT     28098
+                                    ***************** ** ** **************************
+
+Ca22chr2A_C_albicans_SC5314         AAGGAGCCATAAACTTTCTTTGGACATGCTAATATCGCTCCTGACCATTG     28138
+Ca22chr2B_C_albicans_SC5314         AAGGAGCCATAAACTTTCTTTGGACATGCTAATATCGCTCCTGACCATTG     28148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TTTACTATATCCAACAAAACGAATTCAACAAGGCAAACGAAAGCTACATG     28188
+Ca22chr2B_C_albicans_SC5314         TTTACTATATTCAACAAAACGAATTCAACAAGGCAAACGAAAGCTACATG     28198
+                                    ********** ***************************************
+
+Ca22chr2A_C_albicans_SC5314         AAACTAAGTATCGGCAACGTCTGTTGGCCAATTGGGGTGGTCAATGTAGG     28238
+Ca22chr2B_C_albicans_SC5314         AAACTAAGTATCGGCAACGTCTGTTGGCCAATTGGGGTGGTCAATGTAGG     28248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATTCATGCAAGAAGTGCAGCACTGAAAATAACCGGTGCCTCTAACGTCA     28288
+Ca22chr2B_C_albicans_SC5314         TATTCATGCAAGAAGTGCAGCACTGAAAATAACCGGTGCCTCTAACGTCA     28298
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTAACATAATGCTAAGCGAGTCTACACGAAGATGGATTATAAGTATAAAG     28338
+Ca22chr2B_C_albicans_SC5314         GTAACATAATGCTAAGCGAGTCTACACGAAGATGGATTATAAGTATAAAG     28348
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGGTTGATTAGTTTTAAAGAGAGAGTATATAATAATGCACGTGATTAGTT     28388
+Ca22chr2B_C_albicans_SC5314         AGGTTGATTAGTTTTAAAGAGAGAGTATATAATAATGCACGTGATTAGTT     28398
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAGTAATTTTTTGCGGGTTAGGGCTATAGCCCTAAGACATTCACACAACT     28438
+Ca22chr2B_C_albicans_SC5314         TAGTAATTTTTTGCGAGTTAGGGCTATAGCCCTAAGACATTCACACAACT     28448
+                                    *************** **********************************
+
+Ca22chr2A_C_albicans_SC5314         AACAAAAAGGAAGTTCTCACGCACATAATGTGTAACCCACATAAAGAAAA     28488
+Ca22chr2B_C_albicans_SC5314         AACAAAAAGGAAGTTCTCACGCACATAACGTGTAACCCACATAAAGAAAA     28498
+                                    **************************** *********************
+
+Ca22chr2A_C_albicans_SC5314         AAAAAT-TTCCTTTGAAAAAATTCACATCACGCTTTAACCACTTCAACCT     28537
+Ca22chr2B_C_albicans_SC5314         AAAAAATTTCCTTTGAAAAAATTCACATCACGCTTTAACCACTTCAACCT     28548
+                                    *****  *******************************************
+
+Ca22chr2A_C_albicans_SC5314         ATAACAACTCCAACCATGGCTAGAGAAATCAAGGATATCAAAGAATTCGT     28587
+Ca22chr2B_C_albicans_SC5314         ATAACAACTCCAACCATGGCTAGAGAAATCAAGGATATCAAAGAATTCGT     28598
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGAATTGGCTAGAAGATCAGACATCAAATCTGCTATTGTCAAAGTTAACG     28637
+Ca22chr2B_C_albicans_SC5314         CGAATTGGCTAGAAGATCAGACATCAAATCTGCTATTGTCAAAGTTAACG     28648
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CCAAGGTCAATGCTAACGGTAAAAAATTCAAACAAACCAAATTCAAGGTC     28687
+Ca22chr2B_C_albicans_SC5314         CCAAGGTCAATGCTAACGGTAAAAAATTCAAACAAACCAAATTCAAGGTC     28698
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AGAGGTTCAAGATACCAATACACTTTAGTTGTCAACGATGCTTCTAAAGC     28737
+Ca22chr2B_C_albicans_SC5314         AGAGGTTCAAGATACCAATACACTTTAGTTGTCAACGATGCTTCTAAAGC     28748
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TAAAAAATTACAACAATCTTTACCACCAACCTTAAAAATCACCAACTTGT     28787
+Ca22chr2B_C_albicans_SC5314         TAAAAAATTACAACAATCTTTACCACCAACCTTAAAAATCACCAACTTGT     28798
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         AAATGGTCTAGAGAGATCCAAGTATTAATGAGTTCAAAGTCTATCAAGTT     28837
+Ca22chr2B_C_albicans_SC5314         AAATGGTCTAGAGAGATCCAAGTATTAATGAGTTCAAAGTCTATCAAGTT     28848
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TCTTGTGTCATCATCCCTAAAGTTTAATTTTATGTATATTTAATATATAA     28887
+Ca22chr2B_C_albicans_SC5314         TCTTGTGTCATCATCCCTAAAGTTTAATTTTATGTATATTTAATATATAA     28898
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ATCTGTTATACTACATCTTCCATTTCTTCATCTTCGTCCTCGTCTTCGTT     28937
+Ca22chr2B_C_albicans_SC5314         ATCTGTTATACTACATCTTCCATTTCTTCATCTTCGTCCTCGTCTTCGTT     28948
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTTTTCTTTATTCTGGTCATCCTCATCCAAGCCGAGTCTGACAGCTCGTT     28987
+Ca22chr2B_C_albicans_SC5314         GTTTTCTTTATTCTGGTCATCCTCATCCAAGCCGAGTCTGACAGCTCGTT     28998
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CGGCATCTCTTAATCTTCTGTATTCTGCCTTTAACGTATACTTTGATGTA     29037
+Ca22chr2B_C_albicans_SC5314         CGGCATCTCTTAATCTTCTGTATTCTGCCTTTAACGTATACTTTGATGTA     29048
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         TATGGCCCTCTCTTGATTAAAGTAGCAATGGATTCTAACGATTCCTTCAA     29087
+Ca22chr2B_C_albicans_SC5314         TATGGCCCTCTCTTGATTAAAGTAGCAATGGATTCTAACGATTCCTTCAA     29098
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GTACGATTCAGGCTGTCTTGTTCTCTCCTTTAACCCTTTCATTGACCAAT     29137
+Ca22chr2B_C_albicans_SC5314         GTACGATTCAGGCTGTCTTGTTCTCTCCTTTAACCCTTTCATTGACCAAT     29148
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         ACTCATACTCCTCAAATAATCTAAACAACAAGTCCAATAAATCCTTTTTG     29187
+Ca22chr2B_C_albicans_SC5314         ACTCATACTCCTCAAATAATCTAAACAACAAGTCCAATAAATCCTTTTTG     29198
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         GGCATTCTGATGGCTCTGCCTTCACTTTTGTTTTTACCTTGAGTCGACTT     29237
+Ca22chr2B_C_albicans_SC5314         GGCATTCTGATGGCTCTGCCTTCACTTTTGTTTTTACCTTGAGTCGACTT     29248
+                                    **************************************************
+
+Ca22chr2A_C_albicans_SC5314         CAAGAATATAGAGGCGGCATTTCCTTTAATTGACGGACCTGCATTAGATT     29287
+Ca22chr2B_C_albicans_SC5314         CAAGAATATAGAGGCGGCATTTCCTTTAATTGATGGACCTGCATTAGATT     29298
+                                    ********************************* ****************
+
+Ca22chr2A_C_albicans_SC5314         GAATGACCCCAGGGATCTCATTCA     29311
+Ca22chr2B_C_albicans_SC5314         GA----------------------     29300
+                                    **                      
+
+

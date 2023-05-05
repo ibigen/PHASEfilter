@@ -9,7 +9,7 @@ from PHASEfilter.lib.utils.reference import Reference
 from PHASEfilter.lib.utils.run_extra_software import RunExtraSoftware
 
 ### run command line
-# export PYTHONPATH='/home/mmp/git/PHASEfilter'
+# export PYTHONPATH=/home/mmp/git/PHASEfilter
 # python3 -m unittest -v tests.test_utils
 
 class Test(unittest.TestCase):

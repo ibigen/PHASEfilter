@@ -14,6 +14,9 @@ class SoftwareTest(object):
 	KEY_version_pass_equal = 'equal'
 	KEY_version_pass_equal_or_bigger = 'equal_or_bigger'
 	
+	## used when thereis no version
+	KEY_no_version = 'No version'
+	
 	#### utils
 	utils = Utils()
 
@@ -28,7 +31,7 @@ class SoftwareTest(object):
 		tmp_file = self.utils.get_temp_file('file_name', '.txt')
 		cmd = "{} > {} 2>&1".format(software[SoftwareTest.KEY_software_run_get_version], tmp_file)
 		exist_status = os.system(cmd)
-		if (exist_status != 0 and exist_status != 256):
+		if (exist_status != 0 and exist_status != 256 and exist_status != 65280):
 			self.utils.remove_file(tmp_file)
 			raise Exception("Error: software '{}' is not present in your PATH".format(
 					software[SoftwareTest.KEY_software_name]))
@@ -39,6 +42,7 @@ class SoftwareTest(object):
 		
 		### 
 		for line_ in vect_data:
+			if software[SoftwareTest.KEY_version] == SoftwareTest.KEY_no_version: return True
 			result = self.is_version_equal_or_bigger(line_, software)
 			if (result is None): continue
 			return result

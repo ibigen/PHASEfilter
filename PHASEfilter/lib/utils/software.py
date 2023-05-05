@@ -81,11 +81,25 @@ class Software(SoftwareTest):
 					SoftwareTest.KEY_version_minor_number : SoftwareTest.KEY_version_pass_equal_or_bigger,
 				}
 	
+	SOFTWARE_liftOver_name = 'liftOver'
+	SOFTWARE_liftOver = {
+					SoftwareTest.KEY_software_name : SOFTWARE_liftOver_name, 
+					SoftwareTest.KEY_software_run : 'liftOver', 
+					SoftwareTest.KEY_software_run_get_version : 'liftOver', 
+					SoftwareTest.KEY_version : SoftwareTest.KEY_no_version,
+					SoftwareTest.KEY_version_major_number : SoftwareTest.KEY_version_pass_equal,
+					SoftwareTest.KEY_version_minor_number : SoftwareTest.KEY_version_pass_equal_or_bigger,
+				}
+	
 	### all software that is going to be tested
-	VECT_SOFTWARE_TO_TEST = [SOFTWARE_minimap2,\
+	VECT_SOFTWARE_TO_TEST = [
+			SOFTWARE_minimap2,\
 #			SOFTWARE_blast,\
-			SOFTWARE_bcftools, SOFTWARE_samtools, \
-			SOFTWARE_tabix, SOFTWARE_bgzip, \
+			SOFTWARE_bcftools,\
+			SOFTWARE_samtools,\
+			SOFTWARE_tabix,\
+			SOFTWARE_bgzip,\
+#			SOFTWARE_liftOver,\			### use pyliftover
 #			SOFTWARE_lastz
 			]
 	
@@ -131,10 +145,13 @@ class Software(SoftwareTest):
 
 	def get_minimap2(self):
 		return self.SOFTWARE_minimap2[SoftwareTest.KEY_software_run]
-	
+
 	def get_lastz(self):
 		return self.SOFTWARE_lastz[SoftwareTest.KEY_software_run]
-	
+
+	def get_liftOver(self):
+		return self.SOFTWARE_liftOver[SoftwareTest.KEY_software_run]
+
 	def get_application(self, app_name):
 		"""
 		:param name of applciation to return
@@ -149,11 +166,14 @@ class Software(SoftwareTest):
 		"""
 		test all software, if fails exit the application
 		"""
-		
+
 		for software in self.VECT_SOFTWARE_TO_TEST:
 			result = self.test_software(software)
 			if result:
-				print("Software: '{}' version: '{}' is OK".format(
+				if software[Software.KEY_version] == self.KEY_no_version:
+					print("Software: '{}' version: is OK".format(
+						software[Software.KEY_software_name]))
+				else: print("Software: '{}' version: '{}' is OK".format(
 					software[Software.KEY_software_name], software[Software.KEY_version]))
 			else:
 				raise Exception("Error: software '{}' has a lower version than '{}'".format(
@@ -167,7 +187,8 @@ class Software(SoftwareTest):
 		for software in self.VECT_SOFTWARE_TO_TEST:
 			print("{: <18}{}".format(
 				software[Software.KEY_software_name], software[Software.KEY_version]))
-			
+
+
 if __name__ == '__main__':
 	
 	software = Software()

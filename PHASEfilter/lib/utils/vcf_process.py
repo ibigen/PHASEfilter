@@ -92,7 +92,7 @@ class CountAlleles(object):
 		return self
 
 	def add_line(self, line):
-		lst_data = line.split()
+		lst_data = line.split("\t")
 		if (len(lst_data) == 10 or len(lst_data) == 11):
 			self.equal_allele += int(lst_data[0])
 			self.diff_allele += int(lst_data[1])
@@ -512,11 +512,9 @@ class VcfProcess(object):
 		"""
 		:out nothing
 		"""
-		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
-		else: handle_in = open(self.file_name, 'r')
 		try:
-			
-			with open(vcf_out, 'w') as handle_vcf_out, open(vcf_out_removed_temp, 'w') as handle_vcf_remove_out,\
+			with (open(self.file_name, 'rb') if (self.is_zipped) else open(self.file_name, 'r')) as handle_in,\
+				open(vcf_out, 'w') as handle_vcf_out, open(vcf_out_removed_temp, 'w') as handle_vcf_remove_out,\
 					open(vcf_out_LOH_temp, 'w') as handle_vcf_LOH_out, open(vcf_hit, 'rb') as handle_hit:
 				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
 				vcf_reader_hit = vcf.Reader(handle_hit, compressed=True)
@@ -565,7 +563,7 @@ class VcfProcess(object):
 						else:
 							### save in an output
 							if (self.b_print_results):
-								print("Erro Pos: ", record.heterozygosity, record)
+								print("Error Pos: ", record.heterozygosity, record)
 								print("Position hit: {}    Position most left: {}".format(position, position_most_left))
 							vcf_write.write_record(record)
 							self.count_alleles.add_dont_have_hit_postion()
@@ -582,8 +580,6 @@ class VcfProcess(object):
 					print(self.count_alleles)
 		except Exception as e:
 			pass
-		finally:
-			handle_in.close()
 
 
 	def parse_vcf(self, file_result, vect_pass_ref, lift_over_ligth):
@@ -602,10 +598,9 @@ class VcfProcess(object):
 		(lines_parsed, lines_failed_parse) = (0, 0)
 		vect_fail_synch = []
 		
-		if (self.is_zipped): handle_in = open(self.file_name, 'rb')
-		else: handle_in = open(self.file_name, 'r')
 		try:
-			with open(tem_file, 'w') as handle_vcf_out:
+			with (open(self.file_name, 'rb') if self.is_zipped else open(self.file_name, 'r')) as handle_in,\
+				open(tem_file, 'w') as handle_vcf_out:
 				vcf_reader = vcf.Reader(handle_in, compressed=self.is_zipped)
 				vcf_reader.infos[TAG_TO_ADD] = _Info(id=TAG_TO_ADD, num=1, type='Integer', 
 					source=None, version=None, desc=\
@@ -625,7 +620,7 @@ class VcfProcess(object):
 						continue
 						
 					## test chr_name		
-					if (chr_name != record.CHROM):
+					if (not lift_over_ligth.chain.has_chain() and chr_name != record.CHROM):
 						chr_name = record.CHROM
 						if (chr_name.lower() in vect_pass_ref): continue	### chr to not process
 						
@@ -656,8 +651,6 @@ class VcfProcess(object):
 						lines_failed_parse += 1
 		except Exception as e:
 			pass
-		finally:
-			handle_in.close()
 				
 		### compress or copy
 		if (file_result.endswith(".gz")): 

@@ -6,6 +6,8 @@ from PHASEfilter.lib.constants import version
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
 ## 
+## cd where setup.py is
+## rm dist/*
 ## python3 setup.py sdist bdist_wheel --plat-name=linux_x86_64
 ## python3 -m twine upload dist/*
 #### and press cancel in all windows
@@ -52,7 +54,7 @@ setuptools.setup(
 	license='MIT',
 	python_requires='>=3.5',
 	include_package_data=True, # include other files
-	platforms='linux_x86_64',
+	platforms=['Linux'],
 	classifiers=[
 		# How mature is this project? Common values are
 		#   Development Status :: 1 - Planning
@@ -80,6 +82,7 @@ setuptools.setup(
 		"pysam==0.15.2",
 		"biopython==1.78",
 		"gff3tool==2.0.1",
+		"pyliftover==0.4",
 		"wheel",
 	],
 	entry_points={
